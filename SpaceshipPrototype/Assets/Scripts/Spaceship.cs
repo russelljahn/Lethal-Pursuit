@@ -27,9 +27,9 @@ public class Spaceship : MonoBehaviour {
 		float zForce;
 
 		rigidbody.velocity = new Vector3(
-			rigidbody.velocity.x,
-			rigidbody.velocity.y,
-			Mathf.Max(0.0f, rigidbody.velocity.z)
+			Mathf.Min(rigidbody.velocity.x, maxVelocity.x),
+			Mathf.Min(rigidbody.velocity.y, maxVelocity.y),
+			Mathf.Min(rigidbody.velocity.z, maxVelocity.z)
 		);
 
 		if (Input.GetButton("Boost")) { //Spacebar by default will make it move forward
@@ -41,15 +41,15 @@ public class Spaceship : MonoBehaviour {
 		}
 
 		this.transform.Translate(Input.GetAxis("Horizontal")*Time.deltaTime*acceleration.x, 0.0f, 0.0f);
-		this.transform.Translate(0.0f, -Input.GetAxis("Vertical")*Time.deltaTime*acceleration.y, 0.0f);
+		this.transform.Translate(0.0f, Input.GetAxis("Vertical")*Time.deltaTime*acceleration.y, 0.0f);
 
 //		Debug.Log ("transform.rotation.eulerAngles: " + transform.rotation.eulerAngles);
 
-			transform.RotateAround(
-				pivot.transform.position, 
-				Vector3.forward, 
-				Time.deltaTime*Input.GetAxis("Horizontal")*acceleration.x*0.1f
-			);
+//			transform.RotateAround(
+//				pivot.transform.position, 
+//				Vector3.forward, 
+//				Time.deltaTime*Input.GetAxis("Horizontal")*acceleration.x*0.1f
+//			);
 //		}
 	
 
