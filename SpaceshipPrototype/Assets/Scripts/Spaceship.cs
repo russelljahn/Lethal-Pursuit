@@ -40,8 +40,20 @@ public class Spaceship : MonoBehaviour {
 			flames.Stop();
 		}
 
-		this.transform.Translate(Input.GetAxis("Horizontal")*Time.deltaTime*acceleration.x, 0.0f, 0.0f);
-		this.transform.Translate(0.0f, Input.GetAxis("Vertical")*Time.deltaTime*acceleration.y, 0.0f);
+		RaycastHit hit;
+
+		float horizontalDistanceToRaycast = 200.0f;
+		/* Left/Right movement if not going to collide... */
+		if (!Physics.Raycast(pivot.transform.position, Vector3.right*xTilt, out hit, horizontalDistanceToRaycast)) {
+			this.transform.Translate(xTilt*Time.deltaTime*acceleration.x, 0.0f, 0.0f);
+		}
+
+		float verticalDistanceToRaycast = 70.0f;
+		/* Up/Down movement if not going to collide... */
+		if (!Physics.Raycast(pivot.transform.position, Vector3.up*yTilt, out hit, verticalDistanceToRaycast)) {
+			this.transform.Translate(0.0f, yTilt*Time.deltaTime*acceleration.y, 0.0f);
+		}
+
 
 //		Debug.Log ("transform.rotation.eulerAngles: " + transform.rotation.eulerAngles);
 
