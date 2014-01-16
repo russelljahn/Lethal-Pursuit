@@ -1,0 +1,66 @@
+newmtl default
+d 1
+Ns 0.75
+Ni 0
+Ka 0 1 1
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+
+newmtl default_body
+d 1
+Ns 0.75
+Ni 0
+Ka 0 0 0
+Kd 0.501961 1 0
+Ks 1 1 1
+Km 0
+
+newmtl default_center2b
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 0.286275 0.282353 0.254902
+Ks 1 1 1
+Km 0
+map_Kd /Maps/fbe1d_01_01_01_02_01.jpg
+
+newmtl default_glass
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 0 0 0
+Ks 1 1 1
+Km 0
+
+newmtl default_missiles_mult
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/c1v.jpg
+
+newmtl default_exhaust2
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 1 1 1
+Km 0
+map_Kd /Maps/fbe1d_01_01_01_02_01.jpg
+
+newmtl default_engine_fire
+d 1
+Ns 1
+Ni 0
+Ka 0 1 1
+Kd 0 1 1
+Ks 1 1 1
+Km 0
+
