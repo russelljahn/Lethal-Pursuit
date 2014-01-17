@@ -50,14 +50,12 @@ public class Spaceship : MonoBehaviour {
 
 	void HandleParticles() {
 
-		return;
 
 		if (Input.GetButton("Boost")) {
-			flames.Play();
+			flames.enableEmission = true;
 		}
 		else {
-			flames.Stop();
-//			flames.Clear();
+			flames.enableEmission = false;
 		}
 	}
 
