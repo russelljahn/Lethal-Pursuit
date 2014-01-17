@@ -35,7 +35,7 @@ public class Spaceship : MonoBehaviour {
 
 
 
-
+	// This happens at a fixed timestep
 	void FixedUpdate () {
 	
 		HandleParticles();
@@ -46,10 +46,8 @@ public class Spaceship : MonoBehaviour {
 
 
 
-
-
+	
 	void HandleParticles() {
-
 
 		if (Input.GetButton("Boost")) {
 			flames.enableEmission = true;
@@ -58,6 +56,7 @@ public class Spaceship : MonoBehaviour {
 			flames.enableEmission = false;
 		}
 	}
+
 
 
 
@@ -82,7 +81,7 @@ public class Spaceship : MonoBehaviour {
 		RaycastHit hit;
 		
 		float horizontalDistanceToRaycast = 200.0f;
-		/* Left/Right movement if not going to collide... */
+		/* Do left/right movement if not going to collide... */
 		if (!Physics.Raycast(pivot.transform.position, Vector3.right*xTilt, out hit, horizontalDistanceToRaycast)) {
 			this.transform.Translate(
 				transform.InverseTransformDirection(
@@ -92,7 +91,7 @@ public class Spaceship : MonoBehaviour {
 		}
 		
 		float verticalDistanceToRaycast = 70.0f;
-		/* Up/Down movement if not going to collide... */
+		/* Do up/down movement if not going to collide... */
 		if (!Physics.Raycast(pivot.transform.position, Vector3.up*yTilt, out hit, verticalDistanceToRaycast)) {
 			this.transform.Translate(
 				transform.InverseTransformDirection(
@@ -111,10 +110,11 @@ public class Spaceship : MonoBehaviour {
 		float yTilt = Input.GetAxis("Vertical");
 
 		Vector3 targetRotationEuler = Vector3.zero;
-		
+
+		/* Based on analogue stick direction, figure out rotation state to blend to. */
 		if (xTilt == 0) {
 			if (yTilt == 0) {
-				;
+				; // Idle state, total rotation of zero
 			}
 			else if (yTilt < 0) {
 				targetRotationEuler = downTiltRotation;
@@ -145,7 +145,8 @@ public class Spaceship : MonoBehaviour {
 				targetRotationEuler = upRightTiltRotation;
 			}
 		}
-		
+
+		/* Blend from current rotation towards target rotation. */
 		transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotationEuler), tiltSpeed*Time.deltaTime);
 	}
 
