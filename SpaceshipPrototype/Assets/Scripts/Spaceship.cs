@@ -38,6 +38,7 @@ public class Spaceship : MonoBehaviour {
 
 	void FixedUpdate () {
 	
+		HandleParticles();
 		HandleMovement();
 		HandleTilt();
 
@@ -46,22 +47,38 @@ public class Spaceship : MonoBehaviour {
 
 
 
+
+	void HandleParticles() {
+
+		return;
+
+		if (Input.GetButton("Boost")) {
+			flames.Play();
+		}
+		else {
+			flames.Stop();
+//			flames.Clear();
+		}
+	}
+
+
+
 	void HandleMovement() {
 		float xTilt = Input.GetAxis("Horizontal");
 		float yTilt = Input.GetAxis("Vertical");
-		
-		float zForce;
-		
+
+		/* Constrain max velocity. */
 		rigidbody.velocity = new Vector3(
 			Mathf.Min(rigidbody.velocity.x, maxVelocity.x),
 			Mathf.Min(rigidbody.velocity.y, maxVelocity.y),
 			Mathf.Min(rigidbody.velocity.z, maxVelocity.z)
-			);
-		
+		);
+
+		/* Forward boost. */
 		if (Input.GetButton("Boost")) {
 			rigidbody.AddRelativeForce (
 				transform.InverseTransformDirection(Vector3.forward)*acceleration.z*Time.deltaTime
-				);
+			);
 		}
 		
 		RaycastHit hit;
