@@ -5,11 +5,11 @@ using System.Collections;
 public class Spaceship : MonoBehaviour {
 
 	public Vector3 instantaneousVelocity = new Vector3(0.0f, 0.0f, 2500.0f);
-	public Vector3 acceleration = new Vector3(2000.0f, 1500.0f, 13000.0f);
+	public Vector3 acceleration = new Vector3(3000.0f, 2500.0f, 13000.0f);
 	public Vector3 deacceleration = new Vector3(0.0f, 0.0f, 150000.0f);
 	public Vector3 maxVelocity  = new Vector3(0.0f, 4000.0f, 8000.0f);
 
-	public float xTiltSpeed = 2.0f;
+	public float xTiltSpeed = 0.5f;
 	public float yTiltSpeed = 4.0f;
 
 	private Rigidbody rigidbody;
@@ -19,8 +19,8 @@ public class Spaceship : MonoBehaviour {
 	public Vector3 rightTiltRotation = new Vector3(  0.0f,  15.0f,  -60.0f);
 	public Vector3 leftTiltRotation  = new Vector3(  0.0f,  -15.0f, 60.0f);
 
-	public Vector3 upTiltRotation    = new Vector3(-30.0f,  0.0f,   0.0f);
-	public Vector3 downTiltRotation  = new Vector3( 30.0f,  0.0f,   0.0f);
+	public Vector3 upTiltRotation    = new Vector3(-45.0f,  0.0f,   0.0f);
+	public Vector3 downTiltRotation  = new Vector3( 45.0f,  0.0f,   0.0f);
 
 	public Vector3 downRightTiltRotation  = new Vector3(  30.0f,  0.0f,  -60.0f);
 	public Vector3 downLeftTiltRotation   = new Vector3(  30.0f,  0.0f, 60.0f);

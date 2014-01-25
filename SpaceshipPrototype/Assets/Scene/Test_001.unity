@@ -3581,7 +3581,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300002, guid: 22da0b00530e6854491b0a232bea4583, type: 3}
 --- !u!1 &901638707
 GameObject:
@@ -5257,16 +5257,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instantaneousVelocity: {x: 0, y: 0, z: 2500}
-  acceleration: {x: 2000, y: 1500, z: 13000}
+  acceleration: {x: 3000, y: 3500, z: 13000}
   deacceleration: {x: 0, y: 0, z: 150000}
   maxVelocity: {x: 0, y: 10000, z: 10000}
-  xTiltSpeed: 2
+  xTiltSpeed: .5
   yTiltSpeed: 4
   pivot: {fileID: 1207582349}
   rightTiltRotation: {x: 0, y: 15, z: -60}
   leftTiltRotation: {x: 0, y: -15, z: 60}
-  upTiltRotation: {x: -30, y: 0, z: 0}
-  downTiltRotation: {x: 30, y: 0, z: 0}
+  upTiltRotation: {x: -45, y: 0, z: 0}
+  downTiltRotation: {x: 45, y: 0, z: 0}
   downRightTiltRotation: {x: 30, y: 0, z: -60}
   downLeftTiltRotation: {x: 30, y: 0, z: 60}
   upRightTiltRotation: {x: -30, y: 0, z: -60}
@@ -5758,7 +5758,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 22da0b00530e6854491b0a232bea4583, type: 3}
 --- !u!1 &1518048282
 GameObject:
@@ -6992,7 +6992,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 20000
+  far clip plane: 200000
   field of view: 83.4000015
   orthographic: 0
   orthographic size: 5
