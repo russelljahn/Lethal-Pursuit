@@ -7032,12 +7032,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 1444674764}
-  distanceSpaceshipToCamera: {x: 0, y: 100, z: -285}
   tiltSpeed: .5
-  upDownPanSpeed: 10
+  distanceSpaceshipToCamera: {x: 0, y: 100, z: -285}
   lookingDownPanPosition: {x: 0, y: 140, z: -285}
+  topLeftPanPosition: {x: 160, y: 300, z: -450}
+  topRightPanPosition: {x: -160, y: 300, z: -450}
+  downLeftPanPosition: {x: -140, y: 60, z: -350}
+  downRightPanPosition: {x: 140, y: 60, z: -350}
   normalPanSpeed: 10
+  upDownPanSpeed: 10
   leftRightPanSpeed: 20
+  topLeftRightPanSpeed: 100
+  downLeftRightPanSpeed: 100
 --- !u!1 &2120600918
 GameObject:
   m_ObjectHideFlags: 0

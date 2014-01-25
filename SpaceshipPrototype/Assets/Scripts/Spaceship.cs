@@ -34,6 +34,9 @@ public class Spaceship : MonoBehaviour {
 	}
 
 
+	void Update() {
+
+	}
 
 	// This happens at a fixed timestep
 	void FixedUpdate () {
@@ -156,7 +159,7 @@ public class Spaceship : MonoBehaviour {
 				targetRotationEuler = upRightTiltRotation;
 			}
 		}
-
+	
 		/* Blend from current rotation towards target rotation. */
 		transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotationEuler), tiltSpeed*Time.deltaTime);
 	}
