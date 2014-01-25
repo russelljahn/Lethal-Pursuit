@@ -2734,8 +2734,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 504933463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 500, z: 0}
-  m_LocalScale: {x: .100000001, y: 1000, z: 10}
+  m_LocalPosition: {x: -5, y: 5000, z: 0}
+  m_LocalScale: {x: .100000001, y: 10000, z: 10}
   m_Children: []
   m_Father: {fileID: 281168350}
 --- !u!23 &504933465
@@ -5256,9 +5256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea0cd42aa1733e4b9d51b465a6b95e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantaneousVelocity: {x: 0, y: 0, z: 2500}
   acceleration: {x: 2000, y: 1500, z: 13000}
+  deacceleration: {x: 0, y: 0, z: 150000}
   maxVelocity: {x: 0, y: 10000, z: 10000}
-  tiltSpeed: 2
+  xTiltSpeed: 2
+  yTiltSpeed: 4
   pivot: {fileID: 1207582349}
   rightTiltRotation: {x: 0, y: 15, z: -60}
   leftTiltRotation: {x: 0, y: -15, z: 60}
@@ -5609,8 +5612,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1499836560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 500, z: 0}
-  m_LocalScale: {x: .100000001, y: 1000, z: 10}
+  m_LocalPosition: {x: 5, y: 5000, z: 0}
+  m_LocalScale: {x: .100000001, y: 10000, z: 10}
   m_Children: []
   m_Father: {fileID: 281168350}
 --- !u!1 &1501445489
@@ -7033,17 +7036,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 1444674764}
   tiltSpeed: .5
-  distanceSpaceshipToCamera: {x: 0, y: 100, z: -285}
-  lookingDownPanPosition: {x: 0, y: 140, z: -285}
-  topLeftPanPosition: {x: 160, y: 300, z: -450}
-  topRightPanPosition: {x: -160, y: 300, z: -450}
-  downLeftPanPosition: {x: -140, y: 60, z: -350}
-  downRightPanPosition: {x: 140, y: 60, z: -350}
-  normalPanSpeed: 10
-  upDownPanSpeed: 10
-  leftRightPanSpeed: 20
-  topLeftRightPanSpeed: 100
-  downLeftRightPanSpeed: 100
+  idlePosition: {x: 0, y: 100, z: -285}
+  idleRotation: {x: 0, y: 0, z: 0}
+  upPosition: {x: 0, y: -100, z: -285}
+  upRotation: {x: -60, y: 0, z: 0}
+  downPosition: {x: 0, y: 500, z: -285}
+  downRotation: {x: 60, y: 0, z: 0}
+  leftRotation: {x: 0, y: -60, z: 0}
+  rightRotation: {x: 0, y: 60, z: 0}
+  upLeftPosition: {x: -170, y: 140, z: -500}
+  upLeftRotation: {x: 0, y: 0, z: 0}
+  upRightPosition: {x: 170, y: 140, z: -500}
+  upRightRotation: {x: 0, y: 0, z: 0}
+  downLeftPosition: {x: -170, y: 140, z: -500}
+  downLeftRotation: {x: 0, y: 0, z: 0}
+  downRightPosition: {x: 170, y: 140, z: -500}
+  downRightRotation: {x: 0, y: 0, z: 0}
+  idlePanSpeed: 15
+  upDownPanSpeed: 20
+  leftRightPanSpeed: 10
+  upLeftRightPanSpeed: 20
+  downLeftRightPanSpeed: 20
+  idleRotationSpeed: 1.5
+  upDownRotationSpeed: 1.75
+  leftRightRotationSpeed: 1.5
 --- !u!1 &2120600918
 GameObject:
   m_ObjectHideFlags: 0
