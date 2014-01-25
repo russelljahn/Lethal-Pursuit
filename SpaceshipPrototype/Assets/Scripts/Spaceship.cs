@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof (Rigidbody))]
@@ -89,6 +89,12 @@ public class Spaceship : MonoBehaviour {
 				)
 			);
 		}
+
+//		rigidbody.MovePosition(
+//			transform.InverseTransformDirection(
+//				this.transform.position + new Vector3(xTilt*Time.deltaTime*acceleration.x, 0.0f, 0.0f)
+//			)
+//		);
 		
 		float verticalDistanceToRaycast = 70.0f;
 		/* Do up/down movement if not going to collide... */
@@ -99,6 +105,11 @@ public class Spaceship : MonoBehaviour {
 				)
 			);
 		}
+//		rigidbody.MovePosition(
+//			transform.InverseTransformDirection(
+//				this.transform.position + new Vector3(0.0f, yTilt*Time.deltaTime*acceleration.y, 0.0f)
+//			)
+//		);
 	}
 
 
