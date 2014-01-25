@@ -5243,7 +5243,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 16
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1444674764
 MonoBehaviour:
@@ -7036,28 +7036,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 1444674764}
   tiltSpeed: .5
-  idlePosition: {x: 0, y: 100, z: -285}
+  idlePosition: {x: 0, y: 100, z: -200}
   idleRotation: {x: 0, y: 0, z: 0}
   upPosition: {x: 0, y: -100, z: -285}
   upRotation: {x: -60, y: 0, z: 0}
-  downPosition: {x: 0, y: 500, z: -285}
-  downRotation: {x: 60, y: 0, z: 0}
-  leftRotation: {x: 0, y: -60, z: 0}
+  downPosition: {x: 0, y: 25, z: -285}
+  downRotation: {x: -60, y: 0, z: 0}
+  leftRotation: {x: 0, y: 60, z: 0}
   rightRotation: {x: 0, y: 60, z: 0}
-  upLeftPosition: {x: -170, y: 140, z: -500}
-  upLeftRotation: {x: 0, y: 0, z: 0}
-  upRightPosition: {x: 170, y: 140, z: -500}
-  upRightRotation: {x: 0, y: 0, z: 0}
-  downLeftPosition: {x: -170, y: 140, z: -500}
-  downLeftRotation: {x: 0, y: 0, z: 0}
-  downRightPosition: {x: 170, y: 140, z: -500}
-  downRightRotation: {x: 0, y: 0, z: 0}
+  upLeftPosition: {x: 0, y: 0, z: -200}
+  upLeftRotation: {x: 60, y: 100, z: 0}
+  upRightPosition: {x: 0, y: 0, z: -200}
+  upRightRotation: {x: -60, y: 100, z: 0}
+  downLeftPosition: {x: 0, y: 0, z: -200}
+  downLeftRotation: {x: 60, y: -100, z: 0}
+  downRightPosition: {x: 0, y: 0, z: -200}
+  downRightRotation: {x: -60, y: -100, z: 0}
   idlePanSpeed: 15
-  upDownPanSpeed: 20
+  upDownPanSpeed: 10
   leftRightPanSpeed: 10
-  upLeftRightPanSpeed: 20
-  downLeftRightPanSpeed: 20
-  idleRotationSpeed: 1.5
+  upLeftRightPanSpeed: 10
+  downLeftRightPanSpeed: 10
+  idleRotationSpeed: 2
+  diagonalRotationSpeed: 2.5
   upDownRotationSpeed: 1.75
   leftRightRotationSpeed: 1.5
 --- !u!1 &2120600918

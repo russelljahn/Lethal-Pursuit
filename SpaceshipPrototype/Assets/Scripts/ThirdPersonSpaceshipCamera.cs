@@ -38,6 +38,7 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 	public float downLeftRightPanSpeed = 20.0f;
 
 	public float idleRotationSpeed = 1.5f;
+	public float diagonalRotationSpeed = 1.5f;
 	public float upDownRotationSpeed = 1.75f;
 	public float leftRightRotationSpeed = 1.5f;
 	
@@ -48,86 +49,88 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 
 	void FixedUpdate () {
 //		this.transform.position = spaceship.transform.position + distanceSpaceshipToCamera;
+		float xTilt = Input.GetAxis("Horizontal");
+		float yTilt = Input.GetAxis("Vertical");
 
-		if (Input.GetAxis("Vertical") > 0) {
+		if (yTilt > 0) {
 
-			if (Input.GetAxis("Horizontal") == 0) {
+			if (xTilt == 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + upPosition, 
+					spaceship.transform.position + yTilt*upPosition, 
 			        upDownPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(upRotation), 
+					Quaternion.Euler(yTilt*upRotation), 
 					upDownRotationSpeed*Time.deltaTime
 				);
 			}
-			else if (Input.GetAxis("Horizontal") < 0) {
+			else if (xTilt < 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + upLeftPosition, 
+					spaceship.transform.position + xTilt*yTilt*upLeftPosition, 
 					upLeftRightPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(upLeftRotation), 
-					tiltSpeed*Time.deltaTime
+					Quaternion.Euler(xTilt*yTilt*upLeftRotation), 
+					diagonalRotationSpeed*Time.deltaTime
 				);
 			}
-			else if (Input.GetAxis("Horizontal") > 0) {
+			else if (xTilt > 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + upRightPosition, 
+					spaceship.transform.position + xTilt*yTilt*upRightPosition, 
 					upLeftRightPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(upRightRotation), 
-					tiltSpeed*Time.deltaTime
+					Quaternion.Euler(xTilt*yTilt*upRightRotation), 
+					diagonalRotationSpeed*Time.deltaTime
 				);
 			}
 		}
-		else if (Input.GetAxis("Vertical") < 0) {
+		else if (yTilt < 0) {
 			
-			if (Input.GetAxis("Horizontal") == 0) {
+			if (xTilt == 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + downPosition, 
+					spaceship.transform.position + yTilt*downPosition, 
 					upDownPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(downRotation), 
+					Quaternion.Euler(yTilt*downRotation), 
 					upDownRotationSpeed*Time.deltaTime
 				);
 			}
-			else if (Input.GetAxis("Horizontal") < 0) {
+			else if (xTilt < 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + downLeftPosition, 
+					spaceship.transform.position + xTilt*yTilt*downLeftPosition, 
 					downLeftRightPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(downLeftRotation), 
-					tiltSpeed*Time.deltaTime
+					Quaternion.Euler(xTilt*yTilt*downLeftRotation), 
+					diagonalRotationSpeed*Time.deltaTime
 				);
 			}
-			else if (Input.GetAxis("Horizontal") > 0) {
+			else if (xTilt > 0) {
 				this.transform.position = Vector3.Slerp(
 					this.transform.position, 
-					spaceship.transform.position + downRightPosition, 
+					spaceship.transform.position + xTilt*yTilt*downRightPosition, 
 					downLeftRightPanSpeed*Time.deltaTime
 				);
 				this.transform.rotation = Quaternion.Slerp(
 					transform.localRotation, 
-					Quaternion.Euler(downRightRotation), 
-					tiltSpeed*Time.deltaTime
+					Quaternion.Euler(xTilt*yTilt*downRightRotation), 
+					diagonalRotationSpeed*Time.deltaTime
 				);
 			}
 		}
-		else if (Input.GetAxis("Horizontal") == 0) {
+		else if (xTilt == 0) {
 			this.transform.position = Vector3.Slerp(
 				this.transform.position, 
 				spaceship.transform.position + idlePosition, 
@@ -139,7 +142,7 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 				idleRotationSpeed*Time.deltaTime
 			);
 		}
-		else if (Input.GetAxis("Horizontal") < 0) {
+		else if (xTilt < 0) {
 			this.transform.position = Vector3.Slerp(
 				this.transform.position, 
 				spaceship.transform.position + idlePosition, 
@@ -147,11 +150,11 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 			);
 			this.transform.rotation = Quaternion.Slerp(
 				transform.localRotation, 
-				Quaternion.Euler(leftRotation), 
+				Quaternion.Euler(xTilt*leftRotation), 
 				leftRightRotationSpeed*Time.deltaTime
 			);
 		}
-		else if (Input.GetAxis("Horizontal") > 0) {
+		else if (xTilt > 0) {
 			this.transform.position = Vector3.Slerp(
 				this.transform.position, 
 				spaceship.transform.position + idlePosition, 
@@ -159,7 +162,7 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 			);
 			this.transform.rotation = Quaternion.Slerp(
 				transform.localRotation, 
-				Quaternion.Euler(rightRotation), 
+				Quaternion.Euler(xTilt*rightRotation), 
 				leftRightRotationSpeed*Time.deltaTime
 			);
 		}
