@@ -25,6 +25,8 @@ public class Spaceship : MonoBehaviour {
 	public Vector3 downLeftTiltRotation   = new Vector3(  30.0f,  0.0f, -30.0f);
 	public Vector3 upRightTiltRotation    = new Vector3( -30.0f,  0.0f,  30.0f);
 	public Vector3 upLeftTiltRotation     = new Vector3( -30.0f,  0.0f, -30.0f);
+
+	private Vector3 lastTrameTargetRotationEuler;
 	
 	private bool boostedLastFrame = false;
 
@@ -33,6 +35,7 @@ public class Spaceship : MonoBehaviour {
 	void Start () {
 		rigidbody = GetComponent<Rigidbody>();
 		flames = transform.FindChild("Particle System").GetComponent<ParticleSystem>();
+		lastTrameTargetRotationEuler = Vector3.zero;
 	}
 
 
@@ -177,14 +180,23 @@ public class Spaceship : MonoBehaviour {
 	
 		/* Blend from current rotation towards target rotation. */
 		if (xTilt != 0) {
-			transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotationEuler), xTiltSpeed*Time.deltaTime);
+			transform.localRotation = Quaternion.Slerp(
+				transform.localRotation, 
+				Quaternion.Euler((1.0f-.5f*(xTilt+1.0f))*lastTrameTargetRotationEuler + .5f*(xTilt+1.0f)*targetRotationEuler), 
+				xTiltSpeed*Time.deltaTime
+			);
 		}
 		if (yTilt != 0) {
-			transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotationEuler), yTiltSpeed*Time.deltaTime);
+			transform.localRotation = Quaternion.Slerp(
+				transform.localRotation, 
+				Quaternion.Euler((1.0f-.5f*(yTilt+1.0f))*lastTrameTargetRotationEuler + .5f*(yTilt+1.0f)*targetRotationEuler), 
+				yTiltSpeed*Time.deltaTime
+				);
 		}
 		if (xTilt == 0 && yTilt == 0) {
 			transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotationEuler), xTiltSpeed*Time.deltaTime);
 		}
+		lastTrameTargetRotationEuler = targetRotationEuler;
 	}
 	
 }
