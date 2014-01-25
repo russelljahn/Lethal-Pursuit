@@ -101,39 +101,10 @@ public class Spaceship : MonoBehaviour {
 				rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y, 0.0f);
 			}
 		}
-		
-		RaycastHit hit;
-		
-		float horizontalDistanceToRaycast = 200.0f;
-		/* Do left/right movement if not going to collide... */
-		if (!Physics.Raycast(pivot.transform.position, Vector3.right*xTilt, out hit, horizontalDistanceToRaycast)) {
-			this.transform.Translate(
-				transform.InverseTransformDirection(
-					new Vector3(xTilt*Time.deltaTime*acceleration.x, 0.0f, 0.0f)
-				)
-			);
-		}
 
-//		rigidbody.MovePosition(
-//			transform.InverseTransformDirection(
-//				this.transform.position + new Vector3(xTilt*Time.deltaTime*acceleration.x, 0.0f, 0.0f)
-//			)
-//		);
-		
-		float verticalDistanceToRaycast = 70.0f;
-		/* Do up/down movement if not going to collide... */
-		if (!Physics.Raycast(pivot.transform.position, Vector3.up*yTilt, out hit, verticalDistanceToRaycast)) {
-			this.transform.Translate(
-				transform.InverseTransformDirection(
-					new Vector3(0.0f, yTilt*Time.deltaTime*acceleration.y, 0.0f)
-				)
-			);
-		}
-//		rigidbody.MovePosition(
-//			transform.InverseTransformDirection(
-//				this.transform.position + new Vector3(0.0f, yTilt*Time.deltaTime*acceleration.y, 0.0f)
-//			)
-//		);
+		rigidbody.MovePosition(rigidbody.position + new Vector3(xTilt*Time.deltaTime*acceleration.x, 0.0f, 0.0f));
+		rigidbody.MovePosition(rigidbody.position + new Vector3(0.0f, yTilt*Time.deltaTime*acceleration.y, 0.0f));
+
 	}
 
 
