@@ -5,40 +5,39 @@ public class ThirdPersonSpaceshipCamera : MonoBehaviour {
 
 
 	public Spaceship spaceship;
-	public float tiltSpeed = 1.0f;
 
-	public Vector3 idlePosition = new Vector3(0.0f, 100.0f, -285.0f);
+	public Vector3 idlePosition = new Vector3(0.0f, 100.0f, -200.0f);
 	public Vector3 idleRotation = new Vector3(0.0f, 0.0f, 0.0f);
 
-	public Vector3 upPosition = new Vector3(0.0f, 140.0f, -285.0f);
-	public Vector3 upRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 upPosition = new Vector3(0.0f, -100.0f, -285.0f);
+	public Vector3 upRotation = new Vector3(-60.0f, 0.0f, 0.0f);
 
 	public Vector3 downPosition = new Vector3(0.0f, 140.0f, -285.0f);
 	public Vector3 downRotation = new Vector3(0.0f, 0.0f, 0.0f);
 
-	public Vector3 leftRotation = new Vector3(0.0f, 0.0f, 0.0f);
-	public Vector3 rightRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 leftRotation = new Vector3(0.0f, 25.0f, 0.0f);
+	public Vector3 rightRotation = new Vector3(-60.0f, 0.0f, 0.0f);
 
-	public Vector3 upLeftPosition = new Vector3(-140.0f, 140.0f, -350.0f);
-	public Vector3 upLeftRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 upLeftPosition = new Vector3(0.0f, 0.0f, -200.0f);
+	public Vector3 upLeftRotation = new Vector3(60.0f, 100.0f, 0.0f);
 
-	public Vector3 upRightPosition = new Vector3(140.0f, 140.0f, -350.0f);
-	public Vector3 upRightRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 upRightPosition = new Vector3(0.0f, 0.0f, -200.0f);
+	public Vector3 upRightRotation = new Vector3(-60.0f, 100.0f, 0.0f);
 
-	public Vector3 downLeftPosition = new Vector3(-140.0f, 140.0f, -350.0f);
-	public Vector3 downLeftRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 downLeftPosition = new Vector3(0.0f, 0.0f, -200.0f);
+	public Vector3 downLeftRotation = new Vector3(60.0f, -100.0f, 0.0f);
 
-	public Vector3 downRightPosition = new Vector3(140.0f, 140.0f, -350.0f);
-	public Vector3 downRightRotation = new Vector3(0.0f, 0.0f, 0.0f);
+	public Vector3 downRightPosition = new Vector3(0.0f, 0.0f, -200.0f);
+	public Vector3 downRightRotation = new Vector3(-60.0f, -100.0f, 0.0f);
 
 	public float idlePanSpeed = 15.0f;
-	public float upDownPanSpeed = 20.0f;
+	public float upDownPanSpeed = 10.0f;
 	public float leftRightPanSpeed = 10.0f;
-	public float upLeftRightPanSpeed = 20.0f;
-	public float downLeftRightPanSpeed = 20.0f;
+	public float upLeftRightPanSpeed = 10.0f;
+	public float downLeftRightPanSpeed = 10.0f;
 
-	public float idleRotationSpeed = 1.5f;
-	public float diagonalRotationSpeed = 1.5f;
+	public float idleRotationSpeed = 2.0f;
+	public float diagonalRotationSpeed = 2.5f;
 	public float upDownRotationSpeed = 1.75f;
 	public float leftRightRotationSpeed = 1.5f;
 	
