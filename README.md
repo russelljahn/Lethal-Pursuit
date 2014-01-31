@@ -1,4 +1,4 @@
-SpaceshipPrototype
+Lethal Pursuit
 ==================
 
-Prototype for a 3D spaceship racing game.
+Code for a 3D spaceship racing game in Unity/C#.
