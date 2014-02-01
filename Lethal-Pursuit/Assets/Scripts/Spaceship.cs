@@ -11,8 +11,7 @@ public class Spaceship : MonoBehaviour {
 
 	public float xTiltSpeed = 0.5f;
 	public float yTiltSpeed = 4.0f;
-
-	private Rigidbody rigidbody;
+	
 	public ParticleSystem flames;
 	public GameObject spaceshipModel;
 
@@ -29,34 +28,31 @@ public class Spaceship : MonoBehaviour {
 	public Vector3 upRightTiltRotation    = new Vector3( -30.0f,  0.0f,  -60.0f);
 	public Vector3 upLeftTiltRotation     = new Vector3( -30.0f,  0.0f, 60.0f);
 
-	private Vector3 lastFrameTargetRotationEuler;
+	private Vector3 lastFrameTargetRotationEuler = Vector3.zero;
 
 
 	public float turningRate = 1.0f;
 
-	private bool boostedLastFrame = false;
-
-	public float timeUntilCompleteStopAfterBoost = 2.0f;
+	public float timeUntilCompleteStopAfterBoost = 1.0f;
 	private float timeSinceLastBoost = 0.0f;
 
-	public float timeUntilMaxTurning = 2.0f;
+	public float timeUntilMaxTurning = 1.0f;
 	private float timeSinceStartedTurning = 0.0f;
+
+	public float timeUntilMaxBoostUpDown = 1.0f;
+	private float timeSinceStartedBoostingUpDown = 0.0f;
+
 
 
 	/* Tilt of analogue stick every frame. */
 	private float xTilt;
 	private float yTilt;
 
-	private bool collidingDown = false;
-	private bool collidingForward = false;
-
 
 
 	// Use this for initialization
 	void Start () {
-		rigidbody = GetComponent<Rigidbody>();
-		lastFrameTargetRotationEuler = Vector3.zero;
-	
+
 	}
 
 
@@ -82,36 +78,8 @@ public class Spaceship : MonoBehaviour {
 
 
 	}
+	
 
-
-
-	void HandleCollisionDetection() {
-//		RaycastHit hit;
-//		float distanceToRaycastDown = 10.0f;
-//		float distanceToRaycastForward = 10.0f;
-//		
-//		
-//		if (Physics.Raycast(this.transform.position, Vector3.down, out hit, distanceToRaycastDown)) {
-//			collidingDown = hit.collider.CompareTag("Unpassable");
-//		}
-//		if (Physics.Raycast(this.transform.position, spaceshipModel.transform.forward, out hit, distanceToRaycastForward)) {
-//			collidingForward = hit.collider.CompareTag("Unpassable");
-//		}
-	}
-
-	void OnCollisionStay(Collision collision) {
-		Debug.Log (this.gameObject.name + " collided with " + collision.collider.gameObject.name + "!");
-		for (int i = 0; i < collision.contacts.Length; ++i) {
-			ContactPoint contactPoint = collision.contacts[i];
-			Vector3 shipToContactDirection = contactPoint.point - this.transform.position;
-			if (shipToContactDirection.y < 0) {
-				Debug.Log ("Colliding down!");
-				collidingDown = true;
-				break;
-			}
-		}
-		collidingDown = false;
-	}
 
 
 	
@@ -128,9 +96,9 @@ public class Spaceship : MonoBehaviour {
 
 
 
+
 	void HandleMovement() {
 
-//		Debug.Log ("transform.forward: " + transform.forward);
 
 		/* Constrain max velocity. */
 		rigidbody.velocity = new Vector3(
@@ -142,51 +110,55 @@ public class Spaceship : MonoBehaviour {
 		Vector3 forwardVector = spaceshipModel.transform.forward;
 		forwardVector.y = 0.0f;
 
+		if (yTilt != 0) {
+			timeSinceStartedBoostingUpDown += Time.deltaTime;
+		}
+		else {
+			timeSinceStartedBoostingUpDown = timeUntilMaxBoostUpDown;
+		}
+
+
 		/* Forward boost. */
 		if (Input.GetButton("Boost")) {
 
 			/* Boost forward. */
-			if (!collidingForward) {
-				rigidbody.MovePosition(rigidbody.position + forwardVector*Time.deltaTime*acceleration.z);
-			}
-			/* Move up/down. */
-			if (!collidingDown) {
-				rigidbody.MovePosition(rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y);
-			}
+			rigidbody.MovePosition(rigidbody.position + forwardVector*Time.deltaTime*acceleration.z);
 
+			/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
+			 * into an up/down boost. */
+			rigidbody.MovePosition(
+				Vector3.Slerp(
+					rigidbody.position,
+					rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
+					Mathf.Clamp01(timeSinceStartedBoostingUpDown/timeUntilMaxBoostUpDown)
+				)
+			);
+			
 			timeSinceLastBoost = 0.0f;
-			boostedLastFrame = true;
 		}
 		else {
 			/* Boost forward at a decreasing rate (Eventually slow down). */
-			if (!collidingForward) {
-				rigidbody.MovePosition(
-					Vector3.Slerp(
-						rigidbody.position + forwardVector*Time.deltaTime*acceleration.z,
-						rigidbody.position,
-						timeSinceLastBoost/timeUntilCompleteStopAfterBoost
-					)
-				);
-			}
+			rigidbody.MovePosition(
+				Vector3.Slerp(
+					rigidbody.position + forwardVector*Time.deltaTime*acceleration.z,
+					rigidbody.position,
+					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
+				)
+			);
 			/* Boost up/down at a decreasing rate (Eventually slow down). */
-			if (!collidingDown) {
-				rigidbody.MovePosition(
-					Vector3.Slerp(
-						rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
-						rigidbody.position,
-						timeSinceLastBoost/timeUntilCompleteStopAfterBoost
-					)
-				);
-			}
-
-
-
+			rigidbody.MovePosition(
+				Vector3.Slerp(
+					rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
+					rigidbody.position,
+					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
+				)
+			);
 
 			timeSinceLastBoost += Time.deltaTime;
-			boostedLastFrame = false;
 		}
 
 	}
+
 
 
 
@@ -198,7 +170,7 @@ public class Spaceship : MonoBehaviour {
 		/* Based on analogue stick direction, figure out rotation state to blend to. */
 		if (xTilt == 0) {
 			if (yTilt == 0) {
-				; // Idle state, total rotation of zero
+				; // Idle state, target rotation is (0f, 0f, 0f).
 			}
 			else if (yTilt < 0) {
 				targetRotationEuler = downTiltRotation;
