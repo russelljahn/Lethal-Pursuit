@@ -11,8 +11,14 @@ public class Spaceship : MonoBehaviour {
 
 	public float xTiltSpeed = 0.5f;
 	public float yTiltSpeed = 4.0f;
+
+
+	public ParticleSystem boosterFlames;
+	public ParticleSystem brakeFlames;
+	public ParticleSystem driftFlames;
+	public ParticleSystem hoverFlames;
+
 	
-	public ParticleSystem flames;
 	public GameObject spaceshipModel;
 
 
@@ -31,7 +37,9 @@ public class Spaceship : MonoBehaviour {
 	private Vector3 lastFrameTargetRotationEuler = Vector3.zero;
 
 
-	public float turningRate = 1.0f;
+	public float normalTurningRate = 115.0f;
+	public float brakingTurningRate = 300.0f;
+	
 
 	public float timeUntilCompleteStopAfterBoost = 1.0f;
 	private float timeSinceLastBoost = 0.0f;
@@ -63,7 +71,7 @@ public class Spaceship : MonoBehaviour {
 		xTilt = Input.GetAxis("Horizontal");
 		yTilt = Input.GetAxis("Vertical");
 
-		/* Map keyboard axis amount to joystick axis amount. */
+		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
 			xTilt *= 0.5f;
 			yTilt *= 0.5f;
@@ -92,12 +100,31 @@ public class Spaceship : MonoBehaviour {
 	
 	void HandleParticles() {
 
-		if (Input.GetButton("Boost")) {
-			flames.enableEmission = true;
+		if (Input.GetButton("Boost") && Input.GetButton("Brake")) {
+			boosterFlames.gameObject.SetActive(false);
+			brakeFlames.gameObject.SetActive(false);
+			driftFlames.gameObject.SetActive(true);
+			hoverFlames.gameObject.SetActive(false);
+		}
+		else if (Input.GetButton("Boost")) {
+			boosterFlames.gameObject.SetActive(true);
+			brakeFlames.gameObject.SetActive(false);
+			driftFlames.gameObject.SetActive(false);
+			hoverFlames.gameObject.SetActive(false);
+		}
+		else if (Input.GetButton("Brake")) {
+			boosterFlames.gameObject.SetActive(false);
+			brakeFlames.gameObject.SetActive(true);
+			driftFlames.gameObject.SetActive(false);
+			hoverFlames.gameObject.SetActive(false);
 		}
 		else {
-			flames.enableEmission = false;
+			boosterFlames.gameObject.SetActive(false);
+			brakeFlames.gameObject.SetActive(false);
+			driftFlames.gameObject.SetActive(false);
+			hoverFlames.gameObject.SetActive(true);
 		}
+
 	}
 
 
@@ -126,7 +153,7 @@ public class Spaceship : MonoBehaviour {
 
 
 		/* Forward boost. */
-		if (Input.GetButton("Boost")) {
+		if (Input.GetButton("Boost") && !Input.GetButton("Brake")) {
 
 			/* Boost forward. */
 			rigidbody.MovePosition(rigidbody.position + forwardVector*Time.deltaTime*acceleration.z);
@@ -243,10 +270,20 @@ public class Spaceship : MonoBehaviour {
 
 
 		if (xTilt != 0) {
+
+			float turningRateForThisFrame = normalTurningRate;
+
+			/* Allow drift turning if player is holding down brake. */
+			if (Input.GetButton("Brake")) {
+				turningRateForThisFrame = brakingTurningRate;
+			}
+
+//			Debug.Log("turningRate: " + turningRateForThisFrame);
+
 			this.rigidbody.MoveRotation(
 				Quaternion.Slerp (
 					this.transform.localRotation,
-					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRate*Time.deltaTime),
+					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRateForThisFrame*Time.deltaTime),
 					Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)
 				)
 			);

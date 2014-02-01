@@ -58,14 +58,11 @@ public class SpaceshipCamera : MonoBehaviour {
 		xTilt = Input.GetAxis("Horizontal");
 		yTilt = Input.GetAxis("Vertical");
 
-		/* Map keyboard axis amount to joystick axis amount. */
+		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
 			xTilt *= 0.5f;
 			yTilt *= 0.5f;
 		}
-
-		Debug.Log ("xTilt: " + xTilt);
-		Debug.Log ("yTilt: " + yTilt);
 		
 	}
 
