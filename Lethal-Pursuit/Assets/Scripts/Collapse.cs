@@ -19,9 +19,9 @@ public class Collapse : MonoBehaviour {
 
 	void OnTriggerStay (Collider other) {
 
-		if (!alreadyTriggered && !other.CompareTag ("IgnoreTrigger")) {
+		if (!alreadyTriggered && !(other.CompareTag ("IgnoreTrigger") || other.CompareTag ("Unpassable"))) {
 
-			Debug.Log (other.collider.gameObject.name + " collided!");
+//			Debug.Log (other.collider.gameObject.name + " collided!");
 
 			alreadyTriggered = true;
 
