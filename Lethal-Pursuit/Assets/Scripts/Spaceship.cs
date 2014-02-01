@@ -62,6 +62,13 @@ public class Spaceship : MonoBehaviour {
 	void Update() {
 		xTilt = Input.GetAxis("Horizontal");
 		yTilt = Input.GetAxis("Vertical");
+
+		/* Map keyboard axis amount to joystick axis amount. */
+		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
+			xTilt *= 0.5f;
+			yTilt *= 0.5f;
+		}
+
 		HandleParticles();
 	}
 
@@ -208,7 +215,7 @@ public class Spaceship : MonoBehaviour {
 				spaceshipModel.transform.localRotation, 
 				Quaternion.Euler((1.0f-.5f*(yTilt+1.0f))*lastFrameTargetRotationEuler + .5f*(yTilt+1.0f)*targetRotationEuler), 
 				yTiltSpeed*Time.deltaTime
-				);
+			);
 		}
 		if (xTilt != 0) {
 			spaceshipModel.transform.localRotation = Quaternion.Slerp(
