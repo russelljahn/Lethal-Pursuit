@@ -5,12 +5,12 @@ using System.Collections;
 public class Spaceship : MonoBehaviour {
 
 	public Vector3 instantaneousVelocity = new Vector3(0.0f, 0.0f, 2500.0f);
-	public Vector3 acceleration = new Vector3(3000.0f, 2500.0f, 13000.0f);
-	public Vector3 deacceleration = new Vector3(0.0f, 0.0f, 150000.0f);
-	public Vector3 maxVelocity  = new Vector3(0.0f, 4000.0f, 8000.0f);
+	public Vector3 acceleration = new Vector3(160.0f, 160.0f, 160.0f);
+	public Vector3 deacceleration = new Vector3(5000.0f, 5000.0f, 15000000);
+	public Vector3 maxVelocity  = new Vector3(0.0f, 0.0f, 250.0f);
 
-	public float xTiltSpeed = 0.5f;
-	public float yTiltSpeed = 4.0f;
+	public float xTiltSpeed = 1.5f;
+	public float yTiltSpeed = 3.3f;
 
 
 	public ParticleSystem boosterFlames;
@@ -22,17 +22,17 @@ public class Spaceship : MonoBehaviour {
 	public GameObject spaceshipModel;
 
 
-	public Vector3 rightTiltRotation = new Vector3(  0.0f,  15.0f,  -60.0f);
-	public Vector3 leftTiltRotation  = new Vector3(  0.0f,  -15.0f, 60.0f);
+	public Vector3 rightTiltRotation = new Vector3(  0.0f,  0.0f,  -85.0f);
+	public Vector3 leftTiltRotation  = new Vector3(  0.0f,  0.0f,   85.0f);
 
-	public Vector3 upTiltRotation    = new Vector3(-45.0f,  0.0f,   0.0f);
-	public Vector3 downTiltRotation  = new Vector3( 45.0f,  0.0f,   0.0f);
+	public Vector3 upTiltRotation    = new Vector3(-40.0f,  2.0f,   -3.0f);
+	public Vector3 downTiltRotation  = new Vector3( 4.0f,   2.0f,    3.0f);
 
-	public Vector3 downRightTiltRotation  = new Vector3(  30.0f,  0.0f,  -60.0f);
-	public Vector3 downLeftTiltRotation   = new Vector3(  30.0f,  0.0f, 60.0f);
+	public Vector3 downRightTiltRotation  = new Vector3(  30.0f,  5.0f,  -40.0f);
+	public Vector3 downLeftTiltRotation   = new Vector3(  30.0f, -5.0f,   40.0f);
 
-	public Vector3 upRightTiltRotation    = new Vector3( -30.0f,  0.0f,  -60.0f);
-	public Vector3 upLeftTiltRotation     = new Vector3( -30.0f,  0.0f, 60.0f);
+	public Vector3 upRightTiltRotation    = new Vector3( -30.0f,  5.0f,  -80.0f);
+	public Vector3 upLeftTiltRotation     = new Vector3( -30.0f, -5.0f,   80.0f);
 
 	private Vector3 lastFrameTargetRotationEuler = Vector3.zero;
 
@@ -44,7 +44,7 @@ public class Spaceship : MonoBehaviour {
 	public float timeUntilCompleteStopAfterBoost = 1.0f;
 	private float timeSinceLastBoost = 0.0f;
 
-	public float timeUntilMaxTurning = 1.0f;
+	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
 
 	public float timeUntilMaxBoostUpDown = 1.0f;
@@ -77,7 +77,7 @@ public class Spaceship : MonoBehaviour {
 			yTilt *= 0.5f;
 		}
 
-		HandleParticles();
+//		HandleParticles();
 	}
 
 
