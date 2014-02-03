@@ -1,4 +1,5 @@
 using UnityEngine;
+using InControl;
 using System.Collections;
 
 [RequireComponent (typeof (Rigidbody))]
@@ -13,10 +14,10 @@ public class Spaceship : MonoBehaviour {
 	public float yTiltSpeed = 3.3f;
 
 
-	public ParticleSystem boosterFlames;
-	public ParticleSystem brakeFlames;
-	public ParticleSystem driftFlames;
-	public ParticleSystem hoverFlames;
+	public ParticleSystem leftBoosterFlames;
+	public ParticleSystem rightBoosterFlames;
+	public float boostParticleEmissionRate = 254f;
+	public float brakeParticleEmissionRate = 50f;
 
 	
 	public GameObject spaceshipModel;
@@ -50,17 +51,19 @@ public class Spaceship : MonoBehaviour {
 	public float timeUntilMaxBoostUpDown = 1.0f;
 	private float timeSinceStartedBoostingUpDown = 0.0f;
 
-
+	private GameplayManager gameplayManager;
 
 	/* Tilt of analogue stick every frame. */
 	private float xTilt;
 	private float yTilt;
+	private float boostAmount;
+	private float brakeAmount;
 
 
 
 	// Use this for initialization
 	void Start () {
-
+		gameplayManager = GameplayManager.instance;
 	}
 
 
@@ -68,16 +71,8 @@ public class Spaceship : MonoBehaviour {
 
 
 	void Update() {
-		xTilt = Input.GetAxis("Horizontal");
-		yTilt = Input.GetAxis("Vertical");
-
-		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
-		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
-			xTilt *= 0.5f;
-			yTilt *= 0.5f;
-		}
-
-//		HandleParticles();
+		HandleInput();
+		HandleParticles();
 	}
 
 
@@ -97,32 +92,36 @@ public class Spaceship : MonoBehaviour {
 
 
 
-	
+
+	void HandleInput() {
+		xTilt = InputManager.ActiveDevice.LeftStickX.Value;		
+		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
+		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
+		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
+
+		Debug.Log ("boostAmount: " + boostAmount);
+		Debug.Log ("brakeAmount: " + brakeAmount);
+		
+		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
+		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
+			xTilt *= 0.5f;
+			yTilt *= 0.5f;
+		}
+	}
+
+
+
+
+
 	void HandleParticles() {
 
-		if (Input.GetButton("Boost") && Input.GetButton("Brake")) {
-			boosterFlames.gameObject.SetActive(false);
-			brakeFlames.gameObject.SetActive(false);
-			driftFlames.gameObject.SetActive(true);
-			hoverFlames.gameObject.SetActive(false);
-		}
-		else if (Input.GetButton("Boost")) {
-			boosterFlames.gameObject.SetActive(true);
-			brakeFlames.gameObject.SetActive(false);
-			driftFlames.gameObject.SetActive(false);
-			hoverFlames.gameObject.SetActive(false);
-		}
-		else if (Input.GetButton("Brake")) {
-			boosterFlames.gameObject.SetActive(false);
-			brakeFlames.gameObject.SetActive(true);
-			driftFlames.gameObject.SetActive(false);
-			hoverFlames.gameObject.SetActive(false);
+		if (brakeAmount == 0 && boostAmount > 0) {
+			leftBoosterFlames.emissionRate =  boostParticleEmissionRate;
+			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
 		}
 		else {
-			boosterFlames.gameObject.SetActive(false);
-			brakeFlames.gameObject.SetActive(false);
-			driftFlames.gameObject.SetActive(false);
-			hoverFlames.gameObject.SetActive(true);
+			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
+			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
 		}
 
 	}
@@ -153,10 +152,10 @@ public class Spaceship : MonoBehaviour {
 
 
 		/* Forward boost. */
-		if (Input.GetButton("Boost") && !Input.GetButton("Brake")) {
+		if (boostAmount > 0.0f && brakeAmount == 0.0f) {
 
 			/* Boost forward. */
-			rigidbody.MovePosition(rigidbody.position + forwardVector*Time.deltaTime*acceleration.z);
+			rigidbody.MovePosition(rigidbody.position + boostAmount*forwardVector*Time.deltaTime*acceleration.z);
 
 			/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
 			 * into an up/down boost. */
@@ -274,8 +273,8 @@ public class Spaceship : MonoBehaviour {
 			float turningRateForThisFrame = normalTurningRate;
 
 			/* Allow drift turning if player is holding down brake. */
-			if (Input.GetButton("Brake")) {
-				turningRateForThisFrame = brakingTurningRate;
+			if (brakeAmount > 0.0f) {
+				turningRateForThisFrame = brakeAmount*brakingTurningRate;
 			}
 
 //			Debug.Log("turningRate: " + turningRateForThisFrame);

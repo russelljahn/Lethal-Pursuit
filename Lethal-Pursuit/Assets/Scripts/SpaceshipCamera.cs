@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using InControl;
 using System.Collections;
 
 public class SpaceshipCamera : MonoBehaviour {
@@ -55,8 +56,8 @@ public class SpaceshipCamera : MonoBehaviour {
 
 
 	void Update() {
-		xTilt = Input.GetAxis("Horizontal");
-		yTilt = Input.GetAxis("Vertical");
+		xTilt = InputManager.ActiveDevice.LeftStickX.Value;
+		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
 
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
