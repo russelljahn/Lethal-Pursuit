@@ -30,18 +30,18 @@ Shader "FX/Diamond"
 		}
 
 		// Second pass - here we render the front faces of the diamonds.
-		Pass {
-			Fog { Color (0,0,0,0)}
-			ZWrite on
-			Blend One One
-			SetTexture [_RefractTex] {
-				constantColor [_Color]
-				combine texture * constant
-			}
-			SetTexture [_ReflectTex] {
-				combine texture + previous, previous +- texture
-			}
-		}
+//		Pass {
+//			Fog { Color (0,0,0,0)}
+//			ZWrite on
+//			Blend One One
+//			SetTexture [_RefractTex] {
+//				constantColor [_Color]
+//				combine texture * constant
+//			}
+//			SetTexture [_ReflectTex] {
+//				combine texture + previous, previous +- texture
+//			}
+//		}
 	}
 
 	// Older cards. Here we remove the bright specular highlight
@@ -58,15 +58,15 @@ Shader "FX/Diamond"
 		}
 
 		// Second pass - here we render the front faces of the diamonds.
-		Pass {
-			Fog { Color (0,0,0,0)}
-			ZWrite on
-			Blend One One
-			SetTexture [_RefractTex] {
-				constantColor [_Color]
-				combine texture * constant
-			}
-		}
+//		Pass {
+//			Fog { Color (0,0,0,0)}
+//			ZWrite on
+//			Blend One One
+//			SetTexture [_RefractTex] {
+//				constantColor [_Color]
+//				combine texture * constant
+//			}
+//		}
 	}
 
 	// Ancient cards without cubemapping support
