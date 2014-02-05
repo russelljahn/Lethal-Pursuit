@@ -1,10 +1,10 @@
 using UnityEngine;
-using InControl;
 using System.Collections;
 
-[RequireComponent (typeof (Rigidbody))]
-public class SpaceshipControl : MonoBehaviour {
+[RequireComponent (typeof (Spaceship))]
+public class SpaceshipControl : SpaceshipComponent {
 	
+
 	public Vector3 instantaneousVelocity = new Vector3(0.0f, 0.0f, 2500.0f);
 	public Vector3 acceleration = new Vector3(160.0f, 160.0f, 160.0f);
 	public Vector3 deacceleration = new Vector3(5000.0f, 5000.0f, 15000000);
@@ -12,26 +12,8 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	public float xTiltSpeed = 1.5f;
 	public float yTiltSpeed = 3.3f;
-	
-	
-	public ParticleSystem leftBoosterFlames;
-	public ParticleSystem rightBoosterFlames;
-	public ParticleSystem leftBoosterSmoke;
-	public ParticleSystem rightBoosterSmoke;
-	public float boostParticleEmissionRate = 254f;
-	public float brakeParticleEmissionRate = 50f;
-	public float boostParticleEmissionSize = 2.5f;
-	public float brakeParticleEmissionSize = 1.5f;
-	public float boostSmokeEmissionRate = 12.32f;
-	public float brakeSmokeEmissionRate = 4f;
-	
-	
-	
-	
-	
-	public GameObject spaceshipModel;
-	
-	
+
+
 	public Vector3 rightTiltRotation = new Vector3(  0.0f,  0.0f,  -85.0f);
 	public Vector3 leftTiltRotation  = new Vector3(  0.0f,  0.0f,   85.0f);
 	
@@ -59,29 +41,13 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	public float timeUntilMaxBoostUpDown = 1.0f;
 	private float timeSinceStartedBoostingUpDown = 0.0f;
-	
-	public static float health = 100; /*health, damage, & status */
-	private float maxHealth = 100;
-	private float damageHalfHit = 50;
-	private float damageOneHitKO = 100;
-	private float damageBufferTime = 2;
-	private float stall = 0;
-	
-	
-	
-	private GameplayManager gameplayManager;
-	
-	/* Tilt of analogue stick every frame. */
-	private float xTilt;
-	private float yTilt;
-	private float boostAmount;
-	private float brakeAmount;
-	
+
+
 	
 	
 	// Use this for initialization
-	void Start () {
-		gameplayManager = GameplayManager.instance;
+	public override void Start () {
+		base.Start();
 	}
 	
 	
@@ -89,9 +55,6 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	
 	void Update() {
-		HandleInput();
-		HandleParticles();
-		Destroy();
 	}
 	
 	
@@ -99,70 +62,19 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
-		
+
 		HandleRotation();
 		HandleMovement();
 		HandleTilt();
-		
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	void HandleInput() {
-		xTilt = InputManager.ActiveDevice.LeftStickX.Value;		
-		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
-		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
-		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
-		
-		//Debug.Log ("boostAmount: " + boostAmount);
-		//Debug.Log ("brakeAmount: " + brakeAmount);
-	
-		
-		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
-		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
-			xTilt *= 0.5f;
-			yTilt *= 0.5f;
-		}
-	}
-	
-	
-	
-	
-	
-	void HandleParticles() {
-		
-		if (brakeAmount == 0 && boostAmount > 0) {
-			leftBoosterFlames.emissionRate =  boostParticleEmissionRate;
-			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
-			leftBoosterFlames.startSize =  boostParticleEmissionSize;
-			rightBoosterFlames.startSize = boostParticleEmissionSize;
-//			leftBoosterSmoke.emissionRate = boostSmokeEmissionRate;
-//			rightBoosterSmoke.emissionRate = boostSmokeEmissionRate;
-			
-			
-		}
-		else {
-			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			leftBoosterFlames.startSize = brakeParticleEmissionSize;
-			rightBoosterFlames.startSize = brakeParticleEmissionSize;
-//			leftBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
-//			rightBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
-			
-		}
-		
-	}
+
 	
 	
 	
 	
 	
 	void HandleMovement() {
-		
 		
 		/* Constrain max velocity. */
 		rigidbody.velocity = new Vector3(
@@ -228,7 +140,7 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	
 	void HandleTilt() {
-		
+
 		Vector3 targetRotationEuler = Vector3.zero;
 		
 		/* Based on analogue stick direction, figure out rotation state to blend to. */
@@ -297,8 +209,7 @@ public class SpaceshipControl : MonoBehaviour {
 	
 	
 	void HandleRotation() {
-		
-		
+
 		if (xTilt != 0) {
 			
 			float turningRateForThisFrame = normalTurningRate;
@@ -322,33 +233,6 @@ public class SpaceshipControl : MonoBehaviour {
 		else {
 			timeSinceStartedTurning = 0.0f;
 		}
-		
-	}
-	
-	
-	void OnCollisionEnter(Collision walls) { /* hitting walls tagged as unpassable does 50 damage */
-		
-		if (walls.gameObject.tag == "Unpassable" && stall == 0) {
-			
-			DecreaseHealth ();
-
-		}
-	}
-	
-	void DecreaseHealth (){
-		
-		health -= damageHalfHit;
-		stall = 1;
-		/* yield WaitForSeconds (damageBufferTime);  damage buffer code, not working atm*/
-		stall = 0;
-
-	}
-	
-	
-	void Destroy() {
-		
-		/* if (health <= 0){
-				Destroy(gameObject);*/
 		
 	}
 	

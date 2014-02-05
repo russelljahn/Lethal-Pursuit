@@ -5,7 +5,7 @@ using System.Collections;
 public class SpaceshipCamera : MonoBehaviour {
 
 
-	public GameObject spaceship;
+	public Spaceship spaceship;
 
 	/* These are relative to camera's local position. */
 	public Vector3 idlePosition = new Vector3(0.0f, 105.0f, -300.0f);
@@ -39,36 +39,22 @@ public class SpaceshipCamera : MonoBehaviour {
 	public float leftRightRotationSpeed = 1.3f;
 	public float upDownRotationSpeed = 1.6f;
 	public float diagonalRotationSpeed = 1.3f;
-	
 
-	private float xTilt;
-	private float yTilt;
 
 	
 
 	void Start() {
-//		this.transform.position = spaceship.transform.position + idlePosition;
-//		this.transform.localPosition = distanceFromSpaceship;
 		this.transform.localPosition = idlePosition;
 	}
 
-
-
-
-	void Update() {
-		xTilt = InputManager.ActiveDevice.LeftStickX.Value;
-		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
-
-		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
-		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
-			xTilt *= 0.5f;
-			yTilt *= 0.5f;
-		}
-		
-	}
+	
 
 
 	void FixedUpdate() {
+
+		float xTilt = spaceship.xTilt;
+		float yTilt = spaceship.yTilt;
+	
 		float xTiltAbsolute = Mathf.Abs(xTilt);
 		float yTiltAbsolute = Mathf.Abs(yTilt);	
 		

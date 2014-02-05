@@ -2,12 +2,8 @@
 using InControl;
 using System.Collections;
 
-public class SpaceshipGun : MonoBehaviour {
+public class SpaceshipGun : SpaceshipComponent {
 
-
-	private bool currentlyShooting;
-
-	public SpaceshipControl spaceship;
 	public Bullet bulletToUse;
 
 	public float bufferTimeBetweenShots = 0.1f;
@@ -20,8 +16,8 @@ public class SpaceshipGun : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-	
+	public override void Start () {
+		base.Start();
 	}
 
 
@@ -38,12 +34,11 @@ public class SpaceshipGun : MonoBehaviour {
 
 
 	void FixedUpdate() {
-		currentlyShooting = InputManager.ActiveDevice.Action3.State;
 
 		if (currentlyShooting && timeUntilCanShoot == 0.0f) {
 			Debug.Log ("SpaceshipGun.transform.position: " + this.transform.position);
 			Bullet bullet = GameObject.Instantiate(bulletToUse, this.transform.position, Quaternion.identity) as Bullet;
-			bullet.direction = spaceship.spaceshipModel.transform.forward;
+			bullet.direction = spaceshipModel.transform.forward;
 			bullet.prefab = false;
 		}
 

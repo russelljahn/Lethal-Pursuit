@@ -10,13 +10,13 @@
 -------------------------------------------------------------------
 */
 
-#pragma warning disable 0618
-
 using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+#pragma warning disable 0618
 
 // -------------------------------------------------------------------------------------------------------- EDITOR
 

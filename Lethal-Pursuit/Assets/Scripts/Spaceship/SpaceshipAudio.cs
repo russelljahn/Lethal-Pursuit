@@ -2,35 +2,31 @@
 using InControl;
 using System.Collections;
 
-public class SpaceshipAudio : MonoBehaviour {
+public class SpaceshipAudio : SpaceshipComponent {
 
 	public AudioClip engine4;
 	public AudioClip engine1; 
 	public AudioClip engine3; 
-	float pitch; 
-	float volume;
 	private float speed;
 	private float boostTime;
 	private float brakeTime;
-	float randomizer = Random.value;
+//	float randomizer = Random.value;
 	float audioClipSpeed = .5f; //default speed
 
 
-	private float maxBoostTime;
+	private float maxBoostTime = 2.0f;
 
 
-	void Start () {
+	public override void Start () {
+		base.Start();
 
-		pitch = rigidbody.velocity.magnitude / audioClipSpeed;
-		float volume = audio.volume;
-		Mathf.Clamp(randomizer ,1,-1);
+//		pitch = rigidbody.velocity.magnitude / audioClipSpeed;
+//		float volume = audio.volume;
+//		Mathf.Clamp(randomizer ,1,-1);
 		audio.pitch = 0.0f;
 	}
 
 	void Update () {
-
-		float boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
-		float brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		
 		Random.seed = 1;
 		//audio.pitch = Random.Range(.25f,.5f); //creates turbulence
