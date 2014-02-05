@@ -118,8 +118,8 @@ public class Spaceship : MonoBehaviour {
 		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
 		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		
-		Debug.Log ("boostAmount: " + boostAmount);
-		Debug.Log ("brakeAmount: " + brakeAmount);
+		//Debug.Log ("boostAmount: " + boostAmount);
+		//Debug.Log ("brakeAmount: " + brakeAmount);
 	
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
@@ -341,7 +341,7 @@ public class Spaceship : MonoBehaviour {
 		stall = 1;
 		/* yield WaitForSeconds (damageBufferTime);  damage buffer code, not working atm*/
 		stall = 0;
-		Debug.Log ("Health: " + health); 
+
 	}
 	
 	
