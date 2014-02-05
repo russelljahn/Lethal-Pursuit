@@ -3,7 +3,7 @@ using InControl;
 using System.Collections;
 
 [RequireComponent (typeof (Rigidbody))]
-public class Spaceship : MonoBehaviour {
+public class SpaceshipControl : MonoBehaviour {
 	
 	public Vector3 instantaneousVelocity = new Vector3(0.0f, 0.0f, 2500.0f);
 	public Vector3 acceleration = new Vector3(160.0f, 160.0f, 160.0f);
@@ -140,8 +140,8 @@ public class Spaceship : MonoBehaviour {
 			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
 			leftBoosterFlames.startSize =  boostParticleEmissionSize;
 			rightBoosterFlames.startSize = boostParticleEmissionSize;
-			leftBoosterSmoke.emissionRate = boostSmokeEmissionRate;
-			rightBoosterSmoke.emissionRate = boostSmokeEmissionRate;
+//			leftBoosterSmoke.emissionRate = boostSmokeEmissionRate;
+//			rightBoosterSmoke.emissionRate = boostSmokeEmissionRate;
 			
 			
 		}
@@ -150,8 +150,8 @@ public class Spaceship : MonoBehaviour {
 			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
 			leftBoosterFlames.startSize = brakeParticleEmissionSize;
 			rightBoosterFlames.startSize = brakeParticleEmissionSize;
-			leftBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
-			rightBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
+//			leftBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
+//			rightBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
 			
 		}
 		

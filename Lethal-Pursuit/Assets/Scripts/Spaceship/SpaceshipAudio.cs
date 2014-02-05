@@ -2,7 +2,7 @@
 using InControl;
 using System.Collections;
 
-public class Audiocs : MonoBehaviour {
+public class SpaceshipAudio : MonoBehaviour {
 
 	public AudioClip engine4;
 	public AudioClip engine1; 
