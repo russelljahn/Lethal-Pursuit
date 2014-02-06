@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof (Spaceship))]
+[RequireComponent (typeof (Collider))]
 public class SpaceshipControl : SpaceshipComponent {
 	
 
@@ -42,7 +43,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float timeUntilMaxBoostUpDown = 1.0f;
 	private float timeSinceStartedBoostingUpDown = 0.0f;
 
-
 	
 	
 	// Use this for initialization
@@ -54,7 +54,8 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	
-	void Update() {
+	public override void Update () {
+		base.Update();
 	}
 	
 	
@@ -66,7 +67,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		HandleRotation();
 		HandleMovement();
 		HandleTilt();
-
+		HandleFalling();
 	}
 
 	
@@ -99,16 +100,19 @@ public class SpaceshipControl : SpaceshipComponent {
 			
 			/* Boost forward. */
 			rigidbody.MovePosition(rigidbody.position + boostAmount*forwardVector*Time.deltaTime*acceleration.z);
-			
-			/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
-			 * into an up/down boost. */
-			rigidbody.MovePosition(
-				Vector3.Slerp(
-				rigidbody.position,
-				rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
-				Mathf.Clamp01(timeSinceStartedBoostingUpDown/timeUntilMaxBoostUpDown)
-				)
+
+			/* Limit height. */
+			if (heightAboveGround < heightLimit && spaceship.transform.position.y < maxHeightBeforeFalling || yTilt < 0f) {
+				/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
+				 * into an up/down boost. */
+				rigidbody.MovePosition(
+					Vector3.Slerp(
+						rigidbody.position,
+						rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
+						Mathf.Clamp01(timeSinceStartedBoostingUpDown/timeUntilMaxBoostUpDown)
+					)
 				);
+			}
 			
 			timeSinceLastBoost = 0.0f;
 		}
@@ -116,19 +120,19 @@ public class SpaceshipControl : SpaceshipComponent {
 			/* Boost forward at a decreasing rate (Eventually slow down). */
 			rigidbody.MovePosition(
 				Vector3.Slerp(
-				rigidbody.position + forwardVector*Time.deltaTime*acceleration.z,
-				rigidbody.position,
-				Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
+					rigidbody.position + forwardVector*Time.deltaTime*acceleration.z,
+					rigidbody.position,
+					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
 				)
-				);
+			);
 			/* Boost up/down at a decreasing rate (Eventually slow down). */
 			rigidbody.MovePosition(
 				Vector3.Slerp(
-				rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
-				rigidbody.position,
-				Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
+					rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
+					rigidbody.position,
+					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
 				)
-				);
+			);
 			
 			timeSinceLastBoost += Time.deltaTime;
 		}
@@ -137,7 +141,8 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	
-	
+
+
 	
 	void HandleTilt() {
 
@@ -227,13 +232,31 @@ public class SpaceshipControl : SpaceshipComponent {
 				Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRateForThisFrame*Time.deltaTime),
 				Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)
 				)
-				);
+			);
 			timeSinceStartedTurning += Time.deltaTime;
 		}
 		else {
 			timeSinceStartedTurning = 0.0f;
 		}
 		
+	}
+
+
+
+
+
+
+	void HandleFalling() {
+
+		if (spaceship.transform.position.y > maxHeightBeforeFalling) {
+			rigidbody.MovePosition(
+				Vector3.Slerp(
+					rigidbody.position,
+					rigidbody.position + Vector3.down*Time.deltaTime*fallingRate,
+					Time.deltaTime
+				)
+			);
+		}
 	}
 	
 	

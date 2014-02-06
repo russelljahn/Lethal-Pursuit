@@ -37,7 +37,6 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.currentlyShooting;
 		}
 	}
-		
 	protected GameplayManager gameplayManager {
 		get {
 			return spaceship.gameplayManager;
@@ -48,7 +47,31 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.spaceshipModel;
 		}
 	}
-
+	protected float heightLimit {
+		get {
+			return spaceship.heightLimit;
+		}
+	}
+	protected float maxHeightBeforeFalling {
+		get {
+			return spaceship.maxHeightBeforeFalling;
+		}
+	}
+	protected float fractionOfHeightLimitToBeginSputtering {
+		get {
+			return spaceship.fractionOfHeightLimitToBeginSputtering;
+		}
+	}
+	protected float heightAboveGround {
+		get {
+			return spaceship.heightAboveGround;
+		}
+	}
+	protected float fallingRate {
+		get {
+			return spaceship.fallingRate;
+		}
+	}
 
 	
 
@@ -61,7 +84,7 @@ public class SpaceshipComponent : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	public virtual void Update () {
+		;
 	}
 }

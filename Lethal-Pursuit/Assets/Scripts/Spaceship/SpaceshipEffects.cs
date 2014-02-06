@@ -24,23 +24,38 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 
 
+
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
 
 		boosterFlamesBoostColor = leftBoosterFlames.startColor;
 	}
-	
+
+
+
+
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+		base.Update();
 		HandleParticles();
 	}
 
 
 
+
 	void HandleParticles() {
-		
-		if (brakeAmount == 0 && boostAmount > 0) {
+
+		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
+			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
+			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
+			
+			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
+			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
+			leftBoosterFlames.startSize = brakeParticleEmissionSize;
+			rightBoosterFlames.startSize = brakeParticleEmissionSize;
+		}
+		else if (brakeAmount == 0 && boostAmount > 0) {
 			leftBoosterFlames.startColor = boosterFlamesBoostColor;
 			rightBoosterFlames.startColor = boosterFlamesBoostColor;
 

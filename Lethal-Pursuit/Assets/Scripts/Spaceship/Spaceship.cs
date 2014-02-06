@@ -7,6 +7,7 @@ using System.Collections;
 	Contains data for a spaceship that other spaceship components may use.
  */
 [RequireComponent (typeof (Rigidbody))]
+[RequireComponent (typeof (Collider))]
 public class Spaceship : MonoBehaviour {
 
 	public GameplayManager gameplayManager;
@@ -18,8 +19,15 @@ public class Spaceship : MonoBehaviour {
 	public float boostAmount;
 	public float brakeAmount;
 	public bool currentlyShooting;
-	
 	#endregion
+
+	public float heightAboveGround;
+
+	public float heightLimit = 300.0f;
+	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
+	public float maxHeightBeforeFalling = 500.0f;
+	public float fallingRate = -98.1f;
+	
 
 //	public static float health = 100; /*health, damage, & status */
 //	private float maxHealth = 100;
@@ -38,6 +46,7 @@ public class Spaceship : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		HandleInput();
+		HandleHeightCheck();
 	}
 
 
@@ -48,16 +57,21 @@ public class Spaceship : MonoBehaviour {
 		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
 		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		currentlyShooting = InputManager.ActiveDevice.Action3.State;
-		
-		//Debug.Log ("boostAmount: " + boostAmount);
-		//Debug.Log ("brakeAmount: " + brakeAmount);
-		
+
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
 			xTilt *= 0.5f;
 			yTilt *= 0.5f;
 		}
+	}
+
+
+
+	void HandleHeightCheck() {
+		RaycastHit hit;
+		Physics.Raycast(this.transform.position, Vector3.down, out hit);
+		heightAboveGround = hit.distance;
 	}
 
 

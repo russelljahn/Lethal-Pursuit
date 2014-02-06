@@ -4,63 +4,61 @@ using System.Collections;
 
 public class SpaceshipAudio : SpaceshipComponent {
 
+	public AudioSource track1;
+	public AudioSource track2;
+
 	public AudioClip engine4;
 	public AudioClip engine1; 
 	public AudioClip engine3; 
-	private float speed;
-	private float boostTime;
-	private float brakeTime;
-//	float randomizer = Random.value;
-	float audioClipSpeed = .5f; //default speed
-
+	
+	private float boostTime = 0.0f;
 
 	private float maxBoostTime = 2.0f;
+	
+	public float maxPitchEngine1 = 5.0f;
+
+	public float sputteringTurbulenceAmount = 1.5f;
+	public float sputteringTurbulenceRate = 3.0f;
+
 
 
 	public override void Start () {
 		base.Start();
+		track1.clip = engine3;
+		track1.loop = true;
+		track1.Play();
 
-//		pitch = rigidbody.velocity.magnitude / audioClipSpeed;
-//		float volume = audio.volume;
-//		Mathf.Clamp(randomizer ,1,-1);
-		audio.pitch = 0.0f;
+		track2.clip = engine4;
+		track2.loop = true;
+		track2.Play();
 	}
 
-	void Update () {
-		
-		Random.seed = 1;
-		//audio.pitch = Random.Range(.25f,.5f); //creates turbulence
-//		Debug.Log(volume);
+
+
+	public override void Update () {
+		base.Update();
 						
-		if(boostAmount > 0){
-			audio.volume = boostAmount + (Random.Range(-0.25f,-.01f));
-
-				audioClipSpeed += Random.value;
-				boostTime += Time.deltaTime;
-				audio.pitch = Mathf.Min(3, boostTime+Time.deltaTime);
-				Random.seed++;
-
-			}
+		if (boostAmount > 0) {
+			boostTime = Mathf.Min(maxBoostTime, boostTime+Time.deltaTime);
+		}
 				
-		else if (boostAmount == 0){
-			// you can use PlayOneShot to specify the sound...
-				audio.volume = 0.15f + (Random.Range(-0.05f,.25f ));
-				boostTime = Mathf.Max(0.0f, boostTime-Time.deltaTime, 2);
-				boostTime -= 1;
-						 
-			}
-		if(brakeAmount > 0){
-		//	speed = 0.001f*(transform.position.z)/ audioClipSpeed;
-			brakeTime += Time.deltaTime;
-			boostTime = Mathf.Max(1.3f, boostTime-brakeTime);
-			audio.volume = (1-.5f * brakeAmount) + (Random.Range(-0.01f,.01f ));
-		
+		else {
+			boostTime = Mathf.Max(0f, boostTime-Time.deltaTime);	
 		}
 
 				
-		audio.pitch = boostTime / maxBoostTime;
+		track1.pitch = maxPitchEngine1*boostTime / maxBoostTime;
+		track2.pitch = maxPitchEngine1*boostTime / maxBoostTime;
 
-		//audio.pitch = speed;
+		track1.pan = xTilt;
+		track2.pan = xTilt;
+		
+		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*heightLimit) {
+			track1.pitch += sputteringTurbulenceAmount*Mathf.Cos(sputteringTurbulenceRate*Time.time);
+			track2.pitch += sputteringTurbulenceAmount*Mathf.Cos(sputteringTurbulenceRate*Time.time);
+		}
 	}
+
+
 
 }
