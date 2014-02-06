@@ -97,18 +97,28 @@ public class SpaceshipControl : SpaceshipComponent {
 		
 		/* Forward boost. */
 		if (boostAmount > 0.0f && brakeAmount == 0.0f) {
+
+			/* Limit mobility based on height. */
+			float movementRate; 
+			if (heightAboveGround <= heightLimit) {
+				movementRate = 1.0f;
+			}
+			else {
+				movementRate = Mathf.Lerp(1.0f, 0.0f, Mathf.Clamp01(heightAboveGround/maxHeightBeforeFalling));
+			}
 			
 			/* Boost forward. */
-			rigidbody.MovePosition(rigidbody.position + boostAmount*forwardVector*Time.deltaTime*acceleration.z);
+			rigidbody.MovePosition(rigidbody.position + movementRate*boostAmount*forwardVector*Time.deltaTime*acceleration.z);
 
 			/* Limit height. */
-			if (heightAboveGround < heightLimit && spaceship.transform.position.y < maxHeightBeforeFalling || yTilt < 0f) {
+			if (spaceship.transform.position.y < maxHeightBeforeFalling || yTilt < 0f) {
+
 				/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
 				 * into an up/down boost. */
 				rigidbody.MovePosition(
 					Vector3.Slerp(
 						rigidbody.position,
-						rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
+						rigidbody.position + movementRate*Vector3.up*yTilt*Time.deltaTime*acceleration.y,
 						Mathf.Clamp01(timeSinceStartedBoostingUpDown/timeUntilMaxBoostUpDown)
 					)
 				);
