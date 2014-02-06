@@ -9,6 +9,10 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 	public ParticleSystem leftBoosterFlames;
 	public ParticleSystem rightBoosterFlames;
+
+	public Color boosterFlamesBoostColor;
+	public Color boosterFlamesBrakeColor;
+
 	public ParticleSystem leftBoosterSmoke;
 	public ParticleSystem rightBoosterSmoke;
 	public float boostParticleEmissionRate = 254f;
@@ -23,21 +27,23 @@ public class SpaceshipEffects : SpaceshipComponent {
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
+
+		boosterFlamesBoostColor = leftBoosterFlames.startColor;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		HandleParticles();
 	}
 
 
 
 	void HandleParticles() {
-
-		float boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
-		float brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		
 		if (brakeAmount == 0 && boostAmount > 0) {
+			leftBoosterFlames.startColor = boosterFlamesBoostColor;
+			rightBoosterFlames.startColor = boosterFlamesBoostColor;
+
 			leftBoosterFlames.emissionRate =  boostParticleEmissionRate;
 			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
 			leftBoosterFlames.startSize =  boostParticleEmissionSize;
@@ -48,6 +54,9 @@ public class SpaceshipEffects : SpaceshipComponent {
 			
 		}
 		else {
+			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
+			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
+			
 			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
 			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
 			leftBoosterFlames.startSize = brakeParticleEmissionSize;

@@ -41,7 +41,14 @@ public class SpaceshipCamera : MonoBehaviour {
 	public float diagonalRotationSpeed = 1.3f;
 
 
-	
+
+	public void SetSpaceship(Spaceship spaceship) {
+		this.spaceship = spaceship;
+		this.transform.parent = spaceship.transform;
+		this.transform.localPosition = idlePosition;
+	}
+
+
 
 	void Start() {
 		this.transform.localPosition = idlePosition;
