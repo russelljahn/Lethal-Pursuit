@@ -46,7 +46,7 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 	void HandleParticles() {
 
-		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
+		if (enforceHeightLimit || heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
 			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
 			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
 			

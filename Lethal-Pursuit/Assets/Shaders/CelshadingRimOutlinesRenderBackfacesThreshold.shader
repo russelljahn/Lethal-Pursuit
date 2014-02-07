@@ -1,9 +1,8 @@
-Shader "Badass VFX/Celshading Using Ramp Texture" {
+Shader "Badass VFX/Celshading (Rim Outlines, Threshold, Render Backfaces)" {
 	Properties {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}
-		_Ramp ("Ramp Texture", 2D) = "white" {}
-		_NumColors ("Number Of Colors To Use", Range(0.1, 20)) = 4
+		_NumColors ("Number Of Colors To Use", Range(0.1, 30)) = 4
 		_OutlineWidth ("Outline Width", Range(0, 1)) = 0.4
 		_ColorMerge ("Color Merge", Range(0.1, 20000)) = 8
 	}
@@ -11,6 +10,7 @@ Shader "Badass VFX/Celshading Using Ramp Texture" {
 	SubShader {
 
 		Tags { "RenderType" = "Opaque" }
+		Cull Off
 		CGPROGRAM
 		// Upgrade NOTE: excluded shader from Xbox360 because it uses wrong array syntax (type[size] name)
 		#pragma exclude_renderers xbox360
@@ -46,7 +46,7 @@ Shader "Badass VFX/Celshading Using Ramp Texture" {
 		half4 LightingCelshaded (SurfaceOutput o, half3 lightDir, half attenuation) {
 			half4 lightColor;
 			half diffuseAmount = dot(o.Normal, lightDir);
-			diffuseAmount = tex2D(_Ramp, float2(diffuseAmount, 0.5));
+			diffuseAmount = floor(diffuseAmount * _NumColors)/_NumColors;
 			lightColor.rgb = o.Albedo * _LightColor0.rgb * diffuseAmount * attenuation * 2;
 			lightColor.a = o.Alpha;
 			return lightColor;

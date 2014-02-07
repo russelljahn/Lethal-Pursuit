@@ -1,4 +1,4 @@
-Shader "Badass VFX/Celshading Using Threshold" {
+Shader "Badass VFX/Celshading (Rim Outlines, Threshold)" {
 	Properties {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}

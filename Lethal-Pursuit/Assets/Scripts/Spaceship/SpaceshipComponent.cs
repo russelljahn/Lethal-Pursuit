@@ -72,7 +72,11 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.fallingRate;
 		}
 	}
-
+	protected bool enforceHeightLimit {
+		get {
+			return spaceship.enforceHeightLimit;
+		}
+	}
 	
 
 

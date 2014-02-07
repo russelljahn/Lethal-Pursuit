@@ -23,6 +23,7 @@ public class Spaceship : MonoBehaviour {
 
 	public float heightAboveGround;
 
+	public bool enforceHeightLimit = true;
 	public float heightLimit = 300.0f;
 	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
 	public float maxHeightBeforeFalling = 500.0f;
