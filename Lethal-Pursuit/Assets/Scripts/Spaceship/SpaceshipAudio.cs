@@ -17,7 +17,8 @@ public class SpaceshipAudio : SpaceshipComponent {
 	
 	public float maxPitchEngine1 = 5.0f;
 
-	public float sputteringTurbulenceAmount = 1.5f;
+	public float sputteringTurbulenceAmount1 = 1.5f;
+	public float sputteringTurbulenceAmount2 = 1.5f;
 	public float sputteringTurbulenceRate = 3.0f;
 
 
@@ -54,8 +55,12 @@ public class SpaceshipAudio : SpaceshipComponent {
 		track2.pan = xTilt;
 		
 		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*heightLimit) {
-			track1.pitch += sputteringTurbulenceAmount*Mathf.Cos(sputteringTurbulenceRate*Time.time);
-			track2.pitch += sputteringTurbulenceAmount*Mathf.Cos(sputteringTurbulenceRate*Time.time);
+			track1.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
+				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
+			);
+			track2.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
+				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
+			);
 		}
 	}
 
