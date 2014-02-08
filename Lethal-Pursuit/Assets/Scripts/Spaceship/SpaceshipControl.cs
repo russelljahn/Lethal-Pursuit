@@ -6,11 +6,12 @@ using System.Collections;
 public class SpaceshipControl : SpaceshipComponent {
 	
 
-	public Vector3 instantaneousVelocity = new Vector3(0.0f, 0.0f, 2500.0f);
-	public Vector3 acceleration = new Vector3(160.0f, 160.0f, 160.0f);
-	public Vector3 deacceleration = new Vector3(5000.0f, 5000.0f, 15000000);
-	public Vector3 maxVelocity  = new Vector3(0.0f, 0.0f, 250.0f);
-	
+	public float acceleration = 5.0f; 
+	public float deaccelerationBrake = 500;
+	public float deaccelerationDrift = 50;
+	public float deaccelerationIdle = 500;
+
+
 	public float xTiltSpeed = 1.5f;
 	public float yTiltSpeed = 3.3f;
 
@@ -32,16 +33,12 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	public float normalTurningRate = 115.0f;
 	public float brakingTurningRate = 300.0f;
-	
-	
-	public float timeUntilCompleteStopAfterBoost = 1.0f;
-	private float timeSinceLastBoost = 0.0f;
+
 	
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
-	
-	public float timeUntilMaxBoostUpDown = 1.0f;
-	private float timeSinceStartedBoostingUpDown = 0.0f;
+
+
 
 	
 	
@@ -63,7 +60,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
-
 		HandleRotation();
 		HandleMovement();
 		HandleTilt();
@@ -76,77 +72,26 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	void HandleMovement() {
-		
-		/* Constrain max velocity. */
-		rigidbody.velocity = new Vector3(
-			Mathf.Min(rigidbody.velocity.x, maxVelocity.x),
-			Mathf.Min(rigidbody.velocity.y, maxVelocity.y),
-			Mathf.Min(rigidbody.velocity.z, maxVelocity.z)
-			);
-		
-		Vector3 forwardVector = spaceshipModel.transform.forward;
-		forwardVector.y = 0.0f;
-		
-		if (yTilt != 0) {
-			timeSinceStartedBoostingUpDown += Time.deltaTime;
-		}
-		else {
-			timeSinceStartedBoostingUpDown = timeUntilMaxBoostUpDown;
-		}
-		
-		
+
 		/* Forward boost. */
-		if (boostAmount > 0.0f && brakeAmount == 0.0f) {
-
-			/* Limit mobility based on height. */
-			float movementRate; 
-			if (!enforceHeightLimit || heightAboveGround <= heightLimit) {
-				movementRate = 1.0f;
-			}
-			else {
-				movementRate = Mathf.Lerp(1.0f, 0.0f, Mathf.Clamp01(heightAboveGround/maxHeightBeforeFalling));
-			}
-			
-			/* Boost forward. */
-			rigidbody.MovePosition(rigidbody.position + movementRate*boostAmount*forwardVector*Time.deltaTime*acceleration.z);
-
-			/* Limit height. */
-			if (!enforceHeightLimit || spaceship.transform.position.y < maxHeightBeforeFalling || yTilt < 0f) {
-
-				/* Move up/down. The amount to move increases at an increasing rate so that you feel like you're pushing 
-				 * into an up/down boost. */
-				rigidbody.MovePosition(
-					Vector3.Slerp(
-						rigidbody.position,
-						rigidbody.position + movementRate*Vector3.up*yTilt*Time.deltaTime*acceleration.y,
-						Mathf.Clamp01(timeSinceStartedBoostingUpDown/timeUntilMaxBoostUpDown)
-					)
-				);
-			}
-			
-			timeSinceLastBoost = 0.0f;
+		if (drifting || nosediving) {
+			currentVelocity -= deaccelerationDrift;
 		}
-		else {
-			/* Boost forward at a decreasing rate (Eventually slow down). */
-			rigidbody.MovePosition(
-				Vector3.Slerp(
-					rigidbody.position + forwardVector*Time.deltaTime*acceleration.z,
-					rigidbody.position,
-					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
-				)
-			);
-			/* Boost up/down at a decreasing rate (Eventually slow down). */
-			rigidbody.MovePosition(
-				Vector3.Slerp(
-					rigidbody.position + Vector3.up*yTilt*Time.deltaTime*acceleration.y,
-					rigidbody.position,
-					Mathf.Clamp01(timeSinceLastBoost/timeUntilCompleteStopAfterBoost)
-				)
-			);
-			
-			timeSinceLastBoost += Time.deltaTime;
+		else if (boosting) {
+			currentVelocity += acceleration;
 		}
-		
+		else if (braking) {
+			currentVelocity -= deaccelerationBrake;
+		}
+		else if (idle) {
+			currentVelocity -= deaccelerationIdle;
+		} 
+
+		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
+
+		/* Boost forward. */
+		rigidbody.MovePosition(rigidbody.position + forward*Time.deltaTime*currentVelocity);
+
 	}
 	
 	

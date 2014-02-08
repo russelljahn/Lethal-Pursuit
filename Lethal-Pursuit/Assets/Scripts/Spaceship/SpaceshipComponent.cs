@@ -32,9 +32,34 @@ public class SpaceshipComponent : MonoBehaviour {
 		}
 	}
 	/* Is player hitting the shoot button right now? */
-	protected bool currentlyShooting {
+	protected bool shooting {
 		get {
-			return spaceship.currentlyShooting;
+			return spaceship.shooting;
+		}
+	}
+	protected bool boosting {
+		get {
+			return spaceship.boosting;
+		}
+	}
+	protected bool braking {
+		get {
+			return spaceship.braking;
+		}
+	}
+	protected bool drifting {
+		get {
+			return spaceship.drifting;
+		}
+	}
+	protected bool nosediving {
+		get {
+			return spaceship.nosediving;
+		}
+	}
+	protected bool idle {
+		get {
+			return spaceship.idle;
 		}
 	}
 	protected GameplayManager gameplayManager {
@@ -77,6 +102,25 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.enforceHeightLimit;
 		}
 	}
+	protected Vector3 forward {
+		get {
+			return spaceship.forward;
+		}
+	}
+	protected float currentVelocity {
+		get {
+			return spaceship.currentVelocity;
+		}
+		set {
+			spaceship.currentVelocity = value;
+		}
+	}
+	protected float maxVelocity {
+		get {
+			return spaceship.maxVelocity;
+		}
+	}
+
 	
 
 

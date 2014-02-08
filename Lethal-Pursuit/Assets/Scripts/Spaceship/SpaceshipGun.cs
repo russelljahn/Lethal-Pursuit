@@ -35,7 +35,7 @@ public class SpaceshipGun : SpaceshipComponent {
 
 	void FixedUpdate() {
 
-		if (currentlyShooting && timeUntilCanShoot == 0.0f) {
+		if (shooting && timeUntilCanShoot == 0.0f) {
 			Debug.Log ("SpaceshipGun.transform.position: " + this.transform.position);
 			Bullet bullet = GameObject.Instantiate(bulletToUse, this.transform.position, Quaternion.identity) as Bullet;
 			bullet.direction = spaceshipModel.transform.forward;

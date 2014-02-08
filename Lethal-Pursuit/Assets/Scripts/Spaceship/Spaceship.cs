@@ -18,9 +18,15 @@ public class Spaceship : MonoBehaviour {
 	public float yTilt; /* Tilt of analogue stick every frame. */
 	public float boostAmount;
 	public float brakeAmount;
-	public bool currentlyShooting;
+	public bool shooting;
+	public bool boosting;
+	public bool braking;
+	public bool drifting;
+	public bool nosediving;
+	public bool idle;
 	#endregion
 
+	public Vector3 forward;
 	public float heightAboveGround;
 
 	public bool enforceHeightLimit = true;
@@ -28,26 +34,29 @@ public class Spaceship : MonoBehaviour {
 	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
 	public float maxHeightBeforeFalling = 500.0f;
 	public float fallingRate = -98.1f;
+
+	public float currentVelocity;
+	public float maxVelocity = 150.0f;
 	
 
-//	public static float health = 100; /*health, damage, & status */
-//	private float maxHealth = 100;
-//	private float damageHalfHit = 50;
-//	private float damageOneHitKO = 100;
-//	private float damageBufferTime = 2;
-//	private float stall = 0;
 
 
 
-	// Use this for initialization
 	void Start () {
 		gameplayManager = GameplayManager.instance;
 	}
+
+
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		HandleInput();
 		HandleHeightCheck();
+	}
+
+
+
+	void Update () {
+		forward = spaceshipModel.transform.forward;
 	}
 
 
@@ -57,8 +66,25 @@ public class Spaceship : MonoBehaviour {
 		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
 		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
 		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
-		currentlyShooting = InputManager.ActiveDevice.Action3.State;
+		shooting = InputManager.ActiveDevice.Action3.State;
 
+		braking = false;
+		boosting = false;
+		drifting = false;
+		nosediving = false;
+
+		if (boostAmount > 0 && brakeAmount == 0) {
+			boosting = true;
+		}
+		else if (brakeAmount > 0) {
+			drifting = (xTilt != 0);
+			nosediving = (yTilt != 0);
+			braking = (xTilt == 0 && yTilt == 0);
+		}
+		else if (boostAmount == 0 && brakeAmount == 0) {
+			idle = true;
+		}
+		
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
