@@ -32,7 +32,9 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	public float normalTurningRate = 115.0f;
-	public float brakingTurningRate = 300.0f;
+	public float driftingTurningRate = 300.0f;
+	public float nosedivingRate = 2.75f;
+	
 
 	
 	public float timeUntilMaxTurning = 2.6f;
@@ -90,7 +92,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
 
 		/* Boost forward. */
-		rigidbody.MovePosition(rigidbody.position + forward*Time.deltaTime*currentVelocity);
+		rigidbody.MovePosition(
+			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
+		);
 
 	}
 	
@@ -102,6 +106,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	void HandleTilt() {
 
 		Vector3 targetRotationEuler = Vector3.zero;
+
 		
 		/* Based on analogue stick direction, figure out rotation state to blend to. */
 		if (xTilt == 0) {
@@ -140,11 +145,17 @@ public class SpaceshipControl : SpaceshipComponent {
 		
 		/* Blend from current rotation towards target rotation. */
 		if (yTilt != 0) {
+
+			float diveRate = 1.0f;
+			if (nosediving) {
+				diveRate = nosedivingRate;
+			}
+
 			spaceshipModel.transform.localRotation = Quaternion.Slerp(
 				spaceshipModel.transform.localRotation, 
-				Quaternion.Euler((1.0f-.5f*(yTilt+1.0f))*lastFrameTargetRotationEuler + .5f*(yTilt+1.0f)*targetRotationEuler), 
+				Quaternion.Euler(diveRate*((1.0f-.5f*(yTilt+1.0f))*lastFrameTargetRotationEuler + .5f*(yTilt+1.0f)*targetRotationEuler)), 
 				yTiltSpeed*Time.deltaTime
-				);
+			);
 		}
 		if (xTilt != 0) {
 			spaceshipModel.transform.localRotation = Quaternion.Slerp(
@@ -175,17 +186,17 @@ public class SpaceshipControl : SpaceshipComponent {
 			float turningRateForThisFrame = normalTurningRate;
 			
 			/* Allow drift turning if player is holding down brake. */
-			if (brakeAmount > 0.0f) {
-				turningRateForThisFrame = brakeAmount*brakingTurningRate;
+			if (drifting) {
+				turningRateForThisFrame = driftingTurningRate;
 			}
 			
 			//			Debug.Log("turningRate: " + turningRateForThisFrame);
 			
 			this.rigidbody.MoveRotation(
-				Quaternion.Slerp (
-				this.transform.localRotation,
-				Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRateForThisFrame*Time.deltaTime),
-				Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)
+					Quaternion.Slerp (
+					this.transform.localRotation,
+					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRateForThisFrame*Time.deltaTime),
+					Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)
 				)
 			);
 			timeSinceStartedTurning += Time.deltaTime;
