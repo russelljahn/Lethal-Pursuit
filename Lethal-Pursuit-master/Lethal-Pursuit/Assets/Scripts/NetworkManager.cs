@@ -123,6 +123,20 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log ("Failed to connect ot server: " + error.ToString());
 	}
 	
+	void OnPlayerDisconnected(NetworkPlayer player) {
+		Debug.Log("Clean up after player " + player);
+		Network.RemoveRPCs(player);
+		Network.DestroyPlayerObjects(player);
+	}
+	
+	void OnDisconnectedFromServer(NetworkDisconnection info) {
+		Debug.Log("Clean up a bit after server quit");
+		Network.RemoveRPCs(Network.player);
+		Network.DestroyPlayerObjects(Network.player);
+		
+		//Need to have a level loaded back to menu here
+	}
+	
 	void SpawnPlayer()
 	{
 		GameObject spaceship = Network.Instantiate(

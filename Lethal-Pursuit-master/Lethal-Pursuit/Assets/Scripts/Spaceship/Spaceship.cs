@@ -49,14 +49,18 @@ public class Spaceship : MonoBehaviour {
 
 	
 	void FixedUpdate () {
-		HandleInput();
-		HandleHeightCheck();
+		if(networkView.isMine) {
+			HandleInput();
+			HandleHeightCheck();
+		}
 	}
 
 
 
 	void Update () {
-		forward = spaceshipModel.transform.forward;
+		if(networkView.isMine) {
+			forward = spaceshipModel.transform.forward;
+		}
 	}
 
 

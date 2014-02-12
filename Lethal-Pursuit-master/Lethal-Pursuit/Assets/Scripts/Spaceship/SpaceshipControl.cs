@@ -62,10 +62,12 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
-		HandleRotation();
-		HandleMovement();
-		HandleTilt();
-		HandleFalling();
+		if(networkView.isMine) {
+			HandleRotation();
+			HandleMovement();
+			HandleTilt();
+			HandleFalling();
+		}
 	}
 
 	
