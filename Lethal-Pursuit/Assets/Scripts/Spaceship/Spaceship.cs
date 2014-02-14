@@ -37,7 +37,8 @@ public class Spaceship : MonoBehaviour {
 
 	public float currentVelocity;
 	public float maxVelocity = 150.0f;
-	
+
+	public static bool singlePlayer = true;
 
 
 
@@ -49,7 +50,7 @@ public class Spaceship : MonoBehaviour {
 
 	
 	void FixedUpdate () {
-		if(networkView.isMine) {
+		if (singlePlayer || networkView.isMine) {
 			HandleInput();
 			HandleHeightCheck();
 		}
@@ -58,7 +59,7 @@ public class Spaceship : MonoBehaviour {
 
 
 	void Update () {
-		if(networkView.isMine) {
+		if (singlePlayer || networkView.isMine) {
 			forward = spaceshipModel.transform.forward;
 		}
 	}

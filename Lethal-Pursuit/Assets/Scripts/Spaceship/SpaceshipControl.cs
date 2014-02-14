@@ -40,8 +40,9 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
 
+	public Crosshairs crosshairs;
 
-
+	public float zForward = 30.0f;
 	
 	
 	// Use this for initialization
@@ -62,12 +63,10 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
-		if(networkView.isMine) {
-			HandleRotation();
-			HandleMovement();
-			HandleTilt();
-			HandleFalling();
-		}
+		HandleRotation();
+		HandleMovement();
+		HandleTilt();
+		HandleFalling();
 	}
 
 	
@@ -107,73 +106,15 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleTilt() {
 
-		Vector3 targetRotationEuler = Vector3.zero;
+		float z = spaceshipModel.transform.position.z + zForward;
 
-		
-		/* Based on analogue stick direction, figure out rotation state to blend to. */
-		if (xTilt == 0) {
-			if (yTilt == 0) {
-				; // Idle state, target rotation is (0f, 0f, 0f).
-			}
-			else if (yTilt < 0) {
-				targetRotationEuler = downTiltRotation;
-			}
-			else if (yTilt > 0) {
-				targetRotationEuler = upTiltRotation;
-			}
-		}
-		else if (xTilt < 0) {
-			if (yTilt == 0) {
-				targetRotationEuler = leftTiltRotation;
-			}
-			else if (yTilt < 0) {
-				targetRotationEuler = downLeftTiltRotation;
-			}
-			else if (yTilt > 0) {
-				targetRotationEuler = upLeftTiltRotation;
-			}
-		}
-		else if (xTilt > 0) {
-			if (yTilt == 0) {
-				targetRotationEuler = rightTiltRotation;
-			}
-			else if (yTilt < 0) {
-				targetRotationEuler = downRightTiltRotation;
-			}
-			else if (yTilt > 0) {
-				targetRotationEuler = upRightTiltRotation;
-			}
-		}
-		
-		/* Blend from current rotation towards target rotation. */
-		if (yTilt != 0) {
+		Vector3 pointToLookAt = new Vector3(
+			spaceshipModel.transform.position.x+crosshairs.transform.localPosition.x, 
+			spaceshipModel.transform.position.y+crosshairs.transform.localPosition.y, 
+			z
+		);
+		spaceshipModel.transform.LookAt(crosshairs.transform);
 
-			float diveRate = 1.0f;
-			if (nosediving) {
-				diveRate = nosedivingRate;
-			}
-
-			spaceshipModel.transform.localRotation = Quaternion.Slerp(
-				spaceshipModel.transform.localRotation, 
-				Quaternion.Euler(diveRate*((1.0f-.5f*(yTilt+1.0f))*lastFrameTargetRotationEuler + .5f*(yTilt+1.0f)*targetRotationEuler)), 
-				yTiltSpeed*Time.deltaTime
-			);
-		}
-		if (xTilt != 0) {
-			spaceshipModel.transform.localRotation = Quaternion.Slerp(
-				spaceshipModel.transform.localRotation, 
-				Quaternion.Euler((1.0f-.5f*(xTilt+1.0f))*lastFrameTargetRotationEuler + .5f*(xTilt+1.0f)*targetRotationEuler), 
-				xTiltSpeed*Time.deltaTime
-				);
-		}
-		if (xTilt == 0 && yTilt == 0) {
-			spaceshipModel.transform.localRotation = Quaternion.Slerp(
-				spaceshipModel.transform.localRotation, 
-				Quaternion.Euler(targetRotationEuler), 
-				xTiltSpeed*Time.deltaTime
-				);
-		}
-		lastFrameTargetRotationEuler = targetRotationEuler;
 	}
 	
 	
