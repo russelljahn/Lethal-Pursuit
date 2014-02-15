@@ -14,28 +14,12 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	public float xTiltSpeed = 1.5f;
 	public float yTiltSpeed = 3.3f;
+	
 
-
-	public Vector3 rightTiltRotation = new Vector3(  0.0f,  0.0f,  -85.0f);
-	public Vector3 leftTiltRotation  = new Vector3(  0.0f,  0.0f,   85.0f);
-	
-	public Vector3 upTiltRotation    = new Vector3(-40.0f,  2.0f,   -3.0f);
-	public Vector3 downTiltRotation  = new Vector3( 4.0f,   2.0f,    3.0f);
-	
-	public Vector3 downRightTiltRotation  = new Vector3(  30.0f,  5.0f,  -40.0f);
-	public Vector3 downLeftTiltRotation   = new Vector3(  30.0f, -5.0f,   40.0f);
-	
-	public Vector3 upRightTiltRotation    = new Vector3( -30.0f,  5.0f,  -80.0f);
-	public Vector3 upLeftTiltRotation     = new Vector3( -30.0f, -5.0f,   80.0f);
-	
-	private Vector3 lastFrameTargetRotationEuler = Vector3.zero;
-	
-	
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
 	public float nosedivingRate = 2.75f;
 	
-
 	
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
@@ -43,6 +27,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	public Crosshairs crosshairs;
 
 	public float zForward = 30.0f;
+	public float lookSpeed = 1.0f;
 	
 	
 	// Use this for initialization
@@ -106,14 +91,13 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleTilt() {
 
-		float z = spaceshipModel.transform.position.z + zForward;
-
-		Vector3 pointToLookAt = new Vector3(
-			spaceshipModel.transform.position.x+crosshairs.transform.localPosition.x, 
-			spaceshipModel.transform.position.y+crosshairs.transform.localPosition.y, 
-			z
+		Vector3 newDirection = Vector3.Slerp(
+			spaceshipModel.transform.forward, 
+			crosshairs.transform.position-spaceshipModel.transform.position, 
+			Time.deltaTime*lookSpeed
 		);
-		spaceshipModel.transform.LookAt(crosshairs.transform);
+
+		spaceshipModel.transform.forward = newDirection;
 
 	}
 	
