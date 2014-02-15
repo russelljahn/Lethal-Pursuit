@@ -11,13 +11,16 @@ public class SpaceshipGun : SpaceshipComponent {
 
 	public float forceFactor = 1.0f;
 
-
+	private GameObject cachedBullet;
 
 
 
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
+
+		cachedBullet = Resources.Load(bulletResourcePath, typeof(GameObject)) as GameObject;
+		cachedBullet.SetActive(false);
 	}
 
 
@@ -38,7 +41,7 @@ public class SpaceshipGun : SpaceshipComponent {
 		if (shooting && timeUntilCanShoot == 0.0f) {
 
 			GameObject bulletGameObject = GameObject.Instantiate(
-				Resources.Load(bulletResourcePath, typeof(GameObject)), 
+				cachedBullet,
 				this.transform.position, 
 				Quaternion.identity
 			) as GameObject;
@@ -47,6 +50,8 @@ public class SpaceshipGun : SpaceshipComponent {
 			bullet.direction = spaceshipModel.transform.forward;
 			bullet.speed = 1.25f*spaceship.maxVelocity;
 			bullet.sourceSpaceship = spaceship;
+
+			bulletGameObject.SetActive(true);
 
 			timeUntilCanShoot = cooldownBetweenShots;
 		}
