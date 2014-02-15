@@ -7,7 +7,9 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 
 	public float acceleration = 5.0f; 
-	public float extraAccelerationY = 5.0f; 
+	public float normalExtraAccelerationY = 5.0f; 
+	public float nosedivingExtraAccelerationY = 30.0f; 
+	
 	
 	public float deaccelerationBrake = 500;
 	public float deaccelerationDrift = 50;
@@ -20,7 +22,6 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
-	public float nosedivingRate = 2.75f;
 	
 	
 	public float timeUntilMaxTurning = 2.6f;
@@ -75,6 +76,11 @@ public class SpaceshipControl : SpaceshipComponent {
 			currentVelocity -= deaccelerationIdle;
 		} 
 
+		float currentExtraAccelerationY = normalExtraAccelerationY;
+		if (nosediving) {
+			currentExtraAccelerationY = nosedivingExtraAccelerationY;
+		}
+
 		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
 
 		/* Boost forward. */
@@ -84,7 +90,7 @@ public class SpaceshipControl : SpaceshipComponent {
 
 		/* Additional boost up/down. */
 		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationY, currentVelocity/maxVelocity)
+			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*currentExtraAccelerationY, currentVelocity/maxVelocity)
 		);
 
 	}
@@ -95,6 +101,7 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	
 	void HandleTilt() {
+		
 
 		Vector3 newDirection = Vector3.Slerp(
 			spaceshipModel.transform.forward, 

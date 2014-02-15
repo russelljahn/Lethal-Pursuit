@@ -39,6 +39,7 @@ public class Spaceship : MonoBehaviour {
 	public float maxVelocity = 150.0f;
 
 	public static bool singlePlayer = true;
+	public bool mapKeyboardDiagonalAmountToAnalogueDiagonalAmount = false;
 
 
 
@@ -92,9 +93,11 @@ public class Spaceship : MonoBehaviour {
 		
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
-		if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
-			xTilt *= 0.5f;
-			yTilt *= 0.5f;
+		if (mapKeyboardDiagonalAmountToAnalogueDiagonalAmount) {
+			if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
+				xTilt *= 0.5f;
+				yTilt *= 0.5f;
+			}
 		}
 	}
 
