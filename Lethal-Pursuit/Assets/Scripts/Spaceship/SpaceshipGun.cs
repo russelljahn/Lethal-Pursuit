@@ -5,7 +5,6 @@ using System.Collections;
 public class SpaceshipGun : SpaceshipComponent {
 
 	public string bulletResourcePath = "Bullets/TestLaz0r";
-//	public Bullet bulletToUse;
 
 	public float cooldownBetweenShots = 0.1f;
 	private float timeUntilCanShoot = 0.0f;
@@ -37,7 +36,6 @@ public class SpaceshipGun : SpaceshipComponent {
 	void FixedUpdate() {
 
 		if (shooting && timeUntilCanShoot == 0.0f) {
-//			Debug.Log ("SpaceshipGun.transform.position: " + this.transform.position);
 
 			GameObject bulletGameObject = GameObject.Instantiate(
 				Resources.Load(bulletResourcePath, typeof(GameObject)), 
@@ -47,8 +45,8 @@ public class SpaceshipGun : SpaceshipComponent {
 
 			Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 			bullet.direction = spaceshipModel.transform.forward;
-			bullet.speed = Mathf.Max(bullet.speed, 1.15f*spaceship.currentVelocity);
-//			bullet.prefab = false;
+			bullet.speed = 1.25f*spaceship.maxVelocity;
+			bullet.sourceSpaceship = spaceship;
 
 			timeUntilCanShoot = cooldownBetweenShots;
 		}

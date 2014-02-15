@@ -121,9 +121,7 @@ public class SpaceshipControl : SpaceshipComponent {
 			if (drifting) {
 				turningRateForThisFrame = driftingTurningRate;
 			}
-			
-			//			Debug.Log("turningRate: " + turningRateForThisFrame);
-			
+						
 			this.rigidbody.MoveRotation(
 					Quaternion.Slerp (
 					this.transform.localRotation,
