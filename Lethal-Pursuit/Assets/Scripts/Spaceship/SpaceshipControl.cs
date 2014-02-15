@@ -7,6 +7,8 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 
 	public float acceleration = 5.0f; 
+	public float extraAccelerationY = 5.0f; 
+	
 	public float deaccelerationBrake = 500;
 	public float deaccelerationDrift = 50;
 	public float deaccelerationIdle = 500;
@@ -25,8 +27,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	private float timeSinceStartedTurning = 0.0f;
 
 	public Crosshairs crosshairs;
-
-	public float zForward = 30.0f;
 	public float lookSpeed = 1.0f;
 	
 	
@@ -80,6 +80,11 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Boost forward. */
 		rigidbody.MovePosition(
 			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
+		);
+
+		/* Additional boost up/down. */
+		rigidbody.MovePosition(
+			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationY, currentVelocity/maxVelocity)
 		);
 
 	}
