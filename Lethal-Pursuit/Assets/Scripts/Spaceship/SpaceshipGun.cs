@@ -48,7 +48,6 @@ public class SpaceshipGun : SpaceshipComponent {
 
 			Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 			bullet.direction = spaceshipModel.transform.forward;
-			bullet.speed = 1.25f*spaceship.maxVelocity;
 			bullet.sourceSpaceship = spaceship;
 
 			bulletGameObject.SetActive(true);

@@ -4,13 +4,16 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
 	public Vector3 direction;
+
 	public float speed = 50f;
+
 	public float timeUntilDeath = 5.0f;
 	public bool alreadyActivatedOnDeath = false;
 
 	public Spaceship sourceSpaceship;
 
 	public Detonator detonater;
+
 
 	// Use this for initialization
 	void Start () {
