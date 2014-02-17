@@ -12,6 +12,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float forceFactor = 1.0f;
 
 	private GameObject cachedBullet;
+	public AudioClip shot;
 
 
 
@@ -50,6 +51,8 @@ public class SpaceshipGun : SpaceshipComponent {
 			bullet.direction = spaceshipModel.transform.forward;
 			bullet.sourceSpaceship = spaceship;
 			bullet.speed *= forceFactor;
+
+			audio.PlayOneShot(shot);
 
 			bulletGameObject.SetActive(true);
 
