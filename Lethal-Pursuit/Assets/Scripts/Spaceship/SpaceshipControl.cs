@@ -62,7 +62,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleMovement() {
 
-		/* Forward boost. */
+		/* Adjust velocity based on current spaceship behavior. */
 		if (drifting || nosediving) {
 			currentVelocity -= deaccelerationDrift;
 		}
@@ -76,6 +76,7 @@ public class SpaceshipControl : SpaceshipComponent {
 			currentVelocity -= deaccelerationIdle;
 		} 
 
+
 		float currentExtraAccelerationY = normalExtraAccelerationY;
 		if (nosediving) {
 			currentExtraAccelerationY = nosedivingExtraAccelerationY;
@@ -83,6 +84,8 @@ public class SpaceshipControl : SpaceshipComponent {
 
 		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
 
+
+		/* Do height checking to see if spaceship should be allowed to boost higher vertically. */
 		bool noUpwardsMovementThisFrame = enforceHeightLimit && spaceship.transform.position.y >= worldHeightLimit;
 		Vector3 adjustedForward = forward;
 		float extraAccelerationThisFrameY = currentExtraAccelerationY;
@@ -92,15 +95,16 @@ public class SpaceshipControl : SpaceshipComponent {
 			extraAccelerationThisFrameY = 0.0f;
 		}
 
+		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
 		float distanceToRaycastForward = 20.0f;
-		bool shouldBoost = true;
+		bool shouldBoost = boosting;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
 			Debug.Log ("Colliding with: " + hit.collider.gameObject);
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 
-				// TODO: Write something better than this. It doesn't cover all collision detection cases.
+				// TODO: Write something better than this. It doesn't cover all collision detection cases, like for inclines!
 
 				float distanceToRaycastTowardsGround = 10f;
 				if (Physics.Raycast(transform.position, Vector3.down, out hit, distanceToRaycastTowardsGround)) {
@@ -112,7 +116,8 @@ public class SpaceshipControl : SpaceshipComponent {
 				}
 			}
 		}
-		
+
+		/* Handle actual movement. */
 		if (shouldBoost) {
 			/* Boost forward. */
 			rigidbody.MovePosition(
@@ -123,6 +128,7 @@ public class SpaceshipControl : SpaceshipComponent {
 			rigidbody.MovePosition(
 				rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
 			);
+
 		}
 
 	}
