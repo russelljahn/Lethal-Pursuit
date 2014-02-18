@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour {
 	
 
 	bool ShouldExplodeOnContact(GameObject other) {
-		return !(other.CompareTag("Bullet") || other == sourceSpaceship);
+		return !(other.CompareTag("Bullet") || other == sourceSpaceship.gameObject);
 	}
 
 }
