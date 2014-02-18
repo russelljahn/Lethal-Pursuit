@@ -38,6 +38,8 @@ public class SpaceshipEffects : SpaceshipComponent {
 	public float brakeSmokeEmissionRate = 4f;
 
 
+
+
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
@@ -123,6 +125,11 @@ public class SpaceshipEffects : SpaceshipComponent {
 			miniThruster2.startSize = miniBoostParticleEmissionSize;
 			miniThruster3.startSize = miniBoostParticleEmissionSize;
 			miniThruster4.startSize = miniBoostParticleEmissionSize;
+			trail1.maxSize = .02f;
+			trail2.maxSize = .02f;
+			trail3.maxSize = .02f;
+			trail4.maxSize = .02f;
+
 		
 			
 			
@@ -141,6 +148,10 @@ public class SpaceshipEffects : SpaceshipComponent {
 			miniThruster2.startSize = miniBrakeParticleEmissionSize;
 			miniThruster3.startSize = miniBrakeParticleEmissionSize;
 			miniThruster4.startSize = miniBrakeParticleEmissionSize;
+			trail1.maxSize = .2f;
+			trail2.maxSize = .2f;
+			trail3.maxSize = .2f;
+			trail4.maxSize = .2f;
 			
 		}
 

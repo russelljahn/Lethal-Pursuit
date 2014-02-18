@@ -45,6 +45,7 @@ public class SpaceshipAudio : SpaceshipComponent {
 		track3.Play();
 
 		driftSFX.clip = driftWind;
+		track3.loop = true;
 		driftSFX.Play();
 
 	}
