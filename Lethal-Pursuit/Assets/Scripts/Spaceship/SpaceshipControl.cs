@@ -29,7 +29,13 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	public Crosshairs crosshairs;
 	public float lookSpeed = 1.0f;
+
+	public float leftRightDriftTiltMax = 90f;
+	private float currentLeftRightDriftTilt = 0f;
+	public float leftRightDriftTiltRate = 2.5f;
+	public float leftRightDriftAlignRate = 1.5f;
 	
+
 	
 	// Use this for initialization
 	public override void Start () {
@@ -98,7 +104,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
 		float distanceToRaycastForward = 20.0f;
-		bool shouldBoost = boosting;
+		bool shouldBoost = boosting || drifting || nosediving;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
 			Debug.Log ("Colliding with: " + hit.collider.gameObject);
@@ -147,10 +153,23 @@ public class SpaceshipControl : SpaceshipComponent {
 			Time.deltaTime*lookSpeed
 		);
 
+		if (drifting) {
+//			float sign = Mathf.Sign(xTilt);
+			currentLeftRightDriftTilt = Mathf.Lerp(currentLeftRightDriftTilt, -xTilt*leftRightDriftTiltMax, leftRightDriftTiltRate*Time.deltaTime);
+		}
+		else {
+			currentLeftRightDriftTilt = Mathf.Lerp(currentLeftRightDriftTilt, 0.0f, leftRightDriftAlignRate*Time.deltaTime);
+		}
+
+
 		spaceshipModel.transform.forward = newDirection;
+		spaceshipModel.transform.localRotation = Quaternion.Euler(
+			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, 0.0f, currentLeftRightDriftTilt)
+		);
+		
 
 	}
-	
+
 	
 	
 	

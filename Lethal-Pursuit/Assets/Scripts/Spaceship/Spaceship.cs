@@ -77,6 +77,7 @@ public class Spaceship : MonoBehaviour {
 		boosting = false;
 		drifting = false;
 		nosediving = false;
+		idle = false;
 
 		if (boostAmount > 0 && brakeAmount == 0) {
 			boosting = true;
