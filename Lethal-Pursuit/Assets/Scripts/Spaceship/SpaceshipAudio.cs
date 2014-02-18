@@ -17,8 +17,10 @@ public class SpaceshipAudio : SpaceshipComponent {
 	public AudioClip driftWind;
 	
 	private float boostTime = 0.0f;
-
 	private float maxBoostTime = 2.0f;
+
+	private float driftTime = 0.0f;
+	private float maxDriftTime = 0.85f;
 	
 	public float maxPitchEngine1 = 5.0f;
 
@@ -43,7 +45,7 @@ public class SpaceshipAudio : SpaceshipComponent {
 		track3.Play();
 
 		driftSFX.clip = driftWind;
-
+		driftSFX.Play();
 
 	}
 
@@ -52,12 +54,18 @@ public class SpaceshipAudio : SpaceshipComponent {
 	public override void Update () {
 		base.Update();
 						
-		if (boostAmount > 0) {
+		if (boosting) {
 			boostTime = Mathf.Min(maxBoostTime, boostTime+Time.deltaTime);
 		}
-				
 		else {
 			boostTime = Mathf.Max(0f, boostTime-Time.deltaTime);	
+		}
+
+		if (drifting) {
+			driftTime = Mathf.Min(maxDriftTime, driftTime+Time.deltaTime);
+		}
+		else {
+			driftTime = Mathf.Max(0f, driftTime-Time.deltaTime);	
 		}
 
 				
@@ -72,23 +80,8 @@ public class SpaceshipAudio : SpaceshipComponent {
 		track1.pan = xTilt;
 		track2.pan = xTilt;
 
+		driftSFX.volume = driftTime/maxDriftTime;
 
-		
-//		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*heightLimit) {
-//			track1.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
-//				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
-//			);
-//			track2.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
-//				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
-//			);
-//
-//		}
-
-		//if (brakeAmount == 1 && xTilt > 0) {
-
-		//	driftSFX.Play();
-
-			//}
 
 	}
 

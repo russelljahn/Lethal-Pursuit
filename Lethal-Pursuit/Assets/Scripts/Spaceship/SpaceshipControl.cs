@@ -30,11 +30,11 @@ public class SpaceshipControl : SpaceshipComponent {
 	public Crosshairs crosshairs;
 	public float lookSpeed = 1.0f;
 
-	public float leftRightDriftTiltMax = 90f;
-	private float currentLeftRightDriftTilt = 0f;
-	public float leftRightDriftTiltRate = 2.5f;
-	public float leftRightDriftAlignRate = 1.5f;
-	
+	public float driftTiltMax = 90f;
+	private float currentDriftTilt = 0f;
+	public float driftTiltRate = 2.5f;
+	public float driftAlignRate = 1.5f;
+
 
 	
 	// Use this for initialization
@@ -153,18 +153,19 @@ public class SpaceshipControl : SpaceshipComponent {
 			Time.deltaTime*lookSpeed
 		);
 
+		/* Handle drifting tilt. */
 		if (drifting) {
-//			float sign = Mathf.Sign(xTilt);
-			currentLeftRightDriftTilt = Mathf.Lerp(currentLeftRightDriftTilt, -xTilt*leftRightDriftTiltMax, leftRightDriftTiltRate*Time.deltaTime);
+			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*driftTiltMax, driftTiltRate*Time.deltaTime);
 		}
 		else {
-			currentLeftRightDriftTilt = Mathf.Lerp(currentLeftRightDriftTilt, 0.0f, leftRightDriftAlignRate*Time.deltaTime);
+			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
 		}
 
 
 		spaceshipModel.transform.forward = newDirection;
+
 		spaceshipModel.transform.localRotation = Quaternion.Euler(
-			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, 0.0f, currentLeftRightDriftTilt)
+			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, 0.0f, currentDriftTilt)
 		);
 		
 

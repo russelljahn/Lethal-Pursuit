@@ -27,7 +27,7 @@ public class Spaceship : MonoBehaviour {
 	#endregion
 
 	public Vector3 forward;
-	public float heightAboveGround;
+//	public float heightAboveGround;
 
 	public bool enforceHeightLimit = true;
 	public float worldHeightLimit = 300.0f;
