@@ -5,36 +5,26 @@ public class Timer : MonoBehaviour {
 
 
 	private float startTime;
-	public string textTime; 
-	public float guiTime;
-	public float minutes;
-	public float seconds;
-	public float ms;
-
+	private UILabel label;
 	
-	void Awake() {
+	void Start() {
 		
 		startTime = Time.time;
-		
+		label = GetComponent<UILabel>();
 	}
 
 
-	void Update(){
-		//GetComponent<UILabel>().text = textTime; causes lag for some reason
+	void Update() {
 
-		guiTime = Time.time - startTime;
-		
-		minutes = guiTime / 60;
-		seconds = guiTime % 60;
-		ms = (guiTime * 100) % 100;
-		textTime = string.Format ("{0:00}:{1:00}:{2:00}", minutes, seconds, ms); 
+		float currentTime = Time.time - startTime;
+		float minutes = currentTime / 60;
+		float seconds = currentTime % 60;
+		float ms = (currentTime * 100) % 100;
 
-		textTime = guiTime.ToString();
+		label.text = string.Format ("{0:00}:{1:00}:{2:00}", minutes, seconds, ms); 
+
 
 	}
-	
-	void OnTriggerExit(){ //finish
-		
-	}
+
 
 }
