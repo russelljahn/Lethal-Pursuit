@@ -9,6 +9,7 @@ public class SpaceshipAudio : SpaceshipComponent {
 	public AudioSource track3;
 	public AudioSource driftSFX;
 
+
 	public AudioClip wind1;
 	public AudioClip engine1; 
 	public AudioClip engine3; 
@@ -63,9 +64,9 @@ public class SpaceshipAudio : SpaceshipComponent {
 		track1.pitch = spaceship.currentVelocity/150 + .3f;
 		track1.volume = spaceship.currentVelocity / 150 + .44f;
 		track2.pitch = Mathf.Clamp(spaceship.currentVelocity, spaceship.currentVelocity/250 + .4f, 1.1f);
-		track2.volume = spaceship.currentVelocity/350+.4f;
+		track2.volume = spaceship.currentVelocity/450+.4f;
 		track3.pitch = spaceship.currentVelocity/450 + .4f;
-		track3.volume = spaceship.currentVelocity/200- 1;
+		track3.volume = spaceship.currentVelocity/300- 1;
 
 
 		track1.pan = xTilt;

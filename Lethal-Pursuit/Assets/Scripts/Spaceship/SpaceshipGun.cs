@@ -12,6 +12,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float forceFactor = 1.0f;
 
 	private GameObject cachedBullet;
+	public AudioSource guns;
 	public AudioClip shot;
 
 
@@ -52,11 +53,12 @@ public class SpaceshipGun : SpaceshipComponent {
 			bullet.sourceSpaceship = spaceship;
 			bullet.speed *= forceFactor;
 
-			audio.PlayOneShot(shot);
+
 
 			bulletGameObject.SetActive(true);
 
 			timeUntilCanShoot = cooldownBetweenShots;
+			audio.PlayOneShot(shot);
 		}
 		else {
 			timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
