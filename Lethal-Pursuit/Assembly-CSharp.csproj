@@ -219,6 +219,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\Checkpoints\Checkpoint.cs" />
+     <Compile Include="Assets\Scripts\Checkpoints\CheckpointManager.cs" />
      <Compile Include="Assets\Scripts\Crosshairs.cs" />
      <Compile Include="Assets\Scripts\ExplodeChildrenOnContact.cs" />
      <Compile Include="Assets\Scripts\GameplayManager.cs" />
@@ -239,7 +241,6 @@
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipEffects.cs" />
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipGun.cs" />
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipStatus.cs" />
-     <Compile Include="Assets\Scripts\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\TerrainToolkit\TerrainToolkit.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
