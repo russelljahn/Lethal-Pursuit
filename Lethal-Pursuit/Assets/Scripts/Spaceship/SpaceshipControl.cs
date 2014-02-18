@@ -104,7 +104,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
 		float distanceToRaycastForward = 20.0f;
-		bool shouldBoost = boosting || drifting || nosediving;
+		bool shouldBoost = true;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
 			Debug.Log ("Colliding with: " + hit.collider.gameObject);
