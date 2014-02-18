@@ -74,15 +74,15 @@ public class SpaceshipAudio : SpaceshipComponent {
 
 
 		
-		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*heightLimit) {
-			track1.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
-				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
-			);
-			track2.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
-				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
-			);
-
-		}
+//		if (heightAboveGround > fractionOfHeightLimitToBeginSputtering*heightLimit) {
+//			track1.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
+//				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
+//			);
+//			track2.pitch += sputteringTurbulenceAmount2*Mathf.Sin(
+//				sputteringTurbulenceAmount1*Mathf.Cos(sputteringTurbulenceRate*Time.time)
+//			);
+//
+//		}
 
 		//if (brakeAmount == 1 && xTilt > 0) {
 

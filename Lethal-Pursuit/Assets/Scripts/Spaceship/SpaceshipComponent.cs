@@ -72,36 +72,36 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.spaceshipModel;
 		}
 	}
-	protected float heightLimit {
-		get {
-			return spaceship.heightLimit;
-		}
-	}
-	protected float maxHeightBeforeFalling {
-		get {
-			return spaceship.maxHeightBeforeFalling;
-		}
-	}
-	protected float fractionOfHeightLimitToBeginSputtering {
-		get {
-			return spaceship.fractionOfHeightLimitToBeginSputtering;
-		}
-	}
-	protected float heightAboveGround {
-		get {
-			return spaceship.heightAboveGround;
-		}
-	}
-	protected float fallingRate {
-		get {
-			return spaceship.fallingRate;
-		}
-	}
 	protected bool enforceHeightLimit {
 		get {
 			return spaceship.enforceHeightLimit;
 		}
 	}
+	protected float worldHeightLimit {
+		get {
+			return spaceship.worldHeightLimit;
+		}
+	}
+//	protected float maxHeightBeforeFalling {
+//		get {
+//			return spaceship.maxHeightBeforeFalling;
+//		}
+//	}
+//	protected float fractionOfHeightLimitToBeginSputtering {
+//		get {
+//			return spaceship.fractionOfHeightLimitToBeginSputtering;
+//		}
+//	}
+//	protected float heightAboveGround {
+//		get {
+//			return spaceship.heightAboveGround;
+//		}
+//	}
+//	protected float fallingRate {
+//		get {
+//			return spaceship.fallingRate;
+//		}
+//	}
 	protected Vector3 forward {
 		get {
 			return spaceship.forward;

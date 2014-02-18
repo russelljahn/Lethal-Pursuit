@@ -42,6 +42,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	public override void Update () {
 		base.Update();
+		
 	}
 	
 	
@@ -52,7 +53,6 @@ public class SpaceshipControl : SpaceshipComponent {
 		HandleRotation();
 		HandleMovement();
 		HandleTilt();
-		HandleFalling();
 	}
 
 	
@@ -83,14 +83,23 @@ public class SpaceshipControl : SpaceshipComponent {
 
 		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
 
+		bool noUpwardsMovementThisFrame = enforceHeightLimit && spaceship.transform.position.y >= worldHeightLimit;
+		Vector3 heightEnforcedForward = forward;
+		float extraAccelerationThisFrameY = currentExtraAccelerationY;
+
+		if (noUpwardsMovementThisFrame) {
+			heightEnforcedForward.y = Mathf.Min(0.0f, heightEnforcedForward.y);
+			extraAccelerationThisFrameY = 0.0f;
+		}
+
 		/* Boost forward. */
 		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
+			rigidbody.position + Vector3.Slerp(Vector3.zero, heightEnforcedForward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
 		);
 
 		/* Additional boost up/down. */
 		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*currentExtraAccelerationY, currentVelocity/maxVelocity)
+			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
 		);
 
 	}
@@ -149,18 +158,18 @@ public class SpaceshipControl : SpaceshipComponent {
 
 
 
-	void HandleFalling() {
-
-		if (enforceHeightLimit && spaceship.transform.position.y > maxHeightBeforeFalling) {
-			rigidbody.MovePosition(
-				Vector3.Slerp(
-					rigidbody.position,
-					rigidbody.position + Vector3.down*Time.deltaTime*fallingRate,
-					Time.deltaTime
-				)
-			);
-		}
-	}
+//	void HandleFalling() {
+//
+//		if (enforceHeightLimit && spaceship.transform.position.y > maxHeightBeforeFalling) {
+//			rigidbody.MovePosition(
+//				Vector3.Slerp(
+//					rigidbody.position,
+//					rigidbody.position + Vector3.down*Time.deltaTime*fallingRate,
+//					Time.deltaTime
+//				)
+//			);
+//		}
+//	}
 	
 	
 	

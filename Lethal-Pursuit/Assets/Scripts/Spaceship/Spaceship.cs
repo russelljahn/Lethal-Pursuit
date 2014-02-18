@@ -30,10 +30,10 @@ public class Spaceship : MonoBehaviour {
 	public float heightAboveGround;
 
 	public bool enforceHeightLimit = true;
-	public float heightLimit = 300.0f;
-	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
-	public float maxHeightBeforeFalling = 500.0f;
-	public float fallingRate = -98.1f;
+	public float worldHeightLimit = 300.0f;
+//	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
+//	public float maxHeightBeforeFalling = 500.0f;
+//	public float fallingRate = -98.1f;
 
 	public float currentVelocity;
 	public float maxVelocity = 150.0f;
@@ -53,7 +53,6 @@ public class Spaceship : MonoBehaviour {
 	void FixedUpdate () {
 		if (singlePlayer || networkView.isMine) {
 			HandleInput();
-			HandleHeightCheck();
 		}
 	}
 
@@ -100,33 +99,7 @@ public class Spaceship : MonoBehaviour {
 			}
 		}
 	}
-
-
-
-	void HandleHeightCheck() {
-		RaycastHit hit;
-		Physics.Raycast(this.transform.position, Vector3.down, out hit);
-		heightAboveGround = hit.distance;
-	}
-
-
-//	void OnCollisionEnter(Collision walls) { /* hitting walls tagged as unpassable does 50 damage */
-//		
-//		if (walls.gameObject.tag == "Unpassable" && stall == 0) {
-//			
-//			DecreaseHealth ();
-//			
-//		}
-//	}
-//	
-//	void DecreaseHealth (){
-//		
-//		health -= damageHalfHit;
-//		stall = 1;
-//		/* yield WaitForSeconds (damageBufferTime);  damage buffer code, not working atm*/
-//		stall = 0;
-//	
-//	}
 	
+
 	
 }

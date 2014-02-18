@@ -81,31 +81,31 @@ public class SpaceshipEffects : SpaceshipComponent {
 			trail4.localVelocity = newVelocity;
 		}
 
-		if (enforceHeightLimit || heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
-			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
-			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
-			miniThruster1.startColor = boosterFlamesBrakeColor;
-			miniThruster2.startColor = boosterFlamesBrakeColor;
-			miniThruster3.startColor = boosterFlamesBrakeColor;
-			miniThruster4.startColor = boosterFlamesBrakeColor;
-
-		
-
-			
-			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			leftBoosterFlames.startSize = brakeParticleEmissionSize;
-			rightBoosterFlames.startSize = brakeParticleEmissionSize;
-			miniThruster1.startSize = miniBrakeParticleEmissionSize;
-			miniThruster2.startSize = miniBrakeParticleEmissionSize;
-			miniThruster3.startSize = miniBrakeParticleEmissionSize;
-			miniThruster4.startSize = miniBrakeParticleEmissionSize;
-	
-			
-
-	
-		}
-		else if (brakeAmount == 0 && boostAmount > 0) {
+//		if (enforceHeightLimit || heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
+//			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
+//			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
+//			miniThruster1.startColor = boosterFlamesBrakeColor;
+//			miniThruster2.startColor = boosterFlamesBrakeColor;
+//			miniThruster3.startColor = boosterFlamesBrakeColor;
+//			miniThruster4.startColor = boosterFlamesBrakeColor;
+//
+//		
+//
+//			
+//			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
+//			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
+//			leftBoosterFlames.startSize = brakeParticleEmissionSize;
+//			rightBoosterFlames.startSize = brakeParticleEmissionSize;
+//			miniThruster1.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster2.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster3.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster4.startSize = miniBrakeParticleEmissionSize;
+//	
+//			
+//
+//	
+//		}
+		if (brakeAmount == 0 && boostAmount > 0) {
 			leftBoosterFlames.startColor = boosterFlamesBoostColor;
 			rightBoosterFlames.startColor = boosterFlamesBoostColor;
 			miniThruster1.startColor = boosterFlamesBoostColor;
