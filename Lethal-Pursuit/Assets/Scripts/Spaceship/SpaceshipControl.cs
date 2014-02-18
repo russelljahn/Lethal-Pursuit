@@ -84,23 +84,46 @@ public class SpaceshipControl : SpaceshipComponent {
 		currentVelocity = Mathf.Clamp(currentVelocity, 0f, maxVelocity);
 
 		bool noUpwardsMovementThisFrame = enforceHeightLimit && spaceship.transform.position.y >= worldHeightLimit;
-		Vector3 heightEnforcedForward = forward;
+		Vector3 adjustedForward = forward;
 		float extraAccelerationThisFrameY = currentExtraAccelerationY;
 
 		if (noUpwardsMovementThisFrame) {
-			heightEnforcedForward.y = Mathf.Min(0.0f, heightEnforcedForward.y);
+			adjustedForward.y = Mathf.Min(0.0f, adjustedForward.y);
 			extraAccelerationThisFrameY = 0.0f;
 		}
 
-		/* Boost forward. */
-		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, heightEnforcedForward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
-		);
+		RaycastHit hit;
+		float distanceToRaycastForward = 20.0f;
+		bool shouldBoost = true;
+		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
-		/* Additional boost up/down. */
-		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
-		);
+			Debug.Log ("Colliding with: " + hit.collider.gameObject);
+			if (hit.collider.gameObject.CompareTag("Unpassable")) {
+
+				// TODO: Write something better than this. It doesn't cover all collision detection cases.
+
+				float distanceToRaycastTowardsGround = 10f;
+				if (Physics.Raycast(transform.position, Vector3.down, out hit, distanceToRaycastTowardsGround)) {
+					adjustedForward.y = 0.0f;
+					
+				}
+				else {
+					shouldBoost = false;
+				}
+			}
+		}
+		
+		if (shouldBoost) {
+			/* Boost forward. */
+			rigidbody.MovePosition(
+				rigidbody.position + Vector3.Slerp(Vector3.zero, adjustedForward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
+			);
+
+			/* Additional boost up/down. */
+			rigidbody.MovePosition(
+				rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
+			);
+		}
 
 	}
 	
