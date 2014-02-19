@@ -104,39 +104,42 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
 		float distanceToRaycastForward = 20.0f;
-		bool shouldBoost = true;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
-//			Debug.Log ("Colliding with: " + hit.collider.gameObject);
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
-
-				// TODO: Write something better than this. It doesn't handle elegant movement for all collision detection cases, like for inclines!
 
 				float angleBetweenForwardAndDown = Vector3.Dot(forward, Vector3.down);
 				float angleBetweenGroundAndLeft = Vector3.Dot(hit.normal, Vector3.left);
-				
+
+				/* If spaceship is ramming directly into the ground. */
 				if (Mathf.Abs(angleBetweenForwardAndDown) <= 1 && Mathf.Abs(angleBetweenGroundAndLeft) <= Mathf.Epsilon) {
 					adjustedForward.y = 0.0f;
 				}
+				/* Otherwise, spaceship is ramming into arbitrary other terrain, eg. wall or incline. */
 				else {
-					shouldBoost = false;
+					adjustedForward = Vector3.Reflect(adjustedForward, hit.normal);
+				
+					this.rigidbody.MoveRotation(
+						Quaternion.Slerp (
+							this.transform.localRotation,
+							Quaternion.Euler(adjustedForward),
+							Time.deltaTime
+						)
+					);
 				}
 			}
 		}
 
-		/* Handle actual movement. */
-		if (shouldBoost) {
-			/* Boost forward. */
-			rigidbody.MovePosition(
-				rigidbody.position + Vector3.Slerp(Vector3.zero, adjustedForward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
-			);
+		/* Boost forward. */
+		rigidbody.MovePosition(
+			rigidbody.position + Vector3.Slerp(Vector3.zero, adjustedForward*Time.deltaTime*currentVelocity, currentVelocity/maxVelocity)
+		);
 
-			/* Additional boost up/down. */
-			rigidbody.MovePosition(
-				rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
-			);
+		/* Additional boost up/down. */
+		rigidbody.MovePosition(
+			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
+		);
 
-		}
 
 	}
 	
