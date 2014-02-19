@@ -115,7 +115,7 @@ public class SpaceshipControl : SpaceshipComponent {
 				float angleBetweenForwardAndDown = Vector3.Dot(forward, Vector3.down);
 				float angleBetweenGroundAndLeft = Vector3.Dot(hit.normal, Vector3.left);
 				
-				if (angleBetweenForwardAndDown >= 0 && angleBetweenForwardAndDown <= 1 && Mathf.Abs(angleBetweenGroundAndLeft) <= Mathf.Epsilon) {
+				if (Mathf.Abs(angleBetweenForwardAndDown) <= 1 && Mathf.Abs(angleBetweenGroundAndLeft) <= Mathf.Epsilon) {
 					adjustedForward.y = 0.0f;
 				}
 				else {
