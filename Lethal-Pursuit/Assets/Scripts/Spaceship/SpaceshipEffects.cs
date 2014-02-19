@@ -6,6 +6,9 @@ using InControl;
 
 public class SpaceshipEffects : SpaceshipComponent {
 
+	public ParticleSystem speedBeams;
+	public float speedBeamsMaxOpacity = 0.20f;
+	
 
 	public ParticleSystem leftBoosterFlames; //thrusters
 	public ParticleSystem rightBoosterFlames;
@@ -61,6 +64,11 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 
 	void HandleParticles() {
+
+		Color newSpeedBeamsColor = speedBeams.startColor;
+		newSpeedBeamsColor.a = (spaceship.currentVelocity / spaceship.maxVelocity)*speedBeamsMaxOpacity;
+		speedBeams.startColor = newSpeedBeamsColor;
+
 
 		if (xTilt > 0) {
 			//Vector3 newVelocity = new Vector3 (1.09f, yTilt, xTilt);
