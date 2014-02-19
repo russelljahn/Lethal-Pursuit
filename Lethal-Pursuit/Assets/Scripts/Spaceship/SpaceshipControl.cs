@@ -107,7 +107,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		bool shouldBoost = true;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
-			Debug.Log ("Colliding with: " + hit.collider.gameObject);
+//			Debug.Log ("Colliding with: " + hit.collider.gameObject);
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 
 				// TODO: Write something better than this. It doesn't cover all collision detection cases, like for inclines!
