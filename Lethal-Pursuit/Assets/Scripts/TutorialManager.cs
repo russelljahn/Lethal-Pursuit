@@ -12,7 +12,8 @@ public class TutorialManager : MonoBehaviour {
 		TEACH_BOOST,
 		TEACH_DRIFT,
 		TEACH_SHOOT,
-		TEACH_PICKUPS
+		TEACH_PICKUPS,
+		DONE
 	};
 
 
@@ -21,6 +22,10 @@ public class TutorialManager : MonoBehaviour {
 	};
 
 	private TutorialState currentState;
+
+	public bool enteredTeachDriftZone = false;
+	public bool exitedTeachDriftZone = false;
+	
 
 
 	// Use this for initialization
@@ -34,6 +39,19 @@ public class TutorialManager : MonoBehaviour {
 	void Update () {
 		if (currentState == TutorialState.TEACH_BOOST && spaceship.boosting) {
 			overlay.gameObject.SetActive(false);
+			currentState = TutorialState.TEACH_DRIFT;
+		}
+		else if (enteredTeachDriftZone) {
+			overlay.gameObject.SetActive(true);
+			label.text = "Hold L2 when turning to drift!";
+			currentState = TutorialState.TEACH_DRIFT;
+			enteredTeachDriftZone = false;
+		}
+
+		if (currentState == TutorialState.TEACH_DRIFT && spaceship.drifting) {
+			overlay.gameObject.SetActive(false);
+			currentState = TutorialState.DONE;
+			
 		}
 	}
 }
