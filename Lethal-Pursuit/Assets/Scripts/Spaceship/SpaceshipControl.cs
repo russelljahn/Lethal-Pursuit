@@ -106,6 +106,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		float distanceToRaycastForward = 20.0f;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
+//			Debug.DrawRay(hit.collider.transform.position, 100f*hit.normal, Color.red, Time.deltaTime);
+			
+
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 
 				float angleBetweenForwardAndDown = Vector3.Dot(forward, Vector3.down);
@@ -129,6 +132,8 @@ public class SpaceshipControl : SpaceshipComponent {
 				}
 			}
 		}
+//		Debug.DrawRay(transform.position, 100f*adjustedForward, Color.yellow, Time.deltaTime);
+//		Debug.DrawRay(transform.position, 100f*forward, Color.blue, Time.deltaTime);
 
 		/* Boost forward. */
 		rigidbody.MovePosition(
