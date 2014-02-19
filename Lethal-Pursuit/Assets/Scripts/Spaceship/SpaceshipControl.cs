@@ -110,12 +110,13 @@ public class SpaceshipControl : SpaceshipComponent {
 //			Debug.Log ("Colliding with: " + hit.collider.gameObject);
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 
-				// TODO: Write something better than this. It doesn't cover all collision detection cases, like for inclines!
+				// TODO: Write something better than this. It doesn't handle elegant movement for all collision detection cases, like for inclines!
 
-				float distanceToRaycastTowardsGround = 10f;
-				if (Physics.Raycast(transform.position, Vector3.down, out hit, distanceToRaycastTowardsGround)) {
+				float angleBetweenForwardAndDown = Vector3.Dot(forward, Vector3.down);
+				float angleBetweenGroundAndLeft = Vector3.Dot(hit.normal, Vector3.left);
+				
+				if (angleBetweenForwardAndDown >= 0 && angleBetweenForwardAndDown <= 1 && Mathf.Abs(angleBetweenGroundAndLeft) <= Mathf.Epsilon) {
 					adjustedForward.y = 0.0f;
-					
 				}
 				else {
 					shouldBoost = false;
