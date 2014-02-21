@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 08 - Default
-  m_Shader: {fileID: 4800000, guid: 78e2621ebef444976bdad3ce21217c54, type: 3}
+  m_Shader: {fileID: 4800000, guid: a65f134a70cd949ffa24ef832100c3b1, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -51,6 +51,10 @@ Material:
         first:
           name: _Outline
         second: .0115
+      data:
+        first:
+          name: _Brightness
+        second: 1
     m_Colors:
       data:
         first:

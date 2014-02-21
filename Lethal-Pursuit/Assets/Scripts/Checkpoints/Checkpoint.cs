@@ -27,10 +27,12 @@ public class Checkpoint : MonoBehaviour {
 
 
 
-	void OnCollisionEnter(Collision collision) {
+	void OnTriggerEnter(Collider collider) {
 
-		if (collision.collider.gameObject.CompareTag("Spaceship")) {
-			checkpointManager.OnShipEnterCheckpoint(collision.collider.GetComponent<Spaceship>(), this);
+		Debug.Log ("Collided with checkpoint!");
+
+		if (collider.gameObject.CompareTag("Spaceship")) {
+			checkpointManager.OnShipEnterCheckpoint(collider.GetComponent<Spaceship>(), this);
 		}
 
 	}
