@@ -1,4 +1,4 @@
-Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
+Shader "BadassVFX/Cel Test" {
 	Properties {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}
@@ -9,10 +9,8 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 
 	SubShader {
 		Tags { "RenderType" = "Opaque" }
-	
 		Pass {	
-		
-//			Tags { "LightMode" = "ForwardBase" }
+			Tags { "LightMode" = "ForwardBase" }
 			Cull Back
 			Lighting On
 			
@@ -51,15 +49,15 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 
 			vertex2fragment vert (application2vertex v) {
 				vertex2fragment output;
-				TANGENT_SPACE_ROTATION;
+				TANGENT_SPACE_ROTATION; // rotation matrix now converts object to tangent space
 				
 				output.lightDirection = mul(rotation, ObjSpaceLightDir(v.position));
 				output.position = mul(UNITY_MATRIX_MVP, v.position); // Model-space -> Projection-space
 				output.uvs = TRANSFORM_TEX(v.texcoord, _MainTex);
-				
-				output.normal = mul(UNITY_MATRIX_MVP, float4(v.normal, 0));
-			
-				
+					
+//				output.normal = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+				output.normal = normalize(mul(float4(v.normal, 0.0), _World2Object).xyz);
+
 				return output;
 			}
 			
@@ -78,37 +76,11 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 				
 				return color;
 			}
-
-//			void surf (Input IN, inout SurfaceOutput o) {
-//				// Create outlines using black rim lighting
-//				half edge = saturate(dot (o.Normal, normalize(IN.viewDir)));
-//				edge = (edge < _OutlineWidth) ? (edge/4) : 1;
-//		
-//				float4 texColor = tex2D(_MainTex, IN.uv_MainTex);
-//				o.Albedo = floor(texColor.rgb * _ColorMerge)/_ColorMerge * edge;
-//				o.Alpha = texColor.a;
-//			 }
-//			 
-//			 
-//			half4 LightingCelshaded (SurfaceOutput o, half3 lightDir, half attenuation) {
-//				half4 lightColor;
-//				half diffuseAmount = dot(o.Normal, lightDir);
-//				diffuseAmount = floor(diffuseAmount * _NumColors)/_NumColors;
-//				lightColor.rgb = o.Albedo * _LightColor0.rgb * diffuseAmount * attenuation * 2;
-//				lightColor.a = o.Alpha;
-//				return lightColor;
-//			}
-//			
-//			
-//			
-//			void final (Input IN, SurfaceOutput o, inout fixed4 color) {
-//				color = _MainColor*floor(color * _NumColors)/_NumColors;
-//			}
-
 			ENDCG
 		}
 		
-//		Pass {
+//		Tags { "RenderType" = "Opaque" }
+//		Pass {	
 //			Tags { "LightMode" = "ForwardAdd" }
 //			Cull Back
 //			Lighting On
@@ -149,14 +121,14 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 //
 //			vertex2fragment vert (application2vertex v) {
 //				vertex2fragment output;
-//				TANGENT_SPACE_ROTATION;
+//				TANGENT_SPACE_ROTATION; // rotation matrix now converts object to tangent space
 //				
 //				output.lightDirection = mul(rotation, ObjSpaceLightDir(v.position));
 //				output.position = mul(UNITY_MATRIX_MVP, v.position); // Model-space -> Projection-space
 //				output.uvs = TRANSFORM_TEX(v.texcoord, _MainTex);
-//				
-//				output.normal = mul(UNITY_MATRIX_MVP, float4(v.normal, 0));
-//				
+//					
+//				output.normal = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+//
 //				return output;
 //			}
 //			
@@ -164,7 +136,7 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 //			float4 frag(vertex2fragment input) : COLOR {
 //				float4 color = tex2D(_MainTex, input.uvs);
 //				
-//				float3 lightColor = UNITY_LIGHTMODEL_AMBIENT.xyz;
+//				float3 lightColor = float3(0.0);
 //				
 //				float lengthSquared = dot(input.lightDirection, input.lightDirection);
 //				float attenuation = 1.0/(1.0+lengthSquared*unity_LightAtten[0].z);
@@ -175,9 +147,9 @@ Shader "Badass VFX/Celshading (Backface Outlines, Threshold)" {
 //				
 //				return color;
 //			}
-//			
 //			ENDCG
 //		}
+//		
 	}
 	
 	

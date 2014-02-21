@@ -1,21 +1,22 @@
-Shader "Badass VFX/Celshading (Rim Outlines, Threshold)" {
+// Shows simple coloring/texturing and simple cel-shading with a custom lighting function.
+
+Shader "BadassVFX/Cel" {
 	Properties {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}
 		_NumColors ("Number Of Colors To Use", Range(0.1, 30)) = 4
-		_OutlineWidth ("Outline Width", Range(0, 1)) = 0.4
-		_ColorMerge ("Color Merge", Range(0.1, 20000)) = 8
 	}
 
 	SubShader {
-
+		
 		Tags { "RenderType" = "Opaque" }
+		Name "CEL_BASE"
+	
 		CGPROGRAM
-		// Upgrade NOTE: excluded shader from Xbox360 because it uses wrong array syntax (type[size] name)
+		
 		#pragma exclude_renderers xbox360
 		#pragma surface surf Celshaded finalcolor:final
 		
-		sampler2D _Ramp;
 		float4 _MainColor;
 		float _ColorMerge;
 		float _NumColors;
@@ -32,12 +33,8 @@ Shader "Badass VFX/Celshading (Rim Outlines, Threshold)" {
 		
 
 		void surf (Input IN, inout SurfaceOutput o) {
-			// Create outlines using black rim lighting
-			half edge = saturate(dot (o.Normal, normalize(IN.viewDir)));
-			edge = (edge < _OutlineWidth) ? (edge/4) : 1;
-	
 			float4 texColor = tex2D(_MainTex, IN.uv_MainTex);
-			o.Albedo = floor(texColor.rgb * _ColorMerge)/_ColorMerge * edge;
+			o.Albedo = texColor;
 			o.Alpha = texColor.a;
 		 }
 		 
@@ -58,6 +55,7 @@ Shader "Badass VFX/Celshading (Rim Outlines, Threshold)" {
 		}
 
 		ENDCG
+	
 	}
 	
 	

@@ -1,22 +1,22 @@
-Shader "Badass VFX/Celshading (Rim Outlines, Threshold, Render Backfaces)" {
+Shader "BadassVFX/Cel (Rim Glow)" {
 	Properties {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}
 		_NumColors ("Number Of Colors To Use", Range(0.1, 30)) = 4
-		_OutlineWidth ("Outline Width", Range(0, 1)) = 0.4
-		_ColorMerge ("Color Merge", Range(0.1, 20000)) = 8
+		_OutlineWidth ("Glow Amount", Range(0.1, 3.0)) = 0.4
+		_OutlineColor ("Outline Color", Color) = (0.5, 0.5, 0.5, 1)
 	}
 
 	SubShader {
-
+		
 		Tags { "RenderType" = "Opaque" }
-		Cull Off
+		Name "CEL_RIM_GLOW"
+	
 		CGPROGRAM
-		// Upgrade NOTE: excluded shader from Xbox360 because it uses wrong array syntax (type[size] name)
+		
 		#pragma exclude_renderers xbox360
 		#pragma surface surf Celshaded finalcolor:final
 		
-		sampler2D _Ramp;
 		float4 _MainColor;
 		float _ColorMerge;
 		float _NumColors;
@@ -29,16 +29,20 @@ Shader "Badass VFX/Celshading (Rim Outlines, Threshold, Render Backfaces)" {
 		
 		sampler2D _MainTex;
 		float _OutlineWidth;
+		float4 _OutlineColor;
+		
 
 		
 
 		void surf (Input IN, inout SurfaceOutput o) {
-			// Create outlines using black rim lighting
-			half edge = saturate(dot (o.Normal, normalize(IN.viewDir)));
-			edge = (edge < _OutlineWidth) ? (edge/4) : 1;
-	
+			
 			float4 texColor = tex2D(_MainTex, IN.uv_MainTex);
-			o.Albedo = floor(texColor.rgb * _ColorMerge)/_ColorMerge * edge;
+			o.Albedo = texColor.rgb;
+			
+			// Emission on surfaces pointing away from camera
+			half rim = 1.0 - saturate(dot (o.Normal, normalize(IN.viewDir)));
+			o.Emission = _OutlineColor * pow(rim, _OutlineWidth);
+
 			o.Alpha = texColor.a;
 		 }
 		 
@@ -59,6 +63,7 @@ Shader "Badass VFX/Celshading (Rim Outlines, Threshold, Render Backfaces)" {
 		}
 
 		ENDCG
+	
 	}
 	
 	
