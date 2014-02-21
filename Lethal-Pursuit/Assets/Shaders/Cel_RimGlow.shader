@@ -5,6 +5,7 @@ Shader "BadassVFX/Cel (Rim Glow)" {
 		_NumColors ("Number Of Colors To Use", Range(0.1, 30)) = 4
 		_OutlineWidth ("Glow Amount", Range(0.1, 3.0)) = 0.4
 		_OutlineColor ("Outline Color", Color) = (0.5, 0.5, 0.5, 1)
+		_Brightness ("Brightness Factor", Range(1, 10)) = 1
 	}
 
 	SubShader {
@@ -30,7 +31,7 @@ Shader "BadassVFX/Cel (Rim Glow)" {
 		sampler2D _MainTex;
 		float _OutlineWidth;
 		float4 _OutlineColor;
-		
+		float _Brightness;
 
 		
 
@@ -59,7 +60,7 @@ Shader "BadassVFX/Cel (Rim Glow)" {
 		
 		
 		void final (Input IN, SurfaceOutput o, inout fixed4 color) {
-			color = _MainColor*floor(color * _NumColors)/_NumColors;
+			color = _MainColor*floor(color * _NumColors)/_NumColors * _Brightness;
 		}
 
 		ENDCG

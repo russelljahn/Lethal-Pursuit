@@ -8,6 +8,7 @@ Shader "BadassVFX/Cel (Rim Outline)" {
 		_OutlineWidth ("Outline Width", Range(0.1, 1.0)) = 0.4
 		_OutlineFalloff ("Outline Falloff", Range(.5, 5)) = 4
 		
+		_Brightness ("Brightness Factor", Range(1, 10)) = 1
 	}
 
 	SubShader {
@@ -34,6 +35,7 @@ Shader "BadassVFX/Cel (Rim Outline)" {
 		float _OutlineWidth;
 		float _OutlineFalloff;
 		float4 _OutlineColor;
+		float _Brightness;
 		
 
 		
@@ -61,7 +63,7 @@ Shader "BadassVFX/Cel (Rim Outline)" {
 		
 		
 		void final (Input IN, SurfaceOutput o, inout fixed4 color) {
-			color = _MainColor*floor(color * _NumColors)/_NumColors;
+			color = _MainColor*floor(color * _NumColors)/_NumColors * _Brightness;
 		}
 
 		ENDCG

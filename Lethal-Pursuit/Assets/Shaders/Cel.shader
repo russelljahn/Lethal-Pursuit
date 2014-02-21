@@ -5,6 +5,8 @@ Shader "BadassVFX/Cel" {
 		_MainColor ("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex ("Texture", 2D) = "white" {}
 		_NumColors ("Number Of Colors To Use", Range(0.1, 30)) = 4
+		_Brightness ("Brightness Factor", Range(1, 10)) = 1
+		
 	}
 
 	SubShader {
@@ -20,7 +22,7 @@ Shader "BadassVFX/Cel" {
 		float4 _MainColor;
 		float _ColorMerge;
 		float _NumColors;
-		
+		float _Brightness;
 
 		struct Input {
 			float3 viewDir;
@@ -51,7 +53,7 @@ Shader "BadassVFX/Cel" {
 		
 		
 		void final (Input IN, SurfaceOutput o, inout fixed4 color) {
-			color = _MainColor*floor(color * _NumColors)/_NumColors;
+			color = _MainColor*floor(color * _NumColors)/_NumColors * _Brightness;
 		}
 
 		ENDCG
