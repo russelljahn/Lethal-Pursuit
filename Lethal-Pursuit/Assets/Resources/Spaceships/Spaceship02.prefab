@@ -98,8 +98,8 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
-  - 135: {fileID: 13500000}
   - 114: {fileID: 11400010}
+  - 135: {fileID: 13500000}
   m_Layer: 0
   m_Name: Spaceship02
   m_TagString: Spaceship
@@ -729,8 +729,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
-  m_LocalRotation: {x: 0, y: .032370206, z: 0, w: .999475956}
-  m_LocalPosition: {x: 27.9438362, y: 3.33546925, z: 0}
+  m_LocalRotation: {x: 0, y: .729983389, z: 0, w: .683464885}
+  m_LocalPosition: {x: -2971.5, y: 3.18000007, z: 921.179993}
   m_LocalScale: {x: .00499999989, y: .00499999989, z: .00499999989}
   m_Children:
   - {fileID: 400008}
@@ -1439,7 +1439,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
@@ -2567,6 +2567,8 @@ MonoBehaviour:
   spaceship: {fileID: 11400004}
   lapsCompleted: 0
   lastCheckpointId: 0
+  startTime: 0
+  timeElapsed: 0
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2661,10 +2663,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   movementSpeed: 5
-  realignSpeed: 10
+  realignSpeed: 5
   xExtent: 2000
   yExtent: 1250
-  initialLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

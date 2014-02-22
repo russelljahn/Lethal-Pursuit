@@ -3,12 +3,15 @@ using System.Collections;
 
 public class SpaceshipRaceData : SpaceshipComponent {
 
+	private Level currentLevel;
 
 	public int lapsCompleted = 0;
-	private static int numCheckpoints;
 
+	private static int numCheckpoints;
 	public int lastCheckpointId;
 
+	public float startTime;
+	public float timeElapsed;
 
 
 	void Start () {
@@ -16,6 +19,14 @@ public class SpaceshipRaceData : SpaceshipComponent {
 		if (numCheckpoints == 0) {
 			numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
 		}
+		startTime = Time.deltaTime;
+		currentLevel = LevelManager.GetLoadedLevel();
+	}
+
+
+
+	void Update() {
+		timeElapsed += Time.deltaTime;
 	}
 	
 

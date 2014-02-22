@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Crosshairs : MonoBehaviour {
+public class HUD_Crosshairs : MonoBehaviour {
 
 
 	public Spaceship spaceship;

@@ -27,7 +27,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
 
-	public Crosshairs crosshairs;
+	public HUD_Crosshairs crosshairs;
 	public float lookSpeed = 1.0f;
 
 	public float driftTiltMax = 90f;

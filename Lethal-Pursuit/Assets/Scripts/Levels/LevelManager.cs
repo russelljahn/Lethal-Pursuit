@@ -59,6 +59,11 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+
+	public static void LoadMainMenu() {
+		LevelManager.LoadLevel(LevelManager.LEVEL.MAIN_MENU);
+	}
+
 	
 	private Level GetLevel(LevelManager.LEVEL level) {
 		Level returnLevel;
