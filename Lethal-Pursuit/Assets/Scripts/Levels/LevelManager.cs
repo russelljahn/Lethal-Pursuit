@@ -45,6 +45,9 @@ public class LevelManager : MonoBehaviour {
 
 
 	public static Level GetLoadedLevel() {
+		if (instance.loadedLevel == null) {
+			instance.loadedLevel = instance.GetLevel(Application.loadedLevelName);
+		}
 		return instance.loadedLevel;
 	}
 
@@ -73,6 +76,21 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+	private Level GetLevel(string levelName) {
+		Level returnLevel;
+		
+		if (levelName.Equals("MainMenu")) {
+			return new LevelMainMenu();
+		}
+		if (levelName.Equals("Tutorial")) {
+			return new LevelTutorial();
+		}
+		else {
+			throw new NotImplementedException("Level '" + levelName + "' is either not known or programmed in yet!");
+		}
+	}
+	
+	
 	public static void Quit() {
 		Application.Quit();
 	}
