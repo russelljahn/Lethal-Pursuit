@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuScript : MonoBehaviour {
+public class MainMenu : MonoBehaviour {
 
 	public GameObject MainPanel;
 	public GameObject ModeSelect;
@@ -13,7 +13,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");
-		Application.Quit();
+		LevelManager.Quit();
 	}
 	
 	public void OnOptionsClick() {
@@ -36,7 +36,7 @@ public class MainMenuScript : MonoBehaviour {
 	
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
-		Application.LoadLevel("Tutorial");
+		LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
 	}
 	
 	public void OnReturnClick() {

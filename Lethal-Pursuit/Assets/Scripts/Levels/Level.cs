@@ -13,6 +13,11 @@ public class Level {
 	public string sceneName = "DummySceneName";
 
 	public int maximumPlayers = 1;
+	public int lapsToWin = 3;
 
 
+	public override string ToString() {
+		return string.Format ("[Level named '{0}' in scene '{1}']", name, sceneName);
+	}
+		
 };
