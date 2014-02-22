@@ -10,7 +10,7 @@ public class SpaceshipRaceData : SpaceshipComponent {
 	public int lastCheckpointId;
 
 
-	// Use this for initialization
+
 	void Start () {
 		// Cache # of checkpoints
 		if (numCheckpoints == 0) {
@@ -18,10 +18,8 @@ public class SpaceshipRaceData : SpaceshipComponent {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 
 	void OnTriggerEnter(Collider collider) {
 

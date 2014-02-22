@@ -27,13 +27,10 @@ public class Spaceship : MonoBehaviour {
 	#endregion
 
 	public Vector3 forward;
-//	public float heightAboveGround;
+	public float heightAboveGround;
 
 	public bool enforceHeightLimit = true;
-	public float worldHeightLimit = 300.0f;
-//	public float fractionOfHeightLimitToBeginSputtering = 0.8f;
-//	public float maxHeightBeforeFalling = 500.0f;
-//	public float fallingRate = -98.1f;
+	public float heightLimit = 50.0f; // Height limit above the ground.
 
 	public float currentVelocity;
 	public float maxVelocity = 150.0f;
@@ -53,6 +50,7 @@ public class Spaceship : MonoBehaviour {
 	void FixedUpdate () {
 		if (singlePlayer || networkView.isMine) {
 			HandleInput();
+			HandleHeightCheck();
 		}
 	}
 
@@ -100,7 +98,17 @@ public class Spaceship : MonoBehaviour {
 			}
 		}
 	}
-	
+
+
+
+
+	void HandleHeightCheck() {
+		RaycastHit hit;
+		Physics.Raycast(this.transform.position, -this.transform.up, out hit);
+		heightAboveGround = hit.distance;
+	}
+
+
 
 	
 }

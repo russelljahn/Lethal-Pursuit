@@ -92,7 +92,7 @@ public class SpaceshipControl : SpaceshipComponent {
 
 
 		/* Do height checking to see if spaceship should be allowed to boost higher vertically. */
-		bool noUpwardsMovementThisFrame = enforceHeightLimit && spaceship.transform.position.y >= worldHeightLimit;
+		bool noUpwardsMovementThisFrame = enforceHeightLimit && heightAboveGround >= heightLimit;
 		Vector3 adjustedForward = forward;
 		float extraAccelerationThisFrameY = currentExtraAccelerationY;
 
@@ -105,9 +105,6 @@ public class SpaceshipControl : SpaceshipComponent {
 		RaycastHit hit;
 		float distanceToRaycastForward = 20.0f;
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
-
-//			Debug.DrawRay(hit.collider.transform.position, 100f*hit.normal, Color.red, Time.deltaTime);
-			
 
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 
@@ -132,8 +129,6 @@ public class SpaceshipControl : SpaceshipComponent {
 				}
 			}
 		}
-//		Debug.DrawRay(transform.position, 100f*adjustedForward, Color.yellow, Time.deltaTime);
-//		Debug.DrawRay(transform.position, 100f*forward, Color.blue, Time.deltaTime);
 
 		/* Boost forward. */
 		rigidbody.MovePosition(
