@@ -220,9 +220,10 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Checkpoints\Checkpoint.cs" />
-     <Compile Include="Assets\Scripts\Checkpoints\CheckpointManager.cs" />
-     <Compile Include="Assets\Scripts\Crosshairs.cs" />
      <Compile Include="Assets\Scripts\ExplodeChildrenOnContact.cs" />
+     <Compile Include="Assets\Scripts\GUI\HUD_Crosshairs.cs" />
+     <Compile Include="Assets\Scripts\GUI\HUD_Laps.cs" />
+     <Compile Include="Assets\Scripts\GUI\HUD_Timer.cs" />
      <Compile Include="Assets\Scripts\GUI\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\GameplayManager.cs" />
      <Compile Include="Assets\Scripts\GenerateTower.cs" />
@@ -232,6 +233,8 @@
      <Compile Include="Assets\Scripts\InputProfiles\SpaceshipKeyboardProfile2.cs" />
      <Compile Include="Assets\Scripts\InstantiateTest.cs" />
      <Compile Include="Assets\Scripts\ItemPickup.cs" />
+     <Compile Include="Assets\Scripts\Levels\TutorialDriftEvent.cs" />
+     <Compile Include="Assets\Scripts\Levels\TutorialManager.cs" />
      <Compile Include="Assets\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\ScrollUVLinear.cs" />
      <Compile Include="Assets\Scripts\Spaceship\Spaceship.cs" />
@@ -241,10 +244,8 @@
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipControl.cs" />
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipEffects.cs" />
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipGun.cs" />
+     <Compile Include="Assets\Scripts\Spaceship\SpaceshipRaceData.cs" />
      <Compile Include="Assets\Scripts\Spaceship\SpaceshipStatus.cs" />
-     <Compile Include="Assets\Scripts\Timer.cs" />
-     <Compile Include="Assets\Scripts\TutorialDriftEvent.cs" />
-     <Compile Include="Assets\Scripts\TutorialManager.cs" />
      <Compile Include="Assets\TerrainToolkit\TerrainToolkit.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.4.8.txt" />

@@ -11,7 +11,6 @@ public class ItemPickup : MonoBehaviour {
 			Debug.Log (this.gameObject.name + "was picked up by: " + collider.gameObject.name);
 			audio.PlayOneShot(pickup1);
 			GameObject.Destroy(this.gameObject);
-
 		}
 		
 	}
