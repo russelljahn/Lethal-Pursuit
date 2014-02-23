@@ -16,6 +16,8 @@ public class HUD_Manager : MonoBehaviour {
 
 	public GameObject tutorialGui;
 	public GameObject menuGui;
+	public GameObject raceOverGui;
+	
 
 
 	// Use this for initialization
@@ -48,16 +50,31 @@ public class HUD_Manager : MonoBehaviour {
 
 
 	public void DisplayMenu() {
-//		Time.timeScale = 0.0f; // Locks up currently if used
 		spaceship.enabled = false;
 		menuGui.SetActive(true);
 	}
 
 
 	public void HideMenu() {
-//		Time.timeScale = 1.0f; // Locks up currently if used
 		spaceship.enabled = true;
 		menuGui.SetActive(false);
+	}
+
+
+	public void DisplayRaceOver() {
+		spaceship.enabled = false;
+		raceOverGui.SetActive(true);
+	}
+	
+	
+	public void HideRaceOver() {
+		spaceship.enabled = true;
+		raceOverGui.SetActive(false);
+	}
+
+
+	public void ReplayTrack() {
+		LevelManager.ReloadLevel();
 	}
 
 

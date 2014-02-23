@@ -26,7 +26,7 @@ public class NetworkManager : MonoBehaviour {
 		buttonX = Screen.width * 0.05f;
 		buttonY = Screen.height * 0.05f;
 		buttonW = Screen.width * 0.1f;
-		buttonH = Screen.width * 0.05f;		
+		buttonH = Screen.width * 0.05f;
 	}
 	
 	// Update is called once per frame
@@ -48,10 +48,10 @@ public class NetworkManager : MonoBehaviour {
 	{
 		if(!Network.isClient && !Network.isServer)
 		{
-			if (GUI.Button(new Rect(buttonX, 
-			                        buttonY, 
-			                        buttonW, 
-			                        buttonH), 
+			if (GUI.Button(new Rect(buttonX,
+			                        buttonY,
+			                        buttonW,
+			                        buttonH),
 			               "Start Server"))
 			{
 				StartServer ();
@@ -59,8 +59,8 @@ public class NetworkManager : MonoBehaviour {
 			
 			if (GUI.Button(new Rect(buttonX, 
 			                        buttonY * 1.2f + buttonH, 
-			                        buttonW, 
-			                        buttonH), 
+			                        buttonW,
+			                        buttonH),
 			               "Refresh"))
 			{
 				RefreshHostList ();
@@ -70,9 +70,9 @@ public class NetworkManager : MonoBehaviour {
 			{
 				for(int i=0; i<hostData.Length; i++)
 				{
-					if(GUI.Button(new Rect(buttonX * 1.2f + buttonW, 
-					                       buttonY * 1.2f + (buttonH * i), 
-					                       buttonW * 3, buttonH), 
+					if(GUI.Button(new Rect(buttonX * 1.2f + buttonW,
+					                       buttonY * 1.2f + (buttonH * i),
+					                       buttonW * 3, buttonH),
 					              hostData[i].gameName))
 					{
 						Network.Connect(hostData[i]);
@@ -86,7 +86,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log ("Starting server.........");
 		Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
-		MasterServer.RegisterHost (gameType, gameName, gameComment);	
+		MasterServer.RegisterHost (gameType, gameName, gameComment);
 	}
 	
 	void OnServerInitialized ()

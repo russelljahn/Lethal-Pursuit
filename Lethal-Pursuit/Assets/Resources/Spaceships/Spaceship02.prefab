@@ -2566,8 +2566,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   lapsCompleted: 0
+  finishedTrack: 0
   lastCheckpointId: 0
-  startTime: 0
+  startRaceTime: 0
+  finishRaceTime: Infinity
+  finishLapTime: Infinity
   timeElapsed: 0
 --- !u!114 &11400026
 MonoBehaviour:

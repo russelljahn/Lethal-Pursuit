@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour {
 	private static LevelManager singletonInstance;
 
 
+
 	private static LevelManager instance {
 		get {
 			/* If first time accessing instance, then find it... */
@@ -35,6 +36,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	public Level loadedLevel;
 
 
@@ -42,6 +44,7 @@ public class LevelManager : MonoBehaviour {
 	public void Awake() {
 		DontDestroyOnLoad(this);
 	}
+
 
 
 	public static Level GetLoadedLevel() {
@@ -52,6 +55,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	public static void LoadLevel(LevelManager.LEVEL level) {
 		Level levelToLoad = instance.GetLevel(level);
 		Debug.Log("Loading level: " + levelToLoad);
@@ -60,9 +64,19 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
+	public static void ReloadLevel() {
+		Debug.Log("Reloading level: " + instance.loadedLevel);
+		Application.LoadLevel(instance.loadedLevel.sceneName);
+		
+	}
+
+
+
 	public static void LoadMainMenu() {
 		LevelManager.LoadLevel(LevelManager.LEVEL.MAIN_MENU);
 	}
+
 
 	
 	private Level GetLevel(LevelManager.LEVEL level) {
@@ -81,6 +95,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	private Level GetLevel(string levelName) {
 		Level returnLevel;
 		
@@ -94,7 +109,8 @@ public class LevelManager : MonoBehaviour {
 			throw new NotImplementedException("Level '" + levelName + "' is either not known or programmed in yet!");
 		}
 	}
-	
+
+
 	
 	public static void Quit() {
 		Application.Quit();

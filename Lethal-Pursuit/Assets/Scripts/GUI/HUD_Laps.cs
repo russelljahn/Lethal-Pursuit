@@ -16,6 +16,6 @@ public class HUD_Laps : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		label.text = string.Format("Lap {0}/{1}", raceData.lapsCompleted, currentLevel.lapsToWin); 
+		label.text = string.Format("Lap {0}/{1}", raceData.lapsCompleted+1, currentLevel.lapsToWin); 
 	}
 }

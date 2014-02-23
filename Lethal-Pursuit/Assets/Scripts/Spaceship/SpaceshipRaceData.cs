@@ -56,8 +56,7 @@ public class SpaceshipRaceData : SpaceshipComponent {
 				lastCheckpointId = 0;
 				++lapsCompleted;
 				finishLapTime = timeElapsed;
-				raceManager.SendMessage("OnFinishLap", this); 
-				// Should announce completed a lap? Figure out if we need to.
+				raceManager.SendMessage("OnFinishLap", this);
 			}
 
 			if (FinishedRace()) {

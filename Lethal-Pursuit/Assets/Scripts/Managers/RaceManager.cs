@@ -8,12 +8,13 @@ public class RaceManager : MonoBehaviour {
 
 
 	SpaceshipRaceData [] datas;
-
+	HUD_Manager hudManager;
 
 
 	// Use this for initialization
 	void Start () {
 		SpaceshipRaceData [] datas = GameObject.FindObjectsOfType<SpaceshipRaceData>();
+		hudManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HUD_Manager>();
 	}
 
 
@@ -35,6 +36,12 @@ public class RaceManager : MonoBehaviour {
 
 	public void OnFinishRace(SpaceshipRaceData raceData) {
 		Debug.Log (raceData.gameObject.name + " finished the race at " + raceData.finishRaceTime + "!");
+		OnRaceOver();
+	}
+
+
+	public void OnRaceOver() {
+		hudManager.DisplayRaceOver();
 	}
 
 }
