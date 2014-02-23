@@ -8,20 +8,24 @@ public class SpaceshipRaceData : SpaceshipComponent {
 	public int lapsCompleted = 0;
 	public bool finishedTrack = false;
 
-	private static int numCheckpoints;
+	private int numCheckpoints;
 	public int lastCheckpointId;
 
-	public float startTime = 0.0f;
-	public float finishTime = Mathf.Infinity;
+	public float startRaceTime = 0.0f;
+	public float finishRaceTime = Mathf.Infinity;
+
+	public float finishLapTime = Mathf.Infinity;
 	public float timeElapsed;
+
+	private RaceManager raceManager;
+	
 
 
 	void Start () {
-		// Cache # of checkpoints
-		if (numCheckpoints == 0) {
-			numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
-		}
-		startTime = Time.deltaTime;
+		numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
+		raceManager = GameObject.FindGameObjectWithTag("RaceManager").GetComponent<RaceManager>();
+
+		startRaceTime = Time.time;
 		currentLevel = LevelManager.GetLoadedLevel();
 	}
 
@@ -30,7 +34,6 @@ public class SpaceshipRaceData : SpaceshipComponent {
 	void Update() {
 		timeElapsed += Time.deltaTime;
 	}
-	
 
 
 
@@ -52,11 +55,16 @@ public class SpaceshipRaceData : SpaceshipComponent {
 			else if (HaveLapped(checkpoint)) {
 				lastCheckpointId = 0;
 				++lapsCompleted;
+				finishLapTime = timeElapsed;
+				raceManager.SendMessage("OnFinishLap", this); 
+				// Should announce completed a lap? Figure out if we need to.
 			}
 
 			if (FinishedRace()) {
 				Debug.Log (this.gameObject.name + " finished race!");
-				finishTime = timeElapsed;
+				finishRaceTime = timeElapsed;
+				finishedTrack = true;
+				raceManager.SendMessage("OnFinishRace", this); 
 			}
 		}
 		

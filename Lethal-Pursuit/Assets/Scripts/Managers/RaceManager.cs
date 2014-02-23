@@ -13,7 +13,7 @@ public class RaceManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SpaceshipRaceData [] spaceshipGameObjects = GameObject.FindObjectsOfType<SpaceshipRaceData>();
+		SpaceshipRaceData [] datas = GameObject.FindObjectsOfType<SpaceshipRaceData>();
 	}
 
 
@@ -26,5 +26,15 @@ public class RaceManager : MonoBehaviour {
 	}
 
 
+
+	public void OnFinishLap(SpaceshipRaceData raceData) {
+		Debug.Log (raceData.gameObject.name + " lapped the race at " + raceData.finishLapTime + "!");
+	}
+	
+
+
+	public void OnFinishRace(SpaceshipRaceData raceData) {
+		Debug.Log (raceData.gameObject.name + " finished the race at " + raceData.finishRaceTime + "!");
+	}
 
 }
