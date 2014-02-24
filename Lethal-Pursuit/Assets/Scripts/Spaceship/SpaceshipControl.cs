@@ -16,10 +16,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float deaccelerationIdle = 500;
 
 
-	public float xTiltSpeed = 1.5f;
-	public float yTiltSpeed = 3.3f;
-	
-
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
 	
@@ -30,8 +26,11 @@ public class SpaceshipControl : SpaceshipComponent {
 	public HUD_Crosshairs crosshairs;
 	public float lookSpeed = 1.0f;
 
+	public float normalTiltMax = 15f;
 	public float driftTiltMax = 90f;
+
 	private float currentDriftTilt = 0f;
+	public float normalTiltRate = 2.0f;
 	public float driftTiltRate = 2.5f;
 	public float driftAlignRate = 1.5f;
 
@@ -160,6 +159,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Handle drifting tilt. */
 		if (drifting) {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*driftTiltMax, driftTiltRate*Time.deltaTime);
+		}
+		else if (xTilt != 0) {
+			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*normalTiltMax, normalTiltRate*Time.deltaTime);
 		}
 		else {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
