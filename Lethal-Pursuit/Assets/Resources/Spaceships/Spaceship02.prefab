@@ -1079,8 +1079,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100068}
   m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
-  m_LocalPosition: {x: 0, y: 0, z: 2000}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 1000}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 400030}
 --- !u!4 &400070
@@ -2418,14 +2418,14 @@ MonoBehaviour:
   deaccelerationBrake: 4
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
-  xTiltSpeed: 1.5
-  yTiltSpeed: 3.29999995
   normalTurningRate: 115
   driftingTurningRate: 300
   timeUntilMaxTurning: 2.5999999
   crosshairs: {fileID: 11400040}
   lookSpeed: 1
+  normalTiltMax: 15
   driftTiltMax: 90
+  normalTiltRate: 2
   driftTiltRate: 2.5
   driftAlignRate: 1.5
 --- !u!114 &11400002
@@ -2666,9 +2666,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   movementSpeed: 5
-  realignSpeed: 5
-  xExtent: 2000
-  yExtent: 1250
+  realignSpeed: 4
+  xExtent: 1200
+  yExtent: 625
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
