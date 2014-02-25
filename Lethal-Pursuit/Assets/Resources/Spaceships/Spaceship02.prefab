@@ -27,9 +27,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400002}
-  - 82: {fileID: 8200006}
+  - 120: {fileID: 12000002}
+  - 108: {fileID: 10800004}
+  - 82: {fileID: 8200004}
   m_Layer: 0
-  m_Name: Default Gun 002
+  m_Name: Default Gun 001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +46,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 114: {fileID: 11400026}
+  - 120: {fileID: 12000000}
+  - 108: {fileID: 10800002}
   - 82: {fileID: 8200010}
   m_Layer: 0
-  m_Name: Default Gun 001
+  m_Name: Default Gun 002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,6 +104,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400010}
   - 135: {fileID: 13500000}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: Spaceship02
   m_TagString: Spaceship
@@ -680,8 +685,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: -3.87430191e-07, z: 0, w: 1}
-  m_LocalPosition: {x: -35, y: 0, z: 70}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.1760387, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 400074}
@@ -691,8 +696,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: 0, z: 70}
+  m_LocalRotation: {x: 0, y: -3.87430191e-07, z: 0, w: 1}
+  m_LocalPosition: {x: -26.1788902, y: 0, z: .0123446807}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 400074}
@@ -1115,8 +1120,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400004}
   - {fileID: 400002}
+  - {fileID: 400004}
   m_Father: {fileID: 400010}
 --- !u!4 &400076
 Transform:
@@ -1804,7 +1809,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!82 &8200006
+--- !u!82 &8200004
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1831,7 +1836,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .482587099
+      value: .527363181
       inSlope: 0
       outSlope: -1.00200403
       tangentMode: 0
@@ -2400,6 +2405,76 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10800002
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .48884365, g: .470588207, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 30
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 12100000, guid: e59f068002a7b47858274b3c71e10ea7, type: 2}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10800004
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .48884365, g: .470588207, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 30
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 12100000, guid: e59f068002a7b47858274b3c71e10ea7, type: 2}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2440,11 +2515,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
-  bulletResourcePath: Bullets/TestLaz0r
-  cooldownBetweenShots: .100000001
-  forceFactor: 20
   guns: {fileID: 0}
-  shot: {fileID: 8300000, guid: 155348351124be74da07beae903d84ad, type: 3}
+  shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
+  laserWaverRate: 8
+  laserMaterialScrollSpeedU: 1
+  laserMaterialScrollSpeedV: 1
+  laserHitForce: 1000
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2572,6 +2648,27 @@ MonoBehaviour:
   finishRaceTime: Infinity
   finishLapTime: Infinity
   timeElapsed: 0
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a538c62feaa9da645a59d780ae7bb4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceship: {fileID: 0}
+  currentHealth: 0
+  maxHealth: 100
+  healthState: 0
+  healthRatioToBeInjured: .600000024
+  healthRatioToBeCritical: .300000012
+  detonator1: {fileID: 0}
+  detonator2: {fileID: 0}
+  explosion: {fileID: 0}
+  damageOverlay: {fileID: 0}
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2584,11 +2681,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
-  bulletResourcePath: Bullets/TestLaz0r
-  cooldownBetweenShots: .100000001
-  forceFactor: 20
   guns: {fileID: 0}
   shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
+  laserWaverRate: 8
+  laserMaterialScrollSpeedU: 1
+  laserMaterialScrollSpeedV: 1
+  laserHitForce: 1000
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2669,6 +2767,74 @@ MonoBehaviour:
   realignSpeed: 4
   xExtent: 1200
   yExtent: 625
+--- !u!120 &12000000
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 39c4d7abc007048a8b8e1e9744d22f70, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 10000}
+  m_Parameters:
+    startWidth: .075000003
+    endWidth: .075000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!120 &12000002
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 39c4d7abc007048a8b8e1e9744d22f70, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 10000}
+  m_Parameters:
+    startWidth: .075000003
+    endWidth: .075000003
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
