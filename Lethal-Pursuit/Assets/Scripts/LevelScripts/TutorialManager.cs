@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TutorialManager : MonoBehaviour {
 
-	public Spaceship spaceship;
+	private Spaceship spaceship;
 	public UILabel label;
 	public UI2DSprite overlay;
 
@@ -30,9 +30,15 @@ public class TutorialManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (!LevelManager.GetLoadedLevel().name.Equals("Tutorial")) {
+			label.gameObject.SetActive(false);
+			overlay.enabled = false;
+			this.gameObject.SetActive(false);
+		}
 		currentState = states[0];
 		overlay.gameObject.SetActive(true);
 		label.text = "Press R2 to boost!";
+		spaceship = GameplayManager.spaceship;
 	}
 	
 	// Update is called once per frame

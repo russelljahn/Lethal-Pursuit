@@ -12,6 +12,7 @@ public class HUD_Laps : MonoBehaviour {
 	void Start () {
 		label = GetComponent<UILabel>();
 		currentLevel = LevelManager.GetLoadedLevel();
+		raceData = GameplayManager.spaceship.GetComponent<SpaceshipRaceData>();
 	}
 	
 	// Update is called once per frame

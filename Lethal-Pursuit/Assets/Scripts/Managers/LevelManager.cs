@@ -139,6 +139,9 @@ public class LevelManager : MonoBehaviour {
 			case LEVEL.TUTORIAL:
 				return new LevelTutorial();
 				break;
+			case LEVEL.HIGHWAY:
+				return new LevelHighway();
+				break;
 			default:
 				throw new NotImplementedException("Level loading for level '" + level + "' has not been programmed in yet!");
 		}
@@ -153,6 +156,9 @@ public class LevelManager : MonoBehaviour {
 		}
 		if (levelName.Equals("Tutorial")) {
 			return new LevelTutorial();
+		}
+		if (levelName.Equals("Highway")) {
+			return new LevelHighway();
 		}
 		else {
 			throw new NotImplementedException("Level '" + levelName + "' is either not known or programmed in yet!");
@@ -188,6 +194,9 @@ public class LevelManager : MonoBehaviour {
 		case LEVEL.TUTORIAL:
 			SpawnPlayer();
 			break;
+		case LEVEL.HIGHWAY:
+			SpawnPlayer();
+			break;
 		default:
 			throw new NotImplementedException("Level loading for level '" + level + "' has not been programmed in yet!");
 		}
@@ -205,7 +214,7 @@ public class LevelManager : MonoBehaviour {
 		
 		if (NetworkManager.IsSinglePlayer()) {
 			spaceship = Instantiate(
-				Resources.Load ("Spaceships/Buzz"),
+				Resources.Load ("Spaceships/Patriot 69Z"),
 				spawnPoint.position, 
 				spawnPoint.rotation) as GameObject;
 		}

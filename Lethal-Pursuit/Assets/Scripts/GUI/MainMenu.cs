@@ -85,11 +85,12 @@ public class MainMenu : MonoBehaviour {
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
 		NetworkManager.SetSinglePlayer(true);
+		LevelManager.LoadLevel(LevelManager.LEVEL.HIGHWAY);
 	}
 	
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
-		chosenShip = "Spaceships/Spaceship02";
+		chosenShip = "Spaceships/Patriot 69Z";
 		NetworkManager.SetShip(chosenShip);
 		LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
 	}

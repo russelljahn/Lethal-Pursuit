@@ -853,7 +853,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .31036377, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400050}
@@ -867,7 +867,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 253.620728, z: 0}
+  m_LocalPosition: {x: 279.573608, y: 253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -900,7 +900,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -429, y: 256.620728, z: 77}
+  m_LocalPosition: {x: -280.573608, y: 256, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400058}
@@ -1575,7 +1575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373f39006a60847f48ed4064924c4184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 0}
   pressingStart: 0
   releasedStart: 0
   tutorialGui: {fileID: 100050}
@@ -2205,7 +2204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564ea22e95f7840cbb0adbdedf394b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 0}
   label: {fileID: 11400080}
   overlay: {fileID: 11400074}
   enteredTeachDriftZone: 0

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HUD_Manager : MonoBehaviour {
 
-	public Spaceship spaceship;
+	private Spaceship spaceship;
 
 	public bool pressingStart;
 	public bool releasedStart;
@@ -22,6 +22,7 @@ public class HUD_Manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		spaceship = GameplayManager.spaceship;
 		currentLevel = LevelManager.GetLoadedLevel();
 
 		isTutorialLevel = currentLevel.name.Equals("Tutorial");

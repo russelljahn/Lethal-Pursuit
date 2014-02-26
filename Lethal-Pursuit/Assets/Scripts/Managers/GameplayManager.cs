@@ -9,6 +9,7 @@ using System.Collections;
  */
 public class GameplayManager : MonoBehaviour {
 
+	public static Spaceship spaceship;
 
 	private static GameplayManager singletonInstance = null;
 
@@ -40,7 +41,7 @@ public class GameplayManager : MonoBehaviour {
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );
 		
-		
+		spaceship = GameObject.FindGameObjectsWithTag("Spaceship")[0].GetComponent<Spaceship>();
 	}
 
 
