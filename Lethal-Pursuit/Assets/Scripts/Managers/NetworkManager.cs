@@ -3,30 +3,39 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 	
-	private string gameType = "CS354T-Galacticats-LP";
-	public string gameName = "Lethal-Pursuit: Krunklicious edition";
-	private string gameComment = "Network Test Run";
+	private static string gameType = "CS354T-Galacticats-LP";
+	public  static string gameName = "Lethal-Pursuit: Krunklicious edition";
+	private static string gameComment = "Network Test Run";
 	
-	public GameObject player;
-	public Transform spawnPoint;
-	public string nameOfSpaceship = "Spaceships/Spaceship02";
+	private static HostData[] hostData;
+	private static bool refreshing = false;
+	private static bool singlePlayer = true;
+
+	private static NetworkManager singletonInstance;
+
+	private static string chosenShip = null;	
 	
-	private HostData[] hostData;
-	private bool refreshing = false;
-	
-	//GUI Params
-	private float buttonX;
-	private float buttonY;
-	private float buttonW;
-	private float buttonH;
-	
-	// Use this for initialization
-	void Start () 
-	{
-		buttonX = Screen.width * 0.05f;
-		buttonY = Screen.height * 0.05f;
-		buttonW = Screen.width * 0.1f;
-		buttonH = Screen.width * 0.05f;
+	private static NetworkManager instance {
+		get {
+			// If first time accessing instance, then find it...
+			if (singletonInstance == null) {
+				singletonInstance = FindObjectOfType(typeof (NetworkManager)) as NetworkManager;
+			}
+			
+			// If instance is null, then no GameManager exists in the scene, so create one.
+			if (singletonInstance == null) {
+				GameObject obj = new GameObject("NetworkManager");
+				singletonInstance = obj.AddComponent(typeof (NetworkManager)) as NetworkManager;
+				obj.name = "Network Manager";
+				//Debug.Log ("Could not find a LevelManager object, so automatically generated one.");
+			}
+			
+			return singletonInstance;
+		}
+	}
+
+	public void Awake() {
+		DontDestroyOnLoad(this);
 	}
 	
 	// Update is called once per frame
@@ -34,6 +43,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		if(refreshing)
 		{
+			Debug.Log("Refreshing......");
 			if(MasterServer.PollHostList().Length > 0)
 			{
 				refreshing = false;
@@ -43,56 +53,19 @@ public class NetworkManager : MonoBehaviour {
 			
 		}
 	}
-	
-	void OnGUI ()
-	{
-		if(!Network.isClient && !Network.isServer)
-		{
-			if (GUI.Button(new Rect(buttonX,
-			                        buttonY,
-			                        buttonW,
-			                        buttonH),
-			               "Start Server"))
-			{
-				StartServer ();
-			}
-			
-			if (GUI.Button(new Rect(buttonX, 
-			                        buttonY * 1.2f + buttonH, 
-			                        buttonW,
-			                        buttonH),
-			               "Refresh"))
-			{
-				RefreshHostList ();
-			}
-			
-			if(hostData != null)
-			{
-				for(int i=0; i<hostData.Length; i++)
-				{
-					if(GUI.Button(new Rect(buttonX * 1.2f + buttonW,
-					                       buttonY * 1.2f + (buttonH * i),
-					                       buttonW * 3, buttonH),
-					              hostData[i].gameName))
-					{
-						Network.Connect(hostData[i]);
-					}
-				}
-			}
-		}
-	}
-	
-	void StartServer ()
+
+	public static void StartServer ()
 	{
 		Debug.Log ("Starting server.........");
 		Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
+		Debug.Log ("Registering Host.........");
 		MasterServer.RegisterHost (gameType, gameName, gameComment);
 	}
 	
 	void OnServerInitialized ()
 	{
 		Debug.Log ("Server ready");
-		SpawnPlayer();
+		//SpawnPlayer();
 	}
 	
 	void OnMasterServerEvent (MasterServerEvent msevent)
@@ -104,7 +77,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 	
-	void RefreshHostList ()
+	public static void RefreshHostList ()
 	{
 		Debug.Log ("Refreshing server list.........");
 		MasterServer.RequestHostList (gameType);
@@ -115,7 +88,7 @@ public class NetworkManager : MonoBehaviour {
 	void OnConnectedToServer ()
 	{
 		Debug.Log ("Connected to server");
-		SpawnPlayer();
+		//SpawnPlayer();
 	}
 	
 	void OnFailedConnection (NetworkConnectionError error)
@@ -134,21 +107,50 @@ public class NetworkManager : MonoBehaviour {
 		Network.RemoveRPCs(Network.player);
 		Network.DestroyPlayerObjects(Network.player);
 		
+		LevelManager.LoadLevel(LevelManager.LEVEL.MAIN_MENU);
 		//Need to have a level loaded back to menu here
 	}
-	
-	void SpawnPlayer()
-	{
-		GameObject spaceship = Network.Instantiate(
-			Resources.Load (nameOfSpaceship),
-			spawnPoint.position, 
-			Quaternion.identity,
-			0) as GameObject;
-	
-		SpaceshipCamera cam = GameObject.FindWithTag("MainCamera").GetComponent<SpaceshipCamera>();
-		cam.SetSpaceship(spaceship.GetComponent<Spaceship>());
 
+	public static void JoinServer(int serverIndex) {
+		Network.Connect(hostData[serverIndex]);
 	}
+	
+	public static bool IsServerListReady() {
+		if(hostData != null) {
+			return !refreshing && hostData.Length > 0;
+		}
+		return false;
+	}
+
+	public static void SetSinglePlayer(bool mode) {
+		singlePlayer = mode;
+	}
+
+	public static bool IsSinglePlayer() {
+		return singlePlayer;
+	}
+
+	public static HostData[] GetHostData() {
+		return hostData;
+	}
+
+	public static void SetShip(string ship) {
+		chosenShip = ship;
+	}
+
+	public static string GetShip() {
+		return chosenShip;
+	}
+
+	public static bool IsPlayerVarsSet() {
+		return chosenShip != null;
+	}
+	
+	public static void ServerCleanup() {
+		Network.Disconnect();
+		MasterServer.UnregisterHost();
+	}
+	
 	
 	
 	
