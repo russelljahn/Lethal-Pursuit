@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: figure8track_glowred
+  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 7a3134e5f9749c449ad2289cfe93f5d5, type: 3}
+          m_Scale: {x: 1453, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _NumColors
+        second: 6.13571405
+      data:
+        first:
+          name: _OutlineWidth
+        second: 1.90178573
+      data:
+        first:
+          name: _Brightness
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 0, b: .287416458, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .404411793, g: .404411793, b: .404411793, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .33088237, g: .0389273539, b: .0389273539, a: 1}
