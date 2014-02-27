@@ -16,6 +16,10 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float deaccelerationIdle = 500;
 
 
+	public float xTiltSpeed = 1.5f;
+	public float yTiltSpeed = 3.3f;
+	
+
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
 	
@@ -26,13 +30,12 @@ public class SpaceshipControl : SpaceshipComponent {
 	public HUD_Crosshairs crosshairs;
 	public float lookSpeed = 1.0f;
 
-	public float normalTiltMax = 15f;
 	public float driftTiltMax = 90f;
-
 	private float currentDriftTilt = 0f;
-	public float normalTiltRate = 2.0f;
 	public float driftTiltRate = 2.5f;
 	public float driftAlignRate = 1.5f;
+
+	public float distanceToRaycastForward = 1000;
 
 
 	
@@ -46,8 +49,9 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	public override void Update () {
-		base.Update();
-		
+		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			base.Update();
+		}
 	}
 	
 	
@@ -55,9 +59,11 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
-		HandleRotation();
-		HandleMovement();
-		HandleTilt();
+		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			HandleRotation();
+			HandleMovement();
+			HandleTilt();
+		}
 	}
 
 	
@@ -102,7 +108,7 @@ public class SpaceshipControl : SpaceshipComponent {
 
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
-		float distanceToRaycastForward = 20.0f;
+
 		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
 
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
@@ -159,9 +165,6 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Handle drifting tilt. */
 		if (drifting) {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*driftTiltMax, driftTiltRate*Time.deltaTime);
-		}
-		else if (xTilt != 0) {
-			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*normalTiltMax, normalTiltRate*Time.deltaTime);
 		}
 		else {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
