@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400008}
   - 95: {fileID: 9500000}
+  - 148: {fileID: 14800004}
   m_Layer: 0
   m_Name: 3D Model Root
   m_TagString: Untagged
@@ -105,6 +106,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 135: {fileID: 13500000}
   - 114: {fileID: 11400012}
+  - 148: {fileID: 14800000}
   m_Layer: 0
   m_Name: Patriot 69Z
   m_TagString: Spaceship
@@ -256,6 +258,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400028}
   - 114: {fileID: 11400028}
+  - 148: {fileID: 14800002}
   m_Layer: 0
   m_Name: SpaceshipAudio
   m_TagString: Untagged
@@ -277,6 +280,7 @@ GameObject:
   - 81: {fileID: 8100000}
   - 45: {fileID: 4500000}
   - 114: {fileID: 11400008}
+  - 148: {fileID: 14800008}
   m_Layer: 0
   m_Name: SpaceshipCamera
   m_TagString: MainCamera
@@ -646,6 +650,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400074}
+  - 148: {fileID: 14800006}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -752,8 +757,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .032370206, z: 0, w: .999475956}
-  m_LocalPosition: {x: -1.45495605, y: .402513504, z: 1.30987835}
-  m_LocalScale: {x: .00499999942, y: .00499999989, z: .00499999989}
+  m_LocalPosition: {x: -1169.85107, y: 121.809914, z: 752.626465}
+  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400028}
@@ -1100,7 +1105,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100068}
-  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
+  m_LocalRotation: {x: .70710665, y: 0, z: 0, w: -.707107008}
   m_LocalPosition: {x: 0, y: 0, z: 1000}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
@@ -2516,22 +2521,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
-  acceleration: 1.25
+  acceleration: 10
   normalExtraAccelerationY: 5
   nosedivingExtraAccelerationY: 30
   deaccelerationBrake: 4
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
+  xTiltSpeed: 1.5
+  yTiltSpeed: 3.29999995
   normalTurningRate: 115
   driftingTurningRate: 300
   timeUntilMaxTurning: 2.5999999
   crosshairs: {fileID: 11400040}
   lookSpeed: 1
-  normalTiltMax: 15
   driftTiltMax: 90
-  normalTiltRate: 2
   driftTiltRate: 2.5
   driftAlignRate: 1.5
+  distanceToRaycastForward: 25
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2576,9 +2582,9 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 1
-  heightLimit: 20
+  heightLimit: 30
   currentVelocity: 0
-  maxVelocity: 100
+  maxVelocity: 200
   mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
 --- !u!114 &11400006
 MonoBehaviour:
@@ -2881,8 +2887,68 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 500
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 50
+  m_Center: {x: 0, y: -20, z: 170}
+--- !u!148 &14800000
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400010}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800002
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100028}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400028}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800004
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400008}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800006
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100074}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400074}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800008
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400030}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
