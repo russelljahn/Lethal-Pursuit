@@ -85,14 +85,14 @@ public class MainMenu : MonoBehaviour {
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
 		NetworkManager.SetSinglePlayer(true);
-		LevelManager.LoadLevel(LevelManager.LEVEL.HIGHWAY);
+		LevelManager.LoadLevel("Highway");
 	}
 	
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
 		chosenShip = "Spaceships/Patriot 69Z";
 		NetworkManager.SetShip(chosenShip);
-		LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
+		LevelManager.LoadLevel("Tutorial");
 	}
 	
 	public void OnReturnClick() {
@@ -236,7 +236,7 @@ public class MainMenu : MonoBehaviour {
 	
 	[RPC]
 	private void LevelLoader() {
-		LevelManager.NetworkLoadLevel(LevelManager.LEVEL.TUTORIAL, 1);	
+		LevelManager.NetworkLoadLevel("Tutorial", 1);	
 	}
 	
 	

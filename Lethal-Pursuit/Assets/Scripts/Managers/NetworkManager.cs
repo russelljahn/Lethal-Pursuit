@@ -107,7 +107,7 @@ public class NetworkManager : MonoBehaviour {
 		Network.RemoveRPCs(Network.player);
 		Network.DestroyPlayerObjects(Network.player);
 		
-		LevelManager.LoadLevel(LevelManager.LEVEL.MAIN_MENU);
+		LevelManager.LoadLevel("MainMenu");
 		//Need to have a level loaded back to menu here
 	}
 

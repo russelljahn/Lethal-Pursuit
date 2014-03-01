@@ -5,6 +5,8 @@ public class HUD_Crosshairs : MonoBehaviour {
 
 
 	public Spaceship spaceship;
+	public SpaceshipCamera spaceshipCamera;
+
 	public float movementSpeed = 1.0f;
 	public float realignSpeed = 2.0f;
 
@@ -52,8 +54,8 @@ public class HUD_Crosshairs : MonoBehaviour {
 			);
 		}
 
+		// Make crosshairs GUI plane face the viewport straight-on
+		this.transform.rotation = spaceshipCamera.transform.rotation  * Quaternion.Euler(90, 180, 0);
 	}
-
-
 
 }

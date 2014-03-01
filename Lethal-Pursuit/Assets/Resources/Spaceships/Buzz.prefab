@@ -2551,10 +2551,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
+  spaceshipCamera: {fileID: 11400016}
   movementSpeed: 5
   realignSpeed: 4
-  xExtent: 12000
-  yExtent: 6000
+  xExtent: 10000
+  yExtent: 5000
   debug: 0
 --- !u!114 &11400006
 MonoBehaviour:
@@ -2711,39 +2712,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c07503986d4be14b9416bcf57f1291b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  idlePosition: {x: 0, y: 165, z: -358}
-  leftPosition: {x: 0, y: 165, z: -358}
-  rightPosition: {x: 0, y: 165, z: -358}
-  upPosition: {x: 0, y: -20, z: -358}
-  downPosition: {x: 0, y: 165, z: -358}
-  upLeftPosition: {x: -50, y: -10, z: -358}
-  upRightPosition: {x: 50, y: -10, z: -358}
-  downLeftPosition: {x: -50, y: 165, z: -358}
-  downRightPosition: {x: 50, y: 165, z: -358}
-  idleRotation: {x: 0, y: 0, z: 0}
-  leftRotation: {x: 0, y: -15, z: 5}
-  rightRotation: {x: 0, y: 15, z: 5}
-  upRotation: {x: -10, y: 0, z: 0}
-  downRotation: {x: 60, y: 0, z: 0}
-  upLeftRotation: {x: -10, y: 0, z: 0}
-  upRightRotation: {x: -10, y: 0, z: 0}
-  downLeftRotation: {x: 100, y: 0, z: 0}
-  downRightRotation: {x: 100, y: 0, z: 0}
-  idlePanSpeed: 15
-  leftRightPanSpeed: 1
-  upDownPanSpeed: 1
-  upLeftRightPanSpeed: 1
-  downLeftRightPanSpeed: 1
-  idleRotationSpeed: 1
-  leftRightRotationSpeed: 1.29999995
-  upDownRotationSpeed: 1.60000002
-  diagonalRotationSpeed: 1.29999995
+  crosshairs: {fileID: 11400004}
+  rotationSpeed: .5
+  cameraToModel: {x: 0, y: 135, z: -380}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
