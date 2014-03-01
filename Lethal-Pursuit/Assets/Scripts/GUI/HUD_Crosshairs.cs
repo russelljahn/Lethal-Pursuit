@@ -13,13 +13,29 @@ public class HUD_Crosshairs : MonoBehaviour {
 
 	private Vector3 initialLocalPosition;
 
+	public bool debug;
+	private LineRenderer debugLine;
 
 	void Start() {
 		initialLocalPosition = this.transform.localPosition;
+
+		debugLine = gameObject.GetComponent<LineRenderer>();
+		debugLine.SetWidth(10f, 10f);
+		debugLine.SetColors(Color.blue, Color.green);
+
 	}
 	
 
 	void Update () {
+
+		if (debug) {
+			debugLine.enabled = true;
+			debugLine.SetPosition(0, spaceship.spaceshipModel.transform.position);
+			debugLine.SetPosition(1, this.transform.position);
+		}
+		else {
+			debugLine.enabled = false;
+		}
 
 		if (spaceship.xTilt != 0.0f || spaceship.yTilt != 0.0f) {
 			this.transform.localPosition = Vector3.Slerp (

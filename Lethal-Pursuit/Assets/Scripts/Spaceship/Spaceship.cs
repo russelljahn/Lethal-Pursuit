@@ -46,7 +46,7 @@ public class Spaceship : MonoBehaviour {
 	}
 
 	void Awake() {
-		if(!NetworkManager.IsSinglePlayer && !networkView.isMine)
+		if(!NetworkManager.IsSinglePlayer() && !networkView.isMine)
 		{
 			spaceshipCamera.gameObject.SetActive(false);
 		}

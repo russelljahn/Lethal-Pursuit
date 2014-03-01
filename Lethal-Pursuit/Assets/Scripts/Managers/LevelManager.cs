@@ -170,25 +170,25 @@ public class LevelManager : MonoBehaviour {
 		Application.Quit();
 	}
 	
-	void OnLevelWasLoaded(int level) {
+	void OnLevelWasLoaded(LevelManager.LEVEL level) {
 	
 		Debug.Log("Entered OnLevelWasLoaded: Level " + level);
 		
-		if(NetworkManager.IsSinglePlayer()) {
+		if (NetworkManager.IsSinglePlayer()) {
 			OnNetworkLoadedLevel(level);
 		}
 	}
 
-	void OnNetworkLoadedLevel(int level) {
-		
+	void OnNetworkLoadedLevel(LevelManager.LEVEL level) {
+
 		Debug.Log("Entered OnNetworkLoadedLevel: Level " + level);
 
-		GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-		spawnPoint = spawnPoints[0].transform;	
-	
-		LevelManager.LEVEL levelconv = (LevelManager.LEVEL) level;
+		if (level != LEVEL.MAIN_MENU) {
+			GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+			spawnPoint = spawnPoints[0].transform;	
+		}
 
-		switch (levelconv) {
+		switch (level) {
 		case LEVEL.MAIN_MENU:
 			break;
 		case LEVEL.TUTORIAL:

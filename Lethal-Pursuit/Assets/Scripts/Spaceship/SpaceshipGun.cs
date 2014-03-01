@@ -15,7 +15,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	private Light light;
 	private LineRenderer line;
 
-	private float initialWidth = 0.075f;
+	public float laserWidth = 10f;
 	public float laserWaverRate = 4.0f;
 
 	public float laserMaterialScrollSpeedU = 1.0f;
@@ -34,8 +34,6 @@ public class SpaceshipGun : SpaceshipComponent {
 		line.enabled = false;
 		light.enabled = false;
 
-//		cachedBullet = Resources.Load(bulletResourcePath, typeof(GameObject)) as GameObject;
-//		cachedBullet.SetActive(false);
 	}
 
 
@@ -61,14 +59,15 @@ public class SpaceshipGun : SpaceshipComponent {
 					hit.rigidbody.AddForceAtPosition(ray.direction*laserHitForce, hit.point);
 				}
 			}
+			line.SetWidth(laserWidth*Mathf.Cos(laserWaverRate*Time.time), laserWidth*Mathf.Sin(laserWaverRate*Time.time));
+			renderer.material.SetTextureOffset("_MainTex", new Vector2(Time.time*laserMaterialScrollSpeedU, Time.time*laserMaterialScrollSpeedV));
 		}
 		else {
 			line.enabled = false;
 			light.enabled = false;
 		}
 
-		line.SetWidth(initialWidth*Mathf.Cos(laserWaverRate*Time.time), initialWidth*Mathf.Sin(laserWaverRate*Time.time));
-		renderer.material.SetTextureOffset("_MainTex", new Vector2(Time.time*laserMaterialScrollSpeedU, Time.time*laserMaterialScrollSpeedV));
+
 	}
 
 
