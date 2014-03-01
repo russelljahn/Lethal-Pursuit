@@ -12,6 +12,7 @@ public class Spaceship : MonoBehaviour {
 
 	public GameplayManager gameplayManager;
 	public GameObject spaceshipModel;
+	public Camera spaceshipCamera;
 
 	#region input variables
 	public float xTilt; /* Tilt of analogue stick every frame. */
@@ -44,6 +45,12 @@ public class Spaceship : MonoBehaviour {
 		gameplayManager = GameplayManager.instance;
 	}
 
+	void Awake() {
+		if(!NetworkManager.IsSinglePlayer && !networkView.isMine)
+		{
+			spaceshipCamera.gameObject.SetActive(false);
+		}
+	}
 
 	
 	void FixedUpdate () {

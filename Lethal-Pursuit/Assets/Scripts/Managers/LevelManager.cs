@@ -226,12 +226,6 @@ public class LevelManager : MonoBehaviour {
 				0) as GameObject;
 		}
 		
-		SpaceshipCamera cam = GameObject.FindWithTag("MainCamera").GetComponent<SpaceshipCamera>();
-		cam.SetSpaceship(spaceship.GetComponent<Spaceship>());
-
-//		cam.transform.parent = spaceship.transform;
-//		cam.transform.localPosition = Vector3.zero;
-		
 		if(NetworkManager.IsSinglePlayer()) {
 			//Disable network view if having performance issues
 		}
