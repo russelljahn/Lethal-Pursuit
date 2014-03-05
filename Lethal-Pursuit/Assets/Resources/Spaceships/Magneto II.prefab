@@ -2552,8 +2552,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400014}
   crosshairs: {fileID: 11400012}
-  rotationSpeed: .25
-  cameraToModel: {x: 0, y: 0, z: 0}
+  yLookAmount: .800000012
+  rotationSpeed: 3
+  lookSpeed: .699999988
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

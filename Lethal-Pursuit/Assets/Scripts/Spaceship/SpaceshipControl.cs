@@ -197,7 +197,7 @@ public class SpaceshipControl : SpaceshipComponent {
 			}
 						
 			this.rigidbody.MoveRotation(
-					Quaternion.Slerp (
+				Quaternion.Slerp (
 					this.transform.localRotation,
 					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTilt*turningRateForThisFrame*Time.deltaTime),
 					Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)

@@ -8,8 +8,11 @@ public class SpaceshipCamera : MonoBehaviour {
 	public Spaceship spaceship;
 	public HUD_Crosshairs crosshairs;
 
-	public float rotationSpeed = 1.0f;
-	public Vector3 cameraToModel;
+	public float yLookAmount = 0.8f;
+	public float rotationSpeed = 3.0f;
+	public float lookSpeed = 0.7f;
+	private Vector3 cameraToModel;
+
 
 
 	public void SetSpaceship(Spaceship spaceship) {
@@ -22,11 +25,10 @@ public class SpaceshipCamera : MonoBehaviour {
 	void Start() {
 		cameraToModel = this.transform.localPosition;
 	}
-
 	
 
 
-	void FixedUpdate() {
+	void Update() {
 
 		Vector3 newCameraPosition = spaceship.spaceshipModel.transform.TransformPoint(
 			spaceship.spaceshipModel.transform.localPosition + cameraToModel
@@ -35,10 +37,17 @@ public class SpaceshipCamera : MonoBehaviour {
 		this.transform.position = Vector3.Lerp(
 			this.transform.position, 
 			newCameraPosition, 
-			rotationSpeed*Time.deltaTime*Vector3.Distance(spaceship.spaceshipModel.transform.forward, this.transform.forward)
+			rotationSpeed*Time.deltaTime
 		);
 
-		this.transform.LookAt(crosshairs.transform.position);
+		Vector3 lookPoint = crosshairs.transform.position;
+		lookPoint.y = this.transform.position.y + yLookAmount*lookPoint.y;
+
+		Quaternion targetRotation = Quaternion.LookRotation(lookPoint - transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed*Time.deltaTime);
 
 	}
+
+
+
 }
