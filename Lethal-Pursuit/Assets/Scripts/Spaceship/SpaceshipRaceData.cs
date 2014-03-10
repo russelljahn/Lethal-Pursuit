@@ -9,7 +9,7 @@ public class SpaceshipRaceData : SpaceshipComponent {
 	public bool finishedTrack = false;
 
 	private int numCheckpoints;
-	public int lastCheckpointId;
+	public Checkpoint lastCheckpoint;
 
 	public float startRaceTime = 0.0f;
 	public float finishRaceTime = Mathf.Infinity;
@@ -22,6 +22,7 @@ public class SpaceshipRaceData : SpaceshipComponent {
 
 
 	void Start () {
+		lastCheckpoint = Checkpoint.GetCheckpointByID(0);
 		numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
 		raceManager = GameObject.FindGameObjectWithTag("RaceManager").GetComponent<RaceManager>();
 
@@ -50,16 +51,17 @@ public class SpaceshipRaceData : SpaceshipComponent {
 			Checkpoint checkpoint = collider.gameObject.GetComponent<Checkpoint>();
 
 			if (IsNextCheckpoint(checkpoint)) {
-				lastCheckpointId = checkpoint.id;
+				lastCheckpoint = checkpoint;
 			}
 			else if (HaveLapped(checkpoint)) {
-				lastCheckpointId = 0;
+				lastCheckpoint = checkpoint;
 				++lapsCompleted;
 				finishLapTime = timeElapsed;
 				raceManager.SendMessage("OnFinishLap", this);
 			}
 
 			if (FinishedRace()) {
+				lastCheckpoint = checkpoint;
 				Debug.Log (this.gameObject.name + " finished race!");
 				finishRaceTime = timeElapsed;
 				finishedTrack = true;
@@ -71,17 +73,20 @@ public class SpaceshipRaceData : SpaceshipComponent {
 
 
 	bool IsNextCheckpoint(Checkpoint checkpoint) {
-		return checkpoint.id == lastCheckpointId+1;
+		return lastCheckpoint == null || checkpoint.id == lastCheckpoint.id+1;
 	}
 
 
 	bool HaveLapped(Checkpoint checkpoint) {
-		return checkpoint.id == 0 && lastCheckpointId == numCheckpoints-1;
+		return checkpoint.id == 0 && lastCheckpoint.id == numCheckpoints-1;
 	}
 
 
 	public bool FinishedRace() {
 		return lapsCompleted >= currentLevel.lapsToWin;
 	}
+
+
+
 
 }

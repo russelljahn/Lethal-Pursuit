@@ -18,28 +18,29 @@ public class SpaceshipHealth : SpaceshipComponent {
 		public float healthRatioToBeInjured = 0.60f;
 		public float healthRatioToBeCritical = 0.30f;
 
-		public Detonator detonator1;
-		public Detonator detonator2;
-		public DetonatorSound explosion;
+		public SpaceshipRaceData raceData;
 
-		private UILabel label;
+//		public Detonator detonator1;
+//		public Detonator detonator2;
+//		public DetonatorSound explosion;
+//
+//		private UILabel label;
 		
 
 	void Start() {
 		currentHealth = maxHealth;
+		raceData = GetComponent<SpaceshipRaceData>();
 	}
 
 
 	void Update() {
 
+		float fractionOfMaxHealth = currentHealth/maxHealth;
+		
 		if (debugSelfDestruct) {
 			this.currentHealth = 0.0f;
-			return;
 		}
-
-		float fractionOfMaxHealth = currentHealth/maxHealth;
-
-		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
+		else if (fractionOfMaxHealth <= healthRatioToBeCritical) {
 			this.state = HealthState.CRITICAL;
 		}
 		else if (fractionOfMaxHealth <= healthRatioToBeInjured) {
@@ -49,6 +50,16 @@ public class SpaceshipHealth : SpaceshipComponent {
 			this.state = HealthState.HEALTHY;
 		}
 
+		HandleDeath();
+
+	}
+
+
+	void HandleDeath() {
+		if (currentHealth <= 0.0f) {
+			this.transform.position = raceData.lastCheckpoint.transform.position;
+			currentHealth = maxHealth;
+		}
 	}
 		
 //	void OnCollisionEnter(Collision interactibles) { /* hitting walls tagged as unpassable does 50 damage */
