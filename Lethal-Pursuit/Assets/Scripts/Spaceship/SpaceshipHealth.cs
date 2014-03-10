@@ -8,7 +8,7 @@ public enum HealthState {
 	CRITICAL
 }
 
-public class SpaceshipHealth : SpaceshipComponent {
+public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 		public float currentHealth = 100;
 		public float maxHealth = 100;
@@ -21,13 +21,8 @@ public class SpaceshipHealth : SpaceshipComponent {
 		public SpaceshipRaceData raceData;
 
 		public float debugSelfDestructDamageRate = 1.0f;
-
-//		public Detonator detonator1;
-//		public Detonator detonator2;
-//		public DetonatorSound explosion;
-//
-//		private UILabel label;
 		
+
 
 	void Start() {
 		currentHealth = maxHealth;
@@ -35,12 +30,13 @@ public class SpaceshipHealth : SpaceshipComponent {
 	}
 
 
+
 	void Update() {
 
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
 		if (debugSelfDestruct) {
-			this.currentHealth -= debugSelfDestructDamageRate;
+			this.ApplyDamage(debugSelfDestructDamageRate);
 		}
 
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
@@ -58,6 +54,7 @@ public class SpaceshipHealth : SpaceshipComponent {
 	}
 
 
+
 	void HandleDeath() {
 		if (currentHealth <= 0.0f) {
 			Debug.Log ("Player is dead!");
@@ -65,65 +62,15 @@ public class SpaceshipHealth : SpaceshipComponent {
 			currentHealth = maxHealth;
 		}
 	}
-		
-//	void OnCollisionEnter(Collision interactibles) { /* hitting walls tagged as unpassable does 50 damage */
-//
-//		if (interactibles.gameObject.tag == "Unpassable" ) {
-//
-//			DecreaseHealth ();
-//			detonator1.Explode();
-//			detonator2.Explode();
-//			ShakeCamera(1, 1);
-//			fadeIn();
-//			}
-//		if (interactibles.gameObject.tag == "Health Pack") { //+50 health
-//				
-//				health = Mathf.Min (health+50, maxHealth);
-//			}
-//							
-//	}
-//
-//			
-//	void DecreaseHealth (){
-//			
-//				if (health > 0) {
-//						health -= damageHalfHit;
-//						stall = 1;
-//						/* yield WaitForSeconds (damageBufferTime);  damage buffer code, not working atm, use invoke?*/
-//						stall = 0;
-//						
-//						}
-//				else if (health == 0) {
-//							
-//								//Debug.Log ("you died, scrub");
-//						}
-//					}
-//		
-//
-//	public void ShakeCamera(float magnitude, float time) {
-//
-//			Vector3 magnitudeVector = new Vector3 (magnitude, magnitude, 0.0f);
-//			iTween.ShakePosition (GetComponent<SpaceshipCamera>().gameObject, magnitudeVector, time);
-//
-//		}
-//
-//	public void fadeIn () {
-//		iTween.CameraFadeAdd(damageOverlay);
-//		iTween.CameraFadeFrom(0,.5f);
-//		iTween.CameraFadeTo(1.0f, 1.0f);
-//
-//
-//
-//	}
-//
-//	void Update() {
-//
-//
-//		label.text = health.ToString(); 
-//
-//
-//	}
 
+
+
+	// Implementing Damageable interface.
+	public void ApplyDamage(float amount) {
+		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+	}
+
+		
 
 
 }

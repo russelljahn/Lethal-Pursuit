@@ -21,8 +21,10 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float laserMaterialScrollSpeedU = 1.0f;
 	public float laserMaterialScrollSpeedV = 1.0f;
 
+	public float damageRate = 1.0f;
 	public float laserHitForce = 1000.0f;
-	
+
+	private GameObject hitGameObject;
 
 	// Use this for initialization
 	public override void Start () {
@@ -56,6 +58,7 @@ public class SpaceshipGun : SpaceshipComponent {
 				line.SetPosition(1, hit.point);
 
 				if (hit.rigidbody != null) {
+					hitGameObject = hit.collider.gameObject;
 					hit.rigidbody.AddForceAtPosition(ray.direction*laserHitForce, hit.point);
 				}
 			}
@@ -63,6 +66,7 @@ public class SpaceshipGun : SpaceshipComponent {
 			renderer.material.SetTextureOffset("_MainTex", new Vector2(Time.time*laserMaterialScrollSpeedU, Time.time*laserMaterialScrollSpeedV));
 		}
 		else {
+			hitGameObject = null;
 			line.enabled = false;
 			light.enabled = false;
 		}
@@ -76,6 +80,17 @@ public class SpaceshipGun : SpaceshipComponent {
 
 	void FixedUpdate() {
 
+		if (hitGameObject == null) {
+			return;
+		}
+		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
+
+		Debug.Log ("hitGameObject: " + hitGameObject.name);
+		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
+
+		if (damageableObject != null) {
+			damageableObject.ApplyDamage(damageRate);
+		}
 	}
 
 

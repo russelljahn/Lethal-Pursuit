@@ -120,9 +120,17 @@ public class SpaceshipComponent : MonoBehaviour {
 			throw new Exception("spaceship is null for SpaceshipComponent in " + this.gameObject.name);
 		}
 	}
+
+
+
+
 	
 	// Update is called once per frame
 	public virtual void Update () {
 		;
 	}
+
+
+
+
 }

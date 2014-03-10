@@ -395,8 +395,10 @@ GameObject:
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
   - 95: {fileID: 9500002}
+  - 64: {fileID: 6400006}
+  - 114: {fileID: 11400008}
   m_Layer: 0
-  m_Name: Y_Spaceship_v1
+  m_Name: 3D Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,6 +1797,19 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 1
   m_Mesh: {fileID: 4300004, guid: 22da0b00530e6854491b0a232bea4583, type: 3}
+--- !u!64 &6400006
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: a323b18954e5a46e2bc70791e4c6558e, type: 3}
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2538,6 +2553,7 @@ MonoBehaviour:
   laserWaverRate: 8
   laserMaterialScrollSpeedU: 1
   laserMaterialScrollSpeedV: 1
+  damageRate: 1
   laserHitForce: 100
 --- !u!114 &11400004
 MonoBehaviour:
@@ -2580,6 +2596,18 @@ MonoBehaviour:
   sputteringTurbulenceAmount1: 3
   sputteringTurbulenceAmount2: 1
   sputteringTurbulenceRate: 10
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f12945bfd7ef404db9b18c4bd86a19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceship: {fileID: 11400014}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2688,6 +2716,7 @@ MonoBehaviour:
   healthRatioToBeInjured: .600000024
   healthRatioToBeCritical: .300000012
   raceData: {fileID: 0}
+  debugSelfDestructDamageRate: 1
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
