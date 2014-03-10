@@ -57,7 +57,8 @@ public class SpaceshipHealth : SpaceshipComponent {
 
 	void HandleDeath() {
 		if (currentHealth <= 0.0f) {
-			this.transform.position = raceData.lastCheckpoint.transform.position;
+			Debug.Log ("Player is dead!");
+			raceData.lastCheckpoint.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 		}
 	}
