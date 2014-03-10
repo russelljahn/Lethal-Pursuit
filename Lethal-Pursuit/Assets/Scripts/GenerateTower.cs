@@ -36,6 +36,7 @@ public class GenerateTower : MonoBehaviour {
 			}
 
 		}
+		gameObjectToClone.SetActive(false);
 	}
 
 
