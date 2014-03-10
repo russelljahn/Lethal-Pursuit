@@ -35,7 +35,7 @@ public class HUD_Manager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		pressedStartLastFrame = pressingStart;
-		pressingStart = Input.GetKey(KeyCode.Escape);
+		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
 		releasedStart = !pressingStart && pressedStartLastFrame;
 
 

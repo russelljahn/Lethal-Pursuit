@@ -68,14 +68,20 @@ namespace InControl
 				{
 					Handle = "Start",
 					Target = InputControlType.Start,
-					Source = Button13
-				},
-				new InputControlMapping
-				{
-					Handle = "Options",
-					Target = InputControlType.Select,
 					Source = Button9
 				},
+//				new InputControlMapping
+//				{
+//					Handle = "Start",
+//					Target = InputControlType.Start,
+//					Source = Button13
+//				},
+//				new InputControlMapping
+//				{
+//					Handle = "Options",
+//					Target = InputControlType.Select,
+//					Source = Button9
+//				},
 				new InputControlMapping
 				{
 					Handle = "Left Trigger",

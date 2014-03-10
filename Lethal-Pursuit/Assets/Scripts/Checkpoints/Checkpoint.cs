@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 /* 
-	A checkpoint has multiple SpawnPoints where a player spaceship will be spawned on death.
+	A checkpoint is expected to have multiple SpawnPoints where a player spaceship will be spawned on death.
  */
 [RequireComponent (typeof (Collider))]
 public class Checkpoint : MonoBehaviour {
