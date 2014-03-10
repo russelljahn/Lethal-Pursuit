@@ -20,6 +20,8 @@ public class SpaceshipHealth : SpaceshipComponent {
 
 		public SpaceshipRaceData raceData;
 
+		public float debugSelfDestructDamageRate = 1.0f;
+
 //		public Detonator detonator1;
 //		public Detonator detonator2;
 //		public DetonatorSound explosion;
@@ -38,9 +40,10 @@ public class SpaceshipHealth : SpaceshipComponent {
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
 		if (debugSelfDestruct) {
-			this.currentHealth = 0.0f;
+			this.currentHealth -= debugSelfDestructDamageRate;
 		}
-		else if (fractionOfMaxHealth <= healthRatioToBeCritical) {
+
+		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
 			this.state = HealthState.CRITICAL;
 		}
 		else if (fractionOfMaxHealth <= healthRatioToBeInjured) {
