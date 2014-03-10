@@ -3,19 +3,16 @@ using InControl;
 using System.Collections;
 
 public class SpaceshipGun : SpaceshipComponent {
-
-//	public string laserResourcePath = "Bullets/TestLaz0r";
-
-//	public float cooldownBetweenShots = 0.1f;
-//	private float timeUntilCanShoot = 0.0f;
 	
+
 	public AudioSource guns;
 	public AudioClip shot;
 
 	private Light light;
 	private LineRenderer line;
 
-	public float laserWidth = 10f;
+	public float laserMinWidth = 5f;
+	public float laserFullChargeExtraWidth = 5f;
 	public float laserWaverRate = 4.0f;
 
 	public float laserMaterialScrollSpeedU = 1.0f;
@@ -25,6 +22,14 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float laserHitForce = 1000.0f;
 
 	private GameObject hitGameObject;
+
+	public GameObject explosion;
+	public float explosionCooldown = 0.1f;
+	public float timeSinceLastExplosion;
+
+
+
+
 
 	// Use this for initialization
 	public override void Start () {
@@ -36,6 +41,7 @@ public class SpaceshipGun : SpaceshipComponent {
 		line.enabled = false;
 		light.enabled = false;
 
+		explosion.SetActive(false);
 	}
 
 
@@ -57,12 +63,20 @@ public class SpaceshipGun : SpaceshipComponent {
 				line.SetPosition(0, ray.origin);
 				line.SetPosition(1, hit.point);
 
+				/* Apply laser force. */
 				if (hit.rigidbody != null) {
 					hitGameObject = hit.collider.gameObject;
 					hit.rigidbody.AddForceAtPosition(ray.direction*laserHitForce, hit.point);
 				}
+
+				/* Spawn laser explosions. */
+				if (timeSinceLastExplosion >= explosionCooldown) {
+					GameObject newExplosion = GameObject.Instantiate(explosion, hit.point, Quaternion.identity) as GameObject;
+					newExplosion.SetActive(true);
+					timeSinceLastExplosion = 0.0f;
+				}
 			}
-			line.SetWidth(laserWidth*Mathf.Cos(laserWaverRate*Time.time), laserWidth*Mathf.Sin(laserWaverRate*Time.time));
+			line.SetWidth(laserMinWidth+laserFullChargeExtraWidth*Mathf.Cos(laserWaverRate*Time.time), laserMinWidth+laserFullChargeExtraWidth*Mathf.Sin(laserWaverRate*Time.time));
 			renderer.material.SetTextureOffset("_MainTex", new Vector2(Time.time*laserMaterialScrollSpeedU, Time.time*laserMaterialScrollSpeedV));
 		}
 		else {
@@ -71,6 +85,7 @@ public class SpaceshipGun : SpaceshipComponent {
 			light.enabled = false;
 		}
 
+		timeSinceLastExplosion += Time.deltaTime;
 
 	}
 
@@ -85,8 +100,8 @@ public class SpaceshipGun : SpaceshipComponent {
 		}
 		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
 
-		Debug.Log ("hitGameObject: " + hitGameObject.name);
-		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
+//		Debug.Log ("hitGameObject: " + hitGameObject.name);
+//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
 
 		if (damageableObject != null) {
 			damageableObject.ApplyDamage(damageRate);
