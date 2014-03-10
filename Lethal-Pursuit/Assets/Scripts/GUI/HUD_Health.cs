@@ -8,7 +8,7 @@ public class HUD_Health : MonoBehaviour {
 	public Color injuredColor = Color.yellow;
 	public Color criticalColor = Color.red;
 
-	private SpaceshipStatus status;
+	private SpaceshipHealth healthComponent;
 	private UI2DSprite healthbarSprite;
 
 	private Vector3 initialScale;
@@ -17,7 +17,7 @@ public class HUD_Health : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		status = GameObject.FindWithTag("Spaceship").GetComponent<SpaceshipStatus>();
+		healthComponent = GameObject.FindWithTag("Spaceship").GetComponent<SpaceshipHealth>();
 		healthbarSprite = GetComponent<UI2DSprite>();
 		initialScale = this.transform.localScale;
 		currentScale = initialScale;
@@ -25,10 +25,10 @@ public class HUD_Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		currentScale.x = status.currentHealth/status.maxHealth * initialScale.x;
+		currentScale.x = healthComponent.currentHealth/healthComponent.maxHealth * initialScale.x;
 		this.transform.localScale = currentScale;
 
-		switch (status.healthState) {
+		switch (healthComponent.state) {
 			case HealthState.HEALTHY:
 				healthbarSprite.color = healthyColor;
 				break;
@@ -39,7 +39,7 @@ public class HUD_Health : MonoBehaviour {
 				healthbarSprite.color = criticalColor;
 				break;
 			default:
-				throw new Exception("Unknown health state: " + status.healthState);
+				throw new Exception("Unknown health state: " + healthComponent.state);
 		}
 	}
 }

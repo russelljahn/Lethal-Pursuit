@@ -105,6 +105,11 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.maxVelocity;
 		}
 	}
+	protected bool debugSelfDestruct {
+		get {
+			return spaceship.debugSelfDestruct;
+		}
+	}
 
 	
 

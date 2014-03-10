@@ -8,47 +8,45 @@ public enum HealthState {
 	CRITICAL
 }
 
-public class SpaceshipStatus : SpaceshipComponent {
+public class SpaceshipHealth : SpaceshipComponent {
 
 		public float currentHealth = 100;
 		public float maxHealth = 100;
 	
-		public HealthState healthState = HealthState.HEALTHY;
+		public HealthState state = HealthState.HEALTHY;
 
 		public float healthRatioToBeInjured = 0.60f;
 		public float healthRatioToBeCritical = 0.30f;
-	
 
-		private float damageHalfHit = 50;
-		private float damageOneHitKO = 100;
-		private float damageBufferTime = 2;
-		private float stall = 0;
 		public Detonator detonator1;
 		public Detonator detonator2;
 		public DetonatorSound explosion;
-		public Texture2D damageOverlay;
 
 		private UILabel label;
 		
 
 	void Start() {
-		
 		currentHealth = maxHealth;
-//		label = GetComponent<UILabel>();
 	}
 
 
 	void Update() {
+
+		if (debugSelfDestruct) {
+			this.currentHealth = 0.0f;
+			return;
+		}
+
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
-			healthState = HealthState.CRITICAL;
+			this.state = HealthState.CRITICAL;
 		}
 		else if (fractionOfMaxHealth <= healthRatioToBeInjured) {
-			healthState = HealthState.INJURED;
+			this.state = HealthState.INJURED;
 		}
 		else {
-			healthState = HealthState.HEALTHY;
+			this.state = HealthState.HEALTHY;
 		}
 
 	}

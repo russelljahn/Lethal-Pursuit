@@ -25,6 +25,7 @@ public class Spaceship : MonoBehaviour {
 	public bool drifting;
 	public bool nosediving;
 	public bool idle;
+	public bool debugSelfDestruct;
 	#endregion
 
 	public Vector3 forward;
@@ -37,6 +38,8 @@ public class Spaceship : MonoBehaviour {
 	public float maxVelocity = 150.0f;
 
 	public bool mapKeyboardDiagonalAmountToAnalogueDiagonalAmount = false;
+
+	public bool debugSelfDestructEnabled = false;
 
 
 
@@ -76,6 +79,7 @@ public class Spaceship : MonoBehaviour {
 		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
 		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		shooting = InputManager.ActiveDevice.Action3.State;
+		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
 
 		braking = false;
 		boosting = false;
@@ -94,7 +98,6 @@ public class Spaceship : MonoBehaviour {
 		else if (boostAmount == 0 && brakeAmount == 0) {
 			idle = true;
 		}
-		
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (mapKeyboardDiagonalAmountToAnalogueDiagonalAmount) {

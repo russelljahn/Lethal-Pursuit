@@ -2568,16 +2568,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a538c62feaa9da645a59d780ae7bb4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 0}
+  spaceship: {fileID: 11400012}
   currentHealth: 0
   maxHealth: 100
-  healthState: 0
+  state: 0
   healthRatioToBeInjured: .600000024
   healthRatioToBeCritical: .300000012
   detonator1: {fileID: 0}
   detonator2: {fileID: 0}
   explosion: {fileID: 0}
-  damageOverlay: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2660,13 +2659,15 @@ MonoBehaviour:
   drifting: 0
   nosediving: 0
   idle: 0
+  debugSelfDestruct: 0
   forward: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 1
   heightLimit: 30
   currentVelocity: 0
-  maxVelocity: 200
+  maxVelocity: 300
   mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
+  debugSelfDestructEnabled: 1
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
