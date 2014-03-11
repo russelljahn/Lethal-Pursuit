@@ -43295,7 +43295,7 @@ MonoBehaviour:
   damageRate: 1
   laserHitForce: 100
   explosion: {fileID: 0}
-  explosionCooldown: .200000003
+  explosionCooldown: .100000001
   timeSinceLastExplosion: 0
 --- !u!1 &807689313
 GameObject:
@@ -66505,7 +66505,7 @@ MonoBehaviour:
   damageRate: 1
   laserHitForce: 100
   explosion: {fileID: 0}
-  explosionCooldown: .200000003
+  explosionCooldown: .100000001
   timeSinceLastExplosion: 0
 --- !u!1 &1292923343
 GameObject:
@@ -73986,8 +73986,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401474465}
   m_LocalRotation: {x: 0, y: .948600292, z: 0, w: .316476852}
-  m_LocalPosition: {x: -2946.53027, y: 13.8000002, z: 1058.9469}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: -2866.45239, y: 13.8000002, z: 624.712769}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 1519794393}
   - {fileID: 2049817349}
@@ -82996,6 +82996,22 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 254.548401
       objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 428
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -429
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
   m_RootGameObject: {fileID: 1312740155}
@@ -85558,7 +85574,7 @@ MonoBehaviour:
   damageRate: 1
   laserHitForce: 100
   explosion: {fileID: 0}
-  explosionCooldown: .200000003
+  explosionCooldown: .100000001
   timeSinceLastExplosion: 0
 --- !u!1 &1762395366
 GameObject:
@@ -95392,6 +95408,7 @@ GameObject:
   - 33: {fileID: 2049817348}
   - 65: {fileID: 2049817347}
   - 23: {fileID: 2049817346}
+  - 114: {fileID: 2049817350}
   m_Layer: 0
   m_Name: 1x1x1 Reference
   m_TagString: Untagged
@@ -95450,6 +95467,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1401474466}
+--- !u!114 &2049817350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2049817345}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6456f79c2a6c348e997745b66b0e7314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 100
+  explosionRadius: 1000
+  triangleScale: {x: 50, y: 50, z: 50}
 --- !u!1 &2054166342
 GameObject:
   m_ObjectHideFlags: 0
@@ -98893,6 +98924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373f39006a60847f48ed4064924c4184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceship: {fileID: 0}
   pressingStart: 0
   releasedStart: 0
   tutorialGui: {fileID: 45883287}

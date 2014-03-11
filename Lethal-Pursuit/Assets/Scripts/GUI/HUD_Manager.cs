@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HUD_Manager : MonoBehaviour {
 
-	private Spaceship spaceship;
+	public Spaceship spaceship;
 
 	public bool pressingStart;
 	public bool releasedStart;
