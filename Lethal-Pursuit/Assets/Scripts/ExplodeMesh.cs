@@ -45,7 +45,7 @@ public class ExplodeMesh : MonoBehaviour {
 				newTriangleMesh.uv = newTriangleUVs;
 	
 				newTriangleMesh.triangles = new int [] {0, 1, 2};
-//				newTriangleMesh.triangles = new int [] {0, 1, 2, 2, 1, 0}; // Enable if you also want to create backface triangles.
+//				newTriangleMesh.triangles = new int [] {0, 1, 2, 2, 1, 0}; // Use this instead if you also want to create backface triangles.
 			
 				GameObject newTriangle = new GameObject(String.Format("Triangle: {0}", (i/3)));
 				newTriangle.transform.position = this.transform.position;
@@ -55,9 +55,8 @@ public class ExplodeMesh : MonoBehaviour {
 				newTriangle.AddComponent<MeshRenderer>().material = meshRenderer.materials[submeshID];
 				newTriangle.AddComponent<SphereCollider>();
 				newTriangle.AddComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position, explosionRadius);
-//				newTriangle.AddComponent<Rigidbody>();
 
-//				GameObject.Destroy(newTriangle, 5.0f + UnityEngine.Random.Range(0.0f, 5.0f));
+				GameObject.Destroy(newTriangle, 5.0f + UnityEngine.Random.Range(0.0f, 5.0f));
 			
 			}
 		}
