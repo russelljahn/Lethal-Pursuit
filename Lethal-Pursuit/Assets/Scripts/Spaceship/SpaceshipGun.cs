@@ -60,8 +60,8 @@ public class SpaceshipGun : SpaceshipComponent {
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit)) {
-				line.SetPosition(0, ray.origin);
-				line.SetPosition(1, hit.point);
+				line.SetPosition(0, Vector3.zero);
+				line.SetPosition(1, this.transform.InverseTransformPoint(hit.point));
 
 				/* Apply laser force. */
 				if (hit.rigidbody != null) {
