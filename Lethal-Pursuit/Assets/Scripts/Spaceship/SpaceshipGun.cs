@@ -71,7 +71,23 @@ public class SpaceshipGun : SpaceshipComponent {
 
 				/* Spawn laser explosions. */
 				if (timeSinceLastExplosion >= explosionCooldown) {
-					GameObject newExplosion = GameObject.Instantiate(explosion, hit.point, Quaternion.identity) as GameObject;
+					GameObject newExplosion;
+
+					if (NetworkManager.IsSinglePlayer()) {
+						newExplosion = GameObject.Instantiate(
+							Resources.Load("Explosions/GraphicExplosion_001", typeof(GameObject)), 
+							hit.point, 
+							Quaternion.identity 
+						) as GameObject;
+					}
+					else {
+						newExplosion = Network.Instantiate(
+							Resources.Load("Explosions/GraphicExplosion_001", typeof(GameObject)), 
+							hit.point, 
+							Quaternion.identity, 
+							5
+						) as GameObject;
+					}
 					newExplosion.SetActive(true);
 					timeSinceLastExplosion = 0.0f;
 				}

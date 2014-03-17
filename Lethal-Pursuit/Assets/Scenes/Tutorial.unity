@@ -30018,7 +30018,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 554051314}
   m_ViewID:
-    m_ID: 1
+    m_ID: 37
     m_Type: 1
 --- !u!1001 &556440258
 Prefab:
@@ -34306,7 +34306,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 704489165}
   m_ViewID:
-    m_ID: 37
+    m_ID: 38
     m_Type: 1
 --- !u!114 &704489165
 MonoBehaviour:
@@ -34332,7 +34332,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 704489167}
   m_ViewID:
-    m_ID: 2
+    m_ID: 39
     m_Type: 1
 --- !u!114 &704489167
 MonoBehaviour:
@@ -98951,6 +98951,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800000, guid: 2e0339c4153454688a14e704336a169c, type: 2}
       propertyPath: m_ViewID.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
