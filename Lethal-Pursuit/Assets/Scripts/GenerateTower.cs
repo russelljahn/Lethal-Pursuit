@@ -8,7 +8,7 @@ public class GenerateTower : MonoBehaviour {
 	public int depth = 20;
 	public float spaceBetweenGameObjects = Mathf.Epsilon;
 	public GameObject gameObjectToClone;
-
+	public Transform cloneTransform;
 
 	// Use this for initialization
 	void Start () {
@@ -17,21 +17,37 @@ public class GenerateTower : MonoBehaviour {
 
 		for (int i = 0; i < width; ++i) {
 			Vector3 clonePosition = new Vector3(
-				gameObjectToClone.transform.position.x,
-				gameObjectToClone.transform.position.y,
-				gameObjectToClone.transform.position.z
+				cloneTransform.position.x,
+				cloneTransform.position.y,
+				cloneTransform.position.z
 			);
 			
-			clonePosition.x = gameObjectToClone.transform.position.x + i*size.x + spaceBetweenGameObjects;
+			clonePosition.x = cloneTransform.position.x + i*size.x + spaceBetweenGameObjects;
 
 			for (int j = 0; j < depth; ++j) {
 
-				clonePosition.z = gameObjectToClone.transform.position.z + j*size.z + spaceBetweenGameObjects;
+				clonePosition.z = cloneTransform.position.z + j*size.z + spaceBetweenGameObjects;
 
 				for (int k = 0; k < height; ++k) {
-					clonePosition.y = gameObjectToClone.transform.position.y + k*size.y + spaceBetweenGameObjects;
-					GameObject clone = GameObject.Instantiate(gameObjectToClone, clonePosition, Quaternion.identity) as GameObject;
-					clone.transform.parent = this.transform;
+					clonePosition.y = cloneTransform.position.y + k*size.y + spaceBetweenGameObjects;
+					
+					Debug.Log("About to network generate a tower");
+					
+					GameObject clone = null;
+					if(NetworkManager.IsSinglePlayer()) {
+						clone = GameObject.Instantiate(gameObjectToClone, 
+						                               clonePosition, 
+						                               Quaternion.identity) as GameObject;
+						clone.transform.parent = this.transform;
+					}
+					else if(Network.isServer){
+						Debug.Log("Going to network generate a tower");
+						clone = Network.Instantiate(Resources.Load ("Cube"),
+						                            clonePosition, 
+						                            Quaternion.identity,
+						                            1) as GameObject;
+						clone.transform.parent = this.transform;
+					}
 				}
 			}
 

@@ -33,6 +33,7 @@ GameObject:
   - 108: {fileID: 10800004}
   - 82: {fileID: 8200004}
   - 64: {fileID: 6400002}
+  - 148: {fileID: 14800010}
   m_Layer: 0
   m_Name: Default Gun 001
   m_TagString: Untagged
@@ -2549,12 +2550,16 @@ MonoBehaviour:
   spaceship: {fileID: 11400004}
   guns: {fileID: 0}
   shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
-  laserWidth: 10
+  laserMinWidth: 5
+  laserFullChargeExtraWidth: 5
   laserWaverRate: 8
   laserMaterialScrollSpeedU: 1
   laserMaterialScrollSpeedV: 1
   damageRate: 1
   laserHitForce: 100
+  explosion: {fileID: 0}
+  explosionCooldown: .100000001
+  timeSinceLastExplosion: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2568,7 +2573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayManager: {fileID: 0}
   spaceshipModel: {fileID: 100008}
-  spaceshipCamera: {fileID: 0}
+  spaceshipCamera: {fileID: 2000000}
+  crosshairs: {fileID: 100068}
   xTilt: 0
   yTilt: 0
   boostAmount: 0
@@ -2869,8 +2875,8 @@ NetworkView:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400010}
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 11400004}
   m_ViewID:
     m_ID: 0
     m_Type: 0
@@ -2919,6 +2925,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 400030}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800010
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 12000002}
   m_ViewID:
     m_ID: 0
     m_Type: 0

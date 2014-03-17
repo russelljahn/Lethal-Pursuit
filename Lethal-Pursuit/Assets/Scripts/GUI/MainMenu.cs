@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour {
 	public GameObject VehicleSelectPanel;
 	public GameObject MapSelectPanel;
 	public GameObject LobbyPanel;
+	public GameObject LoadingPanel;
 	
 	public UIButton StartServerButton;
 	public UIButton JoinServerButton;
@@ -37,6 +38,7 @@ public class MainMenu : MonoBehaviour {
 		VehicleSelectPanel.SetActive(false);
 		MapSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(false);
+		LoadingPanel.SetActive(false);
 		
 		StartServerButton.isEnabled = true;
 		JoinServerButton.isEnabled  = true;
@@ -103,6 +105,7 @@ public class MainMenu : MonoBehaviour {
 		VehicleSelectPanel.SetActive(false);
 		MapSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(false);
+		LoadingPanel.SetActive(false);
 		
 		JoinServerButton.isEnabled = true;
 		RefreshButton.isEnabled = false;
@@ -230,8 +233,15 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnLaunchClick() {
+		networkView.RPC("SwitchLoad", RPCMode.All);
 		networkView.RPC("LevelLoader", RPCMode.All);
 		//LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
+	}
+	
+	[RPC]
+	private void SwitchLoad(){
+		LobbyPanel.SetActive(false);
+		LoadingPanel.SetActive(true);
 	}
 	
 	[RPC]

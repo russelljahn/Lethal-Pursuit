@@ -13,6 +13,7 @@ GameObject:
   - 108: {fileID: 10800000}
   - 82: {fileID: 8200000}
   - 64: {fileID: 6400002}
+  - 148: {fileID: 14800010}
   m_Layer: 0
   m_Name: Default Gun 001
   m_TagString: Untagged
@@ -2697,7 +2698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayManager: {fileID: 0}
   spaceshipModel: {fileID: 100042}
-  spaceshipCamera: {fileID: 0}
+  spaceshipCamera: {fileID: 2000000}
+  crosshairs: {fileID: 100016}
   xTilt: 0
   yTilt: 0
   boostAmount: 0
@@ -2914,8 +2916,8 @@ NetworkView:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400010}
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 11400012}
   m_ViewID:
     m_ID: 0
     m_Type: 0
@@ -2964,6 +2966,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 400020}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800010
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 12000000}
   m_ViewID:
     m_ID: 0
     m_Type: 0
