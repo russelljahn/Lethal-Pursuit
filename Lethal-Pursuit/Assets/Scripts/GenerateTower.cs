@@ -32,6 +32,7 @@ public class GenerateTower : MonoBehaviour {
 					clonePosition.y = cloneTransform.position.y + k*size.y + spaceBetweenGameObjects;
 					
 					Debug.Log("About to network generate a tower");
+					Debug.Log("Clone position " + clonePosition);
 					
 					GameObject clone = null;
 					if(NetworkManager.IsSinglePlayer()) {

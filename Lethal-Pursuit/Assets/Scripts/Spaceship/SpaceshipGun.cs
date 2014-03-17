@@ -60,8 +60,8 @@ public class SpaceshipGun : SpaceshipComponent {
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit)) {
-				line.SetPosition(0, ray.origin);
-				line.SetPosition(1, hit.point);
+				line.SetPosition(0, Vector3.zero);
+				line.SetPosition(1, this.transform.InverseTransformPoint(hit.point));
 
 				/* Apply laser force. */
 				if (hit.rigidbody != null) {
@@ -71,7 +71,23 @@ public class SpaceshipGun : SpaceshipComponent {
 
 				/* Spawn laser explosions. */
 				if (timeSinceLastExplosion >= explosionCooldown) {
-					GameObject newExplosion = GameObject.Instantiate(explosion, hit.point, Quaternion.identity) as GameObject;
+					GameObject newExplosion;
+
+					if (NetworkManager.IsSinglePlayer()) {
+						newExplosion = GameObject.Instantiate(
+							Resources.Load("Explosions/GraphicExplosion_001", typeof(GameObject)), 
+							hit.point, 
+							Quaternion.identity 
+						) as GameObject;
+					}
+					else {
+						newExplosion = Network.Instantiate(
+							Resources.Load("Explosions/GraphicExplosion_001", typeof(GameObject)), 
+							hit.point, 
+							Quaternion.identity, 
+							5
+						) as GameObject;
+					}
 					newExplosion.SetActive(true);
 					timeSinceLastExplosion = 0.0f;
 				}
