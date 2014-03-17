@@ -5,9 +5,9 @@ public class MainMenu : MonoBehaviour {
 
 	private static string gameType = "CS354T-Galacticats-LP";
 
-	public GameObject MainPanel;
+	public GameObject titlePanel;
 	public GameObject OptionsPanel;
-	public GameObject ModeSelectPanel;
+	public GameObject modeSelectPanel;
 	public GameObject MultiplayerPanel;
 	public GameObject VehicleSelectPanel;
 	public GameObject MapSelectPanel;
@@ -31,9 +31,9 @@ public class MainMenu : MonoBehaviour {
 	private string chosenLevel = null;
 	
 	public void Start() {
-		MainPanel.SetActive(true);
+		titlePanel.SetActive(true);
 		OptionsPanel.SetActive(false);
-		ModeSelectPanel.SetActive(false);
+		modeSelectPanel.SetActive(false);
 		MultiplayerPanel.SetActive(false);
 		VehicleSelectPanel.SetActive(false);
 		MapSelectPanel.SetActive(false);
@@ -66,21 +66,21 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnOptionsClick() {
 		Debug.Log("Options Clicked");
-		MainPanel.SetActive(false);
+		titlePanel.SetActive(false);
 		OptionsPanel.SetActive(true);
 	}
 	
 	public void OnStartClick() {
 		Debug.Log("Start Clicked");
-		MainPanel.SetActive(false);
-		ModeSelectPanel.SetActive(true);
+		titlePanel.SetActive(false);
+		modeSelectPanel.SetActive(true);
 	}
 	
 	public void OnMultiplayerClick() {
 		Debug.Log("Multiplayer Clicked");
 		NetworkManager.SetSinglePlayer(false);
 		
-		ModeSelectPanel.SetActive(false);
+		modeSelectPanel.SetActive(false);
 		MultiplayerPanel.SetActive(true);
 	}
 	
@@ -98,9 +98,9 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	public void OnReturnClick() {
-		MainPanel.SetActive(true);
+		titlePanel.SetActive(true);
 		OptionsPanel.SetActive(false);
-		ModeSelectPanel.SetActive(false);
+		modeSelectPanel.SetActive(false);
 		MultiplayerPanel.SetActive(false);
 		VehicleSelectPanel.SetActive(false);
 		MapSelectPanel.SetActive(false);
