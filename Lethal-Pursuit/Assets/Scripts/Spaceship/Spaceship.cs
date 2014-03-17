@@ -2,7 +2,6 @@
 using InControl;
 using System.Collections;
 
-
 /* 
 	Contains data for a spaceship that other spaceship components may use.
  */
@@ -168,7 +167,7 @@ public class Spaceship : MonoBehaviour {
 		}
 	}
 
-
+	
 
 
 

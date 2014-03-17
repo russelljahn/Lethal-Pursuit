@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using InControl;
 using System.Collections;
+using System;
 
 
 /* 
@@ -9,7 +10,14 @@ using System.Collections;
  */
 public class GameplayManager : MonoBehaviour {
 
-	public static Spaceship spaceship;
+	public static Spaceship spaceship {
+		get {
+			return GameplayManager.GetLocalSpaceship();
+		}
+		set {
+
+		}
+	}
 
 	private static GameplayManager singletonInstance = null;
 
@@ -40,8 +48,6 @@ public class GameplayManager : MonoBehaviour {
 		/* Register custom input profiles for keyboard button mappings. */
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );
-		
-		spaceship = GameObject.FindGameObjectsWithTag("Spaceship")[0].GetComponent<Spaceship>();
 	}
 
 
@@ -52,6 +58,20 @@ public class GameplayManager : MonoBehaviour {
 	}
 
 
+	public static Spaceship GetLocalSpaceship() {
+		GameObject[] ships = GameObject.FindGameObjectsWithTag("Spaceship");
+		
+		for(int i=0; i<ships.Length; i++) {
+			if(ships[i].GetComponent<NetworkView>() == null) {
+				throw new Exception("Spaceship missing netview " + ships[i].name);
+			}
+			if(ships[i].networkView.isMine) {
+				return ships[i].GetComponent<Spaceship>();
+			}
+			
+		}		
+		return null;
+	}
 
 
 }
