@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour {
 	private Transform spawnPoint;
 	private static int lastLevelPrefix;
 
-	public Level loadedLevel;
+	private Level loadedLevel;
+	private string spaceshipFilename;
 	private static LevelManager singletonInstance;
 
 	private static LevelManager instance {
@@ -33,6 +34,13 @@ public class LevelManager : MonoBehaviour {
 	
 	public void Awake() {
 		DontDestroyOnLoad(this);
+	}
+
+
+	/* Spaceship filename is relative to resources folder. */
+	public static void SetSpaceship(string filename) {
+		Debug.Log("Setting spaceship filename: " + filename);
+		instance.spaceshipFilename = filename;
 	}
 
 
@@ -183,10 +191,16 @@ public class LevelManager : MonoBehaviour {
 			previousShipsInScene[i].SetActive(false);
 		}
 
+		if (spaceshipFilename == null) {
+			throw new Exception("LevelManager: Spaceship Filename is null!");
+		}
+		if (spawnPoint == null) {
+			throw new Exception("LevelManager: Spawn Point is null!");
+		}
 		
 		if (NetworkManager.IsSinglePlayer()) {
 			spaceship = Instantiate(
-				Resources.Load ("Spaceships/Patriot 69Z"),
+				Resources.Load (spaceshipFilename),
 				spawnPoint.position, 
 				spawnPoint.rotation) as GameObject;
 		}
@@ -199,7 +213,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		
 		if (NetworkManager.IsSinglePlayer()) {
-			//Disable network view if having performance issues
+			// Disable network view if having performance issues.
 		}
 
 	}

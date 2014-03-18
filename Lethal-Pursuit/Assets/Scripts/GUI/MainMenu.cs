@@ -31,6 +31,15 @@ public class MainMenu : MonoBehaviour {
 	private bool serverStarted = false;
 	private string chosenShip  = null;
 	private string chosenLevel = null;
+	private bool tutorial = false;
+
+	public string vehicle1Filepath = "Spaceships/Buzz";
+	public string vehicle2Filepath = "Spaceships/Magneto II";
+	public string vehicle3Filepath = "Spaceships/Patriot 69Z";
+
+	public string tutorialFilename = "Tutorial";
+	public string level1Filename = "Highway";
+	
 	
 	public void Start() {
 
@@ -103,32 +112,22 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
-
-		ShowLoadingScreen();
 		NetworkManager.SetSinglePlayer(true);
-		StartCoroutine(OnSingleplayerClickHelper());
-	}
+		tutorial = false;
 
-	private IEnumerator OnSingleplayerClickHelper() {
-		yield return new WaitForSeconds(loadingPanelFadeTime);
-		LevelManager.LoadLevel("Highway");
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
 	
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
 		NetworkManager.SetSinglePlayer(true);
+		tutorial = true;
 
-		ShowLoadingScreen();
-		chosenShip = "Spaceships/Patriot 69Z";
-//		NetworkManager.SetShip(chosenShip);
-		StartCoroutine(OnTutorialClickHelper());
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
 
-	private IEnumerator OnTutorialClickHelper() {
-		yield return new WaitForSeconds(loadingPanelFadeTime);
-		LevelManager.LoadLevel("Tutorial");
-	}
-	
 	public void OnReturnClick() {
 		titlePanel.SetActive(true);
 		OptionsPanel.SetActive(false);
@@ -218,32 +217,59 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnVehicle1Click() {
 		
-		//Record ship name here
-		chosenShip = "Spaceships/Buzz";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle1Filepath);
+		NetworkManager.SetShip(vehicle1Filepath);
 
 		vehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			LobbyPanel.SetActive(true);
+		}
 	}
 	
 	public void OnVehicle2Click() {
 		
-		//Record ship name here
-		chosenShip = "Spaceships/Magneto II";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle2Filepath);
+		NetworkManager.SetShip(vehicle2Filepath);
 
 		vehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			LobbyPanel.SetActive(true);
+		}
 	}
 	
 	public void OnVehicle3Click() {
 		
-		//Record ship name here
-		chosenShip = "Spaceships/Patriot 69Z";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle3Filepath);
+		NetworkManager.SetShip(vehicle3Filepath);
 
 		vehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			LobbyPanel.SetActive(true);
+		}
 	}
 	
 	public void OnMap1Click() {

@@ -61,14 +61,13 @@ public class GameplayManager : MonoBehaviour {
 	public static Spaceship GetLocalSpaceship() {
 		GameObject[] ships = GameObject.FindGameObjectsWithTag("Spaceship");
 		
-		for(int i=0; i<ships.Length; i++) {
-			if(ships[i].GetComponent<NetworkView>() == null) {
-				throw new Exception("Spaceship missing netview " + ships[i].name);
+		for (int i = 0; i < ships.Length; ++i) {
+			if (ships[i].GetComponent<NetworkView>() == null) {
+				throw new Exception("Spaceship missing NetworkView: " + ships[i].name);
 			}
-			if(ships[i].networkView.isMine) {
+			else if (ships[i].networkView.isMine) {
 				return ships[i].GetComponent<Spaceship>();
 			}
-			
 		}		
 		return null;
 	}

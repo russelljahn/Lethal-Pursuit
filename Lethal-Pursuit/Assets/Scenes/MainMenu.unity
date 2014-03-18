@@ -7959,7 +7959,7 @@ MonoBehaviour:
   dragHighlight: 0
   onClick:
   - mTarget: {fileID: 732870048}
-    mMethodName: OnVehicle1Click
+    mMethodName: OnVehicle2Click
     oneShot: 0
 --- !u!65 &800497828
 BoxCollider:
@@ -7968,7 +7968,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 800497821}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 160, y: 85, z: 0}
@@ -12281,7 +12281,7 @@ MonoBehaviour:
   dragHighlight: 0
   onClick:
   - mTarget: {fileID: 732870048}
-    mMethodName: OnVehicle1Click
+    mMethodName: OnVehicle3Click
     oneShot: 0
 --- !u!65 &1389633424
 BoxCollider:
@@ -12290,7 +12290,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1389633417}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 160, y: 85, z: 0}
@@ -15120,7 +15120,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902128218}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 160, y: 85, z: 0}
