@@ -3,9 +3,7 @@ using System;
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
-
-
-	private Transform spawnPoint;
+	
 	private static int lastLevelPrefix;
 
 	private Level loadedLevel;
@@ -153,7 +151,10 @@ public class LevelManager : MonoBehaviour {
 		Level level = GetLevel(Application.loadedLevelName);		
 		Debug.Log("OnLevelWasLoaded() for Level: " + level);
 		
-		if (!NetworkManager.IsSinglePlayer()) {
+		if (NetworkManager.IsSinglePlayer()) {
+			SpawnPlayer();
+		}
+		else {
 			OnNetworkLoadedLevel(level);
 		}
 	}
@@ -162,11 +163,6 @@ public class LevelManager : MonoBehaviour {
 
 		Debug.Log("Entered OnNetworkLoadedLevel: Level " + level);
 		string sceneName = level.sceneName;
-
-		if (!sceneName.Equals("MainMenu")) {
-			GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-			spawnPoint = spawnPoints[0].transform;	
-		}
 
 		if (sceneName.Equals("MainMenu")) {
 			;
@@ -194,21 +190,19 @@ public class LevelManager : MonoBehaviour {
 		if (spaceshipFilename == null) {
 			throw new Exception("LevelManager: Spaceship Filename is null!");
 		}
-		if (spawnPoint == null) {
-			throw new Exception("LevelManager: Spawn Point is null!");
-		}
+	
 		
 		if (NetworkManager.IsSinglePlayer()) {
 			spaceship = Instantiate(
 				Resources.Load (spaceshipFilename),
-				spawnPoint.position, 
-				spawnPoint.rotation) as GameObject;
+				Vector3.zero, 
+				Quaternion.identity) as GameObject;
 		}
 		else {
 			spaceship = Network.Instantiate(
 				Resources.Load (NetworkManager.GetShip()),
-				spawnPoint.position, 
-				spawnPoint.rotation,
+				Vector3.zero, 
+				Quaternion.identity,
 				0) as GameObject;
 		}
 		
@@ -216,6 +210,18 @@ public class LevelManager : MonoBehaviour {
 			// Disable network view if having performance issues.
 		}
 
+		
+		Checkpoint initialCheckpoint = Checkpoint.GetCheckpointByID(0);
+		if (initialCheckpoint == null) {
+			throw new Exception("LevelManager: No checkpoint to spawn at! Spawning at world origin...");
+		}
+		else {
+			initialCheckpoint.SpawnSpaceship(spaceship.GetComponent<Spaceship>());
+		}
+
+		Debug.Log ("spaceshipFilename: " + spaceshipFilename);
+		Debug.Log ("spawned spaceship: " + spaceship);
+		Debug.Log ("spawned spaceship id: " + spaceship.gameObject.GetInstanceID());
 	}
 
 

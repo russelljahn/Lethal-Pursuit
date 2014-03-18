@@ -31,8 +31,8 @@ public class GenerateTower : MonoBehaviour {
 				for (int k = 0; k < height; ++k) {
 					clonePosition.y = cloneTransform.position.y + k*size.y + spaceBetweenGameObjects;
 					
-					Debug.Log("About to network generate a tower");
-					Debug.Log("Clone position " + clonePosition);
+//					Debug.Log("About to network generate a tower");
+//					Debug.Log("Clone position " + clonePosition);
 					
 					GameObject clone = null;
 					if(NetworkManager.IsSinglePlayer()) {
@@ -42,7 +42,7 @@ public class GenerateTower : MonoBehaviour {
 						clone.transform.parent = this.transform;
 					}
 					else if(Network.isServer){
-						Debug.Log("Going to network generate a tower");
+//						Debug.Log("Going to network generate a tower");
 						clone = Network.Instantiate(Resources.Load ("Cube"),
 						                            clonePosition, 
 						                            Quaternion.identity,
