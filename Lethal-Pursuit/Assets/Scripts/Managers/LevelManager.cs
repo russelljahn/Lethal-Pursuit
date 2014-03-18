@@ -145,7 +145,7 @@ public class LevelManager : MonoBehaviour {
 		Level level = GetLevel(Application.loadedLevelName);		
 		Debug.Log("OnLevelWasLoaded() for Level: " + level);
 		
-		if (NetworkManager.IsSinglePlayer()) {
+		if (!NetworkManager.IsSinglePlayer()) {
 			OnNetworkLoadedLevel(level);
 		}
 	}

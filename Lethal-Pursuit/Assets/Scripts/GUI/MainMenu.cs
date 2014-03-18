@@ -8,16 +8,18 @@ public class MainMenu : MonoBehaviour {
 	public GameObject titlePanel;
 	public GameObject OptionsPanel;
 	public GameObject modeSelectPanel;
-	public GameObject MultiplayerPanel;
-	public GameObject VehicleSelectPanel;
-	public GameObject MapSelectPanel;
+	public GameObject multiplayerPanel;
+	public GameObject vehicleSelectPanel;
+	public GameObject mapSelectPanel;
 	public GameObject LobbyPanel;
-	public GameObject LoadingPanel;
+	public GameObject loadingPanel;
 	
 	public UIButton StartServerButton;
 	public UIButton JoinServerButton;
 	public UIButton RefreshButton;
 	public UIButton LaunchButton;
+
+	public float loadingPanelFadeTime = 0.5f;
 
 	public  GameObject[] ServerButtons;
 	public  UILabel[] 	 ButtonLabels;
@@ -31,14 +33,9 @@ public class MainMenu : MonoBehaviour {
 	private string chosenLevel = null;
 	
 	public void Start() {
+
+		HideAllMenus();
 		titlePanel.SetActive(true);
-		OptionsPanel.SetActive(false);
-		modeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(false);
-		MapSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(false);
-		LoadingPanel.SetActive(false);
 		
 		StartServerButton.isEnabled = true;
 		JoinServerButton.isEnabled  = true;
@@ -57,6 +54,26 @@ public class MainMenu : MonoBehaviour {
 			refreshClicked = false;
 			OnServerListReady();	
 		}
+	}
+
+	void HideAllMenus() {
+		titlePanel.SetActive(false);
+		OptionsPanel.SetActive(false);
+		modeSelectPanel.SetActive(false);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
+		mapSelectPanel.SetActive(false);
+		LobbyPanel.SetActive(false);
+		loadingPanel.SetActive(false);
+	}
+
+	void ShowLoadingScreen() {
+		loadingPanel.SetActive(true);
+		TweenAlpha alphaTween = loadingPanel.AddComponent<TweenAlpha>();
+		alphaTween.from = 0.0f;
+		alphaTween.to = 1.0f;
+		alphaTween.duration = loadingPanelFadeTime;
+		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, loadingPanelFadeTime, 1.0f);
 	}
 
 	public void OnExitClick() {
@@ -81,19 +98,34 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.SetSinglePlayer(false);
 		
 		modeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(true);
+		multiplayerPanel.SetActive(true);
 	}
 	
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
+
+		ShowLoadingScreen();
 		NetworkManager.SetSinglePlayer(true);
+		StartCoroutine(OnSingleplayerClickHelper());
+	}
+
+	private IEnumerator OnSingleplayerClickHelper() {
+		yield return new WaitForSeconds(loadingPanelFadeTime);
 		LevelManager.LoadLevel("Highway");
 	}
 	
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
+		NetworkManager.SetSinglePlayer(true);
+
+		ShowLoadingScreen();
 		chosenShip = "Spaceships/Patriot 69Z";
-		NetworkManager.SetShip(chosenShip);
+//		NetworkManager.SetShip(chosenShip);
+		StartCoroutine(OnTutorialClickHelper());
+	}
+
+	private IEnumerator OnTutorialClickHelper() {
+		yield return new WaitForSeconds(loadingPanelFadeTime);
 		LevelManager.LoadLevel("Tutorial");
 	}
 	
@@ -101,11 +133,11 @@ public class MainMenu : MonoBehaviour {
 		titlePanel.SetActive(true);
 		OptionsPanel.SetActive(false);
 		modeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(false);
-		MapSelectPanel.SetActive(false);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
+		mapSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(false);
-		LoadingPanel.SetActive(false);
+		loadingPanel.SetActive(false);
 		
 		JoinServerButton.isEnabled = true;
 		RefreshButton.isEnabled = false;
@@ -121,8 +153,8 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.StartServer();
 		JoinServerButton.isEnabled = false;
 		
-		MultiplayerPanel.SetActive(false);
-		MapSelectPanel.SetActive(true);
+		multiplayerPanel.SetActive(false);
+		mapSelectPanel.SetActive(true);
 		
 		LaunchButton.isEnabled = true;
 		serverStarted = true;
@@ -159,29 +191,29 @@ public class MainMenu : MonoBehaviour {
 	public void OnServer1Click() {
 		NetworkManager.JoinServer(0);
 		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 
 	public void OnServer2Click() {
 		NetworkManager.JoinServer(1);
 		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 
 	public void OnServer3Click() {
 		NetworkManager.JoinServer(2);
 		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 
 	public void OnServer4Click() {
 		NetworkManager.JoinServer(3);
 		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		multiplayerPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 	
 	public void OnVehicle1Click() {
@@ -190,7 +222,7 @@ public class MainMenu : MonoBehaviour {
 		chosenShip = "Spaceships/Buzz";
 		NetworkManager.SetShip(chosenShip);
 
-		VehicleSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(true);
 	}
 	
@@ -200,7 +232,7 @@ public class MainMenu : MonoBehaviour {
 		chosenShip = "Spaceships/Magneto II";
 		NetworkManager.SetShip(chosenShip);
 
-		VehicleSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(true);
 	}
 	
@@ -210,7 +242,7 @@ public class MainMenu : MonoBehaviour {
 		chosenShip = "Spaceships/Patriot 69Z";
 		NetworkManager.SetShip(chosenShip);
 
-		VehicleSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
 		LobbyPanel.SetActive(true);
 	}
 	
@@ -219,8 +251,8 @@ public class MainMenu : MonoBehaviour {
 		//Record level name here
 		chosenLevel = "Tutorial";
 
-		MapSelectPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		mapSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 	
 	public void OnMap2Click() {
@@ -228,8 +260,8 @@ public class MainMenu : MonoBehaviour {
 		//Record level name here
 		chosenLevel = "Tutorial";
 
-		MapSelectPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		mapSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(true);
 	}
 
 	public void OnLaunchClick() {
@@ -241,7 +273,7 @@ public class MainMenu : MonoBehaviour {
 	[RPC]
 	private void SwitchLoad(){
 		LobbyPanel.SetActive(false);
-		LoadingPanel.SetActive(true);
+		loadingPanel.SetActive(true);
 	}
 	
 	[RPC]

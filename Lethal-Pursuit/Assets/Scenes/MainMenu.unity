@@ -6570,15 +6570,16 @@ MonoBehaviour:
   titlePanel: {fileID: 1235859817}
   OptionsPanel: {fileID: 189299191}
   modeSelectPanel: {fileID: 1748918627}
-  MultiplayerPanel: {fileID: 1611607847}
-  VehicleSelectPanel: {fileID: 250506759}
-  MapSelectPanel: {fileID: 2035341933}
+  multiplayerPanel: {fileID: 1611607847}
+  vehicleSelectPanel: {fileID: 250506759}
+  mapSelectPanel: {fileID: 2035341933}
   LobbyPanel: {fileID: 83986538}
-  LoadingPanel: {fileID: 1822479329}
+  loadingPanel: {fileID: 1822479329}
   StartServerButton: {fileID: 288727135}
   JoinServerButton: {fileID: 205107365}
   RefreshButton: {fileID: 341780178}
   LaunchButton: {fileID: 282686959}
+  loadingPanelFadeTime: .75
   ServerButtons:
   - {fileID: 1150215719}
   - {fileID: 966121928}
@@ -14628,7 +14629,7 @@ MonoBehaviour:
   anchorOffset: 0
   renderQueue: 0
   startingRenderQueue: 3003
-  mAlpha: 1
+  mAlpha: 0
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
