@@ -76,14 +76,7 @@ public class MainMenu : MonoBehaviour {
 		loadingPanel.SetActive(false);
 	}
 
-	void ShowLoadingScreen() {
-		loadingPanel.SetActive(true);
-		TweenAlpha alphaTween = loadingPanel.AddComponent<TweenAlpha>();
-		alphaTween.from = 0.0f;
-		alphaTween.to = 1.0f;
-		alphaTween.duration = loadingPanelFadeTime;
-		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, loadingPanelFadeTime, 1.0f);
-	}
+
 
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");

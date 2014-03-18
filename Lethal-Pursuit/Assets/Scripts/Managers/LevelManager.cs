@@ -7,8 +7,12 @@ public class LevelManager : MonoBehaviour {
 	private static int lastLevelPrefix;
 
 	private Level loadedLevel;
-	private string spaceshipFilename;
+	private string spaceshipFilename; // Spaceship prefab relative to resources directory.
 	private static LevelManager singletonInstance;
+
+	private UIPanel loadingScreen;
+	private string loadingScreenFilename = "GUI/LoadingScreen"; // Loading screen prefab relative to resources directory.
+	public float loadingScreenFadeTime = 0.75f;
 
 	private static LevelManager instance {
 		get {
@@ -32,18 +36,72 @@ public class LevelManager : MonoBehaviour {
 	
 	public void Awake() {
 		DontDestroyOnLoad(this);
+
+		GameObject loadingScreenGameObject = GameObject.Instantiate(
+			Resources.Load (loadingScreenFilename)
+		) as GameObject;
+
+		if (loadingScreenGameObject == null) {
+			throw new Exception("LevelManager: Error creating loading screen!");
+		}
+		else {
+			loadingScreen = loadingScreenGameObject.GetComponent<UIPanel>();
+			DontDestroyOnLoad(loadingScreenGameObject);
+			loadingScreen.transform.parent = this.transform;
+			loadingScreenGameObject.name = "Loading Screen";
+			loadingScreen.alpha = 0.0f;
+		}
+	}
+
+
+	private static void ShowLoadingScreen() {
+		Debug.Log ("LevelManager: Showing loading screen...");
+		if (instance.loadingScreen == null) {
+			return;
+		}
+		if (instance.loadingScreen.GetComponent<TweenAlpha>() != null) {
+			GameObject.DestroyImmediate(instance.loadingScreen.GetComponent<TweenAlpha>());
+		}
+		TweenAlpha alphaTween = instance.loadingScreen.gameObject.AddComponent<TweenAlpha>();
+		alphaTween.from = 0.0f;
+		alphaTween.to = 1.0f;
+		alphaTween.duration = instance.loadingScreenFadeTime;
+		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, instance.loadingScreenFadeTime, 1.0f);
+		alphaTween.Play();
+//		GameObject.Destroy(alphaTween, instance.loadingScreenFadeTime);
+	}
+
+
+	private static void HideLoadingScreen() {
+		Debug.Log ("LevelManager: Hiding loading screen...");
+		if (instance.loadingScreen == null) {
+			return;
+		}
+		if (instance.loadingScreen.GetComponent<TweenAlpha>() != null) {
+			GameObject.DestroyImmediate(instance.loadingScreen.GetComponent<TweenAlpha>());
+		}
+
+		instance.loadingScreen.alpha = 0.0f; // For now, just set alpha to 0 until I can discover why code below doesn't activate.
+		return; 
+
+		TweenAlpha alphaTween = instance.loadingScreen.gameObject.AddComponent<TweenAlpha>();
+		alphaTween.from = 1.0f;
+		alphaTween.to = 0.0f;
+		alphaTween.duration = instance.loadingScreenFadeTime;
+		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 1.0f, instance.loadingScreenFadeTime, 0.0f);
+		alphaTween.Play();
+//		GameObject.Destroy(alphaTween, instance.loadingScreenFadeTime);
 	}
 
 
 	/* Spaceship filename is relative to resources folder. */
 	public static void SetSpaceship(string filename) {
-		Debug.Log("Setting spaceship filename: " + filename);
+		Debug.Log("LevelManager: Setting spaceship filename: " + filename);
 		instance.spaceshipFilename = filename;
 	}
 
 
 	public Level GetLevel(string levelName) {
-		Level returnLevel;
 		
 		if (levelName.Equals("MainMenu")) {
 			return new LevelMainMenu();
@@ -55,7 +113,7 @@ public class LevelManager : MonoBehaviour {
 			return new LevelHighway();
 		}
 		else {
-			throw new NotImplementedException("Level '" + levelName + "' is either not known or programmed in yet!");
+			throw new NotImplementedException("LevelManager: Level '" + levelName + "' is either not known or programmed in yet!");
 		}
 	}
 	
@@ -69,26 +127,32 @@ public class LevelManager : MonoBehaviour {
 
 
 	public static void LoadLevel(string levelName) {
-		
 		Level levelToLoad = instance.GetLevel(levelName);
-		Debug.Log("Loading level: " + levelToLoad);
+		Debug.Log("LevelManager: Loading level: " + levelToLoad);
+		instance.StartCoroutine(LoadLevelHelper(levelToLoad));
+	}
+
+
+	private static IEnumerator LoadLevelHelper(Level levelToLoad) {
+		ShowLoadingScreen();
+		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
 		Application.LoadLevel(levelToLoad.sceneName);
 	}
 
 	
 	public static void ReloadLevel() {
-		Debug.Log("Reloading level: " + instance.loadedLevel);
+		Debug.Log("LevelManager: Reloading level: " + instance.loadedLevel);
 		Application.LoadLevel(instance.loadedLevel.sceneName);
 	}
 
 
 	public static void NetworkLoadLevel(string levelName, int levelPrefix) {
-		LevelManager.instance.StartCoroutine(LoadLevelHelper(levelName, levelPrefix));
+		LevelManager.instance.StartCoroutine(NetworkLoadLevelHelper(levelName, levelPrefix));
 	}
 
 
-	private static IEnumerator LoadLevelHelper(string levelName, int levelPrefix) {
-		Debug.Log("Loading level " + levelName + " with prefix " + levelPrefix);
+	private static IEnumerator NetworkLoadLevelHelper(string levelName, int levelPrefix) {
+		Debug.Log("LevelManager: Loading level " + levelName + " with prefix " + levelPrefix);
 		lastLevelPrefix = levelPrefix;
 		
 		// There is no reason to send any more data over the network on the default channel,
@@ -105,7 +169,7 @@ public class LevelManager : MonoBehaviour {
 		Network.SetLevelPrefix(levelPrefix);
 		
 		Level levelToLoad = instance.GetLevel(levelName);
-		Debug.Log("Loading level: " + levelToLoad);
+		Debug.Log("LevelManager: Loading level: " + levelToLoad);
 		Application.LoadLevel(levelToLoad.sceneName);
 		
 		yield return new WaitForEndOfFrame();
@@ -118,11 +182,11 @@ public class LevelManager : MonoBehaviour {
 		// Now the level has been loaded and we can start sending out data
 		Network.SetSendingEnabled(0, true);
 		
-		Debug.Log("sending load msg");
+		Debug.Log("LevelManager: sending load msg");
 		// Notify our objects that the level and the network is ready
 		foreach (GameObject go in FindObjectsOfType(typeof(GameObject)) ) {
-			Debug.Log("sending load msg");
-			go.SendMessage("OnNetworkLoadedLevel", levelToLoad, SendMessageOptions.DontRequireReceiver);  
+			Debug.Log("LevelManager: sending load msg");
+			go.SendMessage("LevelManager: OnNetworkLoadedLevel", levelToLoad, SendMessageOptions.DontRequireReceiver);  
 		}
 		
 	}
@@ -149,32 +213,16 @@ public class LevelManager : MonoBehaviour {
 	void OnLevelWasLoaded(int levelNumber) {
 	
 		Level level = GetLevel(Application.loadedLevelName);		
-		Debug.Log("OnLevelWasLoaded() for Level: " + level);
-		
-		if (NetworkManager.IsSinglePlayer()) {
-			SpawnPlayer();
-		}
-		else {
-			OnNetworkLoadedLevel(level);
-		}
-	}
+		Debug.Log("LevelManager: OnLevelWasLoaded() for Level: " + level);
 
-	void OnNetworkLoadedLevel(Level level) {
-
-		Debug.Log("Entered OnNetworkLoadedLevel: Level " + level);
-		string sceneName = level.sceneName;
-
-		if (sceneName.Equals("MainMenu")) {
-			;
+		try {
+			if (!level.sceneName.Equals("MainMenu")) {
+				SpawnPlayer();
+			}
 		}
-		else if (sceneName.Equals("Tutorial")) {
-			SpawnPlayer();
-		}
-		else if (sceneName.Equals("Highway")) {
-			SpawnPlayer();
-		}
-		else {
-			throw new NotImplementedException("Level loading for level '" + level + "' has not been programmed in yet!");
+		catch (Exception e) { 
+			HideLoadingScreen();
+			throw;
 		}
 	}
 
@@ -188,7 +236,7 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		if (spaceshipFilename == null) {
-			throw new Exception("LevelManager: Spaceship Filename is null!");
+			throw new Exception("LevelManager: Spaceship filename is null!");
 		}
 	
 		
@@ -222,6 +270,7 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log ("spaceshipFilename: " + spaceshipFilename);
 		Debug.Log ("spawned spaceship: " + spaceship);
 		Debug.Log ("spawned spaceship id: " + spaceship.gameObject.GetInstanceID());
+
 	}
 
 
