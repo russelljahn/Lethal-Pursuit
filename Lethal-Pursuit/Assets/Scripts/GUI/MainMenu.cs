@@ -8,17 +8,18 @@ public class MainMenu : MonoBehaviour {
 	public GameObject titlePanel;
 	public GameObject optionsPanel;
 	public GameObject modeSelectPanel;
-	public GameObject multiplayerPanel;
 	public GameObject vehicleSelectPanel;
 	public GameObject mapSelectPanel;
+	public GameObject multiplayerHubPanel;
 	public GameObject lobbyPanel;
+	public GameObject joinServerPanel;	
 	
 	public UIButton startServerButton;
 	public UIButton joinServerButton;
 	public UIButton refreshButton;
 	public UIButton launchButton;
-
-	public float loadingPanelFadeTime = 0.5f;
+	public UILabel launchText;
+	
 
 	public  GameObject[] serverButtons;
 	public  UILabel[] 	 buttonLabels;
@@ -41,7 +42,6 @@ public class MainMenu : MonoBehaviour {
 	
 	
 	public void Start() {
-
 		HideAllMenus();
 		titlePanel.SetActive(true);
 		
@@ -50,55 +50,62 @@ public class MainMenu : MonoBehaviour {
 		refreshButton.isEnabled     = false;
 		launchButton.isEnabled      = false;
 
-		for(int i=0; i<serverButtons.Length; i++) {
+		for (int i = 0; i < serverButtons.Length; ++i) {
 			serverButtons[i].SetActive(false);
 		}
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		if (NetworkManager.IsServerListReady() && refreshClicked) {
-			Debug.Log("Refreshing......");
 			refreshClicked = false;
 			OnServerListReady();	
 		}
 	}
 
+
 	void HideAllMenus() {
 		titlePanel.SetActive(false);
 		optionsPanel.SetActive(false);
 		modeSelectPanel.SetActive(false);
-		multiplayerPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(false);
 		mapSelectPanel.SetActive(false);
+		multiplayerHubPanel.SetActive(false);
 		lobbyPanel.SetActive(false);
+		joinServerPanel.SetActive(false);
 	}
+
 	
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");
 		LevelManager.Quit();
 	}
-	
+
+
 	public void OnOptionsClick() {
 		Debug.Log("Options Clicked");
 		titlePanel.SetActive(false);
 		optionsPanel.SetActive(true);
 	}
-	
+
+
 	public void OnStartClick() {
 		Debug.Log("Start Clicked");
 		titlePanel.SetActive(false);
 		modeSelectPanel.SetActive(true);
 	}
+
 	
 	public void OnMultiplayerClick() {
 		Debug.Log("Multiplayer Clicked");
 		NetworkManager.SetSinglePlayer(false);
 		
 		modeSelectPanel.SetActive(false);
-		multiplayerPanel.SetActive(true);
+		multiplayerHubPanel.SetActive(true);
 	}
-	
+
+
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
 		NetworkManager.SetSinglePlayer(true);
@@ -107,7 +114,8 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
-	
+
+
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
 		NetworkManager.SetSinglePlayer(true);
@@ -117,15 +125,8 @@ public class MainMenu : MonoBehaviour {
 		vehicleSelectPanel.SetActive(true);
 	}
 
+
 	public void OnReturnClick() {
-		titlePanel.SetActive(true);
-		optionsPanel.SetActive(false);
-		modeSelectPanel.SetActive(false);
-		multiplayerPanel.SetActive(false);
-		vehicleSelectPanel.SetActive(false);
-		mapSelectPanel.SetActive(false);
-		lobbyPanel.SetActive(false);
-		
 		joinServerButton.isEnabled = true;
 		refreshButton.isEnabled = false;
 		
@@ -136,16 +137,20 @@ public class MainMenu : MonoBehaviour {
 		serverStarted = false;
 	}
 
+
 	public void OnStartServerClick() {
 		NetworkManager.StartServer();
 		joinServerButton.isEnabled = false;
 		
-		multiplayerPanel.SetActive(false);
-		mapSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 		
 		launchButton.isEnabled = true;
 		serverStarted = true;
+
+		launchText.text = "Launch Game";
 	}
+
 
 	public void OnJoinServerClick() {
 		refreshButton.isEnabled = true;
@@ -154,60 +159,66 @@ public class MainMenu : MonoBehaviour {
 		refreshClicked = true;
 
 		launchButton.isEnabled = false;
+
+		HideAllMenus();
+		joinServerPanel.SetActive(true);
+
+		launchText.text = "Waiting On Host";
 	}
+
 	
 	private void OnServerListReady() {
-	
 		hostdata = NetworkManager.GetHostData();
 		
 		for (int i=0; i<serverButtons.Length; ++i) {
 			serverButtons[i].SetActive(false);
 		}
 		
-		for (int i=0; i<hostdata.Length && i<serverButtons.Length; ++i) {
+		for (int i = 0; i < hostdata.Length && i < serverButtons.Length; ++i) {
 			serverButtons[i].SetActive(true);
 			buttonLabels[i].text = hostdata[i].gameName;
 		}
 	}
+
 
 	public void OnRefreshClick() {
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
 	}
 
+
 	public void OnServer1Click() {
 		NetworkManager.JoinServer(0);
-		
-		multiplayerPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer2Click() {
 		NetworkManager.JoinServer(1);
-		
-		multiplayerPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer3Click() {
 		NetworkManager.JoinServer(2);
-		
-		multiplayerPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer4Click() {
 		NetworkManager.JoinServer(3);
-		
-		multiplayerPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
+
 	
 	public void OnVehicle1Click() {
-		
 		LevelManager.SetSpaceship(vehicle1Filepath);
 
-		vehicleSelectPanel.SetActive(false);
+		HideAllMenus();
 		if (NetworkManager.IsSinglePlayer()) {
 			if (tutorial) {
 				LevelManager.LoadLevel(tutorialFilename);
@@ -217,15 +228,15 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			lobbyPanel.SetActive(true);
+			OnLobbyClick();
 		}
 	}
-	
+
+
 	public void OnVehicle2Click() {
-		
 		LevelManager.SetSpaceship(vehicle2Filepath);
 
-		vehicleSelectPanel.SetActive(false);
+		HideAllMenus();
 		if (NetworkManager.IsSinglePlayer()) {
 			if (tutorial) {
 				LevelManager.LoadLevel(tutorialFilename);
@@ -235,15 +246,15 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			lobbyPanel.SetActive(true);
+			OnLobbyClick();
 		}
 	}
-	
+
+
 	public void OnVehicle3Click() {
-		
 		LevelManager.SetSpaceship(vehicle3Filepath);
 
-		vehicleSelectPanel.SetActive(false);
+		HideAllMenus();
 		if (NetworkManager.IsSinglePlayer()) {
 			if (tutorial) {
 				LevelManager.LoadLevel(tutorialFilename);
@@ -253,39 +264,45 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			lobbyPanel.SetActive(true);
+			OnLobbyClick();
 		}
 	}
-	
+
+
 	public void OnMap1Click() {
-		
-		//Record level name here
 		chosenLevel = "Tutorial";
 
 		mapSelectPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(true);
 	}
-	
+
+
 	public void OnMap2Click() {
-		
-		//Record level name here
 		chosenLevel = "Tutorial";
 
 		mapSelectPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(true);
 	}
+
+
+	public void OnLobbyClick() {
+		HideAllMenus();
+		lobbyPanel.SetActive(true);
+	}
+
 
 	public void OnLaunchClick() {
 		networkView.RPC("SwitchLoad", RPCMode.All);
 		networkView.RPC("LevelLoader", RPCMode.All);
-		//LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
 	}
-	
+
+
 	[RPC]
-	private void SwitchLoad(){
+	private void SwitchLoad() {
 		lobbyPanel.SetActive(false);
 	}
-	
+
+
 	[RPC]
 	private void LevelLoader() {
 		LevelManager.NetworkLoadLevel("Tutorial", 1);	

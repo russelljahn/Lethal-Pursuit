@@ -3,8 +3,8 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 	
-	private static string gameType = "CS354T-Galacticats-LP";
-	public  static string gameName = "Lethal-Pursuit: Krunklicious edition";
+	private static string gameType = "2P Multiplayer: ";
+	public  static string gameName = "Hosted Game";
 	private static string gameComment = "Network Test Run";
 	
 	private static HostData[] hostData;
