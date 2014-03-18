@@ -152,6 +152,10 @@ public class LevelManager : MonoBehaviour {
 
 
 	private static IEnumerator NetworkLoadLevelHelper(string levelName, int levelPrefix) {
+
+		ShowLoadingScreen();
+		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
+
 		Debug.Log("LevelManager: Loading level " + levelName + " with prefix " + levelPrefix);
 		lastLevelPrefix = levelPrefix;
 		
@@ -248,7 +252,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		else {
 			spaceship = Network.Instantiate(
-				Resources.Load (NetworkManager.GetShip()),
+				Resources.Load (spaceshipFilename),
 				Vector3.zero, 
 				Quaternion.identity,
 				0) as GameObject;

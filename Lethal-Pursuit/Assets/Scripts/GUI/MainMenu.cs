@@ -6,23 +6,22 @@ public class MainMenu : MonoBehaviour {
 	private static string gameType = "CS354T-Galacticats-LP";
 
 	public GameObject titlePanel;
-	public GameObject OptionsPanel;
+	public GameObject optionsPanel;
 	public GameObject modeSelectPanel;
 	public GameObject multiplayerPanel;
 	public GameObject vehicleSelectPanel;
 	public GameObject mapSelectPanel;
-	public GameObject LobbyPanel;
-	public GameObject loadingPanel;
+	public GameObject lobbyPanel;
 	
-	public UIButton StartServerButton;
-	public UIButton JoinServerButton;
-	public UIButton RefreshButton;
-	public UIButton LaunchButton;
+	public UIButton startServerButton;
+	public UIButton joinServerButton;
+	public UIButton refreshButton;
+	public UIButton launchButton;
 
 	public float loadingPanelFadeTime = 0.5f;
 
-	public  GameObject[] ServerButtons;
-	public  UILabel[] 	 ButtonLabels;
+	public  GameObject[] serverButtons;
+	public  UILabel[] 	 buttonLabels;
 	private HostData[]   hostdata;
 	
 	private bool refreshClicked = false;
@@ -46,13 +45,13 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		titlePanel.SetActive(true);
 		
-		StartServerButton.isEnabled = true;
-		JoinServerButton.isEnabled  = true;
-		RefreshButton.isEnabled     = false;
-		LaunchButton.isEnabled      = false;
+		startServerButton.isEnabled = true;
+		joinServerButton.isEnabled  = true;
+		refreshButton.isEnabled     = false;
+		launchButton.isEnabled      = false;
 
-		for(int i=0; i<ServerButtons.Length; i++) {
-			ServerButtons[i].SetActive(false);
+		for(int i=0; i<serverButtons.Length; i++) {
+			serverButtons[i].SetActive(false);
 		}
 	}
 	
@@ -67,17 +66,14 @@ public class MainMenu : MonoBehaviour {
 
 	void HideAllMenus() {
 		titlePanel.SetActive(false);
-		OptionsPanel.SetActive(false);
+		optionsPanel.SetActive(false);
 		modeSelectPanel.SetActive(false);
 		multiplayerPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(false);
 		mapSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(false);
-		loadingPanel.SetActive(false);
+		lobbyPanel.SetActive(false);
 	}
-
-
-
+	
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");
 		LevelManager.Quit();
@@ -86,7 +82,7 @@ public class MainMenu : MonoBehaviour {
 	public void OnOptionsClick() {
 		Debug.Log("Options Clicked");
 		titlePanel.SetActive(false);
-		OptionsPanel.SetActive(true);
+		optionsPanel.SetActive(true);
 	}
 	
 	public void OnStartClick() {
@@ -123,16 +119,15 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnReturnClick() {
 		titlePanel.SetActive(true);
-		OptionsPanel.SetActive(false);
+		optionsPanel.SetActive(false);
 		modeSelectPanel.SetActive(false);
 		multiplayerPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(false);
 		mapSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(false);
-		loadingPanel.SetActive(false);
+		lobbyPanel.SetActive(false);
 		
-		JoinServerButton.isEnabled = true;
-		RefreshButton.isEnabled = false;
+		joinServerButton.isEnabled = true;
+		refreshButton.isEnabled = false;
 		
 		if (serverStarted) {
 			NetworkManager.ServerCleanup();
@@ -143,35 +138,35 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnStartServerClick() {
 		NetworkManager.StartServer();
-		JoinServerButton.isEnabled = false;
+		joinServerButton.isEnabled = false;
 		
 		multiplayerPanel.SetActive(false);
 		mapSelectPanel.SetActive(true);
 		
-		LaunchButton.isEnabled = true;
+		launchButton.isEnabled = true;
 		serverStarted = true;
 	}
 
 	public void OnJoinServerClick() {
-		RefreshButton.isEnabled = true;
+		refreshButton.isEnabled = true;
 
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
-		
-		LaunchButton.isEnabled = false;
+
+		launchButton.isEnabled = false;
 	}
 	
 	private void OnServerListReady() {
 	
 		hostdata = NetworkManager.GetHostData();
 		
-		for (int i=0; i<ServerButtons.Length; ++i) {
-			ServerButtons[i].SetActive(false);
+		for (int i=0; i<serverButtons.Length; ++i) {
+			serverButtons[i].SetActive(false);
 		}
 		
-		for (int i=0; i<hostdata.Length && i<ServerButtons.Length; ++i) {
-			ServerButtons[i].SetActive(true);
-			ButtonLabels[i].text = hostdata[i].gameName;
+		for (int i=0; i<hostdata.Length && i<serverButtons.Length; ++i) {
+			serverButtons[i].SetActive(true);
+			buttonLabels[i].text = hostdata[i].gameName;
 		}
 	}
 
@@ -211,7 +206,6 @@ public class MainMenu : MonoBehaviour {
 	public void OnVehicle1Click() {
 		
 		LevelManager.SetSpaceship(vehicle1Filepath);
-		NetworkManager.SetShip(vehicle1Filepath);
 
 		vehicleSelectPanel.SetActive(false);
 		if (NetworkManager.IsSinglePlayer()) {
@@ -223,14 +217,13 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			LobbyPanel.SetActive(true);
+			lobbyPanel.SetActive(true);
 		}
 	}
 	
 	public void OnVehicle2Click() {
 		
 		LevelManager.SetSpaceship(vehicle2Filepath);
-		NetworkManager.SetShip(vehicle2Filepath);
 
 		vehicleSelectPanel.SetActive(false);
 		if (NetworkManager.IsSinglePlayer()) {
@@ -242,14 +235,13 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			LobbyPanel.SetActive(true);
+			lobbyPanel.SetActive(true);
 		}
 	}
 	
 	public void OnVehicle3Click() {
 		
 		LevelManager.SetSpaceship(vehicle3Filepath);
-		NetworkManager.SetShip(vehicle3Filepath);
 
 		vehicleSelectPanel.SetActive(false);
 		if (NetworkManager.IsSinglePlayer()) {
@@ -261,7 +253,7 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		else {
-			LobbyPanel.SetActive(true);
+			lobbyPanel.SetActive(true);
 		}
 	}
 	
@@ -291,8 +283,7 @@ public class MainMenu : MonoBehaviour {
 	
 	[RPC]
 	private void SwitchLoad(){
-		LobbyPanel.SetActive(false);
-		loadingPanel.SetActive(true);
+		lobbyPanel.SetActive(false);
 	}
 	
 	[RPC]

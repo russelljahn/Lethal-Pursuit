@@ -40,11 +40,14 @@ public class Checkpoint : MonoBehaviour {
 			SpawnPoint currentSpawnPoint = spawnPoints[i];
 			if (currentSpawnPoint.available) {
 				currentSpawnPoint.SpawnSpaceship(spaceship);
+				spaceship.transform.localRotation = currentSpawnPoint.transform.localRotation;
 				return;
 			}
 		}
 
 		spawnPoints[0].SpawnSpaceship(spaceship);
+		spaceship.transform.localRotation = spawnPoints[0].transform.localRotation;
+		
 		throw new Exception("All SpawnPoints for '" + this.gameObject.name + " are taken; forcing spawn at SpawnPoint '" + spawnPoints[0] + "'!");
 
 

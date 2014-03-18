@@ -134,14 +134,6 @@ public class NetworkManager : MonoBehaviour {
 		return hostData;
 	}
 
-	public static void SetShip(string ship) {
-		chosenShip = ship;
-	}
-
-	public static string GetShip() {
-		return chosenShip;
-	}
-
 	public static bool IsPlayerVarsSet() {
 		return chosenShip != null;
 	}
