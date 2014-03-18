@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	private string spaceshipFilename; // Spaceship prefab relative to resources directory.
 	private static LevelManager singletonInstance;
 
+	private bool showLoadingScreen = true;
 	private UIPanel loadingScreen;
 	private string loadingScreenFilename = "GUI/LoadingScreen"; // Loading screen prefab relative to resources directory.
 	public float loadingScreenFadeTime = 0.75f;
@@ -21,11 +22,13 @@ public class LevelManager : MonoBehaviour {
 				singletonInstance = FindObjectOfType(typeof (LevelManager)) as LevelManager;
 			}
 			
-			/* If instance is null, then no GameManager exists in the scene, so create one. */
+			/* If instance is null, then no LevelManager exists in the scene, so create one. */
 			if (singletonInstance == null) {
 				GameObject obj = new GameObject("LevelManager");
 				singletonInstance = obj.AddComponent(typeof (LevelManager)) as LevelManager;
 				obj.name = "Level Manager";
+				singletonInstance.loadedLevel = GetLoadedLevel();
+				Debug.Log ("Loaded level on LevelManager creation: " + singletonInstance.loadedLevel);
 				//Debug.Log ("Could not find a LevelManager object, so automatically generated one.");
 			}
 			
@@ -62,6 +65,10 @@ public class LevelManager : MonoBehaviour {
 		if (instance.loadingScreen.GetComponent<TweenAlpha>() != null) {
 			GameObject.DestroyImmediate(instance.loadingScreen.GetComponent<TweenAlpha>());
 		}
+
+		instance.loadingScreen.alpha = 1.0f; // For now, just set alpha to 0 until I can discover why code below doesn't always activate.
+		return; 
+
 		TweenAlpha alphaTween = instance.loadingScreen.gameObject.AddComponent<TweenAlpha>();
 		alphaTween.from = 0.0f;
 		alphaTween.to = 1.0f;
@@ -81,7 +88,7 @@ public class LevelManager : MonoBehaviour {
 			GameObject.DestroyImmediate(instance.loadingScreen.GetComponent<TweenAlpha>());
 		}
 
-		instance.loadingScreen.alpha = 0.0f; // For now, just set alpha to 0 until I can discover why code below doesn't activate.
+		instance.loadingScreen.alpha = 0.0f; // For now, just set alpha to 0 until I can discover why code below doesn't always activate.
 		return; 
 
 		TweenAlpha alphaTween = instance.loadingScreen.gameObject.AddComponent<TweenAlpha>();
@@ -126,17 +133,32 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	public static void LoadLevel(string levelName) {
+	public static bool IsLoadedLevelName(string levelName) {
+		Debug.Log ("loadedLevel: " + instance.loadedLevel);
+		return instance.loadedLevel.name.Equals(levelName);
+	}
+
+
+	public static bool IsMainMenu() {
+		return IsLoadedLevelName("MainMenu");
+	}
+	
+
+	public static void LoadLevel(string levelName, bool showLoadingScreen = true) {
 		Level levelToLoad = instance.GetLevel(levelName);
 		Debug.Log("LevelManager: Loading level: " + levelToLoad);
+		instance.showLoadingScreen = showLoadingScreen;
 		instance.StartCoroutine(LoadLevelHelper(levelToLoad));
 	}
 
 
 	private static IEnumerator LoadLevelHelper(Level levelToLoad) {
-		ShowLoadingScreen();
-		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
+		if (instance.showLoadingScreen) {
+			ShowLoadingScreen();
+			yield return new WaitForSeconds(instance.loadingScreenFadeTime);
+		}
 		Application.LoadLevel(levelToLoad.sceneName);
+		yield break;
 	}
 
 	
@@ -151,9 +173,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	private static IEnumerator NetworkLoadLevelHelper(string levelName, int levelPrefix) {
+	private static IEnumerator NetworkLoadLevelHelper(string levelName, int levelPrefix, bool showLoadingScreen = true) {
+		instance.showLoadingScreen = showLoadingScreen;
 
-		ShowLoadingScreen();
+		if (instance.showLoadingScreen) {
+			ShowLoadingScreen();
+		}
 		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
 
 		Debug.Log("LevelManager: Loading level " + levelName + " with prefix " + levelPrefix);
@@ -196,16 +221,16 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	public static void LoadMainMenu() {
-		
-		if (Network.isClient) {
-			Network.Disconnect();
+	public static void LoadMainMenu(bool showLoadingScreen = true) {
+		if (!NetworkManager.IsSinglePlayer()) {
+			if (Network.isClient) {
+				Network.Disconnect();
+			}
+			else {
+				NetworkManager.ServerCleanup();
+			}
 		}
-		else {
-			NetworkManager.ServerCleanup();
-			LoadLevel("MainMenu");
-			//LevelManager.instance.networkView.RPC("LevelManager.LoadLevel", RPCMode.All);
-		}
+		LoadLevel("MainMenu", showLoadingScreen);
 	}
 	
 
@@ -220,12 +245,14 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("LevelManager: OnLevelWasLoaded() for Level: " + level);
 
 		try {
-			if (!level.sceneName.Equals("MainMenu")) {
+			if (!IsMainMenu()) {
 				SpawnPlayer();
 			}
 		}
-		catch (Exception e) { 
-			HideLoadingScreen();
+		catch (Exception) { 
+			if (instance.showLoadingScreen) {
+				HideLoadingScreen();
+			}
 			throw;
 		}
 	}

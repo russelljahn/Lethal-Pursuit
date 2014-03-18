@@ -97,18 +97,20 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	void OnPlayerDisconnected(NetworkPlayer player) {
-		Debug.Log("Clean up after player " + player);
+		Debug.Log("Clean up after player: " + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 	}
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
-		Debug.Log("Clean up a bit after server quit");
+		Debug.Log("Cleaning up in OnDisconnectedFromServer()...");
 		Network.RemoveRPCs(Network.player);
 		Network.DestroyPlayerObjects(Network.player);
-		
-		LevelManager.LoadLevel("MainMenu");
+
 		//Need to have a level loaded back to menu here
+//		if (!LevelManager.IsMainMenu()) {
+//			LevelManager.LoadLevel("MainMenu");
+//		}
 	}
 
 	public static void JoinServer(int serverIndex) {

@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
 	private static string gameType = "CS354T-Galacticats-LP";
 
 	public GameObject titlePanel;
+	public GameObject backPanel;
 	public GameObject optionsPanel;
 	public GameObject modeSelectPanel;
 	public GameObject vehicleSelectPanel;
@@ -31,7 +32,9 @@ public class MainMenu : MonoBehaviour {
 	private bool serverStarted = false;
 	private string chosenShip  = null;
 	private string chosenLevel = null;
+
 	private bool tutorial = false;
+	private bool client = false;
 
 	public string vehicle1Filepath = "Spaceships/Buzz";
 	public string vehicle2Filepath = "Spaceships/Magneto II";
@@ -43,8 +46,6 @@ public class MainMenu : MonoBehaviour {
 	
 	public void Start() {
 		HideAllMenus();
-		titlePanel.SetActive(true);
-		
 		startServerButton.isEnabled = true;
 		joinServerButton.isEnabled  = true;
 		refreshButton.isEnabled     = false;
@@ -53,6 +54,7 @@ public class MainMenu : MonoBehaviour {
 		for (int i = 0; i < serverButtons.Length; ++i) {
 			serverButtons[i].SetActive(false);
 		}
+		OnTitleClick();
 	}
 
 
@@ -76,7 +78,64 @@ public class MainMenu : MonoBehaviour {
 		joinServerPanel.SetActive(false);
 	}
 
+
+	public void OnClickBack() {
+		if (serverStarted) {
+			NetworkManager.ServerCleanup();
+		}
+		serverStarted = false;
+		joinServerButton.isEnabled = true;
+		refreshButton.isEnabled = false;
+
+		// Exit
+		if (titlePanel.activeInHierarchy) {
+			OnExitClick();
+		}
+		// Mode Select -> Title Screen
+		else if (modeSelectPanel.activeInHierarchy) {
+			HideAllMenus();
+			titlePanel.SetActive(true);
+			UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+			backButtonText.text = "Exit";
+		}
+		// Options -> Mode Select
+		else if (optionsPanel.activeInHierarchy) {
+			OnModeSelectClick();
+		}
+		// Vehicle Select -> Mode Select (if Singleplayer)/MultiplayerHub (if Multiplayer)
+		else if (vehicleSelectPanel.activeInHierarchy) {
+			if (NetworkManager.IsSinglePlayer()) {
+				OnModeSelectClick();
+			}
+			else {
+				OnMultiplayerClick();
+			}
+		}
+		// Map Select -> Vehicle Select
+		else if (mapSelectPanel.activeInHierarchy) {
+
+		}
+		// MultiplayerHub -> Mode Select
+		else if (multiplayerHubPanel.activeInHierarchy) {
+			OnModeSelectClick();
+		}
+		// Lobby -> MultiplayerHub (if Multiplayer CreateServer)/JoinServer (if Multiplayer JoinServer)
+		else if (lobbyPanel.activeInHierarchy) {
+			if (client) {
+				client = false;
+				OnJoinServerClick();
+			}
+			else {
+				OnMultiplayerClick();
+			}
+		}
+		// JoinServer -> MultiplayerHub
+		else if (joinServerPanel.activeInHierarchy) {
+			OnMultiplayerClick();
+		}
+	}
 	
+
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");
 		LevelManager.Quit();
@@ -85,23 +144,37 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnOptionsClick() {
 		Debug.Log("Options Clicked");
-		titlePanel.SetActive(false);
+		HideAllMenus();
 		optionsPanel.SetActive(true);
 	}
 
 
-	public void OnStartClick() {
-		Debug.Log("Start Clicked");
-		titlePanel.SetActive(false);
+	public void OnTitleClick() {
+		Debug.Log("Title Clicked");
+		HideAllMenus();
+		titlePanel.SetActive(true);
+
+		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+		backButtonText.text = "Exit";
+	}
+	
+
+	public void OnModeSelectClick() {
+		Debug.Log("Mode Select Clicked");
+		HideAllMenus();
 		modeSelectPanel.SetActive(true);
+
+		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+		backButtonText.text = "Back";
 	}
 
 	
 	public void OnMultiplayerClick() {
 		Debug.Log("Multiplayer Clicked");
 		NetworkManager.SetSinglePlayer(false);
+		tutorial = false;
 		
-		modeSelectPanel.SetActive(false);
+		HideAllMenus();
 		multiplayerHubPanel.SetActive(true);
 	}
 
@@ -124,19 +197,7 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
-
-
-	public void OnReturnClick() {
-		joinServerButton.isEnabled = true;
-		refreshButton.isEnabled = false;
-		
-		if (serverStarted) {
-			NetworkManager.ServerCleanup();
-		}
-		
-		serverStarted = false;
-	}
-
+	
 
 	public void OnStartServerClick() {
 		NetworkManager.StartServer();
@@ -164,13 +225,14 @@ public class MainMenu : MonoBehaviour {
 		joinServerPanel.SetActive(true);
 
 		launchText.text = "Waiting On Host";
+		client = true;
 	}
 
 	
 	private void OnServerListReady() {
 		hostdata = NetworkManager.GetHostData();
 		
-		for (int i=0; i<serverButtons.Length; ++i) {
+		for (int i = 0; i < serverButtons.Length; ++i) {
 			serverButtons[i].SetActive(false);
 		}
 		
@@ -272,7 +334,7 @@ public class MainMenu : MonoBehaviour {
 	public void OnMap1Click() {
 		chosenLevel = "Tutorial";
 
-		mapSelectPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
 
@@ -280,7 +342,7 @@ public class MainMenu : MonoBehaviour {
 	public void OnMap2Click() {
 		chosenLevel = "Tutorial";
 
-		mapSelectPanel.SetActive(false);
+		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
 

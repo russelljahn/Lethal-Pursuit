@@ -266,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .330810547, z: 0}
+  m_LocalPosition: {x: 0, y: 1.33081055, z: 0}
   m_LocalScale: {x: 1.00006998, y: 1.00006998, z: 1.00006998}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -399,7 +399,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3001
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -480,7 +480,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.05128217
+  aspectRatio: 3.07692313
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: f707dfc2b128a4a7ea69f15885246e06, type: 3}
   mFont: {fileID: 0}
@@ -624,7 +624,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 1.08333337
   mSprite: {fileID: 21300000, guid: c344f1803ec9f484faa53dc9bcfea604, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -664,7 +664,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.33333349
+  aspectRatio: 3.909091
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: f707dfc2b128a4a7ea69f15885246e06, type: 3}
   mFont: {fileID: 0}
@@ -711,11 +711,11 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 400002}
     relative: 0
-    absolute: 39
+    absolute: 40
   topAnchor:
     target: {fileID: 400002}
     relative: 1
-    absolute: -38
+    absolute: -37
   mColor: {r: 1, g: 1, b: 1, a: .823529422}
   mPivot: 4
   mWidth: 542
@@ -723,7 +723,7 @@ MonoBehaviour:
   mDepth: 202
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
+  keepAspectRatio: 1
   aspectRatio: 1.96376812
   mSprite: {fileID: 21300000, guid: 1959f234c34604b679b4ba33e00b4ede, type: 3}
   mMat: {fileID: 0}
