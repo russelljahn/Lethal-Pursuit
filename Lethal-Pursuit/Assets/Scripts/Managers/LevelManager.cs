@@ -4,10 +4,10 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 	
-	private static int lastLevelPrefix;
+//	private static int lastLevelPrefix;
 
 	private Level loadedLevel;
-	private string spaceshipFilename; // Spaceship prefab relative to resources directory.
+	private string spaceshipFilename = "Spaceships/Buzz"; // Spaceship prefab to spawn on loaded level, relative to resources directory.
 	private static LevelManager singletonInstance;
 
 	private bool showLoadingScreen = true;
@@ -74,7 +74,7 @@ public class LevelManager : MonoBehaviour {
 		alphaTween.to = 1.0f;
 		alphaTween.duration = instance.loadingScreenFadeTime;
 		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, instance.loadingScreenFadeTime, 1.0f);
-		alphaTween.Play();
+		alphaTween.PlayForward();
 //		GameObject.Destroy(alphaTween, instance.loadingScreenFadeTime);
 	}
 
@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour {
 		alphaTween.to = 0.0f;
 		alphaTween.duration = instance.loadingScreenFadeTime;
 		alphaTween.animationCurve = AnimationCurve.EaseInOut(0.0f, 1.0f, instance.loadingScreenFadeTime, 0.0f);
-		alphaTween.Play();
+		alphaTween.PlayForward();
 //		GameObject.Destroy(alphaTween, instance.loadingScreenFadeTime);
 	}
 
@@ -140,7 +140,7 @@ public class LevelManager : MonoBehaviour {
 
 
 	public static bool IsMainMenu() {
-		return IsLoadedLevelName("MainMenu");
+		return IsLoadedLevelName("Main Menu");
 	}
 	
 
@@ -182,7 +182,7 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
 
 		Debug.Log("LevelManager: Loading level " + levelName + " with prefix " + levelPrefix);
-		lastLevelPrefix = levelPrefix;
+//		lastLevelPrefix = levelPrefix;
 		
 		// There is no reason to send any more data over the network on the default channel,
 		// because we are about to load the level, thus all those objects will get deleted anyway
@@ -246,6 +246,9 @@ public class LevelManager : MonoBehaviour {
 
 		try {
 			if (!IsMainMenu()) {
+				if (NetworkManager.IsSinglePlayer()) {
+					DisableAllSpaceships();
+				}
 				SpawnPlayer();
 			}
 		}
@@ -258,13 +261,16 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	void SpawnPlayer() {
-		GameObject spaceship = null;
-
+	void DisableAllSpaceships() {
 		GameObject [] previousShipsInScene = GameObject.FindGameObjectsWithTag("Spaceship");
 		for (int i = 0; i < previousShipsInScene.Length; ++i) {
 			previousShipsInScene[i].SetActive(false);
 		}
+	}
+
+
+	void SpawnPlayer() {
+		GameObject spaceship = null;
 
 		if (spaceshipFilename == null) {
 			throw new Exception("LevelManager: Spaceship filename is null!");

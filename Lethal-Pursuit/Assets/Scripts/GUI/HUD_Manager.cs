@@ -16,6 +16,8 @@ public class HUD_Manager : MonoBehaviour {
 
 	public GameObject tutorialGui;
 	public GameObject menuGui;
+	public GameObject controlsGui;
+	public GameObject quitConfirmationGui;
 	public GameObject raceOverGui;
 	
 
@@ -30,6 +32,10 @@ public class HUD_Manager : MonoBehaviour {
 
 		menuGui.SetActive(false);
 	}
+
+//	void OnNetworkInstantiate(NetworkMessageInfo info) {
+//		spaceship = GameplayManager.spaceship;
+//	}
 
 	
 	// Update is called once per frame
@@ -61,6 +67,17 @@ public class HUD_Manager : MonoBehaviour {
 		menuGui.SetActive(false);
 	}
 
+
+	public void DisplayQuitConfirmation() {
+		menuGui.SetActive(false);
+		quitConfirmationGui.SetActive(true);
+	}
+	
+	
+	public void HideQuitConfirmation() {
+		menuGui.SetActive(true);
+		quitConfirmationGui.SetActive(false);
+	}
 
 	public void DisplayRaceOver() {
 		spaceship.enabled = false;

@@ -7,8 +7,7 @@ public class SpaceshipGun : SpaceshipComponent {
 
 	public AudioSource guns;
 	public AudioClip shot;
-
-	private Light light;
+	
 	private LineRenderer line;
 
 	public float laserMinWidth = 5f;
@@ -36,7 +35,6 @@ public class SpaceshipGun : SpaceshipComponent {
 		base.Start();
 
 		line = GetComponent<LineRenderer>();
-		light = GetComponent<Light>();
 
 		line.enabled = false;
 		light.enabled = false;

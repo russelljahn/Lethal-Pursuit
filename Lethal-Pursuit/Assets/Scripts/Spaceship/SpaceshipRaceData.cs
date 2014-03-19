@@ -21,7 +21,8 @@ public class SpaceshipRaceData : SpaceshipComponent {
 	
 
 
-	void Start () {
+	public override void Start () {
+		base.Start();
 		lastCheckpoint = Checkpoint.GetCheckpointByID(0);
 		numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
 		raceManager = GameObject.FindGameObjectWithTag("RaceManager").GetComponent<RaceManager>();
@@ -32,7 +33,8 @@ public class SpaceshipRaceData : SpaceshipComponent {
 
 
 
-	void Update() {
+	public override void Update() {
+		base.Update();
 		timeElapsed += Time.deltaTime;
 	}
 

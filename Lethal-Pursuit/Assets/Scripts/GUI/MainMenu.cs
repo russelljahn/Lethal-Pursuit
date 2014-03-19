@@ -3,8 +3,6 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	private static string gameType = "CS354T-Galacticats-LP";
-
 	public GameObject titlePanel;
 	public GameObject backPanel;
 	public GameObject optionsPanel;
@@ -30,8 +28,6 @@ public class MainMenu : MonoBehaviour {
 	private static int lastLevelPrefix;
 
 	private bool serverStarted = false;
-	private string chosenShip  = null;
-	private string chosenLevel = null;
 
 	private bool tutorial = false;
 	private bool client = false;
@@ -332,16 +328,12 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnMap1Click() {
-		chosenLevel = "Tutorial";
-
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
 
 
 	public void OnMap2Click() {
-		chosenLevel = "Tutorial";
-
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
