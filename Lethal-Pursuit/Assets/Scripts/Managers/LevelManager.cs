@@ -258,11 +258,10 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 		catch (Exception e) { 
-			if (instance.showLoadingScreen) {
-				HideLoadingScreen();
-			}
 			Debug.Log("Caught exception when spawning player: " + e);
-//			throw;
+		}
+		if (instance.showLoadingScreen) {
+			HideLoadingScreen();
 		}
 	}
 

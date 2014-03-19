@@ -20063,7 +20063,7 @@ Transform:
   m_PrefabInternal: {fileID: 1604075057}
   m_GameObject: {fileID: 392435180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.471557617, z: 0}
+  m_LocalPosition: {x: 0, y: .343887329, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 603212213}
@@ -29851,7 +29851,7 @@ Transform:
   m_PrefabInternal: {fileID: 1604075057}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 252.056885, z: 0}
+  m_LocalPosition: {x: 428, y: 253.687775, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312740159}
@@ -81608,6 +81608,18 @@ Prefab:
       propertyPath: m_Name
       value: UI Root
       objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .343887329
+      objectReference: {fileID: 0}
+    - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 253.687775
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 256.687775
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
   m_RootGameObject: {fileID: 1312740155}
@@ -84371,7 +84383,7 @@ Transform:
   m_PrefabInternal: {fileID: 1604075057}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -429, y: 255.056885, z: 77}
+  m_LocalPosition: {x: -429, y: 256.687775, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 1258546899}
@@ -93222,7 +93234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1900479970
 Transform:
   m_ObjectHideFlags: 0
@@ -99097,7 +99109,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 2e0339c4153454688a14e704336a169c, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 2e0339c4153454688a14e704336a169c, type: 2}
       propertyPath: laserHitForce
