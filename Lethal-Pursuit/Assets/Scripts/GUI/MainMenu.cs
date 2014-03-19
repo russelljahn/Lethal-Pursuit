@@ -76,12 +76,21 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnClickBack() {
-		if (serverStarted) {
+		
+		Debug.Log("Server started status: " + serverStarted);
+		
+		if(serverStarted) {
+			
+			Debug.Log("Entered onMultiplayer reenabler");
 			NetworkManager.ServerCleanup();
+			joinServerButton.isEnabled = true;
+			
+			launchButton.isEnabled = false;
+			refreshButton.isEnabled = false;
+			serverStarted = false;
+			
+			Debug.Log("Status of join button: " + joinServerButton.isEnabled);
 		}
-		serverStarted = false;
-		joinServerButton.isEnabled = true;
-		refreshButton.isEnabled = false;
 
 		// Exit
 		if (titlePanel.activeInHierarchy) {
@@ -167,6 +176,7 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnMultiplayerClick() {
 		Debug.Log("Multiplayer Clicked");
+		
 		NetworkManager.SetSinglePlayer(false);
 		tutorial = false;
 		
@@ -204,7 +214,9 @@ public class MainMenu : MonoBehaviour {
 		
 		launchButton.isEnabled = true;
 		serverStarted = true;
-
+		
+		Debug.Log("Server started status: " + serverStarted);
+		
 		launchText.text = "Launch Game";
 	}
 

@@ -108,9 +108,9 @@ public class NetworkManager : MonoBehaviour {
 		Network.DestroyPlayerObjects(Network.player);
 
 		//Need to have a level loaded back to menu here
-//		if (!LevelManager.IsMainMenu()) {
-//			LevelManager.LoadLevel("MainMenu");
-//		}
+		if (!LevelManager.IsMainMenu()) {
+			LevelManager.LoadLevel("MainMenu");
+		}
 	}
 
 	public static void JoinServer(int serverIndex) {

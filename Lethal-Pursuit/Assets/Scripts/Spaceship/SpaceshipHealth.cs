@@ -68,10 +68,27 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount) {
+		if(networkView.isMine || NetworkManager.IsSinglePlayer()) {
+			this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+		}
+		else {
+			networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
+		}
+
+	}
+
+	[RPC]
+	private void NetworkApplyDamage(float amount) {
 		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 	}
 
-		
+
+
+
+
+
+
+
 
 
 }

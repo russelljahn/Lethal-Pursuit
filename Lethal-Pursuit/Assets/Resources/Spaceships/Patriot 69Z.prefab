@@ -161,6 +161,7 @@ GameObject:
   - 95: {fileID: 9500002}
   - 64: {fileID: 6400006}
   - 114: {fileID: 11400014}
+  - 148: {fileID: 14800012}
   m_Layer: 0
   m_Name: 3D Model
   m_TagString: Untagged
@@ -2978,6 +2979,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 400002}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800012
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400016}
   m_ViewID:
     m_ID: 0
     m_Type: 0

@@ -100,11 +100,23 @@ public class HUD_Manager : MonoBehaviour {
 
 
 	public void ReplayTrack() {
+		if(NetworkManager.IsSinglePlayer()) {
+			LevelManager.ReloadLevel();
+		}
+		else {
+			networkView.RPC("NetworkReplayTrack", RPCMode.All);
+		}
+	}
+
+	[RPC]
+	private void NetworkReplayTrack() {
 		LevelManager.ReloadLevel();
 	}
 
-
 	public void LoadMainMenu() {
+		if(Network.isServer) {
+			NetworkManager.ServerCleanup();
+		}
 		LevelManager.LoadMainMenu();
 	}
 

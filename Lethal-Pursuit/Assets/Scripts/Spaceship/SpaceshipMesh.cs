@@ -13,9 +13,7 @@ public class SpaceshipMesh : SpaceshipComponent, IDamageable {
 
 	public void ApplyDamage(float amount) {
 		if (damageableObject != null) {
-			damageableObject.ApplyDamage(amount);
+			//damageableObject.ApplyDamage(amount);
 		}
 	} 
-
-
 }
