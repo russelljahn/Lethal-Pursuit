@@ -45604,44 +45604,6 @@ ParticleAnimator:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1200000, guid: b80789c0bb26fa3429e4e415658241f3,
     type: 2}
-<<<<<<< HEAD
-  m_PrefabInternal: {fileID: 1032415338}
-  m_GameObject: {fileID: 807510322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd5abff9610bf48259af1980cbcd0d6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spaceship: {fileID: 1900479971}
-  guns: {fileID: 0}
-  shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
-  laserMinWidth: 5
-  laserFullChargeExtraWidth: 5
-  laserWaverRate: 8
-  laserMaterialScrollSpeedU: 1
-  laserMaterialScrollSpeedV: 1
-  damageRate: 1
-  laserHitForce: 100
-  explosion: {fileID: 0}
-  explosionCooldown: .100000001
-  timeSinceLastExplosion: 0
---- !u!1 &807689313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100088, guid: 869cdfa265ab646a2a5fd28b537cf2ed, type: 3}
-  m_PrefabInternal: {fileID: 218517862}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 807689314}
-  m_Layer: 0
-  m_Name: strokeCrystals5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &807689314
-=======
   m_PrefabInternal: {fileID: 1596789046}
   m_GameObject: {fileID: 816678621}
   Does Animate Color?: 1
@@ -45669,7 +45631,6 @@ GameObject:
   stopSimulation: 0
   autodestruct: 0
 --- !u!4 &816678626
->>>>>>> master
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: b80789c0bb26fa3429e4e415658241f3, type: 2}
@@ -68832,11 +68793,7 @@ MonoBehaviour:
   laserMaterialScrollSpeedV: 1
   damageRate: 1
   laserHitForce: 100
-<<<<<<< HEAD
-  explosion: {fileID: 0}
-=======
   explosion: {fileID: 1494481162}
->>>>>>> master
   explosionCooldown: .100000001
   timeSinceLastExplosion: 0
 --- !u!148 &1290474696
@@ -76619,8 +76576,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401474465}
   m_LocalRotation: {x: 0, y: .948600292, z: 0, w: .316476852}
-  m_LocalPosition: {x: -2866.45239, y: 13.8000002, z: 624.712769}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalPosition: {x: -2946.53027, y: 13.8000002, z: 1058.9469}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1519794393}
   - {fileID: 2049817349}
@@ -86535,81 +86492,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1678447512}
-<<<<<<< HEAD
---- !u!1001 &1744992777
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100012, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_Name
-      value: UI Root
-      objectReference: {fileID: 0}
-    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -.725799561
-      objectReference: {fileID: 0}
-    - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 251.548401
-      objectReference: {fileID: 0}
-    - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 254.548401
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 428
-      objectReference: {fileID: 0}
-    - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -429
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
-  m_RootGameObject: {fileID: 1312740155}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
-=======
->>>>>>> master
 --- !u!1 &1748773718
 GameObject:
   m_ObjectHideFlags: 0
@@ -89168,11 +89050,7 @@ MonoBehaviour:
   laserMaterialScrollSpeedV: 1
   damageRate: 1
   laserHitForce: 100
-<<<<<<< HEAD
-  explosion: {fileID: 0}
-=======
   explosion: {fileID: 196633987}
->>>>>>> master
   explosionCooldown: .100000001
   timeSinceLastExplosion: 0
 --- !u!148 &1759438065
@@ -99543,7 +99421,6 @@ GameObject:
   - 33: {fileID: 2049817348}
   - 65: {fileID: 2049817347}
   - 23: {fileID: 2049817346}
-  - 114: {fileID: 2049817350}
   m_Layer: 0
   m_Name: 1x1x1 Reference
   m_TagString: Untagged
@@ -99602,22 +99479,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1401474466}
-<<<<<<< HEAD
---- !u!114 &2049817350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2049817345}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6456f79c2a6c348e997745b66b0e7314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionForce: 100
-  explosionRadius: 1000
-  triangleScale: {x: 50, y: 50, z: 50}
-=======
 --- !u!1 &2051866020
 GameObject:
   m_ObjectHideFlags: 0
@@ -99686,7 +99547,6 @@ MonoBehaviour:
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   nextSprite: {fileID: 0}
->>>>>>> master
 --- !u!1 &2054166342
 GameObject:
   m_ObjectHideFlags: 0
@@ -103130,7 +102990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373f39006a60847f48ed4064924c4184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 0}
   pressingStart: 0
   releasedStart: 0
   tutorialGui: {fileID: 45883287}
