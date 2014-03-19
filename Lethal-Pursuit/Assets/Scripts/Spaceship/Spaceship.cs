@@ -131,14 +131,12 @@ public class Spaceship : MonoBehaviour {
 	private Quaternion syncStartRotation = Quaternion.identity;
 	private Quaternion syncEndRotation = Quaternion.identity;
 	
-	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-	{
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 		Vector3 syncPosition = Vector3.zero;
 		Quaternion syncRotation = Quaternion.identity;
 		bool isShooting = false;
 		
-		if (stream.isWriting)
-		{
+		if (stream.isWriting) {
 			syncPosition = transform.position;
 			syncRotation = transform.rotation;
 			isShooting = shooting;
@@ -147,8 +145,7 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
 		}
-		else
-		{
+		else {
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);

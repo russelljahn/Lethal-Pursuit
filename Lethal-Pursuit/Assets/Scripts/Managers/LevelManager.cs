@@ -135,12 +135,12 @@ public class LevelManager : MonoBehaviour {
 
 	public static bool IsLoadedLevelName(string levelName) {
 		Debug.Log ("loadedLevel: " + instance.loadedLevel);
-		return instance.loadedLevel.name.Equals(levelName);
+		return instance.loadedLevel.sceneName.Equals(levelName);
 	}
 
 
 	public static bool IsMainMenu() {
-		return IsLoadedLevelName("Main Menu");
+		return IsLoadedLevelName("MainMenu");
 	}
 	
 
@@ -164,7 +164,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public static void ReloadLevel() {
 		Debug.Log("LevelManager: Reloading level: " + instance.loadedLevel);
-		Application.LoadLevel(instance.loadedLevel.sceneName);
+		LevelManager.LoadLevel(instance.loadedLevel.sceneName);
 	}
 
 
@@ -206,6 +206,10 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("Loading complete");
 		
 		Debug.Log("load level DONE");
+		
+		// Go ahead and destroy any pre-existing spaceships in the level.
+//		instance.DisableAllSpaceships();
+
 		// Allow receiving data again
 		Network.isMessageQueueRunning = true;
 		// Now the level has been loaded and we can start sending out data
@@ -242,6 +246,7 @@ public class LevelManager : MonoBehaviour {
 	void OnLevelWasLoaded(int levelNumber) {
 	
 		Level level = GetLevel(Application.loadedLevelName);		
+		instance.loadedLevel = level;
 		Debug.Log("LevelManager: OnLevelWasLoaded() for Level: " + level);
 
 		try {
@@ -252,16 +257,18 @@ public class LevelManager : MonoBehaviour {
 				SpawnPlayer();
 			}
 		}
-		catch (Exception) { 
+		catch (Exception e) { 
 			if (instance.showLoadingScreen) {
 				HideLoadingScreen();
 			}
-			throw;
+			Debug.Log("Caught exception when spawning player: " + e);
+//			throw;
 		}
 	}
 
 
 	void DisableAllSpaceships() {
+		Debug.Log ("Disabling pre-existing spaceships in the level...");
 		GameObject [] previousShipsInScene = GameObject.FindGameObjectsWithTag("Spaceship");
 		for (int i = 0; i < previousShipsInScene.Length; ++i) {
 			previousShipsInScene[i].SetActive(false);
