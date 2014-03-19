@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour {
 	private string loadingScreenFilename = "GUI/LoadingScreen"; // Loading screen prefab relative to resources directory.
 	public float loadingScreenFadeTime = 0.75f;
 
+
 	private static LevelManager instance {
 		get {
 			/* If first time accessing instance, then find it... */
@@ -36,7 +37,8 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	
+
+
 	public void Awake() {
 		DontDestroyOnLoad(this);
 
@@ -55,6 +57,7 @@ public class LevelManager : MonoBehaviour {
 			loadingScreen.alpha = 0.0f;
 		}
 	}
+
 
 
 	private static void ShowLoadingScreen() {
@@ -79,6 +82,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	private static void HideLoadingScreen() {
 		Debug.Log ("LevelManager: Hiding loading screen...");
 		if (instance.loadingScreen == null) {
@@ -101,11 +105,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	/* Spaceship filename is relative to resources folder. */
 	public static void SetSpaceship(string filename) {
 		Debug.Log("LevelManager: Setting spaceship filename: " + filename);
 		instance.spaceshipFilename = filename;
 	}
+
 
 
 	public Level GetLevel(string levelName) {
@@ -125,6 +131,7 @@ public class LevelManager : MonoBehaviour {
 	}
 	
 
+
 	public static Level GetLoadedLevel() {
 		if (instance.loadedLevel == null) {
 			instance.loadedLevel = instance.GetLevel(Application.loadedLevelName);
@@ -133,16 +140,19 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	public static bool IsLoadedLevelName(string levelName) {
 		Debug.Log ("loadedLevel: " + instance.loadedLevel);
 		return instance.loadedLevel.sceneName.Equals(levelName);
 	}
 
 
+
 	public static bool IsMainMenu() {
 		return IsLoadedLevelName("MainMenu");
 	}
-	
+
+
 
 	public static void LoadLevel(string levelName, bool showLoadingScreen = true) {
 		Level levelToLoad = instance.GetLevel(levelName);
@@ -150,6 +160,7 @@ public class LevelManager : MonoBehaviour {
 		instance.showLoadingScreen = showLoadingScreen;
 		instance.StartCoroutine(LoadLevelHelper(levelToLoad));
 	}
+
 
 
 	private static IEnumerator LoadLevelHelper(Level levelToLoad) {
@@ -161,16 +172,19 @@ public class LevelManager : MonoBehaviour {
 		yield break;
 	}
 
-	
+
+
 	public static void ReloadLevel() {
 		Debug.Log("LevelManager: Reloading level: " + instance.loadedLevel);
 		LevelManager.LoadLevel(instance.loadedLevel.sceneName);
 	}
 
 
+
 	public static void NetworkLoadLevel(string levelName, int levelPrefix) {
 		LevelManager.instance.StartCoroutine(NetworkLoadLevelHelper(levelName, levelPrefix));
 	}
+
 
 
 	private static IEnumerator NetworkLoadLevelHelper(string levelName, int levelPrefix, bool showLoadingScreen = true) {
@@ -238,9 +252,11 @@ public class LevelManager : MonoBehaviour {
 	}
 	
 
+
 	public static void Quit() {
 		Application.Quit();
 	}
+
 
 
 	void OnLevelWasLoaded(int levelNumber) {
@@ -260,10 +276,12 @@ public class LevelManager : MonoBehaviour {
 		catch (Exception e) { 
 			Debug.Log("Caught exception when spawning player: " + e);
 		}
+
 		if (instance.showLoadingScreen) {
 			HideLoadingScreen();
 		}
 	}
+
 
 
 	void DisableAllSpaceships() {
@@ -275,13 +293,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+
 	void SpawnPlayer() {
 		GameObject spaceship = null;
 
 		if (spaceshipFilename == null) {
 			throw new Exception("LevelManager: Spaceship filename is null!");
 		}
-	
 		
 		if (NetworkManager.IsSinglePlayer()) {
 			spaceship = Instantiate(
@@ -300,8 +318,7 @@ public class LevelManager : MonoBehaviour {
 		if (NetworkManager.IsSinglePlayer()) {
 			// Disable network view if having performance issues.
 		}
-
-		
+			
 		Checkpoint initialCheckpoint = Checkpoint.GetCheckpointByID(0);
 		if (initialCheckpoint == null) {
 			throw new Exception("LevelManager: No checkpoint to spawn at! Spawning at world origin...");
@@ -309,11 +326,6 @@ public class LevelManager : MonoBehaviour {
 		else {
 			initialCheckpoint.SpawnSpaceship(spaceship.GetComponent<Spaceship>());
 		}
-
-		Debug.Log ("spaceshipFilename: " + spaceshipFilename);
-		Debug.Log ("spawned spaceship: " + spaceship);
-		Debug.Log ("spawned spaceship id: " + spaceship.gameObject.GetInstanceID());
-
 	}
 
 

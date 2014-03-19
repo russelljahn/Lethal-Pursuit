@@ -33,23 +33,18 @@ public class HUD_Manager : MonoBehaviour {
 		menuGui.SetActive(false);
 	}
 
-//	void OnNetworkInstantiate(NetworkMessageInfo info) {
-//		spaceship = GameplayManager.spaceship;
-//	}
-
 	
 	// Update is called once per frame
 	void Update () {
 		pressedStartLastFrame = pressingStart;
 		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
 		releasedStart = !pressingStart && pressedStartLastFrame;
-
-
+		
 		if (releasedStart) {
 			if (menuGui.activeInHierarchy) {
 				HideMenu();
 			}
-			else {
+			else if (!tutorialGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !raceOverGui.activeInHierarchy) {
 				DisplayMenu();
 			}
 		}
@@ -78,6 +73,19 @@ public class HUD_Manager : MonoBehaviour {
 		menuGui.SetActive(true);
 		quitConfirmationGui.SetActive(false);
 	}
+
+
+	public void DisplayControls() {
+		menuGui.SetActive(false);
+		controlsGui.SetActive(true);
+	}
+	
+	
+	public void HideControls() {
+		menuGui.SetActive(true);
+		controlsGui.SetActive(false);
+	}
+
 
 	public void DisplayRaceOver() {
 		spaceship.enabled = false;
