@@ -16,6 +16,8 @@ public class HUD_Manager : MonoBehaviour {
 
 	public GameObject tutorialGui;
 	public GameObject menuGui;
+	public GameObject controlsGui;
+	public GameObject quitConfirmationGui;
 	public GameObject raceOverGui;
 	
 
@@ -37,13 +39,12 @@ public class HUD_Manager : MonoBehaviour {
 		pressedStartLastFrame = pressingStart;
 		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
 		releasedStart = !pressingStart && pressedStartLastFrame;
-
-
+		
 		if (releasedStart) {
 			if (menuGui.activeInHierarchy) {
 				HideMenu();
 			}
-			else {
+			else if (!tutorialGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !raceOverGui.activeInHierarchy) {
 				DisplayMenu();
 			}
 		}
@@ -59,6 +60,30 @@ public class HUD_Manager : MonoBehaviour {
 	public void HideMenu() {
 		spaceship.enabled = true;
 		menuGui.SetActive(false);
+	}
+
+
+	public void DisplayQuitConfirmation() {
+		menuGui.SetActive(false);
+		quitConfirmationGui.SetActive(true);
+	}
+	
+	
+	public void HideQuitConfirmation() {
+		menuGui.SetActive(true);
+		quitConfirmationGui.SetActive(false);
+	}
+
+
+	public void DisplayControls() {
+		menuGui.SetActive(false);
+		controlsGui.SetActive(true);
+	}
+	
+	
+	public void HideControls() {
+		menuGui.SetActive(true);
+		controlsGui.SetActive(false);
 	}
 
 

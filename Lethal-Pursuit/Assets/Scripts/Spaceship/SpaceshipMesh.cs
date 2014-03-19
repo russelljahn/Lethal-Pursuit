@@ -6,8 +6,9 @@ public class SpaceshipMesh : SpaceshipComponent, IDamageable {
 
 	IDamageable damageableObject;
 
-	void Start() {
-		IDamageable damageableObject = (IDamageable)gameObject.GetComponent(typeof(IDamageable));
+	public override void Start() {
+		base.Start();
+		damageableObject = (IDamageable)gameObject.GetComponent(typeof(IDamageable));
 	}
 
 	public void ApplyDamage(float amount) {

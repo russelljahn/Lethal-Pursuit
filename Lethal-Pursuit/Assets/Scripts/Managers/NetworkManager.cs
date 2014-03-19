@@ -3,8 +3,8 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 	
-	private static string gameType = "CS354T-Galacticats-LP";
-	public  static string gameName = "Lethal-Pursuit: Krunklicious edition";
+	private static string gameType = "2P Multiplayer: ";
+	public  static string gameName = "Hosted Game";
 	private static string gameComment = "Network Test Run";
 	
 	private static HostData[] hostData;
@@ -97,18 +97,20 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	void OnPlayerDisconnected(NetworkPlayer player) {
-		Debug.Log("Clean up after player " + player);
+		Debug.Log("Clean up after player: " + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 	}
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
-		Debug.Log("Clean up a bit after server quit");
+		Debug.Log("Cleaning up in OnDisconnectedFromServer()...");
 		Network.RemoveRPCs(Network.player);
 		Network.DestroyPlayerObjects(Network.player);
-		
-		LevelManager.LoadLevel("MainMenu");
+
 		//Need to have a level loaded back to menu here
+//		if (!LevelManager.IsMainMenu()) {
+//			LevelManager.LoadLevel("MainMenu");
+//		}
 	}
 
 	public static void JoinServer(int serverIndex) {
@@ -132,14 +134,6 @@ public class NetworkManager : MonoBehaviour {
 
 	public static HostData[] GetHostData() {
 		return hostData;
-	}
-
-	public static void SetShip(string ship) {
-		chosenShip = ship;
-	}
-
-	public static string GetShip() {
-		return chosenShip;
 	}
 
 	public static bool IsPlayerVarsSet() {

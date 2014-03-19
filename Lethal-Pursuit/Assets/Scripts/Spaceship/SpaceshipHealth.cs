@@ -24,15 +24,16 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		
 
 
-	void Start() {
+	public override void Start() {
+		base.Start();
 		currentHealth = maxHealth;
 		raceData = GetComponent<SpaceshipRaceData>();
 	}
 
 
 
-	void Update() {
-
+	public override void Update() {
+		base.Update();
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
 		if (debugSelfDestruct) {

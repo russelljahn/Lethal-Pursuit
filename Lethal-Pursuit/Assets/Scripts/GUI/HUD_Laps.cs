@@ -12,11 +12,23 @@ public class HUD_Laps : MonoBehaviour {
 	void Start () {
 		label = GetComponent<UILabel>();
 		currentLevel = LevelManager.GetLoadedLevel();
-		raceData = GameplayManager.spaceship.GetComponent<SpaceshipRaceData>();
+		raceData = null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		label.text = string.Format("Lap {0}/{1}", raceData.lapsCompleted+1, currentLevel.lapsToWin); 
+
+		if(raceData == null) {
+			Spaceship ship = GameplayManager.spaceship;
+			
+			if(ship != null) {
+				raceData = GameplayManager.spaceship.GetComponent<SpaceshipRaceData>();
+			}
+		}
+		else {
+			Debug.Log("raceData " + (raceData));
+			Debug.Log("currentLevel " + (currentLevel));
+			label.text = string.Format("Lap {0}/{1}", raceData.lapsCompleted+1, currentLevel.lapsToWin); 
+		}
 	}
 }

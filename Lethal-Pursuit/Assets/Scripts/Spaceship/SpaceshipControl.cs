@@ -73,6 +73,8 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleMovement() {
 
+		spaceship.rigidbody.velocity = Vector3.zero;
+
 		/* Adjust velocity based on current spaceship behavior. */
 		if (drifting || nosediving) {
 			currentVelocity -= deaccelerationDrift;

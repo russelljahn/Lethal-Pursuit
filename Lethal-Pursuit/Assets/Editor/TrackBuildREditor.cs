@@ -11,6 +11,8 @@
 using UnityEngine;
 using UnityEditor;
 
+#pragma warning disable 612, 618
+
 [CanEditMultipleObjects]
 [CustomEditor(typeof(TrackBuildR))]
 public class TrackBuildREditor : Editor

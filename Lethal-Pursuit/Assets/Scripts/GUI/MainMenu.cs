@@ -3,237 +3,360 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	private static string gameType = "CS354T-Galacticats-LP";
-
-	public GameObject MainPanel;
-	public GameObject OptionsPanel;
-	public GameObject ModeSelectPanel;
-	public GameObject MultiplayerPanel;
-	public GameObject VehicleSelectPanel;
-	public GameObject MapSelectPanel;
-	public GameObject LobbyPanel;
+	public GameObject titlePanel;
+	public GameObject backPanel;
+	public GameObject optionsPanel;
+	public GameObject modeSelectPanel;
+	public GameObject vehicleSelectPanel;
+	public GameObject mapSelectPanel;
+	public GameObject multiplayerHubPanel;
+	public GameObject lobbyPanel;
+	public GameObject joinServerPanel;	
 	
-	public UIButton StartServerButton;
-	public UIButton JoinServerButton;
-	public UIButton RefreshButton;
-	public UIButton LaunchButton;
+	public UIButton startServerButton;
+	public UIButton joinServerButton;
+	public UIButton refreshButton;
+	public UIButton launchButton;
+	public UILabel launchText;
+	
 
-	public  GameObject[] ServerButtons;
-	public  UILabel[] 	 ButtonLabels;
+	public  GameObject[] serverButtons;
+	public  UILabel[] 	 buttonLabels;
 	private HostData[]   hostdata;
 	
 	private bool refreshClicked = false;
 	private static int lastLevelPrefix;
 
 	private bool serverStarted = false;
-	private string chosenShip  = null;
-	private string chosenLevel = null;
+
+	private bool tutorial = false;
+	private bool client = false;
+
+	public string vehicle1Filepath = "Spaceships/Buzz";
+	public string vehicle2Filepath = "Spaceships/Magneto II";
+	public string vehicle3Filepath = "Spaceships/Patriot 69Z";
+
+	public string tutorialFilename = "Tutorial";
+	public string level1Filename = "Highway";
+	
 	
 	public void Start() {
-		MainPanel.SetActive(true);
-		OptionsPanel.SetActive(false);
-		ModeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(false);
-		MapSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(false);
-		
-		StartServerButton.isEnabled = true;
-		JoinServerButton.isEnabled  = true;
-		RefreshButton.isEnabled     = false;
-		LaunchButton.isEnabled      = false;
+		HideAllMenus();
+		startServerButton.isEnabled = true;
+		joinServerButton.isEnabled  = true;
+		refreshButton.isEnabled     = false;
+		launchButton.isEnabled      = false;
 
-		for(int i=0; i<ServerButtons.Length; i++) {
-			ServerButtons[i].SetActive(false);
+		for (int i = 0; i < serverButtons.Length; ++i) {
+			serverButtons[i].SetActive(false);
 		}
+		OnTitleClick();
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		if (NetworkManager.IsServerListReady() && refreshClicked) {
-			Debug.Log("Refreshing......");
 			refreshClicked = false;
 			OnServerListReady();	
 		}
 	}
 
+
+	void HideAllMenus() {
+		titlePanel.SetActive(false);
+		optionsPanel.SetActive(false);
+		modeSelectPanel.SetActive(false);
+		vehicleSelectPanel.SetActive(false);
+		mapSelectPanel.SetActive(false);
+		multiplayerHubPanel.SetActive(false);
+		lobbyPanel.SetActive(false);
+		joinServerPanel.SetActive(false);
+	}
+
+
+	public void OnClickBack() {
+		if (serverStarted) {
+			NetworkManager.ServerCleanup();
+		}
+		serverStarted = false;
+		joinServerButton.isEnabled = true;
+		refreshButton.isEnabled = false;
+
+		// Exit
+		if (titlePanel.activeInHierarchy) {
+			OnExitClick();
+		}
+		// Mode Select -> Title Screen
+		else if (modeSelectPanel.activeInHierarchy) {
+			HideAllMenus();
+			titlePanel.SetActive(true);
+			UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+			backButtonText.text = "Exit";
+		}
+		// Options -> Mode Select
+		else if (optionsPanel.activeInHierarchy) {
+			OnModeSelectClick();
+		}
+		// Vehicle Select -> Mode Select (if Singleplayer)/MultiplayerHub (if Multiplayer)
+		else if (vehicleSelectPanel.activeInHierarchy) {
+			if (NetworkManager.IsSinglePlayer()) {
+				OnModeSelectClick();
+			}
+			else {
+				OnMultiplayerClick();
+			}
+		}
+		// Map Select -> Vehicle Select
+		else if (mapSelectPanel.activeInHierarchy) {
+
+		}
+		// MultiplayerHub -> Mode Select
+		else if (multiplayerHubPanel.activeInHierarchy) {
+			OnModeSelectClick();
+		}
+		// Lobby -> MultiplayerHub (if Multiplayer CreateServer)/JoinServer (if Multiplayer JoinServer)
+		else if (lobbyPanel.activeInHierarchy) {
+			if (client) {
+				client = false;
+				OnJoinServerClick();
+			}
+			else {
+				OnMultiplayerClick();
+			}
+		}
+		// JoinServer -> MultiplayerHub
+		else if (joinServerPanel.activeInHierarchy) {
+			OnMultiplayerClick();
+		}
+	}
+	
+
 	public void OnExitClick() {
 		Debug.Log("Exit Clicked");
 		LevelManager.Quit();
 	}
-	
+
+
 	public void OnOptionsClick() {
 		Debug.Log("Options Clicked");
-		MainPanel.SetActive(false);
-		OptionsPanel.SetActive(true);
+		HideAllMenus();
+		optionsPanel.SetActive(true);
+	}
+
+
+	public void OnTitleClick() {
+		Debug.Log("Title Clicked");
+		HideAllMenus();
+		titlePanel.SetActive(true);
+
+		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+		backButtonText.text = "Exit";
 	}
 	
-	public void OnStartClick() {
-		Debug.Log("Start Clicked");
-		MainPanel.SetActive(false);
-		ModeSelectPanel.SetActive(true);
+
+	public void OnModeSelectClick() {
+		Debug.Log("Mode Select Clicked");
+		HideAllMenus();
+		modeSelectPanel.SetActive(true);
+
+		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
+		backButtonText.text = "Back";
 	}
+
 	
 	public void OnMultiplayerClick() {
 		Debug.Log("Multiplayer Clicked");
 		NetworkManager.SetSinglePlayer(false);
+		tutorial = false;
 		
-		ModeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(true);
+		HideAllMenus();
+		multiplayerHubPanel.SetActive(true);
 	}
-	
+
+
 	public void OnSingleplayerClick() {
 		Debug.Log("Singleplayer Clicked");
 		NetworkManager.SetSinglePlayer(true);
-		LevelManager.LoadLevel("Highway");
+		tutorial = false;
+
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
-	
+
+
 	public void OnTutorialClick() {
 		Debug.Log("Tutorial Clicked");
-		chosenShip = "Spaceships/Patriot 69Z";
-		NetworkManager.SetShip(chosenShip);
-		LevelManager.LoadLevel("Tutorial");
+		NetworkManager.SetSinglePlayer(true);
+		tutorial = true;
+
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
 	
-	public void OnReturnClick() {
-		MainPanel.SetActive(true);
-		OptionsPanel.SetActive(false);
-		ModeSelectPanel.SetActive(false);
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(false);
-		MapSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(false);
-		
-		JoinServerButton.isEnabled = true;
-		RefreshButton.isEnabled = false;
-		
-		if (serverStarted) {
-			NetworkManager.ServerCleanup();
-		}
-		
-		serverStarted = false;
-	}
 
 	public void OnStartServerClick() {
 		NetworkManager.StartServer();
-		JoinServerButton.isEnabled = false;
+		joinServerButton.isEnabled = false;
 		
-		MultiplayerPanel.SetActive(false);
-		MapSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 		
-		LaunchButton.isEnabled = true;
+		launchButton.isEnabled = true;
 		serverStarted = true;
+
+		launchText.text = "Launch Game";
 	}
 
+
 	public void OnJoinServerClick() {
-		RefreshButton.isEnabled = true;
+		refreshButton.isEnabled = true;
 
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
-		
-		LaunchButton.isEnabled = false;
+
+		launchButton.isEnabled = false;
+
+		HideAllMenus();
+		joinServerPanel.SetActive(true);
+
+		launchText.text = "Waiting On Host";
+		client = true;
 	}
+
 	
 	private void OnServerListReady() {
-	
 		hostdata = NetworkManager.GetHostData();
 		
-		for (int i=0; i<ServerButtons.Length; ++i) {
-			ServerButtons[i].SetActive(false);
+		for (int i = 0; i < serverButtons.Length; ++i) {
+			serverButtons[i].SetActive(false);
 		}
 		
-		for (int i=0; i<hostdata.Length && i<ServerButtons.Length; ++i) {
-			ServerButtons[i].SetActive(true);
-			ButtonLabels[i].text = hostdata[i].gameName;
+		for (int i = 0; i < hostdata.Length && i < serverButtons.Length; ++i) {
+			serverButtons[i].SetActive(true);
+			buttonLabels[i].text = hostdata[i].gameName;
 		}
 	}
+
 
 	public void OnRefreshClick() {
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
 	}
 
+
 	public void OnServer1Click() {
 		NetworkManager.JoinServer(0);
-		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer2Click() {
 		NetworkManager.JoinServer(1);
-		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer3Click() {
 		NetworkManager.JoinServer(2);
-		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
+
 
 	public void OnServer4Click() {
 		NetworkManager.JoinServer(3);
-		
-		MultiplayerPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
+
 	
 	public void OnVehicle1Click() {
-		
-		//Record ship name here
-		chosenShip = "Spaceships/Buzz";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle1Filepath);
 
-		VehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		HideAllMenus();
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			OnLobbyClick();
+		}
 	}
-	
+
+
 	public void OnVehicle2Click() {
-		
-		//Record ship name here
-		chosenShip = "Spaceships/Magneto II";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle2Filepath);
 
-		VehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		HideAllMenus();
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			OnLobbyClick();
+		}
 	}
-	
+
+
 	public void OnVehicle3Click() {
-		
-		//Record ship name here
-		chosenShip = "Spaceships/Patriot 69Z";
-		NetworkManager.SetShip(chosenShip);
+		LevelManager.SetSpaceship(vehicle3Filepath);
 
-		VehicleSelectPanel.SetActive(false);
-		LobbyPanel.SetActive(true);
+		HideAllMenus();
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			OnLobbyClick();
+		}
 	}
-	
+
+
 	public void OnMap1Click() {
-		
-		//Record level name here
-		chosenLevel = "Tutorial";
-
-		MapSelectPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
-	
+
+
 	public void OnMap2Click() {
-		
-		//Record level name here
-		chosenLevel = "Tutorial";
-
-		MapSelectPanel.SetActive(false);
-		VehicleSelectPanel.SetActive(true);
+		HideAllMenus();
+		vehicleSelectPanel.SetActive(true);
 	}
+
+
+	public void OnLobbyClick() {
+		HideAllMenus();
+		lobbyPanel.SetActive(true);
+	}
+
 
 	public void OnLaunchClick() {
+		networkView.RPC("SwitchLoad", RPCMode.All);
 		networkView.RPC("LevelLoader", RPCMode.All);
-		//LevelManager.LoadLevel(LevelManager.LEVEL.TUTORIAL);
 	}
-	
+
+
+	[RPC]
+	private void SwitchLoad() {
+		lobbyPanel.SetActive(false);
+	}
+
+
 	[RPC]
 	private void LevelLoader() {
 		LevelManager.NetworkLoadLevel("Tutorial", 1);	

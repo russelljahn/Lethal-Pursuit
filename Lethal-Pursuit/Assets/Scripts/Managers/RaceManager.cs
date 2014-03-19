@@ -7,13 +7,13 @@ using System.Collections.Generic;
 public class RaceManager : MonoBehaviour {
 
 
-	SpaceshipRaceData [] datas;
+//	SpaceshipRaceData [] datas;
 	HUD_Manager hudManager;
 
 
 	// Use this for initialization
 	void Start () {
-		SpaceshipRaceData [] datas = GameObject.FindObjectsOfType<SpaceshipRaceData>();
+//		datas = GameObject.FindObjectsOfType<SpaceshipRaceData>();
 		hudManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HUD_Manager>();
 	}
 
