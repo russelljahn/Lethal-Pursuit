@@ -93,7 +93,7 @@ public class NetworkManager : MonoBehaviour {
 	
 	void OnFailedConnection (NetworkConnectionError error)
 	{
-		Debug.Log ("Failed to connect ot server: " + error.ToString());
+		Debug.Log ("Failed to connect to server: " + error.ToString());
 	}
 	
 	void OnPlayerDisconnected(NetworkPlayer player) {

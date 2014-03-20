@@ -19,13 +19,13 @@ public class Spaceship : MonoBehaviour {
 	public float yTilt; /* Tilt of analogue stick every frame. */
 	public float boostAmount;
 	public float brakeAmount;
-	public bool shooting;
-	public bool boosting;
-	public bool braking;
-	public bool drifting;
-	public bool nosediving;
-	public bool idle;
-	public bool debugSelfDestruct;
+	public bool  shooting;
+	public bool  boosting;
+	public bool  braking;
+	public bool  drifting;
+	public bool  nosediving;
+	public bool  idle;
+	public bool  debugSelfDestruct;
 	#endregion
 
 	public Vector3 forward;
