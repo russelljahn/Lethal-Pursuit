@@ -46,13 +46,13 @@ public class HUD_Crosshairs : MonoBehaviour {
 				movementSpeed*Time.deltaTime
 			);
 		}
-		else {
-			this.transform.localPosition = Vector3.Slerp (
-				this.transform.localPosition, 
-				initialLocalPosition,
-				realignSpeed*Time.deltaTime
-			);
-		}
+//		else {
+//			this.transform.localPosition = Vector3.Slerp (
+//				this.transform.localPosition, 
+//				initialLocalPosition,
+//				realignSpeed*Time.deltaTime
+//			);
+//		}
 
 		// Make crosshairs GUI plane face the viewport straight-on
 		this.transform.rotation = spaceshipCamera.transform.rotation  * Quaternion.Euler(90, 180, 0);

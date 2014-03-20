@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
 	public string vehicle3Filepath = "Spaceships/Patriot 69Z";
 
 	public string tutorialFilename = "Tutorial";
-	public string level1Filename = "Highway";
+	public string level1Filename = "Trifecta";
 	
 	
 	public void Start() {
@@ -73,6 +73,17 @@ public class MainMenu : MonoBehaviour {
 		lobbyPanel.SetActive(false);
 		joinServerPanel.SetActive(false);
 	}
+
+
+	void HideBackButton() {
+		backPanel.SetActive(false);
+	}
+
+
+	void ShowBackButton() {
+		backPanel.SetActive(true);
+	}
+
 
 
 	public void OnClickBack() {
@@ -206,6 +217,8 @@ public class MainMenu : MonoBehaviour {
 	
 
 	public void OnStartServerClick() {
+		HideBackButton();
+
 		NetworkManager.StartServer();
 		joinServerButton.isEnabled = false;
 		
@@ -222,6 +235,7 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnJoinServerClick() {
+		HideBackButton();
 		refreshButton.isEnabled = true;
 
 		NetworkManager.RefreshHostList();

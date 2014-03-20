@@ -1837,7 +1837,7 @@ MeshCollider:
   m_GameObject: {fileID: 100012}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
@@ -2478,7 +2478,7 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: .48884365, g: .470588207, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 500
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2587,7 +2587,7 @@ MonoBehaviour:
   laserMaterialScrollSpeedU: 1
   laserMaterialScrollSpeedV: 1
   damageRate: 1
-  laserHitForce: 100
+  laserHitForce: 20
   explosion: {fileID: 100080}
   explosionCooldown: .100000001
   timeSinceLastExplosion: 0
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   currentVelocity: 0
   maxVelocity: 300
   mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 1
+  debugSelfDestructEnabled: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2806,7 +2806,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f12945bfd7ef404db9b18c4bd86a19e, type: 3}
   m_Name: 
@@ -2908,8 +2908,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: -20, z: 170}
+  m_Radius: 100
+  m_Center: {x: 0, y: 0, z: 50}
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

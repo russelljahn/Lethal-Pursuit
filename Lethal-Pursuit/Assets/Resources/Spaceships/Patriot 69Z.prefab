@@ -1837,7 +1837,7 @@ MeshCollider:
   m_GameObject: {fileID: 100016}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
@@ -2587,7 +2587,7 @@ MonoBehaviour:
   laserMaterialScrollSpeedU: 1
   laserMaterialScrollSpeedV: 1
   damageRate: 1
-  laserHitForce: 100
+  laserHitForce: 20
   explosion: {fileID: 100080}
   explosionCooldown: .100000001
   timeSinceLastExplosion: 0
@@ -2908,8 +2908,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: -20, z: 170}
+  m_Radius: 100
+  m_Center: {x: 0, y: 0, z: 50}
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

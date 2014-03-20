@@ -42,10 +42,9 @@ public class SpaceshipCamera : MonoBehaviour {
 
 		Vector3 lookPoint = crosshairs.transform.position;
 		lookPoint.y = this.transform.position.y + yLookAmount*lookPoint.y;
-
+	
 		Quaternion targetRotation = Quaternion.LookRotation(lookPoint - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed*Time.deltaTime);
-
 	}
 
 
