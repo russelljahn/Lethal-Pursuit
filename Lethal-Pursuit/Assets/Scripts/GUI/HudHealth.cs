@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class HUD_Health : MonoBehaviour {
+public class HudHealth : MonoBehaviour {
 
 	public Color healthyColor = Color.green;
 	public Color injuredColor = Color.yellow;
@@ -25,9 +25,9 @@ public class HUD_Health : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(healthComponent == null) {
+		if (healthComponent == null) {
 			Spaceship ship = GameplayManager.spaceship;
-			if(ship != null) {
+			if (ship != null) {
 				healthComponent = ship.GetComponent<SpaceshipHealth>();
 			}
 		}

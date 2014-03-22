@@ -6,7 +6,7 @@ public class SpaceshipCamera : MonoBehaviour {
 
 
 	public Spaceship spaceship;
-	public HUD_Crosshairs crosshairs;
+	public HudCrosshairs crosshairs;
 
 	public float yLookAmount = 0.8f;
 	public float rotationSpeed = 3.0f;

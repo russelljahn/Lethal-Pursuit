@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour {
 				obj.name = "Level Manager";
 				singletonInstance.loadedLevel = GetLoadedLevel();
 				Debug.Log ("Loaded level on LevelManager creation: " + singletonInstance.loadedLevel);
+				SpawnManager.GenerateSpawnPoints();
 				//Debug.Log ("Could not find a LevelManager object, so automatically generated one.");
 			}
 			
@@ -308,27 +309,20 @@ public class LevelManager : MonoBehaviour {
 			spaceship = Instantiate(
 				Resources.Load (spaceshipFilename),
 				Vector3.zero, 
-				Quaternion.identity) as GameObject;
+				Quaternion.identity
+			) as GameObject;
 		}
 		else {
 			spaceship = Network.Instantiate(
 				Resources.Load (spaceshipFilename),
 				Vector3.zero, 
 				Quaternion.identity,
-				0) as GameObject;
-		}
-		
-		if (NetworkManager.IsSinglePlayer()) {
-			// Disable network view if having performance issues.
+				0
+			) as GameObject;
 		}
 			
-		Checkpoint initialCheckpoint = Checkpoint.GetCheckpointByID(0);
-		if (initialCheckpoint == null) {
-			throw new Exception("LevelManager: No checkpoint to spawn at! Spawning at world origin...");
-		}
-		else {
-			initialCheckpoint.SpawnSpaceship(spaceship.GetComponent<Spaceship>());
-		}
+		SpawnManager.SpawnSpaceship(spaceship.GetComponent<Spaceship>());
+
 	}
 
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HUD_Manager : MonoBehaviour {
+public class HudManager : MonoBehaviour {
 
 	public Spaceship spaceship;
 
@@ -18,7 +18,7 @@ public class HUD_Manager : MonoBehaviour {
 	public GameObject menuGui;
 	public GameObject controlsGui;
 	public GameObject quitConfirmationGui;
-	public GameObject raceOverGui;
+	public GameObject matchOverGui;
 	
 
 
@@ -44,7 +44,7 @@ public class HUD_Manager : MonoBehaviour {
 			if (menuGui.activeInHierarchy) {
 				HideMenu();
 			}
-			else if (!tutorialGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !raceOverGui.activeInHierarchy) {
+			else if (!tutorialGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
 				DisplayMenu();
 			}
 		}
@@ -87,20 +87,20 @@ public class HUD_Manager : MonoBehaviour {
 	}
 
 
-	public void DisplayRaceOver() {
+	public void DisplayMatchOver() {
 		spaceship.enabled = false;
-		raceOverGui.SetActive(true);
+		matchOverGui.SetActive(true);
 	}
 	
 	
-	public void HideRaceOver() {
+	public void HideMatchOver() {
 		spaceship.enabled = true;
-		raceOverGui.SetActive(false);
+		matchOverGui.SetActive(false);
 	}
 
 
-	public void ReplayTrack() {
-		if(NetworkManager.IsSinglePlayer()) {
+	public void ReplayMatch() {
+		if (NetworkManager.IsSinglePlayer()) {
 			LevelManager.ReloadLevel();
 		}
 		else {
@@ -109,12 +109,12 @@ public class HUD_Manager : MonoBehaviour {
 	}
 
 	[RPC]
-	private void NetworkReplayTrack() {
+	private void NetworkReplayMatch() {
 		LevelManager.ReloadLevel();
 	}
 
 	public void LoadMainMenu() {
-		if(Network.isServer) {
+		if (Network.isServer) {
 			NetworkManager.ServerCleanup();
 		}
 		LevelManager.LoadMainMenu();

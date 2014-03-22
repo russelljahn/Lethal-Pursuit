@@ -14,26 +14,30 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		public float maxHealth = 100;
 	
 		public HealthState state = HealthState.HEALTHY;
+		public float respawnInvulnerabilityTime = 3.0f;
+		private float timeUntilVulnerable = 0.0f;
 
 		public float healthRatioToBeInjured = 0.60f;
 		public float healthRatioToBeCritical = 0.30f;
 
-		public SpaceshipRaceData raceData;
-
 		public float debugSelfDestructDamageRate = 1.0f;
+		public bool invulnerable = false;
 		
 
 
 	public override void Start() {
 		base.Start();
 		currentHealth = maxHealth;
-		raceData = GetComponent<SpaceshipRaceData>();
 	}
 
 
 
 	public override void Update() {
 		base.Update();
+
+		timeUntilVulnerable = Mathf.Max(0.0f, timeUntilVulnerable-Time.deltaTime);
+		invulnerable = timeUntilVulnerable > 0.0f;
+
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
 		if (debugSelfDestruct) {
@@ -59,8 +63,9 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	void HandleDeath() {
 		if (currentHealth <= 0.0f) {
 			Debug.Log ("Player is dead!");
-			raceData.lastCheckpoint.SpawnSpaceship(this.spaceship);
+			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
+			timeUntilVulnerable = respawnInvulnerabilityTime;
 		}
 	}
 
@@ -68,14 +73,17 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount) {
-		if(networkView.isMine || NetworkManager.IsSinglePlayer()) {
-			this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+		if (!invulnerable) {
+			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
+				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+			}
+			else {
+				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
+			}
 		}
-		else {
-			networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
-		}
-
 	}
+
+
 
 	[RPC]
 	private void NetworkApplyDamage(float amount) {
