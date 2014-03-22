@@ -2624,10 +2624,11 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 100
   state: 0
+  respawnInvulnerabilityTime: 3
   healthRatioToBeInjured: .600000024
   healthRatioToBeCritical: .300000012
-  raceData: {fileID: 0}
   debugSelfDestructDamageRate: 1
+  invulnerable: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2640,13 +2641,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  lapsCompleted: 0
-  finishedTrack: 0
-  lastCheckpoint: {fileID: 0}
-  startRaceTime: 0
-  finishRaceTime: Infinity
-  finishLapTime: Infinity
+  timeStartMatch: 0
+  timeFinishMatch: Infinity
   timeElapsed: 0
+  matchOver: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2711,7 +2709,7 @@ MonoBehaviour:
   drifting: 0
   nosediving: 0
   idle: 0
-  debugSelfDestruct: 0
+  debugSelfDestruct: 1
   forward: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 1

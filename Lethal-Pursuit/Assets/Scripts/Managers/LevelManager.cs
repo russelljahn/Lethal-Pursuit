@@ -300,6 +300,7 @@ public class LevelManager : MonoBehaviour {
 
 	void SpawnPlayer() {
 		GameObject spaceship = null;
+		SpawnManager.GenerateSpawnPoints();
 
 		if (spaceshipFilename == null) {
 			throw new Exception("LevelManager: Spaceship filename is null!");

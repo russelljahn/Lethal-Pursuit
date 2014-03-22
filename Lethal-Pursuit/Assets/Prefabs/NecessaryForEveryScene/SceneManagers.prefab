@@ -3439,25 +3439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb28b25bd167a44ac8be7f85fb564f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthyColor:
-    r: 0
-    g: .68235296
-    b: .250980407
-    a: .843137264
-  injuredColor:
-    r: .997850358
-    g: 1
-    b: .301470578
-    a: .843137264
-  criticalColor:
-    r: .808823526
-    g: 0
-    b: 0
-    a: .843137264
-  healthComponent: {fileID: 0}
-  healthbarSprite: {fileID: 0}
-  initialScale: {x: 0, y: 0, z: 0}
-  currentScale: {x: 0, y: 0, z: 0}
+  healthyColor: {r: 0, g: .68235296, b: .250980407, a: .843137264}
+  injuredColor: {r: .997850358, g: 1, b: .301470578, a: .843137264}
+  criticalColor: {r: .808823526, g: 0, b: 0, a: .843137264}
 --- !u!114 &11400090
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,6 +25,7 @@ public class Spaceship : MonoBehaviour {
 	public bool  drifting;
 	public bool  nosediving;
 	public bool  idle;
+	[HideInInspector]
 	public bool  debugSelfDestruct;
 	#endregion
 
@@ -40,8 +41,6 @@ public class Spaceship : MonoBehaviour {
 	public bool mapKeyboardDiagonalAmountToAnalogueDiagonalAmount = false;
 
 	public bool debugSelfDestructEnabled = false;
-
-
 
 
 	void Start () {
