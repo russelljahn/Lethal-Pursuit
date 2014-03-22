@@ -48,9 +48,13 @@ public class ComponentSelector : ScriptableWizard
 			if (Selection.activeObject != mb.gameObject && GUILayout.Button("Edit", GUILayout.Width(40f)))
 				Selection.activeObject = mb.gameObject;
 		}
+		else if (o != null && GUILayout.Button("X", GUILayout.Width(20f)))
+		{
+			o = null;
+		}
 		GUILayout.EndHorizontal();
 		if (show) Show<T>(cb);
-		else if (o != obj) cb(o);
+		else cb(o);
 	}
 
 	/// <summary>
@@ -153,13 +157,13 @@ public class ComponentSelector : ScriptableWizard
 				if (!isComponent)
 				{
 					System.Type t = obj.GetType();
-					if (t == mType || t.IsSubclassOf(mType))
+					if (t == mType || t.IsSubclassOf(mType) && !list.Contains(obj))
 						list.Add(obj);
 				}
 				else if (PrefabUtility.GetPrefabType(obj) == PrefabType.Prefab)
 				{
 					Object t = (obj as GameObject).GetComponent(mType);
-					if (t != null) list.Add(t);
+					if (t != null && !list.Contains(t)) list.Add(t);
 				}
 			}
 			list.Sort(delegate(Object a, Object b) { return a.name.CompareTo(b.name); });

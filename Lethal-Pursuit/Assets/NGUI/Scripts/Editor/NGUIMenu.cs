@@ -223,7 +223,7 @@ static public class NGUIMenu
 
 	[MenuItem("NGUI/Create/2D UI", true)]
 	[MenuItem("Assets/NGUI/Create 2D UI", true, 1)]
-	static bool Create2Da () { return UIRoot.list.Count == 0; }
+	static bool Create2Da () { return UIRoot.list.Count == 0 || UICamera.list.size == 0 || !UICamera.list[0].camera.isOrthoGraphic; }
 
 	[MenuItem("NGUI/Create/3D UI", false, 6)]
 	[MenuItem("Assets/NGUI/Create 3D UI", false, 1)]
@@ -231,7 +231,7 @@ static public class NGUIMenu
 
 	[MenuItem("NGUI/Create/3D UI", true)]
 	[MenuItem("Assets/NGUI/Create 3D UI", true, 1)]
-	static bool Create3Da () { return UIRoot.list.Count == 0; }
+	static bool Create3Da () { return UIRoot.list.Count == 0 || UICamera.list.size == 0 || UICamera.list[0].camera.isOrthoGraphic; }
 
 #endregion
 #region Attach
@@ -313,6 +313,12 @@ static public class NGUIMenu
 
 	[MenuItem("NGUI/Attach/Play Animation Script", false, 7)]
 	static public void Add12 () { AddIfMissing<UIPlayAnimation>(); }
+
+	[MenuItem("NGUI/Attach/Play Sound Script", false, 7)]
+	static public void Add13 () { AddIfMissing<UIPlaySound>(); }
+
+	[MenuItem("NGUI/Attach/Localization Script", false, 7)]
+	static public void Add14 () { AddIfMissing<UILocalize>(); }
 
 #endregion
 #region Tweens

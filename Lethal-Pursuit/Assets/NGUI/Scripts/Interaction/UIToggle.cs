@@ -73,12 +73,11 @@ public class UIToggle : UIWidgetContainer
 	/// Deprecated functionality. Use the 'group' option instead.
 	/// </summary>
 
-	[HideInInspector][SerializeField] Transform radioButtonRoot;
-	[HideInInspector][SerializeField] bool startsChecked;
-	[HideInInspector][SerializeField] UISprite checkSprite;
+	[HideInInspector][SerializeField] UISprite checkSprite = null;
 	[HideInInspector][SerializeField] Animation checkAnimation;
 	[HideInInspector][SerializeField] GameObject eventReceiver;
 	[HideInInspector][SerializeField] string functionName = "OnActivate";
+	[HideInInspector][SerializeField] bool startsChecked = false; // Use 'startsActive' instead
 
 	bool mIsActive = true;
 	bool mStarted = false;
@@ -120,16 +119,18 @@ public class UIToggle : UIWidgetContainer
 
 	void Start ()
 	{
+		if (startsChecked)
+		{
+			startsChecked = false;
+			startsActive = true;
 #if UNITY_EDITOR
+			NGUITools.SetDirty(this);
+#endif
+		}
+
 		// Auto-upgrade
 		if (!Application.isPlaying)
 		{
-			if (startsChecked)
-			{
-				startsChecked = false;
-				startsActive = true;
-			}
-
 			if (checkSprite != null && activeSprite == null)
 			{
 				activeSprite = checkSprite;
@@ -145,12 +146,6 @@ public class UIToggle : UIWidgetContainer
 			if (Application.isPlaying && activeSprite != null)
 				activeSprite.alpha = startsActive ? 1f : 0f;
 
-			if (radioButtonRoot != null && group == 0)
-			{
-				Debug.LogWarning(NGUITools.GetHierarchy(gameObject) +
-					" uses a 'Radio Button Root'. You need to change it to use a 'group' instead.", this);
-			}
-
 			if (EventDelegate.IsValid(onChange))
 			{
 				eventReceiver = null;
@@ -158,7 +153,6 @@ public class UIToggle : UIWidgetContainer
 			}
 		}
 		else
-#endif
 		{
 			mIsActive = !startsActive;
 			mStarted = true;

@@ -368,7 +368,7 @@ public class UIPopupList : UIWidgetContainer
 			EventDelegate.Add(onChange, textLabel.SetCurrentSelection);
 			textLabel = null;
 #if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty(this);
+			NGUITools.SetDirty(this);
 #endif
 		}
 
@@ -392,7 +392,7 @@ public class UIPopupList : UIWidgetContainer
 	/// Localize the text label.
 	/// </summary>
 
-	void OnLocalize (Localization loc) { if (isLocalized) TriggerCallbacks(); }
+	void OnLocalize () { if (isLocalized) TriggerCallbacks(); }
 
 	/// <summary>
 	/// Visibly highlight the specified transform by moving the highlight sprite to be over it.
@@ -652,8 +652,7 @@ public class UIPopupList : UIWidgetContainer
 			if (hlsp == null) return;
 
 			float hlspHeight = hlsp.borderTop;
-			float pixelSize = (bitmapFont != null) ? bitmapFont.pixelSize : 1f;
-			float fontHeight = activeFontSize * pixelSize;
+			float fontHeight = activeFontSize;
 			float dynScale = activeFontScale;
 			float labelHeight = fontHeight * dynScale;
 			float x = 0f, y = -padding.y;
@@ -671,7 +670,7 @@ public class UIPopupList : UIWidgetContainer
 				lbl.trueTypeFont = trueTypeFont;
 				lbl.fontSize = labelFontSize;
 				lbl.fontStyle = fontStyle;
-				lbl.text = (isLocalized && Localization.instance != null) ? Localization.instance.Get(s) : s;
+				lbl.text = isLocalized ? Localization.Get(s) : s;
 				lbl.color = textColor;
 				lbl.cachedTransform.localPosition = new Vector3(bgPadding.x + padding.x, y, -1f);
 				lbl.overflowMethod = UILabel.Overflow.ResizeFreely;

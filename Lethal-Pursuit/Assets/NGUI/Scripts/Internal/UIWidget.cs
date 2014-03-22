@@ -107,7 +107,8 @@ public class UIWidget : UIRect
 	protected Vector4 mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
 
 	Matrix4x4 mLocalToPanel;
-	bool mIsVisible = true;
+	bool mIsVisibleByAlpha = true;
+	bool mIsVisibleByPanel = true;
 	bool mIsInFront = true;
 	float mLastAlpha = 0f;
 	bool mMoved = false;
@@ -167,16 +168,32 @@ public class UIWidget : UIRect
 
 			if (mWidth != value && keepAspectRatio != AspectRatioSource.BasedOnHeight)
 			{
-				mWidth = value;
-
-				if (keepAspectRatio == AspectRatioSource.BasedOnWidth)
-					mHeight = Mathf.RoundToInt(mWidth / aspectRatio);
-				else if (keepAspectRatio == AspectRatioSource.Free)
-					aspectRatio = mWidth / (float)mHeight;
-
-				mMoved = true;
-				if (autoResizeBoxCollider) ResizeCollider();
-				MarkAsChanged();
+				if (isAnchoredHorizontally)
+				{
+					if (leftAnchor.target != null && rightAnchor.target != null)
+					{
+						if (mPivot == Pivot.BottomLeft || mPivot == Pivot.Left || mPivot == Pivot.TopLeft)
+						{
+							NGUIMath.AdjustWidget(this, 0f, 0f, value - mWidth, 0f);
+						}
+						else if (mPivot == Pivot.BottomRight || mPivot == Pivot.Right || mPivot == Pivot.TopRight)
+						{
+							NGUIMath.AdjustWidget(this, mWidth - value, 0f, 0f, 0f);
+						}
+						else
+						{
+							int diff = value - mWidth;
+							diff = diff - (diff & 1);
+							if (diff != 0) NGUIMath.AdjustWidget(this, -diff * 0.5f, 0f, diff * 0.5f, 0f);
+						}
+					}
+					else if (leftAnchor.target != null)
+					{
+						NGUIMath.AdjustWidget(this, 0f, 0f, value - mWidth, 0f);
+					}
+					else NGUIMath.AdjustWidget(this, mWidth - value, 0f, 0f, 0f);
+				}
+				else SetDimensions(value, mHeight);
 			}
 		}
 	}
@@ -196,18 +213,34 @@ public class UIWidget : UIRect
 			int min = minHeight;
 			if (value < min) value = min;
 
-			if (mHeight != value && keepAspectRatio != AspectRatioSource.BasedOnWidth)
+			if (mHeight != value && keepAspectRatio != AspectRatioSource.BasedOnHeight)
 			{
-				mHeight = value;
-
-				if (keepAspectRatio == AspectRatioSource.BasedOnHeight)
-					mWidth = Mathf.RoundToInt(mHeight * aspectRatio);
-				else if (keepAspectRatio == AspectRatioSource.Free)
-					aspectRatio = mWidth / (float)mHeight;
-
-				mMoved = true;
-				if (autoResizeBoxCollider) ResizeCollider();
-				MarkAsChanged();
+				if (isAnchoredVertically)
+				{
+					if (bottomAnchor.target != null && topAnchor.target != null)
+					{
+						if (mPivot == Pivot.BottomLeft || mPivot == Pivot.Bottom || mPivot == Pivot.BottomRight)
+						{
+							NGUIMath.AdjustWidget(this, 0f, 0f, 0f, value - mHeight);
+						}
+						else if (mPivot == Pivot.TopLeft || mPivot == Pivot.Top || mPivot == Pivot.TopRight)
+						{
+							NGUIMath.AdjustWidget(this, 0f, mHeight - value, 0f, 0f);
+						}
+						else
+						{
+							int diff = value - mHeight;
+							diff = diff - (diff & 1);
+							if (diff != 0) NGUIMath.AdjustWidget(this, 0f, -diff * 0.5f, 0f, diff * 0.5f);
+						}
+					}
+					else if (bottomAnchor.target != null)
+					{
+						NGUIMath.AdjustWidget(this, 0f, 0f, 0f, value - mHeight);
+					}
+					else NGUIMath.AdjustWidget(this, 0f, mHeight - value, 0f, 0f);
+				}
+				else SetDimensions(mWidth, value);
 			}
 		}
 	}
@@ -257,7 +290,7 @@ public class UIWidget : UIRect
 	/// Whether the widget is currently visible.
 	/// </summary>
 
-	public bool isVisible { get { return mIsVisible && mIsInFront && finalAlpha > 0.001f; } }
+	public bool isVisible { get { return mIsVisibleByPanel && mIsVisibleByAlpha && mIsInFront && finalAlpha > 0.001f && NGUITools.GetActive(this); } }
 
 	/// <summary>
 	/// Whether the widget has vertices to draw.
@@ -351,7 +384,7 @@ public class UIWidget : UIRect
 					}
 				}
 #if UNITY_EDITOR
-				UnityEditor.EditorUtility.SetDirty(this);
+				NGUITools.SetDirty(this);
 #endif
 			}
 		}
@@ -529,6 +562,30 @@ public class UIWidget : UIRect
 	}
 
 	/// <summary>
+	/// Adjust the widget's dimensions without going through the anchor validation logic.
+	/// </summary>
+
+	public void SetDimensions (int w, int h)
+	{
+		if (mWidth != w || mHeight != h)
+		{
+			mWidth = w;
+			mHeight = h;
+
+			if (keepAspectRatio == AspectRatioSource.BasedOnWidth)
+				mHeight = Mathf.RoundToInt(mWidth / aspectRatio);
+			else if (keepAspectRatio == AspectRatioSource.BasedOnHeight)
+				mWidth = Mathf.RoundToInt(mHeight * aspectRatio);
+			else if (keepAspectRatio == AspectRatioSource.Free)
+				aspectRatio = mWidth / (float)mHeight;
+
+			mMoved = true;
+			if (autoResizeBoxCollider) ResizeCollider();
+			MarkAsChanged();
+		}
+	}
+
+	/// <summary>
 	/// Get the sides of the rectangle relative to the specified transform.
 	/// The order is left, top, right, bottom.
 	/// </summary>
@@ -580,7 +637,7 @@ public class UIWidget : UIRect
 
 	protected void UpdateFinalAlpha (int frameID)
 	{
-		if (!mIsVisible || !mIsInFront)
+		if (!mIsVisibleByAlpha || !mIsInFront)
 		{
 			finalAlpha = 0f;
 		}
@@ -602,7 +659,8 @@ public class UIWidget : UIRect
 
 		if (panel != null)
 		{
-			UpdateVisibility(CalculateCumulativeAlpha(Time.frameCount) > 0.001f && panel.IsVisible(this));
+			bool vis = (hideIfOffScreen || panel.clipsChildren) ? panel.IsVisible(this) : true;
+			UpdateVisibility(CalculateCumulativeAlpha(Time.frameCount) > 0.001f, vis);
 			UpdateFinalAlpha(Time.frameCount);
 			if (includeChildren) base.Invalidate(true);
 		}
@@ -656,7 +714,7 @@ public class UIWidget : UIRect
 			if (bottomAnchor.target) bottomAnchor.SetVertical(t, y);
 			if (topAnchor.target) topAnchor.SetVertical(t, y + height);
 #if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty(this);
+			NGUITools.SetDirty(this);
 #endif
 		}
 	}
@@ -779,10 +837,10 @@ public class UIWidget : UIRect
 
 	protected override void OnValidate()
 	{
-		base.OnValidate();
-
 		if (NGUITools.GetActive(this))
 		{
+			base.OnValidate();
+
 			// Prior to NGUI 2.7.0 width and height was specified as transform's local scale
 			if ((mWidth == 100 || mWidth == minWidth) &&
 				(mHeight == 100 || mHeight == minHeight) && cachedTransform.localScale.magnitude > 8f)
@@ -835,20 +893,22 @@ public class UIWidget : UIRect
 
 	public virtual void MarkAsChanged ()
 	{
-		if (this == null) return;
-		mChanged = true;
-#if UNITY_EDITOR
-		UnityEditor.EditorUtility.SetDirty(this);
-#endif
-		// If we're in the editor, update the panel right away so its geometry gets updated.
-		if (panel != null && enabled && NGUITools.GetActive(gameObject) && !mPlayMode)
+		if (NGUITools.GetActive(this))
 		{
-			SetDirty();
-			CheckLayer();
+			mChanged = true;
 #if UNITY_EDITOR
-			// Mark the panel as dirty so it gets updated
-			if (material != null) UnityEditor.EditorUtility.SetDirty(panel.gameObject);
+			NGUITools.SetDirty(this);
 #endif
+			// If we're in the editor, update the panel right away so its geometry gets updated.
+			if (panel != null && enabled && NGUITools.GetActive(gameObject) && !mPlayMode)
+			{
+				SetDirty();
+				CheckLayer();
+#if UNITY_EDITOR
+				// Mark the panel as dirty so it gets updated
+				if (material != null) NGUITools.SetDirty(panel.gameObject);
+#endif
+			}
 		}
 	}
 
@@ -933,7 +993,7 @@ public class UIWidget : UIRect
 			UpgradeFrom265();
 			cachedTransform.localScale = Vector3.one;
 #if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty(this);
+			NGUITools.SetDirty(this);
 #endif
 		}
 		Update();
@@ -1113,11 +1173,13 @@ public class UIWidget : UIRect
 #endif
 	}
 
+#if !UNITY_EDITOR
 	/// <summary>
 	/// Mark the UI as changed when returning from paused state.
 	/// </summary>
 
 	void OnApplicationPause (bool paused) { if (!paused) MarkAsChanged(); }
+#endif
 
 	/// <summary>
 	/// Clear references.
@@ -1192,7 +1254,7 @@ public class UIWidget : UIRect
 
 			Color outline = new Color(1f, 1f, 1f, 0.2f);
 
-			float adjustment = (root != null) ? 0.25f : 0.001f;
+			float adjustment = (root != null) ? 0.05f : 0.001f;
 			Vector2 offset = pivotOffset;
 			Vector3 center = new Vector3(mWidth * (0.5f - offset.x), mHeight * (0.5f - offset.y), -mDepth * adjustment);
 			Vector3 size = new Vector3(mWidth, mHeight, 1f);
@@ -1214,12 +1276,13 @@ public class UIWidget : UIRect
 	/// Update the widget's visibility state.
 	/// </summary>
 
-	public bool UpdateVisibility (bool visible)
+	public bool UpdateVisibility (bool visibleByAlpha, bool visibleByPanel)
 	{
-		if (mIsVisible != visible)
+		if (mIsVisibleByAlpha != visibleByAlpha || mIsVisibleByPanel != visibleByPanel)
 		{
 			mChanged = true;
-			mIsVisible = visible;
+			mIsVisibleByAlpha = visibleByAlpha;
+			mIsVisibleByPanel = visibleByPanel;
 			return true;
 		}
 		return false;
@@ -1314,14 +1377,14 @@ public class UIWidget : UIRect
 	{
 		// Has the alpha changed?
 		float finalAlpha = CalculateFinalAlpha(frame);
-		if (mIsVisible && mLastAlpha != finalAlpha) mChanged = true;
+		if (mIsVisibleByAlpha && mLastAlpha != finalAlpha) mChanged = true;
 		mLastAlpha = finalAlpha;
 
 		if (mChanged)
 		{
 			mChanged = false;
 
-			if (mIsVisible && finalAlpha > 0.001f && shader != null)
+			if (mIsVisibleByAlpha && finalAlpha > 0.001f && shader != null)
 			{
 				bool hadVertices = geometry.hasVertices;
 

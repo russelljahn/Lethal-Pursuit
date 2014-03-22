@@ -1,9 +1,9 @@
-Editor Console Pro 1.4 is a powerful replacement for Unity's editor console.
+Editor Console Pro 2.0 is a powerful replacement for Unity's editor console.
 
 It is accessed in the Window menu under Console Pro, or by pressing Command + \
 
 # Panel buttons
-The bottom right buttons allow you to hide/show various things:
+The top right buttons allow you to hide/show various things:
 Color toggles colorized entries.  When this is on the entire line of a log will have the same color as it's filter.  For example, Errors will be red.
 File toggles the file name that the Debug.Log was called from in a column.
 Class toggles the class and method name that the Debug.Log was called from in a column.
@@ -13,10 +13,10 @@ Stack toggles the stack trace panel.
 Src toggles source code view in the stack trace panel.  This lets you see the surrounding source code for every function call in the stack trace.  Clicking on any line in the source view will let you jump directly to it.
 
 # Columns
-You can reorder or completely disable columns in the preferences window under Columns.  When a column is disabled from preferences, it no longer has a button on the bottom to show/hide it.
+You can reorder or completely disable columns in the preferences window under Columns.  When a column is disabled from preferences, it no longer has a button on the top to show/hide it.
 
 # Source view
-When source view is toggled on (via the Src button on the bottom right), each stack entry with a file associated with it will automatically show you the surrounding source code.  When this is disabled, you can still view the source code of a stack entry by clicking "Source..." next to the stack entry.
+When source view is toggled on (via the Src button on the top right), each stack entry with a file associated with it will automatically show you the surrounding source code.  When this is disabled, you can still view the source code of a stack entry by clicking "Source..." next to the stack entry.
 
 # Ignore Classes
 You can ignore classes so they do not show up in the stack, and double clicking the log will go to the first unignored class.  This is very useful for helper functions such as:

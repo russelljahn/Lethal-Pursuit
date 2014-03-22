@@ -1,4 +1,4 @@
-﻿//----------------------------------------------
+//----------------------------------------------
 //            NGUI: Next-Gen UI kit
 // Copyright © 2011-2014 Tasharen Entertainment
 //----------------------------------------------
@@ -104,12 +104,21 @@ public class ByteReader
 	/// Read a single line from the buffer.
 	/// </summary>
 
-	public string ReadLine ()
+	public string ReadLine () { return ReadLine(true); }
+
+	/// <summary>
+	/// Read a single line from the buffer.
+	/// </summary>
+
+	public string ReadLine (bool skipEmptyLines)
 	{
 		int max = mBuffer.Length;
 
 		// Skip empty characters
-		while (mOffset < max && mBuffer[mOffset] < 32) ++mOffset;
+		if (skipEmptyLines)
+		{
+			while (mOffset < max && mBuffer[mOffset] < 32) ++mOffset;
+		}
 
 		int end = mOffset;
 
@@ -162,5 +171,89 @@ public class ByteReader
 			}
 		}
 		return dict;
+	}
+
+	static BetterList<string> mTemp = new BetterList<string>();
+
+	/// <summary>
+	/// Read a single line of Comma-Separated Values from the file.
+	/// </summary>
+
+	public BetterList<string> ReadCSV ()
+	{
+		mTemp.Clear();
+		string line = "";
+		bool insideQuotes = false;
+		int wordStart = 0;
+
+		while (canRead)
+		{
+			if (insideQuotes)
+			{
+				string s = ReadLine(false);
+				s = s.Replace("\\n", "\n");
+				if (s == null) return null;
+				line += "\n" + s;
+				++wordStart;
+			}
+			else
+			{
+				line = ReadLine(true);
+				line = line.Replace("\\n", "\n");
+				if (line == null) return null;
+				wordStart = 0;
+			}
+
+			for (int i = wordStart, imax = line.Length; i < imax; ++i)
+			{
+				char ch = line[i];
+
+				if (ch == ',')
+				{
+					if (!insideQuotes)
+					{
+						mTemp.Add(line.Substring(wordStart, i - wordStart));
+						wordStart = i + 1;
+					}
+				}
+				else if (ch == '"')
+				{
+					if (insideQuotes)
+					{
+						if (i + 1 >= imax)
+						{
+							mTemp.Add(line.Substring(wordStart, i - wordStart).Replace("\"\"", "\""));
+							return mTemp;
+						}
+
+						if (line[i + 1] != '"')
+						{
+							mTemp.Add(line.Substring(wordStart, i - wordStart));
+							insideQuotes = false;
+
+							if (line[i + 1] == ',')
+							{
+								++i;
+								wordStart = i + 1;
+							}
+						}
+						else ++i;
+					}
+					else
+					{
+						wordStart = i + 1;
+						insideQuotes = true;
+					}
+				}
+			}
+
+			if (wordStart < line.Length)
+			{
+				if (insideQuotes) continue;
+				mTemp.Add(line.Substring(wordStart, line.Length - wordStart));
+			}
+			return mTemp;
+		}
+		return null;
 	}
 }

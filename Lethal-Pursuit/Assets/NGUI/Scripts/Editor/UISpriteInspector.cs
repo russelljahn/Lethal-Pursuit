@@ -84,8 +84,15 @@ public class UISpriteInspector : UIWidgetInspector
 
 		EditorGUI.BeginDisabledGroup(sp.hasMultipleDifferentValues);
 		{
-			if ((UISprite.Type)sp.intValue == UISprite.Type.Sliced)
+			UISprite.Type type = (UISprite.Type)sp.intValue;
+
+			if (type == UISprite.Type.Simple)
 			{
+				NGUIEditorTools.DrawProperty("Flip", serializedObject, "mFlip");
+			}
+			else if (type == UISprite.Type.Sliced)
+			{
+				NGUIEditorTools.DrawProperty("Flip", serializedObject, "mFlip");
 				sp = serializedObject.FindProperty("centerType");
 				bool val = (sp.intValue != (int)UISprite.AdvancedType.Invisible);
 
@@ -94,8 +101,9 @@ public class UISpriteInspector : UIWidgetInspector
 					sp.intValue = val ? (int)UISprite.AdvancedType.Invisible : (int)UISprite.AdvancedType.Sliced;
 				}
 			}
-			else if ((UISprite.Type)sp.intValue == UISprite.Type.Filled)
+			else if (type == UISprite.Type.Filled)
 			{
+				NGUIEditorTools.DrawProperty("Flip", serializedObject, "mFlip");
 				NGUIEditorTools.DrawProperty("Fill Dir", serializedObject, "mFillDirection", GUILayout.MinWidth(20f));
 				GUILayout.BeginHorizontal();
 				GUILayout.Space(4f);
@@ -104,13 +112,14 @@ public class UISpriteInspector : UIWidgetInspector
 				GUILayout.EndHorizontal();
 				NGUIEditorTools.DrawProperty("Invert Fill", serializedObject, "mInvert", GUILayout.MinWidth(20f));
 			}
-			else if ((UISprite.Type)sp.intValue == UISprite.Type.Advanced)
+			else if (type == UISprite.Type.Advanced)
 			{
 				NGUIEditorTools.DrawProperty("  - Left", serializedObject, "leftType");
 				NGUIEditorTools.DrawProperty("  - Right", serializedObject, "rightType");
 				NGUIEditorTools.DrawProperty("  - Top", serializedObject, "topType");
 				NGUIEditorTools.DrawProperty("  - Bottom", serializedObject, "bottomType");
 				NGUIEditorTools.DrawProperty("  - Center", serializedObject, "centerType");
+				NGUIEditorTools.DrawProperty("Flip", serializedObject, "mFlip");
 			}
 		}
 		EditorGUI.EndDisabledGroup();

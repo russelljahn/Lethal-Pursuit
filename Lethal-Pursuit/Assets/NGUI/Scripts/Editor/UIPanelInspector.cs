@@ -167,29 +167,32 @@ public class UIPanelInspector : UIRectEditor
 
 			case EventType.MouseDown:
 			{
-				mStartMouse = e.mousePosition;
-				mAllowSelection = true;
-
-				if (e.button == 1)
+				if (actionUnderMouse != UIWidgetInspector.Action.None)
 				{
-					if (e.modifiers == 0)
+					mStartMouse = e.mousePosition;
+					mAllowSelection = true;
+
+					if (e.button == 1)
 					{
+						if (e.modifiers == 0)
+						{
+							GUIUtility.hotControl = GUIUtility.keyboardControl = id;
+							e.Use();
+						}
+					}
+					else if (e.button == 0 && actionUnderMouse != UIWidgetInspector.Action.None &&
+						UIWidgetInspector.Raycast(handles, out mStartDrag))
+					{
+						mWorldPos = t.position;
+						mLocalPos = t.localPosition;
+						mStartRot = t.localRotation.eulerAngles;
+						mStartDir = mStartDrag - t.position;
+						mStartCR = mPanel.baseClipRegion;
+						mDragPivot = pivotUnderMouse;
+						mActionUnderMouse = actionUnderMouse;
 						GUIUtility.hotControl = GUIUtility.keyboardControl = id;
 						e.Use();
 					}
-				}
-				else if (e.button == 0 && actionUnderMouse != UIWidgetInspector.Action.None &&
-					UIWidgetInspector.Raycast(handles, out mStartDrag))
-				{
-					mWorldPos = t.position;
-					mLocalPos = t.localPosition;
-					mStartRot = t.localRotation.eulerAngles;
-					mStartDir = mStartDrag - t.position;
-					mStartCR = mPanel.baseClipRegion;
-					mDragPivot = pivotUnderMouse;
-					mActionUnderMouse = actionUnderMouse;
-					GUIUtility.hotControl = GUIUtility.keyboardControl = id;
-					e.Use();
 				}
 			}
 			break;
@@ -446,6 +449,22 @@ public class UIPanelInspector : UIRectEditor
 		{
 			Vector4 range = mPanel.baseClipRegion;
 
+			// Scroll view is anchored, meaning it adjusts the offset itself, so we don't want it to be modifiable
+			EditorGUI.BeginDisabledGroup(mPanel.GetComponent<UIScrollView>() != null);
+			GUI.changed = false;
+			GUILayout.BeginHorizontal();
+			GUILayout.Space(80f);
+			Vector3 off = EditorGUILayout.Vector2Field("Offset", mPanel.clipOffset);
+			GUILayout.EndHorizontal();
+
+			if (GUI.changed)
+			{
+				NGUIEditorTools.RegisterUndo("Clipping Change", mPanel);
+				mPanel.clipOffset = off;
+				EditorUtility.SetDirty(mPanel);
+			}
+			EditorGUI.EndDisabledGroup();
+
 			GUILayout.BeginHorizontal();
 			GUILayout.Space(80f);
 			Vector2 pos = EditorGUILayout.Vector2Field("Center", new Vector2(range.x, range.y));
@@ -531,6 +550,14 @@ public class UIPanelInspector : UIRectEditor
 			}
 			GUILayout.EndHorizontal();
 
+#if !UNITY_3_5 && !UNITY_4_0 && !UNITY_4_1 && !UNITY_4_2
+			if (rq == UIPanel.RenderQueue.Explicit)
+			{
+				GUI.changed = false;
+				int so = EditorGUILayout.IntField("Sort Order", mPanel.sortingOrder, GUILayout.Width(120f));
+				if (GUI.changed) mPanel.sortingOrder = so;
+			}
+#endif
 			GUILayout.BeginHorizontal();
 			bool norms = EditorGUILayout.Toggle("Normals", mPanel.generateNormals, GUILayout.Width(100f));
 			GUILayout.Label("Needed for lit shaders", GUILayout.MinWidth(20f));

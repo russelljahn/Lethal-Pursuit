@@ -46,6 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\AnimationPlayer.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\BarOptionsGUI.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\BarOptionsGUIMulti.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\BarPresentation.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\EnergyBarPresentationColorize.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Example\Scripts\MultiBarSliders.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\3DRenderers\EnergyBar3DBase.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\3DRenderers\FilledRenderer3D.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\3DRenderers\RepeatedRenderer3D.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\3DRenderers\SequenceRenderer3D.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBar.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarBase.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarCommons.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarOnGUIBase.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarRenderer.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarRepeatRenderer.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarSequenceRenderer.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\EnergyBarTransformRenderer.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\Screen2.cs" />
+     <Compile Include="Assets\Energy Bar Toolkit\Scripts\SimpleEvent.cs" />
      <Compile Include="Assets\InControl\InControl\Debug\Logger.cs" />
      <Compile Include="Assets\InControl\InControl\InputControl.cs" />
      <Compile Include="Assets\InControl\InControl\InputControlMapping.cs" />
@@ -114,12 +134,14 @@
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\LagRotation.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\LoadLevelOnClick.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\LookAtTarget.cs" />
+     <Compile Include="Assets\NGUI\Examples\Scripts\Other\OpenURLOnClick.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\PanWithMouse.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\PlayIdleAnimations.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\SetColorOnSelection.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\ShaderQuality.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\Spin.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\SpinWithMouse.cs" />
+     <Compile Include="Assets\NGUI\Examples\Scripts\Other\Tutorial5.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\TypewriterEffect.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\UISliderColors.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowAutoYaw.cs" />
@@ -269,42 +291,54 @@
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
+     <None Include="Assets\Particle Playground\Graphics\Shaders\VertexLit Color.shader" />
      <None Include="Assets\Shaders\Cel_Lambert.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\ColorBalance.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\Font.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\FXAA3Console.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\UnlitTransparentTint.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\MobileBloom.shader" />
      <None Include="Assets\Plugins\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Shaders\Lambert.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\ExpandFillShaderPre.shader" />
      <None Include="Assets\Shaders\Cel_RimGlow.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\BloomShader.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Example\Fonts\Boogaloo\boogaloo_glyphs.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (AlphaClip).shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\FisheyeShader.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\Font White.shader" />
      <None Include="Assets\Shaders\Negative.shader" />
      <None Include="Assets\Plugins\Detonator\Resources\Detonator\Textures\HeatDistort.shader" />
      <None Include="Assets\Plugins\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Plugins\TrackBuildR\readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\UnlitShaderPre.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (AlphaClip).shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
      <None Include="Assets\Plugins\iMG Explosion FX\ReadME.txt" />
      <None Include="Assets\Plugins\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font (SoftClip).shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\RadialFillShaderPre.shader" />
      <None Include="Assets\InControl\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\FXAA2.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\VerticalFillShader.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\FXAAPreset2.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\HorizontalFillShaderPre.shader" />
      <None Include="Assets\Images\Particles\particle-pack-01\licence.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
      <None Include="Assets\Plugins\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (SoftClip).shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\RadialFillShader.shader" />
      <None Include="Assets\Plugins\TrackBuildR\versionhistory.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Dynamic Font.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\UnlitShader.shader" />
      <None Include="Assets\Shaders\Graphic.shader" />
      <None Include="Assets\Plugins\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Plugins\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
@@ -313,23 +347,29 @@
      <None Include="Assets\Shaders\Cel.shader" />
      <None Include="Assets\ConsolePro\Readme.txt" />
      <None Include="Assets\Shaders\Cel_FragTest.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Scripts\Sources\How To Build.txt" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\StarBloom.shader" />
      <None Include="Assets\Plugins\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\NGUI\Examples\Other\English.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\MotionBlurAlphaBlended.shader" />
      <None Include="Assets\NGUI\Examples\Other\French.txt" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\ExpandFillShader.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\VerticalFillShaderPre.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\FXAAPreset3.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\SSAA.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\negative.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\BlurShader.shader" />
+     <None Include="Assets\Energy Bar Toolkit\Resources\Shaders\HorizontalFillShader.shader" />
+     <None Include="Assets\Energy Bar Toolkit\README.txt" />
      <None Include="Assets\InControl\Ouya\LitJson\license.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\Shadow-ScreenBlur.shader" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\IndieRadialBlur.shader" />
      <None Include="Assets\InControl\Plugins\Android\res\layout\main.xml" />
      <None Include="Assets\InControl\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Energy Bar Toolkit\Example\Fonts\Boogaloo\SIL OFL Font License Boogaloo.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\Shaders\Cel_RimOutline.shader" />
@@ -337,11 +377,19 @@
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Plugins\ImageEffects\ShaderDir\GodRays.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
+     <None Include="Assets\Particle Playground\Graphics\Shaders\Vertex Color.shader" />
      <None Include="Assets\Plugins\Gem Shader\diamond shader.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\DLAA.shader" />
      <None Include="Assets\Plugins\ImageEffects\AA Shaders\NFAA.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
+     <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
      <None Include="Assets\TerrainToolkit\Read me.txt" />
+ <Reference Include="Assets\Energy Bar Toolkit\Scripts\MadCommons">
+ <HintPath>Assets\Energy Bar Toolkit\Scripts\MadCommons.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Energy Bar Toolkit\Scripts\Mad2D">
+ <HintPath>Assets\Energy Bar Toolkit\Scripts\Mad2D.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

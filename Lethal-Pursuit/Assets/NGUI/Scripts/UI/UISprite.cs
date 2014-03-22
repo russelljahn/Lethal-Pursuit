@@ -39,6 +39,14 @@ public class UISprite : UIWidget
 		Tiled,
 	}
 
+	public enum Flip
+	{
+		Nothing,
+		Horizontally,
+		Vertically,
+		Both,
+	}
+
 	// Cached and saved values
 	[HideInInspector][SerializeField] UIAtlas mAtlas;
 	[HideInInspector][SerializeField] string mSpriteName;
@@ -49,6 +57,7 @@ public class UISprite : UIWidget
 #endif
 	[HideInInspector][SerializeField] float mFillAmount = 1.0f;
 	[HideInInspector][SerializeField] bool mInvert = false;
+	[HideInInspector][SerializeField] Flip mFlip = Flip.Nothing;
 
 	// Deprecated, no longer used
 	[HideInInspector][SerializeField] bool mFillCenter = true;
@@ -420,12 +429,14 @@ public class UISprite : UIWidget
 		if (!isValid) return;
 		base.MakePixelPerfect();
 
+		UISpriteData sp = GetAtlasSprite();
+		if (sp == null) return;
+
 		UISprite.Type t = type;
 
-		if (t == Type.Simple || t == Type.Filled)
+		if (t == Type.Simple || t == Type.Filled || !sp.hasBorder)
 		{
 			Texture tex = mainTexture;
-			UISpriteData sp = GetAtlasSprite();
 
 			if (tex != null && sp != null)
 			{
@@ -452,7 +463,7 @@ public class UISprite : UIWidget
 			mFillCenter = true;
 			centerType = AdvancedType.Invisible;
 #if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty(this);
+			NGUITools.SetDirty(this);
 #endif
 		}
 		base.OnInit();
@@ -543,7 +554,7 @@ public class UISprite : UIWidget
 			float x1 = x0 + mWidth;
 			float y1 = y0 + mHeight;
 
-			if (GetAtlasSprite() != null)
+			if (GetAtlasSprite() != null && mType != Type.Tiled)
 			{
 				int padLeft = mSprite.paddingLeft;
 				int padBottom = mSprite.paddingBottom;
@@ -552,26 +563,38 @@ public class UISprite : UIWidget
 
 				int w = mSprite.width + padLeft + padRight;
 				int h = mSprite.height + padBottom + padTop;
+				float px = 1f;
+				float py = 1f;
 
 				if (w > 0 && h > 0 && (mType == Type.Simple || mType == Type.Filled))
 				{
 					if ((w & 1) != 0) ++padRight;
 					if ((h & 1) != 0) ++padTop;
 
-					float px = (1f / w) * mWidth;
-					float py = (1f / h) * mHeight;
+					px = (1f / w) * mWidth;
+					py = (1f / h) * mHeight;
+				}
 
-					x0 += padLeft * px;
-					x1 -= padRight * px;
-					y0 += padBottom * py;
-					y1 -= padTop * py;
+				if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
+				{
+					x0 += padRight * px;
+					x1 -= padLeft * px;
 				}
 				else
 				{
-					x0 += padLeft;
-					x1 -= padRight;
-					y0 += padBottom;
-					y1 -= padTop;
+					x0 += padLeft * px;
+					x1 -= padRight * px;
+				}
+
+				if (mFlip == Flip.Vertically || mFlip == Flip.Both)
+				{
+					y0 += padTop * py;
+					y1 -= padBottom * py;
+				}
+				else
+				{
+					y0 += padBottom * py;
+					y1 -= padTop * py;
 				}
 			}
 
@@ -590,25 +613,42 @@ public class UISprite : UIWidget
 	}
 
 	/// <summary>
+	/// Convenience function that returns the drawn UVs after flipping gets considered.
+	/// X = left, Y = bottom, Z = right, W = top.
+	/// </summary>
+
+	protected virtual Vector4 drawingUVs
+	{
+		get
+		{
+			switch (mFlip)
+			{
+				case Flip.Horizontally:	return new Vector4(mOuterUV.xMax, mOuterUV.yMin, mOuterUV.xMin, mOuterUV.yMax);
+				case Flip.Vertically:	return new Vector4(mOuterUV.xMin, mOuterUV.yMax, mOuterUV.xMax, mOuterUV.yMin);
+				case Flip.Both:			return new Vector4(mOuterUV.xMax, mOuterUV.yMax, mOuterUV.xMin, mOuterUV.yMin);
+				default:				return new Vector4(mOuterUV.xMin, mOuterUV.yMin, mOuterUV.xMax, mOuterUV.yMax);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Regular sprite fill function is quite simple.
 	/// </summary>
 
 	protected void SimpleFill (BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
-		Vector2 uv0 = new Vector2(mOuterUV.xMin, mOuterUV.yMin);
-		Vector2 uv1 = new Vector2(mOuterUV.xMax, mOuterUV.yMax);
-
 		Vector4 v = drawingDimensions;
+		Vector4 u = drawingUVs;
 
 		verts.Add(new Vector3(v.x, v.y));
 		verts.Add(new Vector3(v.x, v.w));
 		verts.Add(new Vector3(v.z, v.w));
 		verts.Add(new Vector3(v.z, v.y));
 
-		uvs.Add(uv0);
-		uvs.Add(new Vector2(uv0.x, uv1.y));
-		uvs.Add(uv1);
-		uvs.Add(new Vector2(uv1.x, uv0.y));
+		uvs.Add(new Vector2(u.x, u.y));
+		uvs.Add(new Vector2(u.x, u.w));
+		uvs.Add(new Vector2(u.z, u.w));
+		uvs.Add(new Vector2(u.z, u.y));
 
 		Color colF = color;
 		colF.a = finalAlpha;
@@ -640,15 +680,47 @@ public class UISprite : UIWidget
 		mTempPos[3].x = dr.z;
 		mTempPos[3].y = dr.w;
 
-		mTempPos[1].x = mTempPos[0].x + br.x;
-		mTempPos[1].y = mTempPos[0].y + br.y;
-		mTempPos[2].x = mTempPos[3].x - br.z;
-		mTempPos[2].y = mTempPos[3].y - br.w;
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
+		{
+			mTempPos[1].x = mTempPos[0].x + br.z;
+			mTempPos[2].x = mTempPos[3].x - br.x;
 
-		mTempUVs[0] = new Vector2(mOuterUV.xMin, mOuterUV.yMin);
-		mTempUVs[1] = new Vector2(mInnerUV.xMin, mInnerUV.yMin);
-		mTempUVs[2] = new Vector2(mInnerUV.xMax, mInnerUV.yMax);
-		mTempUVs[3] = new Vector2(mOuterUV.xMax, mOuterUV.yMax);
+			mTempUVs[3].x = mOuterUV.xMin;
+			mTempUVs[2].x = mInnerUV.xMin;
+			mTempUVs[1].x = mInnerUV.xMax;
+			mTempUVs[0].x = mOuterUV.xMax;
+		}
+		else
+		{
+			mTempPos[1].x = mTempPos[0].x + br.x;
+			mTempPos[2].x = mTempPos[3].x - br.z;
+			
+			mTempUVs[0].x = mOuterUV.xMin;
+			mTempUVs[1].x = mInnerUV.xMin;
+			mTempUVs[2].x = mInnerUV.xMax;
+			mTempUVs[3].x = mOuterUV.xMax;
+		}
+
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
+		{
+			mTempPos[1].y = mTempPos[0].y + br.w;
+			mTempPos[2].y = mTempPos[3].y - br.y;
+
+			mTempUVs[3].y = mOuterUV.yMin;
+			mTempUVs[2].y = mInnerUV.yMin;
+			mTempUVs[1].y = mInnerUV.yMax;
+			mTempUVs[0].y = mOuterUV.yMax;
+		}
+		else
+		{
+			mTempPos[1].y = mTempPos[0].y + br.y;
+			mTempPos[2].y = mTempPos[3].y - br.w;
+
+			mTempUVs[0].y = mOuterUV.yMin;
+			mTempUVs[1].y = mInnerUV.yMin;
+			mTempUVs[2].y = mInnerUV.yMax;
+			mTempUVs[3].y = mOuterUV.yMax;
+		}
 
 		Color colF = color;
 		colF.a = finalAlpha;
@@ -691,7 +763,31 @@ public class UISprite : UIWidget
 		Texture tex = material.mainTexture;
 		if (tex == null) return;
 
-		Vector4 dr = drawingDimensions;
+		Vector4 v = drawingDimensions;
+		Vector4 u;
+
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
+		{
+			u.x = mInnerUV.xMax;
+			u.z = mInnerUV.xMin;
+		}
+		else
+		{
+			u.x = mInnerUV.xMin;
+			u.z = mInnerUV.xMax;
+		}
+
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
+		{
+			u.y = mInnerUV.yMax;
+			u.w = mInnerUV.yMin;
+		}
+		else
+		{
+			u.y = mInnerUV.yMin;
+			u.w = mInnerUV.yMax;
+		}
+
 		Vector2 size = new Vector2(mInnerUV.width * tex.width, mInnerUV.height * tex.height);
 		size *= atlas.pixelSize;
 
@@ -699,33 +795,33 @@ public class UISprite : UIWidget
 		colF.a = finalAlpha;
 		Color32 col = atlas.premultipliedAlpha ? NGUITools.ApplyPMA(colF) : colF;
 
-		float x0 = dr.x;
-		float y0 = dr.y;
+		float x0 = v.x;
+		float y0 = v.y;
 
-		float u0 = mInnerUV.xMin;
-		float v0 = mInnerUV.yMin;
+		float u0 = u.x;
+		float v0 = u.y;
 
-		while (y0 < dr.w)
+		while (y0 < v.w)
 		{
-			x0 = dr.x;
+			x0 = v.x;
 			float y1 = y0 + size.y;
-			float v1 = mInnerUV.yMax;
+			float v1 = u.w;
 
-			if (y1 > dr.w)
+			if (y1 > v.w)
 			{
-				v1 = Mathf.Lerp(mInnerUV.yMin, mInnerUV.yMax, (dr.w - y0) / size.y);
-				y1 = dr.w;
+				v1 = Mathf.Lerp(u.y, u.w, (v.w - y0) / size.y);
+				y1 = v.w;
 			}
 
-			while (x0 < dr.z)
+			while (x0 < v.z)
 			{
 				float x1 = x0 + size.x;
-				float u1 = mInnerUV.xMax;
+				float u1 = u.z;
 
-				if (x1 > dr.z)
+				if (x1 > v.z)
 				{
-					u1 = Mathf.Lerp(mInnerUV.xMin, mInnerUV.xMax, (dr.z - x0) / size.x);
-					x1 = dr.z;
+					u1 = Mathf.Lerp(u.x, u.z, (v.z - x0) / size.x);
+					x1 = v.z;
 				}
 
 				verts.Add(new Vector3(x0, y0));
@@ -761,43 +857,39 @@ public class UISprite : UIWidget
 		colF.a = finalAlpha;
 		Color32 col = atlas.premultipliedAlpha ? NGUITools.ApplyPMA(colF) : colF;
 		Vector4 v = drawingDimensions;
-
-		float tx0 = mOuterUV.xMin;
-		float ty0 = mOuterUV.yMin;
-		float tx1 = mOuterUV.xMax;
-		float ty1 = mOuterUV.yMax;
+		Vector4 u = drawingUVs;
 
 		// Horizontal and vertical filled sprites are simple -- just end the sprite prematurely
 		if (mFillDirection == FillDirection.Horizontal || mFillDirection == FillDirection.Vertical)
 		{
 			if (mFillDirection == FillDirection.Horizontal)
 			{
-				float fill = (tx1 - tx0) * mFillAmount;
+				float fill = (u.z - u.x) * mFillAmount;
 
 				if (mInvert)
 				{
 					v.x = v.z - (v.z - v.x) * mFillAmount;
-					tx0 = tx1 - fill;
+					u.x = u.z - fill;
 				}
 				else
 				{
 					v.z = v.x + (v.z - v.x) * mFillAmount;
-					tx1 = tx0 + fill;
+					u.z = u.x + fill;
 				}
 			}
 			else if (mFillDirection == FillDirection.Vertical)
 			{
-				float fill = (ty1 - ty0) * mFillAmount;
+				float fill = (u.w - u.y) * mFillAmount;
 
 				if (mInvert)
 				{
 					v.y = v.w - (v.w - v.y) * mFillAmount;
-					ty0 = ty1 - fill;
+					u.y = u.w - fill;
 				}
 				else
 				{
 					v.w = v.y + (v.w - v.y) * mFillAmount;
-					ty1 = ty0 + fill;
+					u.w = u.y + fill;
 				}
 			}
 		}
@@ -807,10 +899,10 @@ public class UISprite : UIWidget
 		mTempPos[2] = new Vector2(v.z, v.w);
 		mTempPos[3] = new Vector2(v.z, v.y);
 
-		mTempUVs[0] = new Vector2(tx0, ty0);
-		mTempUVs[1] = new Vector2(tx0, ty1);
-		mTempUVs[2] = new Vector2(tx1, ty1);
-		mTempUVs[3] = new Vector2(tx1, ty0);
+		mTempUVs[0] = new Vector2(u.x, u.y);
+		mTempUVs[1] = new Vector2(u.x, u.w);
+		mTempUVs[2] = new Vector2(u.z, u.w);
+		mTempUVs[3] = new Vector2(u.z, u.y);
 
 		if (mFillAmount < 1f)
 		{
@@ -850,13 +942,13 @@ public class UISprite : UIWidget
 					mTempPos[2].y = mTempPos[1].y;
 					mTempPos[3].y = mTempPos[0].y;
 
-					mTempUVs[0].x = Mathf.Lerp(tx0, tx1, fx0);
+					mTempUVs[0].x = Mathf.Lerp(u.x, u.z, fx0);
 					mTempUVs[1].x = mTempUVs[0].x;
-					mTempUVs[2].x = Mathf.Lerp(tx0, tx1, fx1);
+					mTempUVs[2].x = Mathf.Lerp(u.x, u.z, fx1);
 					mTempUVs[3].x = mTempUVs[2].x;
 
-					mTempUVs[0].y = Mathf.Lerp(ty0, ty1, fy0);
-					mTempUVs[1].y = Mathf.Lerp(ty0, ty1, fy1);
+					mTempUVs[0].y = Mathf.Lerp(u.y, u.w, fy0);
+					mTempUVs[1].y = Mathf.Lerp(u.y, u.w, fy1);
 					mTempUVs[2].y = mTempUVs[1].y;
 					mTempUVs[3].y = mTempUVs[0].y;
 
@@ -897,13 +989,13 @@ public class UISprite : UIWidget
 					mTempPos[2].y = mTempPos[1].y;
 					mTempPos[3].y = mTempPos[0].y;
 
-					mTempUVs[0].x = Mathf.Lerp(tx0, tx1, fx0);
+					mTempUVs[0].x = Mathf.Lerp(u.x, u.z, fx0);
 					mTempUVs[1].x = mTempUVs[0].x;
-					mTempUVs[2].x = Mathf.Lerp(tx0, tx1, fx1);
+					mTempUVs[2].x = Mathf.Lerp(u.x, u.z, fx1);
 					mTempUVs[3].x = mTempUVs[2].x;
 
-					mTempUVs[0].y = Mathf.Lerp(ty0, ty1, fy0);
-					mTempUVs[1].y = Mathf.Lerp(ty0, ty1, fy1);
+					mTempUVs[0].y = Mathf.Lerp(u.y, u.w, fy0);
+					mTempUVs[1].y = Mathf.Lerp(u.y, u.w, fy1);
 					mTempUVs[2].y = mTempUVs[1].y;
 					mTempUVs[3].y = mTempUVs[0].y;
 
@@ -1071,15 +1163,47 @@ public class UISprite : UIWidget
 		mTempPos[3].x = dr.z;
 		mTempPos[3].y = dr.w;
 
-		mTempPos[1].x = mTempPos[0].x + br.x;
-		mTempPos[1].y = mTempPos[0].y + br.y;
-		mTempPos[2].x = mTempPos[3].x - br.z;
-		mTempPos[2].y = mTempPos[3].y - br.w;
+		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
+		{
+			mTempPos[1].x = mTempPos[0].x + br.z;
+			mTempPos[2].x = mTempPos[3].x - br.x;
 
-		mTempUVs[0] = new Vector2(mOuterUV.xMin, mOuterUV.yMin);
-		mTempUVs[1] = new Vector2(mInnerUV.xMin, mInnerUV.yMin);
-		mTempUVs[2] = new Vector2(mInnerUV.xMax, mInnerUV.yMax);
-		mTempUVs[3] = new Vector2(mOuterUV.xMax, mOuterUV.yMax);
+			mTempUVs[3].x = mOuterUV.xMin;
+			mTempUVs[2].x = mInnerUV.xMin;
+			mTempUVs[1].x = mInnerUV.xMax;
+			mTempUVs[0].x = mOuterUV.xMax;
+		}
+		else
+		{
+			mTempPos[1].x = mTempPos[0].x + br.x;
+			mTempPos[2].x = mTempPos[3].x - br.z;
+
+			mTempUVs[0].x = mOuterUV.xMin;
+			mTempUVs[1].x = mInnerUV.xMin;
+			mTempUVs[2].x = mInnerUV.xMax;
+			mTempUVs[3].x = mOuterUV.xMax;
+		}
+
+		if (mFlip == Flip.Vertically || mFlip == Flip.Both)
+		{
+			mTempPos[1].y = mTempPos[0].y + br.w;
+			mTempPos[2].y = mTempPos[3].y - br.y;
+
+			mTempUVs[3].y = mOuterUV.yMin;
+			mTempUVs[2].y = mInnerUV.yMin;
+			mTempUVs[1].y = mInnerUV.yMax;
+			mTempUVs[0].y = mOuterUV.yMax;
+		}
+		else
+		{
+			mTempPos[1].y = mTempPos[0].y + br.y;
+			mTempPos[2].y = mTempPos[3].y - br.w;
+
+			mTempUVs[0].y = mOuterUV.yMin;
+			mTempUVs[1].y = mInnerUV.yMin;
+			mTempUVs[2].y = mInnerUV.yMax;
+			mTempUVs[3].y = mOuterUV.yMax;
+		}
 
 		Color colF = color;
 		colF.a = finalAlpha;

@@ -549,38 +549,41 @@ public class UIWidgetInspector : UIRectEditor
 
 			case EventType.MouseDown:
 			{
-				mStartMouse = e.mousePosition;
-				mAllowSelection = true;
-
-				if (e.button == 1)
+				if (actionUnderMouse != Action.None)
 				{
-					if (e.modifiers == 0)
+					mStartMouse = e.mousePosition;
+					mAllowSelection = true;
+
+					if (e.button == 1)
 					{
+						if (e.modifiers == 0)
+						{
+							GUIUtility.hotControl = GUIUtility.keyboardControl = id;
+							e.Use();
+						}
+					}
+					else if (e.button == 0 && actionUnderMouse != Action.None && Raycast(handles, out mStartDrag))
+					{
+						mWorldPos = t.position;
+						mLocalPos = t.localPosition;
+						mStartRot = t.localRotation.eulerAngles;
+						mStartDir = mStartDrag - t.position;
+						mStartWidth = mWidget.width;
+						mStartHeight = mWidget.height;
+						mStartLeft.x = mWidget.leftAnchor.relative;
+						mStartLeft.y = mWidget.leftAnchor.absolute;
+						mStartRight.x = mWidget.rightAnchor.relative;
+						mStartRight.y = mWidget.rightAnchor.absolute;
+						mStartBottom.x = mWidget.bottomAnchor.relative;
+						mStartBottom.y = mWidget.bottomAnchor.absolute;
+						mStartTop.x = mWidget.topAnchor.relative;
+						mStartTop.y = mWidget.topAnchor.absolute;
+
+						mDragPivot = pivotUnderMouse;
+						mActionUnderMouse = actionUnderMouse;
 						GUIUtility.hotControl = GUIUtility.keyboardControl = id;
 						e.Use();
 					}
-				}
-				else if (e.button == 0 && actionUnderMouse != Action.None && Raycast(handles, out mStartDrag))
-				{
-					mWorldPos = t.position;
-					mLocalPos = t.localPosition;
-					mStartRot = t.localRotation.eulerAngles;
-					mStartDir = mStartDrag - t.position;
-					mStartWidth = mWidget.width;
-					mStartHeight = mWidget.height;
-					mStartLeft.x = mWidget.leftAnchor.relative;
-					mStartLeft.y = mWidget.leftAnchor.absolute;
-					mStartRight.x = mWidget.rightAnchor.relative;
-					mStartRight.y = mWidget.rightAnchor.absolute;
-					mStartBottom.x = mWidget.bottomAnchor.relative;
-					mStartBottom.y = mWidget.bottomAnchor.absolute;
-					mStartTop.x = mWidget.topAnchor.relative;
-					mStartTop.y = mWidget.topAnchor.absolute;
-
-					mDragPivot = pivotUnderMouse;
-					mActionUnderMouse = actionUnderMouse;
-					GUIUtility.hotControl = GUIUtility.keyboardControl = id;
-					e.Use();
 				}
 			}
 			break;
@@ -910,19 +913,57 @@ public class UIWidgetInspector : UIRectEditor
 	{
 		GUILayout.BeginHorizontal();
 		{
-			EditorGUI.BeginDisabledGroup(!serializedObject.isEditingMultipleObjects && mWidget.isAnchoredHorizontally);
-			{
-				NGUIEditorTools.DrawProperty("Dimensions", serializedObject, "mWidth", GUILayout.MinWidth(100f));
-			}
-			EditorGUI.EndDisabledGroup();
+			bool freezeSize = serializedObject.isEditingMultipleObjects;
 
-			EditorGUI.BeginDisabledGroup(!serializedObject.isEditingMultipleObjects && mWidget.isAnchoredVertically);
+			UILabel lbl = mWidget as UILabel;
+
+			if (!freezeSize && lbl) freezeSize = (lbl.overflowMethod == UILabel.Overflow.ResizeFreely);
+
+			if (freezeSize)
 			{
-				NGUIEditorTools.SetLabelWidth(12f);
-				NGUIEditorTools.DrawProperty("x", serializedObject, "mHeight", GUILayout.MinWidth(30f));
-				NGUIEditorTools.SetLabelWidth(80f);
+				EditorGUI.BeginDisabledGroup(true);
+				NGUIEditorTools.DrawProperty("Dimensions", serializedObject, "mWidth", GUILayout.MinWidth(100f));
+				EditorGUI.EndDisabledGroup();
 			}
-			EditorGUI.EndDisabledGroup();
+			else
+			{
+				GUI.changed = false;
+				int val = EditorGUILayout.IntField("Dimensions", mWidget.width, GUILayout.MinWidth(100f));
+
+				if (GUI.changed)
+				{
+					NGUIEditorTools.RegisterUndo("Dimensions Change", mWidget);
+					mWidget.width = val;
+				}
+			}
+
+			if (!freezeSize && lbl)
+			{
+				UILabel.Overflow ov = lbl.overflowMethod;
+				freezeSize = (ov == UILabel.Overflow.ResizeFreely || ov == UILabel.Overflow.ResizeHeight);
+			}
+
+			NGUIEditorTools.SetLabelWidth(12f);
+
+			if (freezeSize)
+			{
+				EditorGUI.BeginDisabledGroup(true);
+				NGUIEditorTools.DrawProperty("x", serializedObject, "mHeight", GUILayout.MinWidth(30f));
+				EditorGUI.EndDisabledGroup();
+			}
+			else
+			{
+				GUI.changed = false;
+				int val = EditorGUILayout.IntField("x", mWidget.height, GUILayout.MinWidth(30f));
+
+				if (GUI.changed)
+				{
+					NGUIEditorTools.RegisterUndo("Dimensions Change", mWidget);
+					mWidget.height = val;
+				}
+			}
+
+			NGUIEditorTools.SetLabelWidth(80f);
 
 			if (isPrefab)
 			{
@@ -930,7 +971,7 @@ public class UIWidgetInspector : UIRectEditor
 			}
 			else
 			{
-				EditorGUI.BeginDisabledGroup(!serializedObject.isEditingMultipleObjects && mWidget.isFullyAnchored);
+				EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
 
 				if (GUILayout.Button("Snap", GUILayout.Width(68f)))
 				{
@@ -1031,7 +1072,7 @@ public class UIWidgetInspector : UIRectEditor
 			Toggle("\u25BA", "ButtonRight", UIWidget.Pivot.Right, true);
 #else
 			Toggle("<", "ButtonLeft", UIWidget.Pivot.Left, true);
-			Toggle("|", "ButtonMid", UIWidget.Pivot.Center, true);
+			Toggle("--", "ButtonMid", UIWidget.Pivot.Center, true);
 			Toggle(">", "ButtonRight", UIWidget.Pivot.Right, true);
 #endif
 			Toggle("\u25B2", "ButtonLeft", UIWidget.Pivot.Top, false);

@@ -162,6 +162,7 @@ public class UIInput : MonoBehaviour
 	protected UITexture mCaret = null;
 	protected Texture2D mBlankTex = null;
 	protected float mNextBlink = 0f;
+	protected float mLastAlpha = 0f;
 
 	static protected string mLastIME = "";
 #endif
@@ -277,14 +278,84 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
+#if MOBILE
 	/// <summary>
 	/// Current position of the cursor.
 	/// </summary>
 
-#if MOBILE
-	protected int cursorPosition { get { return value.Length; } }
+	public int cursorPosition { get { return value.Length; } set {} }
+
+	/// <summary>
+	/// Index of the character where selection begins.
+	/// </summary>
+
+	public int selectionStart { get { return value.Length; } set {} }
+
+	/// <summary>
+	/// Index of the character where selection ends.
+	/// </summary>
+
+	public int selectionEnd { get { return value.Length; } set {} }
 #else
-	protected int cursorPosition { get { return isSelected ? mSelectionEnd : value.Length; } }
+	/// <summary>
+	/// Current position of the cursor.
+	/// </summary>
+
+	public int cursorPosition
+	{
+		get
+		{
+			return isSelected ? mSelectionEnd : value.Length;
+		}
+		set
+		{
+			if (isSelected)
+			{
+				mSelectionEnd = value;
+				UpdateLabel();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Index of the character where selection begins.
+	/// </summary>
+
+	public int selectionStart
+	{
+		get
+		{
+			return isSelected ? mSelectionStart : value.Length;
+		}
+		set
+		{
+			if (isSelected)
+			{
+				mSelectionStart = value;
+				UpdateLabel();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Index of the character where selection ends.
+	/// </summary>
+
+	public int selectionEnd
+	{
+		get
+		{
+			return isSelected ? mSelectionEnd : value.Length;
+		}
+		set
+		{
+			if (isSelected)
+			{
+				mSelectionEnd = value;
+				UpdateLabel();
+			}
+		}
+	}
 #endif
 
 	/// <summary>
@@ -336,6 +407,13 @@ public class UIInput : MonoBehaviour
 			mDefaultText = label.text;
 			mDefaultColor = label.color;
 			label.supportEncoding = false;
+
+			if (label.alignment == NGUIText.Alignment.Justified)
+			{
+				label.alignment = NGUIText.Alignment.Left;
+				Debug.LogWarning("Input fields using labels with justified alignment are not supported at this time", this);
+			}
+
 			mPivot = label.pivot;
 			mPosition = label.cachedTransform.localPosition.x;
 			UpdateLabel();
@@ -396,10 +474,12 @@ public class UIInput : MonoBehaviour
 			else
 #endif
 			{
-				Input.imeCompositionMode = IMECompositionMode.On;
-				Input.compositionCursorPos = (UICamera.current != null && UICamera.current.cachedCamera != null) ?
+				Vector2 pos = (UICamera.current != null && UICamera.current.cachedCamera != null) ?
 					UICamera.current.cachedCamera.WorldToScreenPoint(label.worldCorners[0]) :
 					label.worldCorners[0];
+				pos.y = Screen.height - pos.y;
+				Input.imeCompositionMode = IMECompositionMode.On;
+				Input.compositionCursorPos = pos;
 #if !MOBILE
 				mSelectionStart = 0;
 				mSelectionEnd = string.IsNullOrEmpty(mValue) ? 0 : mValue.Length;
@@ -435,7 +515,7 @@ public class UIInput : MonoBehaviour
 			}
 			else label.text = mValue;
 
-			Input.imeCompositionMode = IMECompositionMode.Off;
+			Input.imeCompositionMode = IMECompositionMode.Auto;
 			RestoreLabelPivot();
 		}
 		
@@ -490,23 +570,36 @@ public class UIInput : MonoBehaviour
 				return;
 			}
 
-			// Process input ignoring non-printable characters as they are not consistent.
-			// Windows has them, OSX may not. They get handled inside OnGUI() instead.
-			string s = Input.inputString;
-			
-			if (!string.IsNullOrEmpty(s))
+			string ime = Input.compositionString;
+
+			// There seems to be an inconsistency between IME on Windows, and IME on OSX.
+			// On Windows, Input.inputString is always empty while IME is active. On the OSX it is not.
+			if (string.IsNullOrEmpty(ime) && !string.IsNullOrEmpty(Input.inputString))
 			{
+				// Process input ignoring non-printable characters as they are not consistent.
+				// Windows has them, OSX may not. They get handled inside OnGUI() instead.
+				string s = Input.inputString;
+
 				for (int i = 0; i < s.Length; ++i)
 				{
 					char ch = s[i];
-					if (ch >= ' ') Insert(ch.ToString());
+					if (ch < ' ') continue;
+
+					// OSX inserts these characters for arrow keys
+					if (ch == '\uF700') continue;
+					if (ch == '\uF701') continue;
+					if (ch == '\uF702') continue;
+					if (ch == '\uF703') continue;
+
+					Insert(ch.ToString());
 				}
 			}
 
 			// Append IME composition
-			if (mLastIME != Input.compositionString)
+			if (mLastIME != ime)
 			{
-				mLastIME = Input.compositionString;
+				mSelectionEnd = string.IsNullOrEmpty(ime) ? mSelectionStart : mValue.Length + ime.Length;
+				mLastIME = ime;
 				UpdateLabel();
 				ExecuteOnChange();
 			}
@@ -517,6 +610,11 @@ public class UIInput : MonoBehaviour
 				mNextBlink = RealTime.time + 0.5f;
 				mCaret.enabled = !mCaret.enabled;
 			}
+
+			// If the label's final alpha changes, we need to update the drawn geometry,
+			// or the highlight widgets (which have their geometry set manually) won't update.
+			if (isSelected && mLastAlpha != label.finalAlpha)
+				UpdateLabel();
 		}
 	}
 
@@ -853,7 +951,7 @@ public class UIInput : MonoBehaviour
 		Ray ray = UICamera.currentRay;
 		Plane p = new Plane(corners[0], corners[1], corners[2]);
 		float dist;
-		return p.Raycast(ray, out dist) ? mDrawStart + label.GetCharacterIndex(ray.GetPoint(dist)) : 0;
+		return p.Raycast(ray, out dist) ? mDrawStart + label.GetCharacterIndexAtPosition(ray.GetPoint(dist)) : 0;
 	}
 
 	/// <summary>
@@ -896,17 +994,8 @@ public class UIInput : MonoBehaviour
 
 	protected virtual void Cleanup ()
 	{
-		if (mHighlight)
-		{
-			NGUITools.Destroy(mHighlight.gameObject);
-			mHighlight = null;
-		}
-
-		if (mCaret)
-		{
-			NGUITools.Destroy(mCaret.gameObject);
-			mCaret = null;
-		}
+		if (mHighlight) mHighlight.enabled = false;
+		if (mCaret) mCaret.enabled = false;
 
 		if (mBlankTex)
 		{
@@ -936,14 +1025,14 @@ public class UIInput : MonoBehaviour
 	/// Update the visual text label.
 	/// </summary>
 
-	protected void UpdateLabel ()
+	public void UpdateLabel ()
 	{
 		if (label != null)
 		{
 			if (mDoInit) Init();
 			bool selected = isSelected;
 			string fullText = value;
-			bool isEmpty = string.IsNullOrEmpty(fullText);
+			bool isEmpty = string.IsNullOrEmpty(fullText) && string.IsNullOrEmpty(Input.compositionString);
 			label.color = (isEmpty && !selected) ? mDefaultColor : activeTextColor;
 			string processed;
 
@@ -1046,7 +1135,9 @@ public class UIInput : MonoBehaviour
 					else
 					{
 						mHighlight.pivot = label.pivot;
+						mHighlight.mainTexture = mBlankTex;
 						mHighlight.MarkAsChanged();
+						mHighlight.enabled = true;
 					}
 				}
 
@@ -1063,11 +1154,11 @@ public class UIInput : MonoBehaviour
 				else
 				{
 					mCaret.pivot = label.pivot;
+					mCaret.mainTexture = mBlankTex;
 					mCaret.MarkAsChanged();
 					mCaret.enabled = true;
 				}
 
-				// Fill the selection
 				if (start != end)
 				{
 					label.PrintOverlay(start, end, mCaret.geometry, mHighlight.geometry, caretColor, selectionColor);
@@ -1081,6 +1172,7 @@ public class UIInput : MonoBehaviour
 
 				// Reset the blinking time
 				mNextBlink = RealTime.time + 0.5f;
+				mLastAlpha = label.finalAlpha;
 			}
 			else Cleanup();
 #endif

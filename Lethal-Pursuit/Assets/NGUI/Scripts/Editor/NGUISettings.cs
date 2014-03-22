@@ -177,6 +177,18 @@ public class NGUISettings
 		set { SetColor("NGUI Color", value); }
 	}
 
+	static public Color foregroundColor
+	{
+		get { return GetColor("NGUI FG Color", Color.white); }
+		set { SetColor("NGUI FG Color", value); }
+	}
+
+	static public Color backgroundColor
+	{
+		get { return GetColor("NGUI BG Color", Color.black); }
+		set { SetColor("NGUI BG Color", value); }
+	}
+
 	static public ColorMode colorMode
 	{
 		get { return GetEnum("NGUI Color Mode", ColorMode.Blue); }
@@ -282,6 +294,12 @@ public class NGUISettings
 		set { SetEnum("NGUI Font Style", value); }
 	}
 
+	static public Font dynamicFont
+	{
+		get { return Get<Font>("NGUI Dynamic Font", null); }
+		set { Set("NGUI Dynamic Font", value); }
+	}
+
 	static public UILabel.Overflow overflowStyle
 	{
 		get { return GetEnum("NGUI Overflow", UILabel.Overflow.ShrinkContent); }
@@ -340,6 +358,24 @@ public class NGUISettings
 	{
 		get { return GetBool("NGUI Guides", false); }
 		set { SetBool("NGUI Guides", value); }
+	}
+
+	static public string charsToInclude
+	{
+		get { return GetString("NGUI Chars", ""); }
+		set { SetString("NGUI Chars", value); }
+	}
+
+	static public string pathToFreeType
+	{
+		get
+		{
+			string path = Application.dataPath;
+			if (Application.platform == RuntimePlatform.WindowsEditor) path += "/NGUI/Editor/FreeType.dll";
+			else path += "/NGUI/Editor/FreeType.dylib";
+			return GetString("NGUI FreeType", path);
+		}
+		set { SetString("NGUI FreeType", value); }
 	}
 #endregion
 

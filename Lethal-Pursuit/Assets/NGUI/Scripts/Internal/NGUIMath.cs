@@ -678,7 +678,7 @@ static public class NGUIMath
 		}
 
 #if UNITY_EDITOR
-		UnityEditor.EditorUtility.SetDirty(rect);
+		NGUITools.SetDirty(rect);
 #endif
 
 		// If all sides were anchored, we're done
@@ -691,9 +691,29 @@ static public class NGUIMath
 
 	static public void ResizeWidget (UIWidget w, UIWidget.Pivot pivot, float x, float y, int minWidth, int minHeight)
 	{
+		ResizeWidget(w, pivot, x, y, 2, 2, 100000, 100000);
+	}
+
+	/// <summary>
+	/// Given the specified dragged pivot point, adjust the widget's dimensions.
+	/// </summary>
+
+	static public void ResizeWidget (UIWidget w, UIWidget.Pivot pivot, float x, float y, int minWidth, int minHeight, int maxWidth, int maxHeight)
+	{
 		if (pivot == UIWidget.Pivot.Center)
 		{
-			MoveRect(w, x, y);
+			int diffX = Mathf.RoundToInt(x - w.width);
+			int diffY = Mathf.RoundToInt(y - w.height);
+
+			diffX = diffX - (diffX & 1);
+			diffY = diffY - (diffY & 1);
+
+			if ((diffX | diffY) != 0)
+			{
+				diffX >>= 1;
+				diffY >>= 1;
+				AdjustWidget(w, -diffX, -diffY, diffX, diffY, minWidth, minHeight);
+			}
 			return;
 		}
 
@@ -703,35 +723,35 @@ static public class NGUIMath
 		switch (pivot)
 		{
 			case UIWidget.Pivot.BottomLeft:
-			AdjustWidget(w, v.x, v.y, 0, 0, minWidth, minHeight);
+			AdjustWidget(w, v.x, v.y, 0, 0, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.Left:
-			AdjustWidget(w, v.x, 0, 0, 0, minWidth, minHeight);
+			AdjustWidget(w, v.x, 0, 0, 0, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.TopLeft:
-			AdjustWidget(w, v.x, 0, 0, v.y, minWidth, minHeight);
+			AdjustWidget(w, v.x, 0, 0, v.y, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.Top:
-			AdjustWidget(w, 0, 0, 0, v.y, minWidth, minHeight);
+			AdjustWidget(w, 0, 0, 0, v.y, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.TopRight:
-			AdjustWidget(w, 0, 0, v.x, v.y, minWidth, minHeight);
+			AdjustWidget(w, 0, 0, v.x, v.y, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.Right:
-			AdjustWidget(w, 0, 0, v.x, 0, minWidth, minHeight);
+			AdjustWidget(w, 0, 0, v.x, 0, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.BottomRight:
-			AdjustWidget(w, 0, v.y, v.x, 0, minWidth, minHeight);
+			AdjustWidget(w, 0, v.y, v.x, 0, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 
 			case UIWidget.Pivot.Bottom:
-			AdjustWidget(w, 0, v.y, 0, 0, minWidth, minHeight);
+			AdjustWidget(w, 0, v.y, 0, 0, minWidth, minHeight, maxWidth, maxHeight);
 			break;
 		}
 	}
@@ -742,7 +762,7 @@ static public class NGUIMath
 
 	static public void AdjustWidget (UIWidget w, float left, float bottom, float right, float top)
 	{
-		AdjustWidget(w, left, bottom, right, top, 2, 2);
+		AdjustWidget(w, left, bottom, right, top, 2, 2, 100000, 100000);
 	}
 
 	/// <summary>
@@ -750,6 +770,16 @@ static public class NGUIMath
 	/// </summary>
 
 	static public void AdjustWidget (UIWidget w, float left, float bottom, float right, float top, int minWidth, int minHeight)
+	{
+		AdjustWidget(w, left, bottom, right, top, minWidth, minHeight, 100000, 100000);
+	}
+
+	/// <summary>
+	/// Adjust the widget's rectangle based on the specified modifier values.
+	/// </summary>
+
+	static public void AdjustWidget (UIWidget w, float left, float bottom, float right, float top,
+		int minWidth, int minHeight, int maxWidth, int maxHeight)
 	{
 		Vector2 piv = w.pivotOffset;
 		Transform t = w.cachedTransform;
@@ -762,13 +792,13 @@ static public class NGUIMath
 		int iTop = Mathf.FloorToInt(top + 0.5f);
 
 		// Centered pivot should mean having to perform even number adjustments
-		if (piv.x == 0.5f)
+		if (piv.x == 0.5f && (iLeft == 0 || iRight == 0))
 		{
 			iLeft = ((iLeft >> 1) << 1);
 			iRight = ((iRight >> 1) << 1);
 		}
 
-		if (piv.y == 0.5f)
+		if (piv.y == 0.5f && (iBottom == 0 || iTop == 0))
 		{
 			iBottom = ((iBottom >> 1) << 1);
 			iTop = ((iTop >> 1) << 1);
@@ -833,8 +863,8 @@ static public class NGUIMath
 			offset.y = (rotatedT.y + rotatedB.y + rotatedL.y + rotatedR.y) * 0.5f;
 		}
 
-		int minx = Mathf.Max(minWidth, w.minWidth);
-		int miny = Mathf.Max(minHeight, w.minHeight);
+		minWidth = Mathf.Max(minWidth, w.minWidth);
+		minHeight = Mathf.Max(minHeight, w.minHeight);
 
 		// Calculate the widget's width and height after the requested adjustments
 		int finalWidth = w.width + iRight - iLeft;
@@ -843,45 +873,36 @@ static public class NGUIMath
 		// Now it's time to constrain the width and height so that they can't go below min values
 		Vector3 constraint = Vector3.zero;
 
-		if (finalWidth < minx)
+		int limitWidth = finalWidth;
+		if (finalWidth < minWidth) limitWidth = minWidth;
+		else if (finalWidth > maxWidth) limitWidth = maxWidth;
+
+		if (finalWidth != limitWidth)
 		{
-			if (iLeft != 0)
-			{
-				constraint.x -= Mathf.Lerp(minx - finalWidth, 0f, piv.x);
-			}
-			else
-			{
-				constraint.x += Mathf.Lerp(0f, minx - finalWidth, piv.x);
-			}
-			finalWidth = minx;
+			if (iLeft != 0) constraint.x -= Mathf.Lerp(limitWidth - finalWidth, 0f, piv.x);
+			else constraint.x += Mathf.Lerp(0f, limitWidth - finalWidth, piv.x);
+			finalWidth = limitWidth;
 		}
 
-		if (finalHeight < miny)
-		{
-			if (iBottom != 0)
-			{
-				constraint.y -= Mathf.Lerp(miny - finalHeight, 0f, piv.y);
-			}
-			else
-			{
-				constraint.y += Mathf.Lerp(0f, miny - finalHeight, piv.y);
-			}
-			finalHeight = miny;
-		}
+		int limitHeight = finalHeight;
+		if (finalHeight < minHeight) limitHeight = minHeight;
+		else if (finalHeight > maxHeight) limitHeight = maxHeight;
 
-		// Constrain the rect
-		if (finalWidth < minWidth) finalWidth = minWidth;
-		if (finalHeight < minHeight) finalHeight = minHeight;
+		if (finalHeight != limitHeight)
+		{
+			if (iBottom != 0) constraint.y -= Mathf.Lerp(limitHeight - finalHeight, 0f, piv.y);
+			else constraint.y += Mathf.Lerp(0f, limitHeight - finalHeight, piv.y);
+			finalHeight = limitHeight;
+		}
 
 		// Centered pivot requires power-of-two dimensions
-		if (piv.x == 0.5f) finalWidth = ((finalWidth >> 1) << 1);
+		if (piv.x == 0.5f) finalWidth  = ((finalWidth  >> 1) << 1);
 		if (piv.y == 0.5f) finalHeight = ((finalHeight >> 1) << 1);
 
 		// Update the position, width and height
 		Vector3 pos = t.localPosition + offset + rot * constraint;
 		t.localPosition = pos;
-		w.width = finalWidth;
-		w.height = finalHeight;
+		w.SetDimensions(finalWidth, finalHeight);
 
 		// If the widget is anchored, we should update the anchors as well
 		if (w.isAnchored)
@@ -897,7 +918,30 @@ static public class NGUIMath
 		}
 
 #if UNITY_EDITOR
-		UnityEditor.EditorUtility.SetDirty(w);
+		NGUITools.SetDirty(w);
 #endif
+	}
+
+	/// <summary>
+	/// Adjust the specified value by DPI: height * 96 / DPI.
+	/// This will result in in a smaller value returned for higher pixel density devices.
+	/// </summary>
+
+	static public int AdjustByDPI (float height)
+	{
+		float dpi = Screen.dpi;
+
+		RuntimePlatform platform = Application.platform;
+
+		if (dpi == 0f)
+		{
+			dpi = (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) ? 160f : 96f;
+#if UNITY_BLACKBERRY
+			if (platform == RuntimePlatform.BB10Player) dpi = 160f;
+#elif UNITY_WP8
+			if (platform == RuntimePlatform.WP8Player) dpi = 160f;
+#endif
+		}
+		return Mathf.RoundToInt(height * (96f / dpi));
 	}
 }
