@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NetworkManager : MonoBehaviour {
 	
 	private static string gameType = "2P Multiplayer: ";
 	public  static string gameName = "Hosted Game";
 	private static string gameComment = "Network Test Run";
+
 	
 	private static HostData[] hostData;
 	private static bool refreshing = false;
@@ -13,7 +15,11 @@ public class NetworkManager : MonoBehaviour {
 
 	private static NetworkManager singletonInstance;
 
-	private static string chosenShip = null;	
+	private static string chosenShip = null;
+
+	public  static int maxPlayersAllowed = 16;
+	private static List<NetworkPlayer> playerList = new List<NetworkPlayer>();
+	private static int playerID = -1;
 	
 	private static NetworkManager instance {
 		get {
@@ -37,6 +43,7 @@ public class NetworkManager : MonoBehaviour {
 	public void Awake() {
 		DontDestroyOnLoad(this);
 	}
+
 	
 	// Update is called once per frame
 	void Update () 
@@ -57,9 +64,13 @@ public class NetworkManager : MonoBehaviour {
 	public static void StartServer ()
 	{
 		Debug.Log ("Starting server.........");
-		Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
+		Network.InitializeServer(maxPlayersAllowed, 25000, !Network.HavePublicAddress());
 		Debug.Log ("Registering Host.........");
 		MasterServer.RegisterHost (gameType, gameName, gameComment);
+
+		playerList.Clear();
+		playerList.Add(Network.player); //Add host (local player) to list
+		playerID = 0;
 	}
 	
 	void OnServerInitialized ()
@@ -84,6 +95,9 @@ public class NetworkManager : MonoBehaviour {
 		refreshing = true;
 	}
 	
+	void OnPlayerConnected(NetworkPlayer player) {
+		UpdateClientPlayerInfo();
+	}
 	
 	void OnConnectedToServer ()
 	{
@@ -100,6 +114,8 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("Clean up after player: " + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
+
+		UpdateClientPlayerInfo();
 	}
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
@@ -145,17 +161,100 @@ public class NetworkManager : MonoBehaviour {
 		MasterServer.UnregisterHost();
 	}
 	
+	public static int GetPlayerIndex(string ipAddr)
+	{
+		for(int i=0; i<playerList.Count; i++)
+		{
+			if (playerList[i].ipAddress.Equals(ipAddr))
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	public static NetworkPlayer GetPlayer(string ipAddr) {
+		return playerList[GetPlayerIndex(ipAddr)];
+	}
+
+	public static List<NetworkPlayer> GetPlayerList() {
+		return playerList;
+	}
+
+	public void UpdateClientPlayerInfo() {
+		playerList.Clear();
+		playerList.Add(Network.player);
+
+		playerList.AddRange(Network.connections);
+		playerList.TrimExcess();
+
+		Debug.Log("Sending out RPPC to update client information");
+
+		networkView.RPC("InitializeClientPlayerInfo", RPCMode.Others);
+
+		for(int i=0; i<playerList.Count; i++) {
+			networkView.RPC("NetworkUpdateClientPlayerInfo", RPCMode.Others, playerList[i]);
+		}
+
+		networkView.RPC("FinalizeClientPlayerInfo", RPCMode.Others);
+		
+	}
+
+	[RPC]
+	private void InitializeClientPlayerInfo() {
+		playerList.Clear();
+	}
+
+	[RPC]
+	private void NetworkUpdateClientPlayerInfo(NetworkPlayer player) {
+		playerList.Add(player);
+	}
+
+	[RPC]
+	private void FinalizeClientPlayerInfo() {
+
+		Debug.Log("PlayerList size: " + playerList.Count);
+		playerID = GetPlayerIndex(Network.player.ipAddress);
+
+		Debug.Log("PlayerList finished constructing. Given player ID: " + playerID);
+		Debug.Log("Received RPC to update client information");
+		Debug.Log("Number of players: " + playerList.Count);
+		foreach (NetworkPlayer player in playerList) {
+			Debug.Log("IPAddr : " + player.ipAddress);
+		}
+	
+	}
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	

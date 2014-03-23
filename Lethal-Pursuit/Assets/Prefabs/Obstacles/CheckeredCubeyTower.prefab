@@ -9,12 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
-  - 148: {fileID: 14800000}
-  - 148: {fileID: 14800004}
   - 148: {fileID: 14800006}
   m_Layer: 0
   m_Name: CheckeredCubeyTower
-  m_TagString: Untagged
+  m_TagString: Spaceship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +48,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1870.80127, y: 1.14111328, z: 657.347168}
+  m_LocalPosition: {x: -169.498535, y: 1.14111328, z: 397.262878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -177,18 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InterpolationBackTime: .10000000000000001
   m_ExtrapolationLimit: .5
---- !u!148 &14800000
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400000}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!148 &14800002
 NetworkView:
   m_ObjectHideFlags: 1
@@ -198,18 +184,6 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 11400004}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
---- !u!148 &14800004
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400000}
   m_ViewID:
     m_ID: 0
     m_Type: 0

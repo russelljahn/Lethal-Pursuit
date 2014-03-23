@@ -2,7 +2,7 @@
 using InControl;
 using System.Collections;
 
-public class SpaceshipMesh : SpaceshipComponent, IDamageable {
+public class SpaceshipMesh : SpaceshipComponent {
 
 	IDamageable damageableObject;
 

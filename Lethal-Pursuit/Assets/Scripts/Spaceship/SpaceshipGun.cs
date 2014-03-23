@@ -26,7 +26,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float explosionCooldown = 0.1f;
 	public float timeSinceLastExplosion;
 
-
+	public SpaceshipMatchData matchData;
 
 
 
@@ -117,8 +117,8 @@ public class SpaceshipGun : SpaceshipComponent {
 //		Debug.Log ("hitGameObject: " + hitGameObject.name);
 //		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
 				
-		if(damageableObject != null) {
-			damageableObject.ApplyDamage(damageRate);
+		if (damageableObject != null) {
+			damageableObject.ApplyDamage(damageRate, this.spaceship.gameObject);
 		}
 
 	}

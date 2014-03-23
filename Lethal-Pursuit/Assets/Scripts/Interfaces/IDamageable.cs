@@ -1,8 +1,11 @@
-﻿/* 
-	Objects implementing this interface can take damage.
+﻿using UnityEngine;
+
+/* 
+	Objects implementing this interface can take damage and die.
  */
 interface IDamageable {
-
-	void ApplyDamage(float amount);
+	
+	void ApplyDamage(float amount, GameObject damager);
+	bool IsDead();
 
 }

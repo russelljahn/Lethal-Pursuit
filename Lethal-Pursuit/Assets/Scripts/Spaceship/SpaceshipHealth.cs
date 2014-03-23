@@ -41,7 +41,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
 		if (debugSelfDestruct) {
-			this.ApplyDamage(debugSelfDestructDamageRate);
+			this.ApplyDamage(debugSelfDestructDamageRate, this.gameObject);
 		}
 
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
@@ -54,33 +54,39 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			this.state = HealthState.HEALTHY;
 		}
 
-		HandleDeath();
-
 	}
 
 
 
 	void HandleDeath() {
-		if (currentHealth <= 0.0f) {
+
 			Debug.Log ("Player is dead!");
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;
-		}
+
 	}
 
 
 
 	// Implementing Damageable interface.
-	public void ApplyDamage(float amount) {
+	public void ApplyDamage(float amount, GameObject damager) {
 		if (!invulnerable) {
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 			}
 			else {
-				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
+				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
+
+				// Need to check if not -1 for non existing game object
+
+				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount);
+
 			}
 		}
+	}
+	public bool IsDead() {
+		return currentHealth <= 0.0f;
 	}
 
 
@@ -88,6 +94,9 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	[RPC]
 	private void NetworkApplyDamage(float amount) {
 		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+		if (IsDead()) {
+			HandleDeath();
+		}
 	}
 
 

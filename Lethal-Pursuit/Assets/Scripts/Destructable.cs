@@ -7,12 +7,16 @@ public class Destructable : MonoBehaviour, IDamageable {
 	public float damageRate = 0.5f;
 
 
-	public void ApplyDamage(float amount) {
+	// Implementing IDamageable interface.
+	public void ApplyDamage(float amount, GameObject damager) {
 		health = Mathf.Max(0, health - amount);
 
-		if (health <= 0.0f) {
+		if (IsDead()) {
 			this.gameObject.SetActive(false);
 		}
+	}
+	public bool IsDead() {
+		return health <= 0.0f;
 	}
 
 
@@ -25,8 +29,11 @@ public class Destructable : MonoBehaviour, IDamageable {
 		IDamageable damageableObject = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
 
 		if (damageableObject != null) {
-			damageableObject.ApplyDamage(damageRate);
+			damageableObject.ApplyDamage(damageRate, collision.gameObject);
 		}
 	}
+
+
+
 
 }

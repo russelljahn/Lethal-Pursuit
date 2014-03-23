@@ -8,7 +8,7 @@ public class LevelArena : Level {
 		name = "Arena";
 		description = "TODO: Description";
 
-		sceneName = "LevelArena";
+		sceneName = "Arena";
 		
 		maximumPlayers = 4;
 		lapsToWin = 3;

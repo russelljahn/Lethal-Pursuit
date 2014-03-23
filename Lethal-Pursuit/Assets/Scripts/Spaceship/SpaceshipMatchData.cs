@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class SpaceshipMatchData : SpaceshipComponent {
@@ -11,7 +12,7 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	public bool matchOver = false;
 
 	private MatchManager matchManager;
-	
+	public int totalKills = 0;
 
 
 	public override void Start () {
@@ -40,7 +41,13 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	
 
 	public bool IsMatchOver() {
-//		return timeElapsed >= 60.0f;
+		switch (matchManager.rule) {
+			case MatchRule.REACH_TARGET_KILLS:
+				return totalKills >= matchManager.targetKills;
+		
+			default:
+				throw new Exception("IsMatchOver(): Unknown gameplay mode: " + matchManager.rule);
+		}
 		return false;
 	}
 
