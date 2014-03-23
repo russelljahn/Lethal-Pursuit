@@ -40,7 +40,8 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	
 
 	public bool IsMatchOver() {
-		return timeElapsed >= 60.0f;
+//		return timeElapsed >= 60.0f;
+		return false;
 	}
 
 

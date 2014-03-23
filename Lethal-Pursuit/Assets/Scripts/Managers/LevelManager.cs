@@ -126,8 +126,8 @@ public class LevelManager : MonoBehaviour {
 		if (levelName.Equals("Highway")) {
 			return new LevelHighway();
 		}
-		if (levelName.Equals("Trifecta")) {
-			return new LevelTrifecta();
+		if (levelName.Equals("Arena")) {
+			return new LevelArena();
 		}
 		else {
 			throw new NotImplementedException("LevelManager: Level '" + levelName + "' is either not known or programmed in yet!");
