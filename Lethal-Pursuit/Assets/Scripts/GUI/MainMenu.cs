@@ -385,7 +385,7 @@ public class MainMenu : MonoBehaviour {
 
 	[RPC]
 	private void LevelLoader() {
-		LevelManager.NetworkLoadLevel("Tutorial", 1);	
+		LevelManager.NetworkLoadLevel(level1Filename, 1);	
 	}
 	
 	

@@ -1903,6 +1903,7 @@ MonoBehaviour:
   mText: 'PLAYER # WINS'
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -1963,6 +1964,7 @@ MonoBehaviour:
   mText: Rematch
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -2132,6 +2134,8 @@ MonoBehaviour:
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 0
+  mSortingOrder: 0
+  mClipOffset: {x: 0, y: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2147,6 +2151,8 @@ MonoBehaviour:
   manualHeight: 720
   minimumHeight: 320
   maximumHeight: 1536
+  adjustByDPI: 0
+  shrinkPortraitUI: 0
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2201,9 +2207,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100016}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: ReplayMatch
@@ -2222,9 +2232,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100024}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: LoadMainMenu
@@ -2347,6 +2361,7 @@ MonoBehaviour:
   mText: Quit
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -2582,6 +2597,7 @@ MonoBehaviour:
   mText: GAME PAUSED
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -2642,6 +2658,7 @@ MonoBehaviour:
   mText: Controls
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -2750,9 +2767,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100066}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .627451003, g: .627451003, b: .627451003, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: DisplayControls
@@ -2771,9 +2792,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100072}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: DisplayQuitConfirmation
@@ -2936,6 +2961,7 @@ MonoBehaviour:
   mText: Quit
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -2996,6 +3022,7 @@ MonoBehaviour:
   mText: Back
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -3125,6 +3152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c7dbd9b02a14513b37afc8dac0c004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
+  rule: 0
+  targetKills: 5
+  timeLimit: 300
 --- !u!114 &11400072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3298,6 +3329,7 @@ MonoBehaviour:
   mText: Press R2 to boost!
   mFontSize: 65
   mFontStyle: 1
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 2
@@ -3370,6 +3402,7 @@ MonoBehaviour:
   mText: Laps ?/?
   mFontSize: 20
   mFontStyle: 3
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -3507,9 +3540,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100078}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: HideControls
@@ -3556,6 +3593,7 @@ MonoBehaviour:
   mText: No
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -3664,9 +3702,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100084}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: HideQuitConfirmation
@@ -3685,9 +3727,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100090}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: LoadMainMenu
@@ -3810,6 +3856,7 @@ MonoBehaviour:
   mText: Yes
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -3870,6 +3917,7 @@ MonoBehaviour:
   mText: Return to Main Menu?
   mFontSize: 38
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -4126,6 +4174,7 @@ MonoBehaviour:
   mText: Resume
   mFontSize: 45
   mFontStyle: 0
+  mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -4234,9 +4283,13 @@ MonoBehaviour:
   tweenTarget: {fileID: 100112}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: .698529422, g: .698529422, b: .698529422, a: 1}
-  duration: .100000001
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
+  duration: .100000001
   dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  pixelSnap: 0
   onClick:
   - mTarget: {fileID: 11400032}
     mMethodName: HideMenu
