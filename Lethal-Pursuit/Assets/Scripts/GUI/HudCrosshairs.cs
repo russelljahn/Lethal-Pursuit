@@ -30,6 +30,8 @@ public class HudCrosshairs : MonoBehaviour {
 
 	void Update () {
 
+		return;
+
 		if (debug) {
 			debugLine.enabled = true;
 			debugLine.SetPosition(0, spaceship.spaceshipModel.transform.position);

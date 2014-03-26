@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100018
 GameObject:
   m_ObjectHideFlags: 1
@@ -779,7 +779,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .713311672, z: 0, w: .70084697}
-  m_LocalPosition: {x: 11.7207031, y: 7.0093689, z: -59.3364105}
+  m_LocalPosition: {x: 19690.3691, y: 699.05957, z: -14271.3223}
   m_LocalScale: {x: .0999999866, y: .100000001, z: .100000001}
   m_Children:
   - {fileID: 400042}
@@ -794,7 +794,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: -.500784874, y: .499214023, z: .499213904, w: .500784874}
-  m_LocalPosition: {x: -2.61265683, y: -26.9001961, z: 62.9524155}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 249.999985, y: 249.999985, z: 250}
   m_Children: []
   m_Father: {fileID: 400042}
@@ -1143,7 +1143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -380}
+  m_LocalPosition: {x: 0, y: 140, z: -380}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
@@ -2557,15 +2557,21 @@ MonoBehaviour:
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
   xTiltSpeed: 1.5
-  yTiltSpeed: 3.29999995
+  yTiltSpeed: 1.5
   normalTurningRate: 140
   driftingTurningRate: 300
+  normalPitchRate: 300
+  nosedivingPitchRate: 300
   timeUntilMaxTurning: 2
+  timeUntilMaxPitch: 2.5999999
   crosshairs: {fileID: 11400004}
   lookSpeed: 8
-  driftTiltMax: 90
+  driftTiltMax: 60
   driftTiltRate: 2.5
   driftAlignRate: 1.5
+  nosediveTiltMax: 90
+  nosediveTiltRate: 2.5
+  nosediveAlignRate: 1.5
   distanceToRaycastForward: 25
 --- !u!114 &11400002
 MonoBehaviour:
@@ -2604,7 +2610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  spaceshipCamera: {fileID: 11400016}
+  spaceshipCamera: {fileID: 0}
   movementSpeed: 5
   realignSpeed: 4
   xExtent: 10000
@@ -2700,7 +2706,7 @@ MonoBehaviour:
   gameplayManager: {fileID: 0}
   spaceshipModel: {fileID: 100042}
   spaceshipCamera: {fileID: 2000000}
-  crosshairs: {fileID: 100016}
+  crosshairs: {fileID: 0}
   xTilt: 0
   yTilt: 0
   boostAmount: 0
@@ -2771,7 +2777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  crosshairs: {fileID: 11400004}
+  pointToLookAt: {fileID: 100010}
   yLookAmount: .800000012
   rotationSpeed: 3
   lookSpeed: .699999988

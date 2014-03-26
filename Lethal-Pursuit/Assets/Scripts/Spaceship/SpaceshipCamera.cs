@@ -6,7 +6,7 @@ public class SpaceshipCamera : MonoBehaviour {
 
 
 	public Spaceship spaceship;
-	public HudCrosshairs crosshairs;
+	public GameObject pointToLookAt;
 
 	public float yLookAmount = 0.8f;
 	public float rotationSpeed = 3.0f;
@@ -40,11 +40,13 @@ public class SpaceshipCamera : MonoBehaviour {
 			rotationSpeed*Time.deltaTime
 		);
 
-		Vector3 lookPoint = crosshairs.transform.position;
-		lookPoint.y = this.transform.position.y + yLookAmount*lookPoint.y;
+
+		Vector3 lookPoint = pointToLookAt.transform.position;
+//		lookPoint.y = this.transform.position.y + yLookAmount*lookPoint.y;
 	
-		Quaternion targetRotation = Quaternion.LookRotation(lookPoint - transform.position);
+		Quaternion targetRotation = Quaternion.LookRotation(lookPoint - transform.position, Vector3.up);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed*Time.deltaTime);
+
 	}
 
 

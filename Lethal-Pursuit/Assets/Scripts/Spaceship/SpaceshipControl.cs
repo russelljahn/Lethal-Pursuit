@@ -22,10 +22,14 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
-	
-	
+	public float normalPitchRate = 300.0f;
+	public float nosedivingPitchRate = 300.0f;
+
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
+
+	public float timeUntilMaxPitch = 2.6f;
+	private float timeSinceStartedPitch = 0.0f;
 
 	public HudCrosshairs crosshairs;
 	public float lookSpeed = 1.0f;
@@ -35,6 +39,11 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float driftTiltRate = 2.5f;
 	public float driftAlignRate = 1.5f;
 
+	public float nosediveTiltMax = 90f;
+	private float currentNosediveTilt = 0f;
+	public float nosediveTiltRate = 2.5f;
+	public float nosediveAlignRate = 1.5f;
+	
 	public float distanceToRaycastForward = 1000;
 
 
@@ -143,9 +152,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		);
 
 		/* Additional boost up/down. */
-		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
-		);
+//		rigidbody.MovePosition(
+//			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
+//		);
 
 
 	}
@@ -157,28 +166,37 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleTilt() {
 		
-
-		Vector3 newDirection = Vector3.Slerp(
-			spaceshipModel.transform.forward, 
-			crosshairs.transform.position-spaceshipModel.transform.position, 
-			Time.deltaTime*lookSpeed
-		);
+//
+//		Vector3 newDirection = Vector3.Slerp(
+//			spaceshipModel.transform.forward, 
+//			crosshairs.transform.position-spaceshipModel.transform.position, 
+//			Time.deltaTime*lookSpeed
+//		);
 
 		/* Handle drifting tilt. */
-		if (drifting) {
+		if (xTilt != 0.0f) {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*driftTiltMax, driftTiltRate*Time.deltaTime);
 		}
 		else {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
 		}
+		/* Handle nosediving tilt. */
+		if (yTilt != 0.0f) {
+			currentNosediveTilt = Mathf.Lerp(currentNosediveTilt, -yTilt*nosediveTiltMax, nosediveTiltRate*Time.deltaTime);
+		}
+		else {
+			currentNosediveTilt = Mathf.Lerp(currentNosediveTilt, 0.0f, nosediveAlignRate*Time.deltaTime);
+		}
 
 
-		spaceshipModel.transform.forward = newDirection;
+//		spaceshipModel.transform.RotateAround(spaceshipModel.transform.position, Vector3.up, xTilt*Time.deltaTime*xTiltSpeed);
+//		spaceship.transform.RotateAround(spaceshipModel.transform.position, Vector3.right, yTilt*Time.deltaTime*yTiltSpeed);
+		
 
 		spaceshipModel.transform.localRotation = Quaternion.Euler(
-			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, 0.0f, currentDriftTilt)
+			new Vector3(currentNosediveTilt, 0.0f, currentDriftTilt)
 		);
-		
+
 
 	}
 
@@ -190,7 +208,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	void HandleRotation() {
 
 		if (xTilt != 0) {
-			
 			float turningRateForThisFrame = normalTurningRate;
 			
 			/* Allow drift turning if player is holding down brake. */
@@ -210,9 +227,31 @@ public class SpaceshipControl : SpaceshipComponent {
 		else {
 			timeSinceStartedTurning = 0.0f;
 		}
+
+
+//		if (yTilt != 0) {
+//			float pitchRateForThisFrame = normalPitchRate;
+//			
+//			/* Allow drift turning if player is holding down brake. */
+//			if (nosediving) {
+//				pitchRateForThisFrame = nosedivingPitchRate;
+//			}
+//			
+//			this.rigidbody.MoveRotation(
+//				Quaternion.Slerp (
+//					this.transform.localRotation,
+//					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.left*yTilt*pitchRateForThisFrame*Time.deltaTime),
+//					Mathf.Clamp01(timeSinceStartedPitch/timeUntilMaxPitch)
+//				)
+//			);
+//			timeSinceStartedPitch += Time.deltaTime;
+//		}
+//		else {
+//			timeSinceStartedPitch = 0.0f;
+//		}
 		
 	}
-
+	
 
 
 
