@@ -25,6 +25,8 @@ public class HudCrosshairs : MonoBehaviour {
 		debugLine.SetWidth(10f, 10f);
 		debugLine.SetColors(Color.blue, Color.green);
 
+		this.renderer.material.renderQueue = 4000;
+
 	}
 	
 

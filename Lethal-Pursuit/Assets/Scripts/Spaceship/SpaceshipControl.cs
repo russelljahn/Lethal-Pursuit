@@ -38,7 +38,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	private float currentDriftTilt = 0f;
 	public float driftTiltRate = 2.5f;
 	public float driftAlignRate = 1.5f;
-
+	
 	public float nosediveTiltMax = 90f;
 	private float currentNosediveTilt = 0f;
 	public float nosediveTiltRate = 2.5f;
@@ -172,6 +172,12 @@ public class SpaceshipControl : SpaceshipComponent {
 //			crosshairs.transform.position-spaceshipModel.transform.position, 
 //			Time.deltaTime*lookSpeed
 //		);
+
+		float pitchRateThisFrame = normalPitchRate;
+
+		if (nosediving) {
+			pitchRateThisFrame = nosedivingPitchRate;
+		}
 
 		/* Handle drifting tilt. */
 		if (xTilt != 0.0f) {

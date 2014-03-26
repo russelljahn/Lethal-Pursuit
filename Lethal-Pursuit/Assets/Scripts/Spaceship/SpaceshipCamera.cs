@@ -34,18 +34,19 @@ public class SpaceshipCamera : MonoBehaviour {
 			spaceship.spaceshipModel.transform.localPosition + cameraToModel
 		);
 
+//		newCameraPosition.y = Mathf.Abs(newCameraPosition.y);
+
 		this.transform.position = Vector3.Lerp(
 			this.transform.position, 
 			newCameraPosition, 
-			rotationSpeed*Time.deltaTime
+			Mathf.Clamp01(rotationSpeed*Time.deltaTime)
 		);
 
-
 		Vector3 lookPoint = pointToLookAt.transform.position;
-//		lookPoint.y = this.transform.position.y + yLookAmount*lookPoint.y;
-	
+
 		Quaternion targetRotation = Quaternion.LookRotation(lookPoint - transform.position, Vector3.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed*Time.deltaTime);
+		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Mathf.Clamp01(lookSpeed*Time.deltaTime));
+
 
 	}
 
