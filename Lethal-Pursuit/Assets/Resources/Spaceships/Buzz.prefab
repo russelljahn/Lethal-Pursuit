@@ -794,7 +794,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .713311672, z: 0, w: .70084697}
-  m_LocalPosition: {x: 19690.3691, y: 699.05957, z: -14271.3223}
+  m_LocalPosition: {x: 39931.1719, y: -79.2333908, z: -28624.2754}
   m_LocalScale: {x: .0999999866, y: .100000001, z: .100000001}
   m_Children:
   - {fileID: 400042}
@@ -1159,7 +1159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 130, z: -300}
+  m_LocalPosition: {x: 0, y: 112, z: -400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
@@ -2585,11 +2585,11 @@ MonoBehaviour:
   deaccelerationIdle: 1.75
   xTiltSpeed: 1.5
   yTiltSpeed: 1.5
-  normalTurningRate: 500
-  driftingTurningRate: 300
-  normalPitchRate: 300
+  normalTurningRate: 200
+  driftingTurningRate: 500
+  normalPitchRate: 15
   nosedivingPitchRate: 300
-  timeUntilMaxTurning: 2
+  timeUntilMaxTurning: 8
   timeUntilMaxPitch: 2.5999999
   crosshairs: {fileID: 11400004}
   lookSpeed: 8
@@ -2750,9 +2750,9 @@ MonoBehaviour:
   enforceHeightLimit: 0
   heightLimit: 30
   currentVelocity: 0
-  maxVelocity: 200
+  maxVelocity: 450
   mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 0
+  debugSelfDestructEnabled: 1
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

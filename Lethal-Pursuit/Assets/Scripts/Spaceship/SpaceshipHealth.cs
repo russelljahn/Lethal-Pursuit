@@ -53,18 +53,18 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		else {
 			this.state = HealthState.HEALTHY;
 		}
-
+		HandleDeath();
 	}
 
 
 
 	void HandleDeath() {
-
+		if (IsDead()) {
 			Debug.Log ("Player is dead!");
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;
-
+		}
 	}
 
 
