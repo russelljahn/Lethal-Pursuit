@@ -8,15 +8,26 @@ public class SpaceshipComponent : MonoBehaviour {
 	public Spaceship spaceship; 
 
 
-	/* Tilt of analogue stick every frame. */
-	protected float xTilt {
+	/* Tilt of left analogue stick every frame. */
+	protected float xTiltLeft {
 		get {
-			return spaceship.xTilt;
+			return spaceship.xTiltLeft;
 		}
 	}
-	protected float yTilt {
+	protected float yTiltLeft {
 		get {
-			return spaceship.yTilt;
+			return spaceship.yTiltLeft;
+		}
+	} 
+	/* Tilt of right analogue stick every frame. */
+	protected float xTiltRight {
+		get {
+			return spaceship.xTiltRight;
+		}
+	}
+	protected float yTiltRight {
+		get {
+			return spaceship.yTiltRight;
 		}
 	} 
 	/* Amount of boost button pressed down. */
@@ -26,11 +37,11 @@ public class SpaceshipComponent : MonoBehaviour {
 		}
 	}
 	/* Amount of brake button pressed down. */
-	protected float brakeAmount {
-		get {
-			return spaceship.brakeAmount;
-		}
-	}
+//	protected float brakeAmount {
+//		get {
+//			return spaceship.brakeAmount;
+//		}
+//	}
 	/* Is player hitting the shoot button right now? */
 	protected bool shooting {
 		get {

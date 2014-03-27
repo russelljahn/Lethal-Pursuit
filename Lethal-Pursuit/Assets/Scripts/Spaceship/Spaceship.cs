@@ -15,12 +15,15 @@ public class Spaceship : MonoBehaviour {
 	public GameObject crosshairs;
 
 	#region input variables
-	public float xTilt; /* Tilt of analogue stick every frame. */
-	public float yTilt; /* Tilt of analogue stick every frame. */
+	public float xTiltLeft; /* Tilt of left analogue stick every frame. */
+	public float yTiltLeft; /* Tilt of left analogue stick every frame. */
+	public float xTiltRight; /* Tilt of analogue stick every frame. */
+	public float yTiltRight; /* Tilt of analogue stick every frame. */
 	public float boostAmount;
 	public float brakeAmount;
 	public bool  shooting;
 	public bool  boosting;
+	public bool  strafing;
 	public bool  braking;
 	public bool  drifting;
 	public bool  nosediving;
@@ -82,10 +85,12 @@ public class Spaceship : MonoBehaviour {
 
 
 	void HandleInput() {
-		xTilt = InputManager.ActiveDevice.LeftStickX.Value;		
-		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
-		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
-		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
+		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
+		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
+		xTiltLeft = InputManager.ActiveDevice.RightStickX.Value;		
+		yTiltLeft = InputManager.ActiveDevice.RightStickY.Value;
+		boostAmount = yTiltLeft;
+//		brakeAmount = ;
 		shooting = InputManager.ActiveDevice.Action3.State;
 //		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
 		debugSelfDestruct = false;
@@ -104,9 +109,9 @@ public class Spaceship : MonoBehaviour {
 			boosting = true;
 		}
 		else if (brakeAmount > 0) {
-			drifting = (xTilt != 0);
-			nosediving = (yTilt != 0);
-			braking = (xTilt == 0 && yTilt == 0);
+			drifting = (xTiltLeft != 0);
+			nosediving = (yTiltLeft != 0);
+			braking = (xTiltLeft == 0 && yTiltLeft == 0);
 		}
 		else if (boostAmount == 0 && brakeAmount == 0) {
 			idle = true;
@@ -114,9 +119,9 @@ public class Spaceship : MonoBehaviour {
 		
 		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
 		if (mapKeyboardDiagonalAmountToAnalogueDiagonalAmount) {
-			if (Mathf.Abs(xTilt) > 0.5f && Mathf.Abs(yTilt) > 0.5f) {
-				xTilt *= 0.5f;
-				yTilt *= 0.5f;
+			if (Mathf.Abs(xTiltLeft) > 0.5f && Mathf.Abs(yTiltLeft) > 0.5f) {
+				xTiltLeft *= 0.5f;
+				yTiltLeft *= 0.5f;
 			}
 		}
 	}

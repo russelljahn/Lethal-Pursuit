@@ -43,10 +43,10 @@ public class HudCrosshairs : MonoBehaviour {
 			debugLine.enabled = false;
 		}
 
-		if (spaceship.xTilt != 0.0f || spaceship.yTilt != 0.0f) {
+		if (spaceship.xTiltLeft != 0.0f || spaceship.yTiltLeft != 0.0f) {
 			this.transform.localPosition = Vector3.Slerp (
 				this.transform.localPosition, 
-				initialLocalPosition + new Vector3(xExtent*spaceship.xTilt, yExtent*spaceship.yTilt, 0.0f), 
+				initialLocalPosition + new Vector3(xExtent*spaceship.xTiltLeft, yExtent*spaceship.yTiltLeft, 0.0f), 
 				movementSpeed*Time.deltaTime
 			);
 		}

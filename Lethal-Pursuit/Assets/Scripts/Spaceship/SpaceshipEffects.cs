@@ -70,9 +70,9 @@ public class SpaceshipEffects : SpaceshipComponent {
 		speedBeams.startColor = newSpeedBeamsColor;
 
 
-		if (xTilt > 0) {
-			//Vector3 newVelocity = new Vector3 (1.09f, yTilt, xTilt);
-			Vector3 newVelocity = new Vector3 (2.09f, xTilt, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
+		if (xTiltLeft > 0) {
+			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
+			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
 			emitter.localVelocity = newVelocity;
 			trail1.localVelocity = newVelocity;
 			trail2.localVelocity = newVelocity;
@@ -81,9 +81,9 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 			} 
 		
-		if (xTilt < 0) {
-			//Vector3 newVelocity = new Vector3 (1.09f, yTilt, xTilt);
-			Vector3 newVelocity = new Vector3 (2.09f, xTilt, spaceship.transform.rotation.y); 
+		if (xTiltLeft < 0) {
+			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
+			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, spaceship.transform.rotation.y); 
 			emitter.localVelocity = newVelocity;
 			trail1.localVelocity = newVelocity;
 			trail2.localVelocity = newVelocity;
@@ -115,63 +115,63 @@ public class SpaceshipEffects : SpaceshipComponent {
 //
 //	
 //		}
-		if (brakeAmount == 0 && boostAmount > 0) {
-			leftBoosterFlames.startColor = boosterFlamesBoostColor;
-			rightBoosterFlames.startColor = boosterFlamesBoostColor;
-			miniThruster1.startColor = boosterFlamesBoostColor;
-			miniThruster2.startColor = boosterFlamesBoostColor;
-			miniThruster3.startColor = boosterFlamesBoostColor;
-			miniThruster4.startColor = boosterFlamesBoostColor;
-
-			leftBoosterFlames.emissionRate =  boostParticleEmissionRate;
-			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
-			leftBoosterFlames.startSize =  boostParticleEmissionSize;
-			rightBoosterFlames.startSize = boostParticleEmissionSize;
-			//			leftBoosterSmoke.emissionRate = boostSmokeEmissionRate;
-			//			rightBoosterSmoke.emissionRate = boostSmokeEmissionRate;
-			miniThruster1.startSize = miniBoostParticleEmissionSize;
-			miniThruster2.startSize = miniBoostParticleEmissionSize;
-			miniThruster3.startSize = miniBoostParticleEmissionSize;
-			miniThruster4.startSize = miniBoostParticleEmissionSize;
-			trail1.maxSize = .02f;
-			trail2.maxSize = .02f;
-			trail3.maxSize = .02f;
-			trail4.maxSize = .02f;
-
-		
-			
-			
-		}
-		else {
-			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
-			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
-			
-			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
-			leftBoosterFlames.startSize = brakeParticleEmissionSize;
-			rightBoosterFlames.startSize = brakeParticleEmissionSize;
-			//			leftBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
-			//			rightBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
-			miniThruster1.startSize = miniBrakeParticleEmissionSize;
-			miniThruster2.startSize = miniBrakeParticleEmissionSize;
-			miniThruster3.startSize = miniBrakeParticleEmissionSize;
-			miniThruster4.startSize = miniBrakeParticleEmissionSize;
-			trail1.maxSize = .2f;
-			trail2.maxSize = .2f;
-			trail3.maxSize = .2f;
-			trail4.maxSize = .2f;
-			
-		}
-
-		if (spaceship.currentVelocity < 100) {
-						vertMiniL.startSize = 2;
-						vertMiniR.startSize = 2;
-		}
-		else {
-		 				vertMiniR.startSize = 0;
-		 				vertMiniL.startSize = 0;
-		
-		}
+//		if (brakeAmount == 0 && boostAmount > 0) {
+//			leftBoosterFlames.startColor = boosterFlamesBoostColor;
+//			rightBoosterFlames.startColor = boosterFlamesBoostColor;
+//			miniThruster1.startColor = boosterFlamesBoostColor;
+//			miniThruster2.startColor = boosterFlamesBoostColor;
+//			miniThruster3.startColor = boosterFlamesBoostColor;
+//			miniThruster4.startColor = boosterFlamesBoostColor;
+//
+//			leftBoosterFlames.emissionRate =  boostParticleEmissionRate;
+//			rightBoosterFlames.emissionRate = boostParticleEmissionRate;
+//			leftBoosterFlames.startSize =  boostParticleEmissionSize;
+//			rightBoosterFlames.startSize = boostParticleEmissionSize;
+//			//			leftBoosterSmoke.emissionRate = boostSmokeEmissionRate;
+//			//			rightBoosterSmoke.emissionRate = boostSmokeEmissionRate;
+//			miniThruster1.startSize = miniBoostParticleEmissionSize;
+//			miniThruster2.startSize = miniBoostParticleEmissionSize;
+//			miniThruster3.startSize = miniBoostParticleEmissionSize;
+//			miniThruster4.startSize = miniBoostParticleEmissionSize;
+//			trail1.maxSize = .02f;
+//			trail2.maxSize = .02f;
+//			trail3.maxSize = .02f;
+//			trail4.maxSize = .02f;
+//
+//		
+//			
+//			
+//		}
+//		else {
+//			leftBoosterFlames.startColor = boosterFlamesBrakeColor;
+//			rightBoosterFlames.startColor = boosterFlamesBrakeColor;
+//			
+//			leftBoosterFlames.emissionRate = brakeParticleEmissionRate;
+//			rightBoosterFlames.emissionRate = brakeParticleEmissionRate;
+//			leftBoosterFlames.startSize = brakeParticleEmissionSize;
+//			rightBoosterFlames.startSize = brakeParticleEmissionSize;
+//			//			leftBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
+//			//			rightBoosterSmoke.emissionRate = brakeSmokeEmissionRate;
+//			miniThruster1.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster2.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster3.startSize = miniBrakeParticleEmissionSize;
+//			miniThruster4.startSize = miniBrakeParticleEmissionSize;
+//			trail1.maxSize = .2f;
+//			trail2.maxSize = .2f;
+//			trail3.maxSize = .2f;
+//			trail4.maxSize = .2f;
+//			
+//		}
+//
+//		if (spaceship.currentVelocity < 100) {
+//						vertMiniL.startSize = 2;
+//						vertMiniR.startSize = 2;
+//		}
+//		else {
+//		 				vertMiniR.startSize = 0;
+//		 				vertMiniL.startSize = 0;
+//		
+//		}
 	}
 
 
