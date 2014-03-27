@@ -65,31 +65,31 @@ public class SpaceshipEffects : SpaceshipComponent {
 
 	void HandleParticles() {
 
-		Color newSpeedBeamsColor = speedBeams.startColor;
-		newSpeedBeamsColor.a = (spaceship.currentVelocity / spaceship.maxVelocity)*speedBeamsMaxOpacity;
-		speedBeams.startColor = newSpeedBeamsColor;
-
-
-		if (xTiltLeft > 0) {
-			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
-			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
-			emitter.localVelocity = newVelocity;
-			trail1.localVelocity = newVelocity;
-			trail2.localVelocity = newVelocity;
-			trail3.localVelocity = newVelocity;
-			trail4.localVelocity = newVelocity;
-
-			} 
-		
-		if (xTiltLeft < 0) {
-			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
-			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, spaceship.transform.rotation.y); 
-			emitter.localVelocity = newVelocity;
-			trail1.localVelocity = newVelocity;
-			trail2.localVelocity = newVelocity;
-			trail3.localVelocity = newVelocity;
-			trail4.localVelocity = newVelocity;
-		}
+//		Color newSpeedBeamsColor = speedBeams.startColor;
+//		newSpeedBeamsColor.a = (spaceship.currentVelocity / spaceship.maxVelocity)*speedBeamsMaxOpacity;
+//		speedBeams.startColor = newSpeedBeamsColor;
+//
+//
+//		if (xTiltLeft > 0) {
+//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
+//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
+//			emitter.localVelocity = newVelocity;
+//			trail1.localVelocity = newVelocity;
+//			trail2.localVelocity = newVelocity;
+//			trail3.localVelocity = newVelocity;
+//			trail4.localVelocity = newVelocity;
+//
+//			} 
+//		
+//		if (xTiltLeft < 0) {
+//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
+//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, spaceship.transform.rotation.y); 
+//			emitter.localVelocity = newVelocity;
+//			trail1.localVelocity = newVelocity;
+//			trail2.localVelocity = newVelocity;
+//			trail3.localVelocity = newVelocity;
+//			trail4.localVelocity = newVelocity;
+//		}
 
 //		if (enforceHeightLimit || heightAboveGround > fractionOfHeightLimitToBeginSputtering*spaceship.heightLimit) {
 //			leftBoosterFlames.startColor = boosterFlamesBrakeColor;

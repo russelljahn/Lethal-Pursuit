@@ -36,6 +36,12 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.boostAmount;
 		}
 	}
+	/* Amount of strafe button pressed down. */
+	protected float strafeAmount {
+		get {
+			return spaceship.strafeAmount;
+		}
+	}
 	/* Amount of brake button pressed down. */
 //	protected float brakeAmount {
 //		get {
@@ -51,6 +57,16 @@ public class SpaceshipComponent : MonoBehaviour {
 	protected bool boosting {
 		get {
 			return spaceship.boosting;
+		}
+	}
+	protected bool reversing {
+		get {
+			return spaceship.reversing;
+		}
+	}
+	protected bool strafing {
+		get {
+			return spaceship.strafing;
 		}
 	}
 	protected bool braking {
@@ -103,22 +119,35 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.forward;
 		}
 	}
-	protected float currentVelocity {
+	protected Vector3 right {
 		get {
-			return spaceship.currentVelocity;
+			return spaceship.right;
+		}
+	}
+	protected float currentBoostVelocity {
+		get {
+			return spaceship.currentBoostVelocity;
 		}
 		set {
-			spaceship.currentVelocity = value;
+			spaceship.currentBoostVelocity = value;
 		}
 	}
-	protected float maxVelocity {
+	protected float maxBoostVelocity {
 		get {
-			return spaceship.maxVelocity;
+			return spaceship.maxBoostVelocity;
 		}
 	}
-	protected bool debugSelfDestruct {
+	protected float currentStrafeVelocity {
 		get {
-			return spaceship.debugSelfDestruct;
+			return spaceship.currentStrafeVelocity;
+		}
+		set {
+			spaceship.currentStrafeVelocity = value;
+		}
+	}
+	protected float maxStrafeVelocity {
+		get {
+			return spaceship.maxStrafeVelocity;
 		}
 	}
 

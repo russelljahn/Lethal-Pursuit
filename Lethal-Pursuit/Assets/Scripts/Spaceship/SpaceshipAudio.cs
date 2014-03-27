@@ -53,35 +53,35 @@ public class SpaceshipAudio : SpaceshipComponent {
 
 
 	public override void Update () {
-		base.Update();
-						
-		if (boosting) {
-			boostTime = Mathf.Min(maxBoostTime, boostTime+Time.deltaTime);
-		}
-		else {
-			boostTime = Mathf.Max(0f, boostTime-Time.deltaTime);	
-		}
-
-		if (drifting) {
-			driftTime = Mathf.Min(maxDriftTime, driftTime+Time.deltaTime);
-		}
-		else {
-			driftTime = Mathf.Max(0f, driftTime-Time.deltaTime);	
-		}
-
-				
-		track1.pitch = spaceship.currentVelocity/150 + .3f;
-		track1.volume = spaceship.currentVelocity / 150 + .44f;
-		track2.pitch = Mathf.Clamp(spaceship.currentVelocity, spaceship.currentVelocity/250 + .4f, 1.1f);
-		track2.volume = spaceship.currentVelocity/450+.4f;
-		track3.pitch = spaceship.currentVelocity/450 + .4f;
-		track3.volume = spaceship.currentVelocity/300- 1;
-
-
-		track1.pan = xTiltLeft;
-		track2.pan = xTiltLeft;
-
-		driftSFX.volume = driftTime/maxDriftTime;
+//		base.Update();
+//						
+//		if (boosting) {
+//			boostTime = Mathf.Min(maxBoostTime, boostTime+Time.deltaTime);
+//		}
+//		else {
+//			boostTime = Mathf.Max(0f, boostTime-Time.deltaTime);	
+//		}
+//
+//		if (drifting) {
+//			driftTime = Mathf.Min(maxDriftTime, driftTime+Time.deltaTime);
+//		}
+//		else {
+//			driftTime = Mathf.Max(0f, driftTime-Time.deltaTime);	
+//		}
+//
+//				
+//		track1.pitch = spaceship.currentVelocity/150 + .3f;
+//		track1.volume = spaceship.currentVelocity / 150 + .44f;
+//		track2.pitch = Mathf.Clamp(spaceship.currentVelocity, spaceship.currentVelocity/250 + .4f, 1.1f);
+//		track2.volume = spaceship.currentVelocity/450+.4f;
+//		track3.pitch = spaceship.currentVelocity/450 + .4f;
+//		track3.volume = spaceship.currentVelocity/300- 1;
+//
+//
+//		track1.pan = xTiltLeft;
+//		track2.pan = xTiltLeft;
+//
+//		driftSFX.volume = driftTime/maxDriftTime;
 
 
 	}
