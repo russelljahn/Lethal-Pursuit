@@ -5,7 +5,7 @@
  */
 interface IDamageable {
 	
-	void ApplyDamage(float amount, GameObject damager);
+	void ApplyDamage(float amount, GameObject damager, string message);
 	bool IsDead();
 
 }

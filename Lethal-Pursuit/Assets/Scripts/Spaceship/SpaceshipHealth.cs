@@ -40,8 +40,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
-		if (debugSelfDestruct) {
-			this.ApplyDamage(debugSelfDestructDamageRate, this.gameObject);
+		if (false) {
+			this.ApplyDamage(debugSelfDestructDamageRate, gameObject, "Applying damage due to self-destruct!");
 		}
 
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
@@ -70,19 +70,30 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	// Implementing Damageable interface.
-	public void ApplyDamage(float amount, GameObject damager) {
+	public void ApplyDamage(float amount, GameObject damager, string message) {
+
+		Debug.Log (message);
 		if (!invulnerable) {
+			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 			}
 			else {
-				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
-
+//				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
+//				Debug.Log ("index: " + index);
+//				Debug.Log ("NetworkManager.GetPlayerList()[index]: " + NetworkManager.GetPlayerList()[index]);
+//				Debug.Log ("NetworkManager.GetPlayerList()[index].ipAddress: " + NetworkManager.GetPlayerList()[index].ipAddress);
+				
 				// Need to check if not -1 for non existing game object
 
-				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount);
+//				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[0], amount);
+				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
+				
 
 			}
+		}
+		else {
+			Debug.Log ("Being hurt BUT INVINCIBLE!");
 		}
 	}
 	public bool IsDead() {
@@ -94,9 +105,6 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	[RPC]
 	private void NetworkApplyDamage(float amount) {
 		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
-		if (IsDead()) {
-			HandleDeath();
-		}
 	}
 
 

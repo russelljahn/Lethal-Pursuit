@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class NetworkManager : MonoBehaviour {
 	
 	private static string gameType = "2P Multiplayer: ";
-	public  static string gameName = "Hosted Game";
+	public  static string gameName = "1337 Game";
 	private static string gameComment = "Network Test Run";
 
 	
