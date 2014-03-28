@@ -63,7 +63,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;
-			if (NetworkManager.IsSinglePlayer()) {
+			if (!NetworkManager.IsSinglePlayer()) {
 				matchManager.InformServerForKilledBy(lastHurtByPlayerID);
 			}
 		}

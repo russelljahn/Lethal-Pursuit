@@ -9,14 +9,11 @@ public class SpaceshipControl : SpaceshipComponent {
 	public float boostAcceleration = 10.0f;
 	public float deaccelerationIdle = 0.92f;
 	public float deaccelerationBraking = 4f;
-	
 
 	public HudCrosshairs crosshairs;
 	public float normalTurnSpeed = 100.0f;
 	public float driftTurnSpeed = 200.0f;
 	private float currentTurnSpeed;
-	public float timeUntilMaxDriftTurn = 2.6f;
-	private float timeSinceStartedDriftTurn;
 	
 	public float driftTiltRate = 4f;
 	public float normalTiltRate = 2.5f;
@@ -124,12 +121,6 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	void HandleRotation() {
-		if (xTiltLeftStick != 0.0f) {
-			timeSinceStartedDriftTurn += Time.deltaTime;
-		}
-		else {
-			timeSinceStartedDriftTurn = 0.0f;
-		}
 
 		if (drifting) {
 			currentTurnSpeed = Mathf.Lerp(currentTurnSpeed, driftTurnSpeed, Time.deltaTime*driftTurnSpeed);
