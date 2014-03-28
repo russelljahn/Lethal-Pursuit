@@ -1,0 +1,33 @@
+****************
+Networking TODO:
+****************
+
+
+1) Error on client when disconnecting (Client was one who hit quit, Server quit successfully, client hung at loading screen)
+=====================================================================
+One exception:
+--------------
+Failed to send remove RPCs command to network
+UnityEngine.Network:RemoveRPCs(NetworkPlayer)
+NetworkManager:OnDisconnectedFromServer(NetworkDisconnection) (at Assets/Scripts/Managers/NetworkManager.cs:123)
+UnityEngine.Network:Disconnect()
+LevelManager:LoadMainMenu(Boolean) (at Assets/Scripts/Managers/LevelManager.cs:249)
+
+Second exception:
+-----------------
+Couldn't send RPC function '__RPCNetworkDestroy'
+
+UnityEngine.Network:DestroyPlayerObjects(NetworkPlayer)
+NetworkManager:OnDisconnectedFromServer(NetworkDisconnection) (at Assets/Scripts/Managers/NetworkManager.cs:124)
+UnityEngine.Network:Disconnect()
+=====================================================================
+
+
+2) Need to handle players disconnecting from the game.
+
+
+3) Need to sync spawnpoint data across server/clients. Ships shouldn't spawn on top of each other.
+
+
+4) Games should all load at the same time.
+

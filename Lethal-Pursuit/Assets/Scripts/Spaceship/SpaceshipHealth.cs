@@ -86,7 +86,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				
 				// Need to check if not -1 for non existing game object
 				
-				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
+				networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
 				//				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
 				
 				
@@ -103,10 +103,12 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	
 	
 	[RPC]
-	private void NetworkApplyDamage(float amount, int playerID) {
-		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
-		lastHurtByPlayerID = playerID;
-		Debug.Log("Hurt by playerID: " + playerID);
+	private void NetworkTakeDamage(float amount, int playerID) {
+		if (!invulnerable) {
+			this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+			lastHurtByPlayerID = playerID;
+			Debug.Log("Hurt by playerID: " + playerID);
+		}
 	}
 	
 	

@@ -30,7 +30,9 @@ public class LevelManager : MonoBehaviour {
 				obj.name = "Level Manager";
 				singletonInstance.loadedLevel = GetLoadedLevel();
 				Debug.Log ("Loaded level on LevelManager creation: " + singletonInstance.loadedLevel);
-				SpawnManager.GenerateSpawnPoints();
+				if (!singletonInstance.loadedLevel.sceneName.Equals("MainMenu")) {
+					SpawnManager.GenerateSpawnPoints();
+				}
 				//Debug.Log ("Could not find a LevelManager object, so automatically generated one.");
 			}
 			

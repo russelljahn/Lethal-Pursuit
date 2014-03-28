@@ -12,7 +12,8 @@ public class SpawnManager {
 
 	public static void GenerateSpawnPoints() {
 		spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-		lastCheckpointID = 0;
+//		lastCheckpointID = 0;
+		lastCheckpointID = NetworkManager.GetPlayerID()%spawnPoints.Length;
 	}
 
 
@@ -22,7 +23,9 @@ public class SpawnManager {
 			spaceship.transform.position = spawnPoints[lastCheckpointID].transform.position;
 			spaceship.transform.rotation = spawnPoints[lastCheckpointID].transform.rotation;
 			Debug.Log ("Spawning '" + spaceship + "' at SpawnPoint " + lastCheckpointID + "!");	
-			lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;
+
+			lastCheckpointID = NetworkManager.GetPlayerID()%spawnPoints.Length;
+//			lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;
 		}
 		else {
 			Debug.LogError("SpawnManager: No SpawnPoints; Spawning '" + spaceship + "' at world origin!");

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Smoke1
-  m_Shader: {fileID: 201, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 6e77d387966489d6cb6bb6ba39e09c45, type: 3}
+          m_Texture: {fileID: 2800000, guid: 6b6e183ebeeb1b54ea62bf42de43fbb1, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -46,6 +46,10 @@ Material:
         first:
           name: _Shininess
         second: 20
+      data:
+        first:
+          name: _InvFade
+        second: 1.34482145
       data:
         first:
           name: _Highlight
