@@ -99,8 +99,8 @@ public class SpaceshipControl : SpaceshipComponent {
 		rigidbody.MovePosition(
 			rigidbody.position + Vector3.Slerp(
 				Vector3.zero, 
-				forward*Mathf.Abs(boostAmount)*currentBoostVelocity*Time.deltaTime, 
-				Mathf.Abs(currentBoostVelocity)/maxBoostVelocity
+				forward*currentBoostVelocity, 
+				Time.deltaTime
 			)
 		);
 		

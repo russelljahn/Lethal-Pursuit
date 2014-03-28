@@ -1820,7 +1820,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   currentBoostVelocity: 0
-  maxBoostVelocity: 825
+  maxBoostVelocity: 900
 --- !u!148 &92841531
 NetworkView:
   m_ObjectHideFlags: 0
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 92841530}
   boostAcceleration: 10
-  deaccelerationIdle: 1.75
+  deaccelerationIdle: .920000017
   normalPitchRate: 15
   nosedivingPitchRate: 300
   crosshairs: {fileID: 2120291867}
@@ -5215,6 +5215,14 @@ Prefab:
     - target: {fileID: 14800012, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: deaccelerationIdle
+      value: .920000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: maxBoostVelocity
+      value: 900
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
