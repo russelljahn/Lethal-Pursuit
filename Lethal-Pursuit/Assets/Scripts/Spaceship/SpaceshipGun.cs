@@ -4,79 +4,79 @@ using System.Collections;
 
 public class SpaceshipGun : SpaceshipComponent {
 	
-
+	
 	public AudioSource guns;
 	public AudioClip shot;
 	
 	private LineRenderer line;
-
+	
 	public float laserMinWidth = 5f;
 	public float laserFullChargeExtraWidth = 5f;
 	public float laserWaverRate = 4.0f;
-
+	
 	public float laserMaterialScrollSpeedU = 1.0f;
 	public float laserMaterialScrollSpeedV = 1.0f;
-
+	
 	public float damageRate = 1.0f;
 	public float laserHitForce = 1000.0f;
-
+	
 	private GameObject hitGameObject;
-
+	
 	public GameObject explosion;
 	public float explosionCooldown = 0.1f;
 	public float timeSinceLastExplosion;
-
+	
 	public SpaceshipMatchData matchData;
-
-
-
+	
+	
+	
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
-
+		
 		line = GetComponent<LineRenderer>();
-
+		
 		line.enabled = false;
 		light.enabled = false;
-
+		
 		explosion.SetActive(false);
 	}
-
-
-
-
-
+	
+	
+	
+	
+	
 	// Update is called once per frame
 	public override void Update () {
 		base.Update();	
-
+		
 		if (shooting) {
 			line.enabled = true;
 			light.enabled = true;
-
+			
 			Ray ray = new Ray(this.transform.position, forward);
 			RaycastHit hit;
-
+			
 			if (Physics.Raycast(ray, out hit)) {
 				line.SetPosition(0, Vector3.zero);
 				line.SetPosition(1, this.transform.InverseTransformPoint(hit.point));
-
+				
 				/* Apply laser force. */
 				if (hit.rigidbody != null) {
 					hitGameObject = hit.collider.gameObject;
 					hit.rigidbody.AddForceAtPosition(ray.direction*laserHitForce, hit.point);
 				}
-
+				
 				/* Spawn laser explosions. */
 				if (timeSinceLastExplosion >= explosionCooldown) {
 					GameObject newExplosion;
-
+					
 					if (NetworkManager.IsSinglePlayer()) {
 						newExplosion = GameObject.Instantiate(
 							Resources.Load("Explosions/GraphicExplosion_001", typeof(GameObject)), 
 							hit.point, 
 							Quaternion.identity 
-						) as GameObject;
+							) as GameObject;
 					}
 					else {
 						newExplosion = Network.Instantiate(
@@ -84,7 +84,7 @@ public class SpaceshipGun : SpaceshipComponent {
 							hit.point, 
 							Quaternion.identity, 
 							5
-						) as GameObject;
+							) as GameObject;
 					}
 					newExplosion.SetActive(true);
 					timeSinceLastExplosion = 0.0f;
@@ -98,32 +98,32 @@ public class SpaceshipGun : SpaceshipComponent {
 			line.enabled = false;
 			light.enabled = false;
 		}
-
+		
 		timeSinceLastExplosion += Time.deltaTime;
-
+		
 	}
-
-
-
-
-
+	
+	
+	
+	
+	
 	void FixedUpdate() {
-
+		
 		if (hitGameObject == null) {
 			return;
 		}
 		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
-
-//		Debug.Log ("hitGameObject: " + hitGameObject.name);
-//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
-				
+		
+		//		Debug.Log ("hitGameObject: " + hitGameObject.name);
+		//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
+		
 		if (damageableObject != null) {
 			damageableObject.ApplyDamage(damageRate, hitGameObject, gameObject.name + " is calling ApplyDamage()!");
 		}
-
+		
 	}
-
-
-
-
+	
+	
+	
+	
 }

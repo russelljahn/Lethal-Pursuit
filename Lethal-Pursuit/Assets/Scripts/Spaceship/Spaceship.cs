@@ -8,55 +8,56 @@ using System.Collections;
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class Spaceship : MonoBehaviour {
-
+	
 	public GameplayManager gameplayManager;
 	public GameObject spaceshipModel;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
-
+	
 	#region input variables
 	public float xTiltLeft; /* Tilt of left analogue stick every frame. */
 	public float yTiltLeft; /* Tilt of left analogue stick every frame. */
 	public float xTiltRight; /* Tilt of analogue stick every frame. */
 	public float yTiltRight; /* Tilt of analogue stick every frame. */
+	public float strafeAmount;
 	public float boostAmount;
 	public float brakeAmount;
 	public bool  shooting;
 	public bool  boosting;
 	public bool  strafing;
 	public bool  braking;
+	public bool  reversing;
 	public bool  drifting;
 	public bool  nosediving;
 	public bool  idle;
 	[HideInInspector]
 	public bool  debugSelfDestruct;
 	#endregion
-
+	
 	public Vector3 forward;
+	public Vector3 right;
 	public float heightAboveGround;
-
+	
 	public bool enforceHeightLimit = true;
 	public float heightLimit = 50.0f; // Height limit above the ground.
-
-	public float currentVelocity;
-	public float maxVelocity = 150.0f;
-
-	public bool mapKeyboardDiagonalAmountToAnalogueDiagonalAmount = false;
-
-	public bool debugSelfDestructEnabled = false;
-
-
+	
+	public float currentBoostVelocity;
+	public float maxBoostVelocity = 150.0f;
+	public float currentStrafeVelocity;
+	public float maxStrafeVelocity = 150.0f;
+	
+	
 	void Start () {
 		gameplayManager = GameplayManager.instance;
 	}
-
+	
 	void Awake() {
 		if (!NetworkManager.IsSinglePlayer() && !networkView.isMine) {
 			spaceshipCamera.gameObject.SetActive(false);
-//			crosshairs.SetActive(false);
+			//			crosshairs.SetActive(false);
 		}
 	}
-
+	
 	
 	void FixedUpdate () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
@@ -64,12 +65,13 @@ public class Spaceship : MonoBehaviour {
 			HandleHeightCheck();
 		}
 	}
-
-
-
+	
+	
+	
 	void Update () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			forward = spaceshipModel.transform.forward;
+			right = spaceshipModel.transform.right;
 		}
 		else {
 			SyncMovement();
@@ -82,56 +84,48 @@ public class Spaceship : MonoBehaviour {
 		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
 		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
 	}
-
-
+	
+	
 	void HandleInput() {
 		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
 		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
-		xTiltLeft = InputManager.ActiveDevice.RightStickX.Value;		
-		yTiltLeft = InputManager.ActiveDevice.RightStickY.Value;
-		boostAmount = yTiltLeft;
-//		brakeAmount = ;
-		shooting = InputManager.ActiveDevice.Action3.State;
-//		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
-		debugSelfDestruct = false;
+		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
+		yTiltRight = InputManager.ActiveDevice.RightStickY.Value;
+		boostAmount = InputManager.ActiveDevice.Action3.Value;
+		strafeAmount = xTiltLeft;
+		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
+		strafing = strafeAmount != 0;
 		
-		Debug.Log ("debugSelfDestructEnabled: " + debugSelfDestructEnabled);
-		Debug.Log ("InputManager.ActiveDevice.Action4.State: " + InputManager.ActiveDevice.Action4.State);
-		Debug.Log ("debugSelfDestruct: " + debugSelfDestruct);
-
-		braking = false;
 		boosting = false;
+		braking = false;
+		reversing = false;
 		drifting = false;
 		nosediving = false;
 		idle = false;
-
-		if (boostAmount > 0 && brakeAmount == 0) {
+		
+		
+		if (boostAmount > 0) {
 			boosting = true;
 		}
-		else if (brakeAmount > 0) {
-			drifting = (xTiltLeft != 0);
-			nosediving = (yTiltLeft != 0);
-			braking = (xTiltLeft == 0 && yTiltLeft == 0);
-		}
-		else if (boostAmount == 0 && brakeAmount == 0) {
-			idle = true;
+		else if (boostAmount < 0) {
+			//			drifting = (xTiltLeft != 0);
+			//			nosediving = (yTiltLeft != 0);
+			//			braking = true;
+			reversing = true;
 		}
 		
-		/* Map keyboard diagonal axis amount to joystick diagonal axis amount. */
-		if (mapKeyboardDiagonalAmountToAnalogueDiagonalAmount) {
-			if (Mathf.Abs(xTiltLeft) > 0.5f && Mathf.Abs(yTiltLeft) > 0.5f) {
-				xTiltLeft *= 0.5f;
-				yTiltLeft *= 0.5f;
-			}
-		}
+		idle = !boosting || !reversing || !strafing;
+		
 	}
+	
 	
 	void HandleHeightCheck() {
 		RaycastHit hit;
 		Physics.Raycast(this.transform.position, -this.transform.up, out hit);
 		heightAboveGround = hit.distance;
 	}
-
+	
+	
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
 	private float syncTime = 0f;
@@ -172,28 +166,28 @@ public class Spaceship : MonoBehaviour {
 			shooting = isShooting;
 		}
 	}
-
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
