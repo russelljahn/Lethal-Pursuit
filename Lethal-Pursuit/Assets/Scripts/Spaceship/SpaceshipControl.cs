@@ -86,24 +86,14 @@ public class SpaceshipControl : SpaceshipComponent {
 		spaceship.rigidbody.velocity = Vector3.zero;
 		
 		/* Adjust velocities based on current spaceship behavior. */
-		if (strafing) {
-			currentStrafeVelocity += strafeAcceleration;
-		}
-		else {
-			currentStrafeVelocity = Mathf.Lerp(currentStrafeVelocity, 0, currentStrafeVelocity*Time.deltaTime);
-		}
 		if (boosting) {
 			currentBoostVelocity += boostAcceleration;
-		}
-		else if (reversing) {
-			currentBoostVelocity -= boostAcceleration;
 		}
 		else if (idle) {
 			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, 0, deaccelerationBrake*Time.deltaTime);
 		} 
 		
 		currentBoostVelocity = Mathf.Clamp(currentBoostVelocity, -maxBoostVelocity, maxBoostVelocity);
-		currentStrafeVelocity = Mathf.Clamp(currentStrafeVelocity, -maxStrafeVelocity, maxStrafeVelocity);
 		
 		
 		Vector3 adjustedForward = forward;
@@ -174,7 +164,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		//		}
 		
 		/* Handle drifting tilt. */
-		if (xTiltLeft != 0.0f) {
+		if (drifting) {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTiltLeft*driftTiltMax, driftTiltRate*Time.deltaTime);
 		}
 		else {
@@ -193,9 +183,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		//		spaceship.transform.RotateAround(spaceshipModel.transform.position, Vector3.right, yTiltLeft*Time.deltaTime*yTiltLeftSpeed);
 		
 		
-		//		spaceshipModel.transform.localRotation = Quaternion.Euler(
-		//			new Vector3(0.0f, 0.0f, currentDriftTilt)
-		//		);
+		spaceshipModel.transform.localRotation = Quaternion.Euler(
+			new Vector3(0.0f, 0.0f, currentDriftTilt)
+		);
 		
 		
 	}
@@ -219,11 +209,11 @@ public class SpaceshipControl : SpaceshipComponent {
 			timeSinceStartedTurning = 0.0f;
 		}
 		
-		spaceshipModel.transform.localRotation = Quaternion.Euler(
-			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*lookSpeed, 0.0f)
-			);
+		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(
+			spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*lookSpeed, 0.0f)
+		);
 		
-		Vector3 newRotationX = spaceshipModel.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
+		Vector3 newRotationX = spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
 		//		Debug.Log ("newRotationX.x: " + newRotationX.x);
 		
 		if (newRotationX.x < 180 && newRotationX.x >= 0) {
@@ -236,7 +226,7 @@ public class SpaceshipControl : SpaceshipComponent {
 			newRotationX.x = Mathf.Clamp(newRotationX.x, 275f, 360f);
 		}
 		
-		spaceshipModel.transform.localRotation = Quaternion.Euler(
+		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(
 			newRotationX
 			);
 		

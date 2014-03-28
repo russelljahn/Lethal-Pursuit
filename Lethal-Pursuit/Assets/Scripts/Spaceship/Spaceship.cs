@@ -3,13 +3,14 @@ using InControl;
 using System.Collections;
 
 /* 
-	Contains data for a spaceship that other spaceship components may use.
+	Contains input and misc spaceship data that's updated every frame for spaceship components to use.
  */
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class Spaceship : MonoBehaviour {
 	
 	public GameplayManager gameplayManager;
+	public GameObject spaceshipModelRoot;
 	public GameObject spaceshipModel;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
@@ -19,14 +20,11 @@ public class Spaceship : MonoBehaviour {
 	public float yTiltLeft; /* Tilt of left analogue stick every frame. */
 	public float xTiltRight; /* Tilt of analogue stick every frame. */
 	public float yTiltRight; /* Tilt of analogue stick every frame. */
-	public float strafeAmount;
 	public float boostAmount;
 	public float brakeAmount;
 	public bool  shooting;
 	public bool  boosting;
-	public bool  strafing;
 	public bool  braking;
-	public bool  reversing;
 	public bool  drifting;
 	public bool  nosediving;
 	public bool  idle;
@@ -38,23 +36,19 @@ public class Spaceship : MonoBehaviour {
 	public Vector3 right;
 	public float heightAboveGround;
 	
-	public bool enforceHeightLimit = true;
-	public float heightLimit = 50.0f; // Height limit above the ground.
-	
 	public float currentBoostVelocity;
 	public float maxBoostVelocity = 150.0f;
-	public float currentStrafeVelocity;
-	public float maxStrafeVelocity = 150.0f;
 	
 	
 	void Start () {
 		gameplayManager = GameplayManager.instance;
 	}
-	
+
+
 	void Awake() {
 		if (!NetworkManager.IsSinglePlayer() && !networkView.isMine) {
 			spaceshipCamera.gameObject.SetActive(false);
-			//			crosshairs.SetActive(false);
+			crosshairs.SetActive(false);
 		}
 	}
 	
@@ -67,7 +61,6 @@ public class Spaceship : MonoBehaviour {
 	}
 	
 	
-	
 	void Update () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			forward = spaceshipModel.transform.forward;
@@ -77,45 +70,20 @@ public class Spaceship : MonoBehaviour {
 			SyncMovement();
 		}
 	}
-	
-	private void SyncMovement()
-	{
-		syncTime += Time.deltaTime;
-		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
-		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
-	}
-	
-	
+
+
 	void HandleInput() {
 		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
 		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
 		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
 		yTiltRight = InputManager.ActiveDevice.RightStickY.Value;
 		boostAmount = InputManager.ActiveDevice.Action3.Value;
-		strafeAmount = xTiltLeft;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
-		strafing = strafeAmount != 0;
-		
-		boosting = false;
+		drifting = InputManager.ActiveDevice.LeftTrigger.IsPressed;
+		nosediving = InputManager.ActiveDevice.LeftTrigger.IsPressed;
+		boosting = boostAmount > 0;
+		idle = !boosting;
 		braking = false;
-		reversing = false;
-		drifting = false;
-		nosediving = false;
-		idle = false;
-		
-		
-		if (boostAmount > 0) {
-			boosting = true;
-		}
-		else if (boostAmount < 0) {
-			//			drifting = (xTiltLeft != 0);
-			//			nosediving = (yTiltLeft != 0);
-			//			braking = true;
-			reversing = true;
-		}
-		
-		idle = !boosting || !reversing || !strafing;
-		
 	}
 	
 	
@@ -125,7 +93,10 @@ public class Spaceship : MonoBehaviour {
 		heightAboveGround = hit.distance;
 	}
 	
-	
+
+	/* 
+		Network syncing stuff.
+	 */
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
 	private float syncTime = 0f;
@@ -133,7 +104,15 @@ public class Spaceship : MonoBehaviour {
 	private Vector3 syncEndPosition = Vector3.zero;
 	private Quaternion syncStartRotation = Quaternion.identity;
 	private Quaternion syncEndRotation = Quaternion.identity;
-	
+
+
+	private void SyncMovement() {
+		syncTime += Time.deltaTime;
+		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
+		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
+	}
+
+
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 		Vector3 syncPosition = Vector3.zero;
 		Quaternion syncRotation = Quaternion.identity;
