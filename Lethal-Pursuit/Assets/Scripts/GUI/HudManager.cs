@@ -104,7 +104,7 @@ public class HudManager : MonoBehaviour {
 			LevelManager.ReloadLevel();
 		}
 		else {
-			networkView.RPC("NetworkReplayTrack", RPCMode.All);
+			networkView.RPC("NetworkReplayMatch", RPCMode.All);
 		}
 	}
 

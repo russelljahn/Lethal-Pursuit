@@ -3857,11 +3857,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 252.105103
+      value: 252.056885
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 248.105103
+      value: 248.056885
+      objectReference: {fileID: 0}
+    - target: {fileID: 100108, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
@@ -17366,7 +17374,7 @@ Transform:
   m_PrefabInternal: {fileID: 208161448}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 252.105103, z: 0}
+  m_LocalPosition: {x: 428, y: 252.056885, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312740159}
@@ -52987,7 +52995,7 @@ Transform:
   m_PrefabInternal: {fileID: 208161448}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -510, y: 248.105103, z: 77}
+  m_LocalPosition: {x: -510, y: 248.056885, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 1258546899}
@@ -58976,11 +58984,11 @@ MonoBehaviour:
   deaccelerationIdle: 1.75
   deaccelerationBraking: 4
   crosshairs: {fileID: 1635444727}
-  normalTurnSpeed: 1
-  driftTurnSpeed: 2
+  normalTurnSpeed: 100
+  driftTurnSpeed: 200
   driftTiltRate: 2.5
   normalTiltRate: 2.5
-  tiltAlignRate: 1.5
+  tiltAlignRate: 2
   driftTiltMax: 90
   normalTiltMax: 35
   distanceForwardToCheckForCollision: 1000
