@@ -141,15 +141,13 @@ public class SpaceshipControl : SpaceshipComponent {
 //		rigidbody.MovePosition(
 //			rigidbody.position + Vector3.Slerp(Vector3.zero, adjustedForward*Time.deltaTime*currentVelocity, Mathf.Abs(currentVelocity)/maxVelocity)
 //		);
-		Debug.Log("currentBoostVelocity: " + currentBoostVelocity);
-		Debug.Log ("forward*currentBoostVelocity: " + forward*currentBoostVelocity);
 		rigidbody.MovePosition(
 			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Mathf.Abs(boostAmount)*currentBoostVelocity, Time.deltaTime)
 		);
 
-		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, right*strafeAmount*currentStrafeVelocity, Time.deltaTime)	
-		);
+//		rigidbody.MovePosition(
+//			rigidbody.position + Vector3.Slerp(Vector3.zero, right*strafeAmount*currentStrafeVelocity, Time.deltaTime)	
+//		);
 
 		/* Strafe left and right. */
 
@@ -196,7 +194,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		
 
 //		spaceshipModel.transform.localRotation = Quaternion.Euler(
-//			new Vector3(currentNosediveTilt, 0.0f, currentDriftTilt)
+//			new Vector3(0.0f, 0.0f, currentDriftTilt)
 //		);
 
 
@@ -214,7 +212,7 @@ public class SpaceshipControl : SpaceshipComponent {
 //		spaceshipModel.transform.forward = Vector3.RotateTowards(spaceshipModel.transform.forward, spaceshipModel.transform.InverseTransformPoint(v), lookSpeed*Time.deltaTime, lookSpeed*Time.deltaTime);
 //		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Mathf.Clamp01(lookSpeed*Time.deltaTime));
 
-		if (xTiltRight != 0.0f || yTiltRight != 0.0f) {
+		if (xTiltLeft != 0.0f || xTiltRight != 0.0f) {
 			timeSinceStartedTurning += Time.deltaTime;
 		}
 		else {
@@ -222,10 +220,10 @@ public class SpaceshipControl : SpaceshipComponent {
 		}
 
 		spaceshipModel.transform.localRotation = Quaternion.Euler(
-			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltRight*Time.deltaTime*lookSpeed, 0.0f)
+			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*lookSpeed, 0.0f)
 		);
 
-		Vector3 newRotationX = spaceshipModel.transform.localRotation.eulerAngles + new Vector3(-yTiltRight*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
+		Vector3 newRotationX = spaceshipModel.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
 		Debug.Log ("newRotationX.x: " + newRotationX.x);
 
 		if (newRotationX.x < 180 && newRotationX.x >= 0) {

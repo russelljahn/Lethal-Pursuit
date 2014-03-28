@@ -91,7 +91,7 @@ public class Spaceship : MonoBehaviour {
 		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
 		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
 		yTiltRight = InputManager.ActiveDevice.RightStickY.Value;
-		boostAmount = yTiltLeft;
+		boostAmount = InputManager.ActiveDevice.Action3.Value;
 		strafeAmount = xTiltLeft;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
 		strafing = strafeAmount != 0;
