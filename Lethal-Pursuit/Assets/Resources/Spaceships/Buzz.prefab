@@ -130,7 +130,7 @@ GameObject:
   - 114: {fileID: 11400020}
   - 148: {fileID: 14800012}
   m_Layer: 0
-  m_Name: 3D Model
+  m_Name: Ship Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,6 +731,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100084
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400084}
+  m_Layer: 0
+  m_Name: 3D Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -795,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .713311672, z: 0, w: .70084697}
   m_LocalPosition: {x: 39931.1719, y: -79.2333908, z: -28624.2754}
-  m_LocalScale: {x: .0999999866, y: .100000001, z: .100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400042}
   - {fileID: 400074}
@@ -807,12 +822,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
-  m_LocalRotation: {x: -.500784874, y: .499214023, z: .499213904, w: .500784874}
+  m_LocalRotation: {x: -.5, y: .5, z: .500000119, w: .49999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 249.999985, y: 249.999985, z: 250}
-  m_Children:
-  - {fileID: 400016}
-  m_Father: {fileID: 400042}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 400084}
 --- !u!4 &400014
 Transform:
   m_ObjectHideFlags: 1
@@ -830,11 +844,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_LocalRotation: {x: -4.18718571e-07, y: -4.20907327e-08, z: .707106829, w: -.707106709}
-  m_LocalPosition: {x: -100, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .70710659, y: -1.78813934e-07, z: 1.78813934e-07, w: -.707107008}
+  m_LocalPosition: {x: .00227355957, y: -.000595092773, z: 10000}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
-  m_Father: {fileID: 400012}
+  m_Father: {fileID: 400084}
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -991,11 +1005,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
+  - {fileID: 400084}
   - {fileID: 400022}
   - {fileID: 400046}
   - {fileID: 400034}
   - {fileID: 400020}
-  - {fileID: 400012}
   - {fileID: 400082}
   m_Father: {fileID: 400010}
 --- !u!4 &400044
@@ -1159,7 +1173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 112, z: -400}
+  m_LocalPosition: {x: 0, y: 10.5, z: -32.7000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
@@ -1233,6 +1247,19 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 1000}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
+  m_Father: {fileID: 400042}
+--- !u!4 &400084
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400016}
+  - {fileID: 400012}
   m_Father: {fileID: 400042}
 --- !u!12 &1200000
 ParticleAnimator:
@@ -2577,14 +2604,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  acceleration: 10
+  boostAcceleration: 10
+  strafeAcceleration: 5
   normalExtraAccelerationY: 5
   nosedivingExtraAccelerationY: 30
-  deaccelerationBrake: 4
+  deaccelerationBrake: 8
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
-  xTiltSpeed: 1.5
-  yTiltSpeed: 1.5
+  xTiltLeftSpeed: 1.5
+  yTiltLeftSpeed: 3.29999995
   normalTurningRate: 200
   driftingTurningRate: 500
   normalPitchRate: 15
@@ -2592,7 +2620,7 @@ MonoBehaviour:
   timeUntilMaxTurning: 8
   timeUntilMaxPitch: 2.5999999
   crosshairs: {fileID: 11400004}
-  lookSpeed: 8
+  lookSpeed: 100
   driftTiltMax: 60
   driftTiltRate: 4
   driftAlignRate: 1.5
@@ -2637,9 +2665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  spaceshipCamera: {fileID: 0}
-  movementSpeed: 5
-  realignSpeed: 4
+  spaceshipCamera: {fileID: 11400016}
+  movementSpeed: 100
   xExtent: 10000
   yExtent: 10000
   debug: 0
@@ -2663,6 +2690,8 @@ MonoBehaviour:
   healthRatioToBeCritical: .300000012
   debugSelfDestructDamageRate: 1
   invulnerable: 0
+  matchManager: {fileID: 0}
+  lastHurtByPlayerID: -1
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2734,25 +2763,31 @@ MonoBehaviour:
   spaceshipModel: {fileID: 100042}
   spaceshipCamera: {fileID: 2000000}
   crosshairs: {fileID: 0}
-  xTilt: 0
-  yTilt: 0
+  xTiltLeft: 0
+  yTiltLeft: 0
+  xTiltRight: 0
+  yTiltRight: 0
+  strafeAmount: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
   boosting: 0
+  strafing: 0
   braking: 0
+  reversing: 0
   drifting: 0
   nosediving: 0
   idle: 0
   debugSelfDestruct: 1
   forward: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 0
   heightLimit: 30
-  currentVelocity: 0
-  maxVelocity: 450
-  mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 0
+  currentBoostVelocity: 0
+  maxBoostVelocity: 400
+  currentStrafeVelocity: 0
+  maxStrafeVelocity: 150
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
