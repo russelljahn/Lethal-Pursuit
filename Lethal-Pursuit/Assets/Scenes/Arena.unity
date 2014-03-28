@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3186ad4532eb4a82901da094d198b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationRate: {x: 0, y: -50, z: 0}
+  rotationRate: {x: 0, y: 0, z: 0}
 --- !u!1001 &24929418
 Prefab:
   m_ObjectHideFlags: 0
@@ -1810,7 +1810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &92841529
 Transform:
   m_ObjectHideFlags: 0
@@ -1841,25 +1841,31 @@ MonoBehaviour:
   spaceshipModel: {fileID: 88618215}
   spaceshipCamera: {fileID: 1372511936}
   crosshairs: {fileID: 0}
-  xTilt: 0
-  yTilt: 0
+  xTiltLeft: 0
+  yTiltLeft: 0
+  xTiltRight: 0
+  yTiltRight: 0
+  strafeAmount: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
   boosting: 0
+  strafing: 0
   braking: 0
+  reversing: 0
   drifting: 0
   nosediving: 0
   idle: 0
   debugSelfDestruct: 1
   forward: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 0
   heightLimit: 30
-  currentVelocity: 0
-  maxVelocity: 450
-  mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 0
+  currentBoostVelocity: 0
+  maxBoostVelocity: 500
+  currentStrafeVelocity: 0
+  maxStrafeVelocity: 150
 --- !u!148 &92841531
 NetworkView:
   m_ObjectHideFlags: 0
@@ -1978,14 +1984,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 92841530}
-  acceleration: 10
+  boostAcceleration: 10
+  strafeAcceleration: 5
   normalExtraAccelerationY: 5
   nosedivingExtraAccelerationY: 30
-  deaccelerationBrake: 4
+  deaccelerationBrake: 8
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
-  xTiltSpeed: 1.5
-  yTiltSpeed: 1.5
+  xTiltLeftSpeed: 1.5
+  yTiltLeftSpeed: 3.29999995
   normalTurningRate: 200
   driftingTurningRate: 500
   normalPitchRate: 15
@@ -1993,7 +2000,7 @@ MonoBehaviour:
   timeUntilMaxTurning: 8
   timeUntilMaxPitch: 2.5999999
   crosshairs: {fileID: 2120291867}
-  lookSpeed: 8
+  lookSpeed: 30
   driftTiltMax: 60
   driftTiltRate: 4
   driftAlignRate: 1.5
@@ -3778,7 +3785,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: maxBoostVelocity
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: deaccelerationBrake
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: spaceshipCamera
+      value: 
+      objectReference: {fileID: 1372511931}
+    - target: {fileID: 11400004, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: movementSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: lookSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
@@ -17279,10 +17306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32496fde885034f4eaa55073bb3a9cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
+  spaceship: {fileID: 0}
   speedBeams: {fileID: 0}
-  speedBeamsMaxOpacity: 0
-  leftBoosterFlames: {fileID: 875030550}
+  speedBeamsMaxOpacity: .200000003
+  leftBoosterFlames: {fileID: 0}
   rightBoosterFlames: {fileID: 0}
   miniThruster1: {fileID: 0}
   miniThruster2: {fileID: 0}
@@ -17302,7 +17329,7 @@ MonoBehaviour:
   boostParticleEmissionRate: 254
   brakeParticleEmissionRate: 50
   boostParticleEmissionSize: 2.5
-  miniBoostParticleEmissionSize: 1
+  miniBoostParticleEmissionSize: 2.79999995
   miniBrakeParticleEmissionSize: .800000012
   brakeParticleEmissionSize: 1.5
   boostSmokeEmissionRate: 12.3199997
@@ -19036,7 +19063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3186ad4532eb4a82901da094d198b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationRate: {x: 0, y: -50, z: 0}
+  rotationRate: {x: 0, y: 0, z: 0}
 --- !u!1 &686237034
 GameObject:
   m_ObjectHideFlags: 0
@@ -35941,7 +35968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3186ad4532eb4a82901da094d198b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationRate: {x: 0, y: 50, z: 0}
+  rotationRate: {x: 0, y: 0, z: 0}
 --- !u!1 &939495119
 GameObject:
   m_ObjectHideFlags: 0
@@ -39845,12 +39872,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cf3b2bec351453eb8b4069b2656f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
+  spaceship: {fileID: 0}
   spaceshipCamera: {fileID: 0}
-  movementSpeed: 5
-  realignSpeed: 4
+  movementSpeed: 100
   xExtent: 10000
-  yExtent: 5000
+  yExtent: 10000
   debug: 0
 --- !u!120 &993938822
 LineRenderer:
@@ -41235,20 +41261,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebf40db9489c8f4ca6fdca1a6d84b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
-  track1: {fileID: 976403894}
-  track2: {fileID: 1664231799}
-  track3: {fileID: 1572611435}
-  driftSFX: {fileID: 365951169}
-  wind1: {fileID: 8300000, guid: 8292f52d2c744144e988fc7bb6130ca3, type: 3}
-  engine1: {fileID: 8300000, guid: 124bfac4c3986f74387129affbddf2d1, type: 3}
-  engine3: {fileID: 8300000, guid: 05ff7b93ca0e2488981256270bee88f2, type: 3}
-  windStorm: {fileID: 8300000, guid: e0258bf77684ca84db88a566faeeff0d, type: 3}
-  driftWind: {fileID: 8300000, guid: c47a3c28315bd8b498f1f8440e39d180, type: 3}
+  spaceship: {fileID: 0}
+  track1: {fileID: 0}
+  track2: {fileID: 0}
+  track3: {fileID: 0}
+  driftSFX: {fileID: 0}
+  wind1: {fileID: 0}
+  engine1: {fileID: 0}
+  engine3: {fileID: 0}
+  windStorm: {fileID: 0}
+  driftWind: {fileID: 0}
   maxPitchEngine1: 5
-  sputteringTurbulenceAmount1: 3
-  sputteringTurbulenceAmount2: 1
-  sputteringTurbulenceRate: 10
+  sputteringTurbulenceAmount1: 1.5
+  sputteringTurbulenceAmount2: 1.5
+  sputteringTurbulenceRate: 3
 --- !u!1 &1033386490
 GameObject:
   m_ObjectHideFlags: 0
@@ -47059,17 +47085,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5abff9610bf48259af1980cbcd0d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
+  spaceship: {fileID: 0}
   guns: {fileID: 0}
-  shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
-  laserMinWidth: 10
+  shot: {fileID: 0}
+  laserMinWidth: 5
   laserFullChargeExtraWidth: 5
-  laserWaverRate: 8
+  laserWaverRate: 4
   laserMaterialScrollSpeedU: 1
   laserMaterialScrollSpeedV: 1
   damageRate: 1
-  laserHitForce: 20
-  explosion: {fileID: 1494481162}
+  laserHitForce: 1000
+  explosion: {fileID: 0}
   explosionCooldown: .100000001
   timeSinceLastExplosion: 0
   matchData: {fileID: 0}
@@ -49478,8 +49504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c07503986d4be14b9416bcf57f1291b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
-  pointToLookAt: {fileID: 993938819}
+  spaceship: {fileID: 0}
+  pointToLookAt: {fileID: 0}
   yLookAmount: .800000012
   rotationSpeed: 3
   lookSpeed: .699999988
@@ -52665,9 +52691,8 @@ MonoBehaviour:
   spaceship: {fileID: 1900479971}
   spaceshipCamera: {fileID: 837695505}
   movementSpeed: 5
-  realignSpeed: 4
-  xExtent: 12000
-  yExtent: 6000
+  xExtent: 10000
+  yExtent: 10000
   debug: 0
 --- !u!23 &1635444728
 Renderer:
@@ -52941,7 +52966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3186ad4532eb4a82901da094d198b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationRate: {x: 0, y: 50, z: 0}
+  rotationRate: {x: 0, y: 0, z: 0}
 --- !u!1 &1680843604
 GameObject:
   m_ObjectHideFlags: 0
@@ -60008,25 +60033,31 @@ MonoBehaviour:
   spaceshipModel: {fileID: 1613142957}
   spaceshipCamera: {fileID: 837695510}
   crosshairs: {fileID: 1635444724}
-  xTilt: 0
-  yTilt: 0
+  xTiltLeft: 0
+  yTiltLeft: 0
+  xTiltRight: 0
+  yTiltRight: 0
+  strafeAmount: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
   boosting: 0
+  strafing: 0
   braking: 0
+  reversing: 0
   drifting: 0
   nosediving: 0
   idle: 0
   debugSelfDestruct: 0
   forward: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 1
   heightLimit: 30
-  currentVelocity: 0
-  maxVelocity: 300
-  mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 0
+  currentBoostVelocity: 0
+  maxBoostVelocity: 150
+  currentStrafeVelocity: 0
+  maxStrafeVelocity: 150
 --- !u!148 &1900479972
 NetworkView:
   m_ObjectHideFlags: 0
@@ -60145,14 +60176,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 1900479971}
-  acceleration: 10
+  boostAcceleration: 10
+  strafeAcceleration: 5
   normalExtraAccelerationY: 5
   nosedivingExtraAccelerationY: 30
   deaccelerationBrake: 4
   deaccelerationDrift: 0
   deaccelerationIdle: 1.75
-  xTiltSpeed: 1.5
-  yTiltSpeed: 3.29999995
+  xTiltLeftSpeed: 1.5
+  yTiltLeftSpeed: 3.29999995
   normalTurningRate: 140
   driftingTurningRate: 300
   normalPitchRate: 300
@@ -60290,7 +60322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f12945bfd7ef404db9b18c4bd86a19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
+  spaceship: {fileID: 0}
 --- !u!148 &1912877771
 NetworkView:
   m_ObjectHideFlags: 0
@@ -61670,28 +61702,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayManager: {fileID: 0}
-  spaceshipModel: {fileID: 699534572}
-  spaceshipCamera: {fileID: 1414775350}
-  crosshairs: {fileID: 993938819}
-  xTilt: 0
-  yTilt: 0
+  spaceshipModel: {fileID: 0}
+  spaceshipCamera: {fileID: 0}
+  crosshairs: {fileID: 0}
+  xTiltLeft: 0
+  yTiltLeft: 0
+  xTiltRight: 0
+  yTiltRight: 0
+  strafeAmount: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
   boosting: 0
+  strafing: 0
   braking: 0
+  reversing: 0
   drifting: 0
   nosediving: 0
   idle: 0
   debugSelfDestruct: 0
   forward: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   enforceHeightLimit: 1
-  heightLimit: 30
-  currentVelocity: 0
-  maxVelocity: 300
-  mapKeyboardDiagonalAmountToAnalogueDiagonalAmount: 0
-  debugSelfDestructEnabled: 0
+  heightLimit: 50
+  currentBoostVelocity: 0
+  maxBoostVelocity: 150
+  currentStrafeVelocity: 0
+  maxStrafeVelocity: 150
 --- !u!148 &1933546809
 NetworkView:
   m_ObjectHideFlags: 0
@@ -61717,8 +61755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a538c62feaa9da645a59d780ae7bb4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
-  currentHealth: 0
+  spaceship: {fileID: 0}
+  currentHealth: 100
   maxHealth: 100
   state: 0
   respawnInvulnerabilityTime: 3
@@ -61751,7 +61789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97901ac030efb4efab451079024c1602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
+  spaceship: {fileID: 0}
   timeStartMatch: 0
   timeFinishMatch: Infinity
   timeElapsed: 0
@@ -61769,31 +61807,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32496fde885034f4eaa55073bb3a9cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
-  speedBeams: {fileID: 208711632}
-  speedBeamsMaxOpacity: .400000006
-  leftBoosterFlames: {fileID: 875030550}
-  rightBoosterFlames: {fileID: 1717010703}
-  miniThruster1: {fileID: 250339334}
-  miniThruster2: {fileID: 1748773720}
-  miniThruster3: {fileID: 778828593}
-  miniThruster4: {fileID: 1044196756}
-  vertMiniL: {fileID: 717302618}
-  vertMiniR: {fileID: 774628611}
-  emitter: {fileID: 564033416}
-  trail1: {fileID: 115600834}
-  trail2: {fileID: 1571453796}
-  trail3: {fileID: 257664264}
-  trail4: {fileID: 1538513134}
-  leftBoosterSmoke: {fileID: 709563043}
-  rightBoosterSmoke: {fileID: 709563043}
+  spaceship: {fileID: 0}
+  speedBeams: {fileID: 0}
+  speedBeamsMaxOpacity: .200000003
+  leftBoosterFlames: {fileID: 0}
+  rightBoosterFlames: {fileID: 0}
+  miniThruster1: {fileID: 0}
+  miniThruster2: {fileID: 0}
+  miniThruster3: {fileID: 0}
+  miniThruster4: {fileID: 0}
+  vertMiniL: {fileID: 0}
+  vertMiniR: {fileID: 0}
+  emitter: {fileID: 0}
+  trail1: {fileID: 0}
+  trail2: {fileID: 0}
+  trail3: {fileID: 0}
+  trail4: {fileID: 0}
+  leftBoosterSmoke: {fileID: 0}
+  rightBoosterSmoke: {fileID: 0}
   boosterFlamesBoostColor: {r: 0, g: 0, b: 0, a: 0}
-  boosterFlamesBrakeColor: {r: .0758619308, g: 0, b: 1, a: 1}
+  boosterFlamesBrakeColor: {r: 0, g: 0, b: 0, a: 0}
   boostParticleEmissionRate: 254
-  brakeParticleEmissionRate: 40
+  brakeParticleEmissionRate: 50
   boostParticleEmissionSize: 2.5
-  miniBoostParticleEmissionSize: 1.89999998
-  miniBrakeParticleEmissionSize: 1.15999997
+  miniBoostParticleEmissionSize: 2.79999995
+  miniBrakeParticleEmissionSize: .800000012
   brakeParticleEmissionSize: 1.5
   boostSmokeEmissionRate: 12.3199997
   brakeSmokeEmissionRate: 4
@@ -61809,30 +61847,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea0cd42aa1733e4b9d51b465a6b95e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 1933546808}
-  acceleration: 10
+  spaceship: {fileID: 0}
+  boostAcceleration: 10
+  strafeAcceleration: 5
   normalExtraAccelerationY: 5
   nosedivingExtraAccelerationY: 30
-  deaccelerationBrake: 4
-  deaccelerationDrift: 0
-  deaccelerationIdle: 1.75
-  xTiltSpeed: 1.5
-  yTiltSpeed: 1.5
-  normalTurningRate: 500
+  deaccelerationBrake: 500
+  deaccelerationDrift: 50
+  deaccelerationIdle: 500
+  xTiltLeftSpeed: 1.5
+  yTiltLeftSpeed: 3.29999995
+  normalTurningRate: 115
   driftingTurningRate: 300
   normalPitchRate: 300
   nosedivingPitchRate: 300
-  timeUntilMaxTurning: 2
+  timeUntilMaxTurning: 2.5999999
   timeUntilMaxPitch: 2.5999999
-  crosshairs: {fileID: 2120291867}
-  lookSpeed: 8
-  driftTiltMax: 60
-  driftTiltRate: 4
+  crosshairs: {fileID: 0}
+  lookSpeed: 1
+  driftTiltMax: 90
+  driftTiltRate: 2.5
   driftAlignRate: 1.5
-  nosediveTiltMax: 85
+  nosediveTiltMax: 90
   nosediveTiltRate: 2.5
   nosediveAlignRate: 1.5
-  distanceToRaycastForward: 25
+  distanceToRaycastForward: 1000
 --- !u!54 &1933546815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -68227,9 +68266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 92841530}
-  spaceshipCamera: {fileID: 0}
-  movementSpeed: 5
-  realignSpeed: 4
+  spaceshipCamera: {fileID: 1372511931}
+  movementSpeed: 100
   xExtent: 10000
   yExtent: 10000
   debug: 0

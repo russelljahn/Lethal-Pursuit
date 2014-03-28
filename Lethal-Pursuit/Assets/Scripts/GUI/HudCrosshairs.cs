@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HudCrosshairs : MonoBehaviour {
+public class HudCrosshairs : SpaceshipComponent {
 
-
-	public Spaceship spaceship;
+	
 	public SpaceshipCamera spaceshipCamera;
 
-	public float movementSpeed = 1.0f;
-	public float realignSpeed = 2.0f;
 
-	public float xExtent = 100.0f;
-	public float yExtent = 50.0f;
+	public float movementSpeed = 100.0f;
+	public float xExtent = 10000f;
+	public float yExtent = 10000f;
+	
 
 	private Vector3 initialLocalPosition;
 
@@ -26,13 +25,13 @@ public class HudCrosshairs : MonoBehaviour {
 		debugLine.SetColors(Color.blue, Color.green);
 
 		this.renderer.material.renderQueue = 4000;
-
+//		this.transform.parent = null;
 	}
 	
 
 	void Update () {
 
-		return;
+//		this.transform.position = spaceship.transform.position - initialLocalPosition;
 
 		if (debug) {
 			debugLine.enabled = true;
@@ -42,14 +41,21 @@ public class HudCrosshairs : MonoBehaviour {
 		else {
 			debugLine.enabled = false;
 		}
+//
+//		this.transform.RotateAround(spaceship.transform.position, Vector3.up, Time.deltaTime*movementSpeed*xTiltRight);
+//		this.transform.RotateAround(spaceship.transform.position, Vector3.left, Time.deltaTime*movementSpeed*yTiltRight);
+//		
 
-		if (spaceship.xTiltLeft != 0.0f || spaceship.yTiltLeft != 0.0f) {
-			this.transform.localPosition = Vector3.Slerp (
-				this.transform.localPosition, 
-				initialLocalPosition + new Vector3(xExtent*spaceship.xTiltLeft, yExtent*spaceship.yTiltLeft, 0.0f), 
-				movementSpeed*Time.deltaTime
-			);
-		}
+//		if (spaceship.xTiltRight != 0.0f || spaceship.yTiltRight != 0.0f) {
+//			this.transform.localPosition = Vector3.Slerp (
+//				this.transform.localPosition, 
+//				initialLocalPosition + new Vector3(0.0f, -spaceship.xTiltRight*xExtent, spaceship.yTiltRight*yExtent), 
+//				movementSpeed*Time.deltaTime
+//			);
+//		}
+
+
+
 //		else {
 //			this.transform.localPosition = Vector3.Slerp (
 //				this.transform.localPosition, 
@@ -59,7 +65,7 @@ public class HudCrosshairs : MonoBehaviour {
 //		}
 
 		// Make crosshairs GUI plane face the viewport straight-on
-		this.transform.rotation = spaceshipCamera.transform.rotation  * Quaternion.Euler(90, 180, 0);
+//		this.transform.rotation = spaceshipCamera.transform.rotation  * Quaternion.Euler(90, 180, 0);
 	}
 
 }
