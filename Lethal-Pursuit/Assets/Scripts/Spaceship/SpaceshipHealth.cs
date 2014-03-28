@@ -23,11 +23,15 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		public float debugSelfDestructDamageRate = 1.0f;
 		public bool invulnerable = false;
 		
+		public MatchManager matchManager;
+
+		public int lastHurtByPlayerID = -1;
 
 
 	public override void Start() {
 		base.Start();
 		currentHealth = maxHealth;
+		matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
 	}
 
 
@@ -64,6 +68,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;
+			matchManager.InformServerForKilledBy(lastHurtByPlayerID);
 		}
 	}
 
@@ -77,17 +82,15 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+				lastHurtByPlayerID = -1;
 			}
 			else {
-//				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
-//				Debug.Log ("index: " + index);
-//				Debug.Log ("NetworkManager.GetPlayerList()[index]: " + NetworkManager.GetPlayerList()[index]);
-//				Debug.Log ("NetworkManager.GetPlayerList()[index].ipAddress: " + NetworkManager.GetPlayerList()[index].ipAddress);
+				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
 				
 				// Need to check if not -1 for non existing game object
 
-//				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[0], amount);
-				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
+				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
+//				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
 				
 
 			}
@@ -103,8 +106,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	[RPC]
-	private void NetworkApplyDamage(float amount) {
+	private void NetworkApplyDamage(float amount, int playerID) {
 		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+		lastHurtByPlayerID = playerID;
+		Debug.Log("Hurt by playerID: " + playerID);
 	}
 
 

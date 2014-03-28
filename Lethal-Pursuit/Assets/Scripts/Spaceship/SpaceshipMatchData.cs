@@ -14,7 +14,7 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	private MatchManager matchManager;
 	public int totalKills = 0;
 
-
+/*
 	public override void Start () {
 		base.Start();
 
@@ -51,7 +51,6 @@ public class SpaceshipMatchData : SpaceshipComponent {
 		return false;
 	}
 
-
-
+*/
 
 }
