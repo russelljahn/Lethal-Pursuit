@@ -182,6 +182,10 @@ public class NetworkManager : MonoBehaviour {
 		return playerList;
 	}
 
+	public static int GetPlayerID() {
+		return playerID;
+	}
+
 	public void UpdateClientPlayerInfo() {
 		playerList.Clear();
 		playerList.Add(Network.player);
