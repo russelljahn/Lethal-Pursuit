@@ -50,7 +50,7 @@ public class Spaceship : MonoBehaviour {
 	void Awake() {
 		if (!NetworkManager.IsSinglePlayer() && !networkView.isMine) {
 			spaceshipCamera.gameObject.SetActive(false);
-//			crosshairs.SetActive(false);
+			crosshairs.SetActive(false);
 		}
 	}
 
@@ -87,12 +87,7 @@ public class Spaceship : MonoBehaviour {
 		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
 		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
 		shooting = InputManager.ActiveDevice.Action3.State;
-//		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
-		debugSelfDestruct = false;
-		
-		Debug.Log ("debugSelfDestructEnabled: " + debugSelfDestructEnabled);
-		Debug.Log ("InputManager.ActiveDevice.Action4.State: " + InputManager.ActiveDevice.Action4.State);
-		Debug.Log ("debugSelfDestruct: " + debugSelfDestruct);
+		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
 
 		braking = false;
 		boosting = false;
