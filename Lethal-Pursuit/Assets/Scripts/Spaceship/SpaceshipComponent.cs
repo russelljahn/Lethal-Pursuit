@@ -9,39 +9,27 @@ public class SpaceshipComponent : MonoBehaviour {
 
 
 	/* Tilt of left analogue stick every frame. */
-	protected float xTiltLeft {
+	protected float xTiltLeftStick {
 		get {
-			return spaceship.xTiltLeft;
+			return spaceship.xTiltLeftStick;
 		}
 	}
-	protected float yTiltLeft {
+	protected float yTiltLeftStick {
 		get {
-			return spaceship.yTiltLeft;
+			return spaceship.yTiltLeftStick;
 		}
 	} 
 	/* Tilt of right analogue stick every frame. */
-	protected float xTiltRight {
+	protected float xTiltRightStick {
 		get {
-			return spaceship.xTiltRight;
+			return spaceship.xTiltRightStick;
 		}
 	}
-	protected float yTiltRight {
+	protected float yTiltRightStick {
 		get {
-			return spaceship.yTiltRight;
+			return spaceship.yTiltRightStick;
 		}
 	} 
-	/* Amount of boost button pressed down. */
-	protected float boostAmount {
-		get {
-			return spaceship.boostAmount;
-		}
-	}
-	/* Amount of brake button pressed down. */
-//	protected float brakeAmount {
-//		get {
-//			return spaceship.brakeAmount;
-//		}
-//	}
 	/* Is player hitting the shoot button right now? */
 	protected bool shooting {
 		get {
@@ -61,11 +49,6 @@ public class SpaceshipComponent : MonoBehaviour {
 	protected bool drifting {
 		get {
 			return spaceship.drifting;
-		}
-	}
-	protected bool nosediving {
-		get {
-			return spaceship.nosediving;
 		}
 	}
 	protected bool idle {
@@ -117,21 +100,14 @@ public class SpaceshipComponent : MonoBehaviour {
 		}
 	}
 
-	
 
-
-	// Use this for initialization
 	public virtual void Start () {
 		if (spaceship == null) {
-			throw new Exception("spaceship is null for SpaceshipComponent in " + this.gameObject.name);
+			throw new Exception("spaceship is null for SpaceshipComponent in: " + this.gameObject.name);
 		}
 	}
 
-
-
-
 	
-	// Update is called once per frame
 	public virtual void Update () {
 		;
 	}

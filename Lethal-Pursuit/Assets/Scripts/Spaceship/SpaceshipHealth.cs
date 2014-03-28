@@ -19,8 +19,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	
 	public float healthRatioToBeInjured = 0.60f;
 	public float healthRatioToBeCritical = 0.30f;
-	
-	public float debugSelfDestructDamageRate = 1.0f;
+
 	public bool invulnerable = false;
 	
 	public MatchManager matchManager;
@@ -43,10 +42,6 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		invulnerable = timeUntilVulnerable > 0.0f;
 		
 		float fractionOfMaxHealth = currentHealth/maxHealth;
-		
-		if (false) {
-			this.ApplyDamage(debugSelfDestructDamageRate, gameObject, "Applying damage due to self-destruct!");
-		}
 		
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
 			this.state = HealthState.CRITICAL;

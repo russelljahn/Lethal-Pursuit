@@ -70,9 +70,9 @@ public class SpaceshipEffects : SpaceshipComponent {
 //		speedBeams.startColor = newSpeedBeamsColor;
 //
 //
-//		if (xTiltLeft > 0) {
-//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
-//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
+//		if (xTiltLeftStick > 0) {
+//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeftStick, xTiltLeftStick);
+//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeftStick, Mathf.Clamp (spaceship.transform.localRotation.y, 0, 1)); 
 //			emitter.localVelocity = newVelocity;
 //			trail1.localVelocity = newVelocity;
 //			trail2.localVelocity = newVelocity;
@@ -81,9 +81,9 @@ public class SpaceshipEffects : SpaceshipComponent {
 //
 //			} 
 //		
-//		if (xTiltLeft < 0) {
-//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeft, xTiltLeft);
-//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeft, spaceship.transform.rotation.y); 
+//		if (xTiltLeftStick < 0) {
+//			//Vector3 newVelocity = new Vector3 (1.09f, yTiltLeftStick, xTiltLeftStick);
+//			Vector3 newVelocity = new Vector3 (2.09f, xTiltLeftStick, spaceship.transform.rotation.y); 
 //			emitter.localVelocity = newVelocity;
 //			trail1.localVelocity = newVelocity;
 //			trail2.localVelocity = newVelocity;

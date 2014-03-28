@@ -2605,7 +2605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
   boostAcceleration: 10
-  deaccelerationIdle: 1.75
+  deaccelerationIdle: .920000017
   normalPitchRate: 15
   nosedivingPitchRate: 300
   crosshairs: {fileID: 11400004}
@@ -2678,7 +2678,6 @@ MonoBehaviour:
   respawnInvulnerabilityTime: 3
   healthRatioToBeInjured: .600000024
   healthRatioToBeCritical: .300000012
-  debugSelfDestructDamageRate: 1
   invulnerable: 0
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
@@ -2754,10 +2753,10 @@ MonoBehaviour:
   spaceshipModel: {fileID: 100084}
   spaceshipCamera: {fileID: 2000000}
   crosshairs: {fileID: 100016}
-  xTiltLeft: 0
-  yTiltLeft: 0
-  xTiltRight: 0
-  yTiltRight: 0
+  xTiltLeftStick: 0
+  yTiltLeftStick: 0
+  xTiltRightStick: 0
+  yTiltRightStick: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
@@ -2771,7 +2770,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
   currentBoostVelocity: 0
-  maxBoostVelocity: 825
+  maxBoostVelocity: 900
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

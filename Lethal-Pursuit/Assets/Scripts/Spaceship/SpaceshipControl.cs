@@ -7,26 +7,25 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	public float boostAcceleration = 10.0f;
-	public float deaccelerationIdle = 500;
-
-	public float normalPitchRate = 300.0f;
-	public float nosedivingPitchRate = 300.0f;
+	public float deaccelerationIdle = 0.92f;
+	public float deaccelerationBraking = 4f;
 	
+
 	public HudCrosshairs crosshairs;
-	public float normalTurnSpeed = 1.0f;
-	public float driftTurnSpeed = 2.0f;
+	public float normalTurnSpeed = 100.0f;
+	public float driftTurnSpeed = 200.0f;
 	private float currentTurnSpeed;
 	public float timeUntilMaxDriftTurn = 2.6f;
-	private float timeSinceStartedDriftTurn = 0.0f;
+	private float timeSinceStartedDriftTurn;
 	
-	public float driftTiltRate = 2.5f;
+	public float driftTiltRate = 4f;
 	public float normalTiltRate = 2.5f;
-	public float tiltAlignRate = 1.5f;
-	public float driftTiltMax = 90f;
+	public float tiltAlignRate = 2f;
+	public float driftTiltMax = 70f;
 	public float normalTiltMax = 35f;
-	private float currentTilt = 0f;
+	private float currentTilt;
 
-	public float distanceToRaycastForward = 1000;
+	public float distanceForwardToCheckForCollision = 1000;
 	
 	
 	// Use this for initialization
@@ -41,8 +40,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		}
 	}
 
-	
-	// This happens at a fixed timestep
+
 	void FixedUpdate () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			HandleRotation();
@@ -57,7 +55,10 @@ public class SpaceshipControl : SpaceshipComponent {
 		
 		/* Adjust velocities based on current spaceship behavior. */
 		if (boosting) {
-			currentBoostVelocity += boostAcceleration;
+			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, maxBoostVelocity, boostAcceleration*Time.deltaTime);
+		}
+		else if (braking) {
+			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, 0, deaccelerationBraking*Time.deltaTime);
 		}
 		else if (idle) {
 			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, 0, deaccelerationIdle*Time.deltaTime);
@@ -69,7 +70,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
 		RaycastHit hit;
 		
-		if (Physics.Raycast(transform.position, forward, out hit, distanceToRaycastForward)) {
+		if (Physics.Raycast(transform.position, forward, out hit, distanceForwardToCheckForCollision)) {
 			
 			if (hit.collider.gameObject.CompareTag("Unpassable")) {
 				
@@ -110,10 +111,10 @@ public class SpaceshipControl : SpaceshipComponent {
 	void HandleTilt() {
 		/* Handle drifting tilt. */
 		if (drifting) {
-			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeft*driftTiltMax, driftTiltRate*Time.deltaTime);
+			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeftStick*driftTiltMax, driftTiltRate*Time.deltaTime);
 		}
-		else if (xTiltLeft != 0.0f) {
-			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeft*normalTiltMax, driftTiltRate*Time.deltaTime);
+		else if (xTiltLeftStick != 0.0f) {
+			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeftStick*normalTiltMax, driftTiltRate*Time.deltaTime);
 		}
 		else {
 			currentTilt = Mathf.Lerp(currentTilt, 0.0f, tiltAlignRate*Time.deltaTime);
@@ -123,7 +124,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	void HandleRotation() {
-		if (xTiltLeft != 0.0f) {
+		if (xTiltLeftStick != 0.0f) {
 			timeSinceStartedDriftTurn += Time.deltaTime;
 		}
 		else {
@@ -139,11 +140,11 @@ public class SpaceshipControl : SpaceshipComponent {
 
 		/* Left/right look rotation. */
 		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(
-			spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*currentTurnSpeed, 0.0f)
+			spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeftStick*Time.deltaTime*currentTurnSpeed, 0.0f)
 		);
 
 		/* Up/down look rotation. */
-		Vector3 newRotationX = spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*currentTurnSpeed, 0.0f, 0.0f);
+		Vector3 newRotationX = spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(-yTiltLeftStick*Time.deltaTime*currentTurnSpeed, 0.0f, 0.0f);
 		if (newRotationX.x < 180 && newRotationX.x >= 0) {
 			newRotationX.x = Mathf.Clamp(newRotationX.x, 0f, 85f);
 		}

@@ -78,8 +78,8 @@ public class SpaceshipAudio : SpaceshipComponent {
 //		track3.volume = spaceship.currentVelocity/300- 1;
 //
 //
-//		track1.pan = xTiltLeft;
-//		track2.pan = xTiltLeft;
+//		track1.pan = xTiltLeftStick;
+//		track2.pan = xTiltLeftStick;
 //
 //		driftSFX.volume = driftTime/maxDriftTime;
 

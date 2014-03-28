@@ -16,12 +16,10 @@ public class Spaceship : MonoBehaviour {
 	public GameObject crosshairs;
 	
 	#region input variables
-	public float xTiltLeft; /* Tilt of left analogue stick every frame. */
-	public float yTiltLeft; /* Tilt of left analogue stick every frame. */
-	public float xTiltRight; /* Tilt of analogue stick every frame. */
-	public float yTiltRight; /* Tilt of analogue stick every frame. */
-	public float boostAmount;
-	public float brakeAmount;
+	public float xTiltLeftStick; /* Tilt of left analogue stick every frame. */
+	public float yTiltLeftStick; /* Tilt of left analogue stick every frame. */
+	public float xTiltRightStick; /* Tilt of analogue stick every frame. */
+	public float yTiltRightStick; /* Tilt of analogue stick every frame. */
 	public bool  shooting;
 	public bool  boosting;
 	public bool  braking;
@@ -73,17 +71,15 @@ public class Spaceship : MonoBehaviour {
 
 
 	void HandleInput() {
-		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
-		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
-		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
-		yTiltRight = InputManager.ActiveDevice.RightStickY.Value;
-		boostAmount = InputManager.ActiveDevice.Action3.Value;
+		xTiltLeftStick = InputManager.ActiveDevice.LeftStickX.Value;		
+		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value;
+		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;		
+		yTiltRightStick = InputManager.ActiveDevice.RightStickY.Value;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
 		drifting = InputManager.ActiveDevice.LeftTrigger.IsPressed;
-		nosediving = InputManager.ActiveDevice.LeftTrigger.IsPressed;
-		boosting = boostAmount > 0;
-		idle = !boosting;
-		braking = false;
+		braking = InputManager.ActiveDevice.Action1.IsPressed;
+		boosting = !braking && InputManager.ActiveDevice.Action3.IsPressed;
+		idle = !boosting && !braking;
 	}
 	
 	
