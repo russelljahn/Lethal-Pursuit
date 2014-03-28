@@ -54,7 +54,7 @@ public class Spaceship : MonoBehaviour {
 	void Awake() {
 		if (!NetworkManager.IsSinglePlayer() && !networkView.isMine) {
 			spaceshipCamera.gameObject.SetActive(false);
-//			crosshairs.SetActive(false);
+			crosshairs.SetActive(false);
 		}
 	}
 
@@ -87,6 +87,7 @@ public class Spaceship : MonoBehaviour {
 
 
 	void HandleInput() {
+<<<<<<< HEAD
 		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
 		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
 		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
@@ -95,6 +96,14 @@ public class Spaceship : MonoBehaviour {
 		strafeAmount = xTiltLeft;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
 		strafing = strafeAmount != 0;
+=======
+		xTilt = InputManager.ActiveDevice.LeftStickX.Value;		
+		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
+		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
+		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
+		shooting = InputManager.ActiveDevice.Action3.State;
+		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 
 		boosting = false;
 		braking = false;

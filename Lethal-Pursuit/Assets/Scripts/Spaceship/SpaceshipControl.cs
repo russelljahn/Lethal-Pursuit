@@ -24,14 +24,10 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	public float normalTurningRate = 115.0f;
 	public float driftingTurningRate = 300.0f;
-	public float normalPitchRate = 300.0f;
-	public float nosedivingPitchRate = 300.0f;
-
+	
+	
 	public float timeUntilMaxTurning = 2.6f;
 	private float timeSinceStartedTurning = 0.0f;
-
-	public float timeUntilMaxPitch = 2.6f;
-	private float timeSinceStartedPitch = 0.0f;
 
 	public HudCrosshairs crosshairs;
 	public float lookSpeed = 1.0f;
@@ -40,12 +36,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	private float currentDriftTilt = 0f;
 	public float driftTiltRate = 2.5f;
 	public float driftAlignRate = 1.5f;
-	
-	public float nosediveTiltMax = 90f;
-	private float currentNosediveTilt = 0f;
-	public float nosediveTiltRate = 2.5f;
-	public float nosediveAlignRate = 1.5f;
-	
+
 	public float distanceToRaycastForward = 1000;
 	
 
@@ -145,9 +136,16 @@ public class SpaceshipControl : SpaceshipComponent {
 			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Mathf.Abs(boostAmount)*currentBoostVelocity, Time.deltaTime)
 		);
 
+<<<<<<< HEAD
 //		rigidbody.MovePosition(
 //			rigidbody.position + Vector3.Slerp(Vector3.zero, right*strafeAmount*currentStrafeVelocity, Time.deltaTime)	
 //		);
+=======
+		/* Additional boost up/down. */
+		rigidbody.MovePosition(
+			rigidbody.position + Vector3.Slerp(Vector3.zero, Vector3.up*yTilt*Time.deltaTime*extraAccelerationThisFrameY, currentVelocity/maxVelocity)
+		);
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 
 		/* Strafe left and right. */
 
@@ -165,6 +163,7 @@ public class SpaceshipControl : SpaceshipComponent {
 
 	
 	void HandleTilt() {
+<<<<<<< HEAD
 //		return;
 
 //		float pitchRateThisFrame = normalPitchRate;
@@ -176,10 +175,24 @@ public class SpaceshipControl : SpaceshipComponent {
 		/* Handle drifting tilt. */
 		if (xTiltLeft != 0.0f) {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTiltLeft*driftTiltMax, driftTiltRate*Time.deltaTime);
+=======
+		
+
+		Vector3 newDirection = Vector3.Slerp(
+			spaceshipModel.transform.forward, 
+			crosshairs.transform.position-spaceshipModel.transform.position, 
+			Time.deltaTime*lookSpeed
+		);
+
+		/* Handle drifting tilt. */
+		if (drifting) {
+			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTilt*driftTiltMax, driftTiltRate*Time.deltaTime);
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 		}
 		else {
 			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
 		}
+<<<<<<< HEAD
 		/* Handle nosediving tilt. */
 //		if (yTiltLeft != 0.0f) {
 //			currentNosediveTilt = Mathf.Lerp(currentNosediveTilt, -yTiltLeft*nosediveTiltMax, nosediveTiltRate*Time.deltaTime);
@@ -197,6 +210,16 @@ public class SpaceshipControl : SpaceshipComponent {
 //			new Vector3(0.0f, 0.0f, currentDriftTilt)
 //		);
 
+=======
+
+
+		spaceshipModel.transform.forward = newDirection;
+
+		spaceshipModel.transform.localRotation = Quaternion.Euler(
+			spaceshipModel.transform.localRotation.eulerAngles + new Vector3(0.0f, 0.0f, currentDriftTilt)
+		);
+		
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 
 	}
 
@@ -207,6 +230,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	void HandleRotation() {
 
+<<<<<<< HEAD
 //		Vector3 v = new Vector3(xTiltLeft, xTiltRight, 0.0f);
 
 //		spaceshipModel.transform.forward = Vector3.RotateTowards(spaceshipModel.transform.forward, spaceshipModel.transform.InverseTransformPoint(v), lookSpeed*Time.deltaTime, lookSpeed*Time.deltaTime);
@@ -244,6 +268,10 @@ public class SpaceshipControl : SpaceshipComponent {
 		
 		return;
 		if (xTiltLeft != 0) {
+=======
+		if (xTilt != 0) {
+			
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 			float turningRateForThisFrame = normalTurningRate;
 			
 			/* Allow drift turning if player is holding down brake. */
@@ -263,6 +291,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		else {
 			timeSinceStartedTurning = 0.0f;
 		}
+<<<<<<< HEAD
 
 
 //		if (yTiltLeft != 0) {
@@ -285,9 +314,11 @@ public class SpaceshipControl : SpaceshipComponent {
 //		else {
 //			timeSinceStartedPitch = 0.0f;
 //		}
+=======
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 		
 	}
-	
+
 
 
 

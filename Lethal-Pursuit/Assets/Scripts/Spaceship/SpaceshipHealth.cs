@@ -44,8 +44,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 		float fractionOfMaxHealth = currentHealth/maxHealth;
 		
-		if (false) {
-			this.ApplyDamage(debugSelfDestructDamageRate, gameObject, "Applying damage due to self-destruct!");
+		if (debugSelfDestruct) {
+			this.ApplyDamage(debugSelfDestructDamageRate, this.gameObject);
 		}
 
 		if (fractionOfMaxHealth <= healthRatioToBeCritical) {
@@ -57,46 +57,51 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		else {
 			this.state = HealthState.HEALTHY;
 		}
-		HandleDeath();
+
 	}
 
 
 
 	void HandleDeath() {
-		if (IsDead()) {
+
 			Debug.Log ("Player is dead!");
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;
+<<<<<<< HEAD
 			matchManager.InformServerForKilledBy(lastHurtByPlayerID);
 		}
+=======
+
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 	}
 
 
 
 	// Implementing Damageable interface.
-	public void ApplyDamage(float amount, GameObject damager, string message) {
-
-		Debug.Log (message);
+	public void ApplyDamage(float amount, GameObject damager) {
 		if (!invulnerable) {
-			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 				lastHurtByPlayerID = -1;
 			}
 			else {
 				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
+<<<<<<< HEAD
 				
 				// Need to check if not -1 for non existing game object
 
 				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
 //				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
 				
+=======
+
+				// Need to check if not -1 for non existing game object
+
+				networkView.RPC("NetworkApplyDamage", NetworkManager.GetPlayerList()[index], amount);
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 
 			}
-		}
-		else {
-			Debug.Log ("Being hurt BUT INVINCIBLE!");
 		}
 	}
 	public bool IsDead() {
@@ -108,8 +113,14 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	[RPC]
 	private void NetworkApplyDamage(float amount, int playerID) {
 		this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+<<<<<<< HEAD
 		lastHurtByPlayerID = playerID;
 		Debug.Log("Hurt by playerID: " + playerID);
+=======
+		if (IsDead()) {
+			HandleDeath();
+		}
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 	}
 
 

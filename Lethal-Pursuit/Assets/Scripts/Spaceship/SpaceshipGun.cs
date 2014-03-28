@@ -118,7 +118,11 @@ public class SpaceshipGun : SpaceshipComponent {
 //		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
 				
 		if (damageableObject != null) {
+<<<<<<< HEAD
 			damageableObject.ApplyDamage(damageRate, hitGameObject, gameObject.name + " is calling ApplyDamage()!");
+=======
+			damageableObject.ApplyDamage(damageRate, this.spaceship.gameObject);
+>>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 		}
 
 	}

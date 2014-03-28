@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Middle
-  m_Shader: {fileID: 4800000, guid: e9bef69d3483c064f88f285d261cbd10, type: 3}
+  m_Shader: {fileID: 3, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,19 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 155e3df3a6a39eb43ac1f17621b89e21, type: 3}
-          m_Scale: {x: 26, y: 4}
+          m_Texture: {fileID: 2800000, guid: 3b59328641581804c9db47451e7c207f, type: 3}
+          m_Scale: {x: 9, y: 10}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -39,6 +46,10 @@ Material:
         first:
           name: _Shininess
         second: .078125
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _NumColors
@@ -63,19 +74,23 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .145977512, g: .198812649, b: .735294104, a: 1}
+        second: {r: .352941185, g: .352941185, b: .352941185, a: .345098048}
       data:
         first:
           name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: .0175317172, g: .0866921768, b: .117647059, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .958687007, g: 1, b: .75686276, a: 1}
       data:
         first:
           name: _MainColor
         second: {r: .172549024, g: .117647059, b: 1, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: .958687007, g: 1, b: .75686276, a: 1}
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _Specular
