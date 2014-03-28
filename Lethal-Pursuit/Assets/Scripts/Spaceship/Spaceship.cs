@@ -24,7 +24,6 @@ public class Spaceship : MonoBehaviour {
 	public bool  boosting;
 	public bool  braking;
 	public bool  drifting;
-	public bool  nosediving;
 	public bool  idle;
 	[HideInInspector]
 	public bool  debugSelfDestruct;

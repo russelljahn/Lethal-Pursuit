@@ -49,6 +49,12 @@ namespace InControl
 					Target = InputControlType.Start,
 					Source = KeyCodeButton(KeyCode.Escape)
 				},
+				new InputControlMapping
+				{
+					Handle = "Left Control",
+					Target = InputControlType.Action1,
+					Source = KeyCodeButton(KeyCode.LeftControl)
+				},
 			};
 
 			AnalogMappings = new[]
