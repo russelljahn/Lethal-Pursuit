@@ -2605,28 +2605,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
   boostAcceleration: 10
-  strafeAcceleration: 5
-  normalExtraAccelerationY: 5
-  nosedivingExtraAccelerationY: 30
-  deaccelerationBrake: 8
-  deaccelerationDrift: 0
   deaccelerationIdle: 1.75
-  xTiltLeftSpeed: 1.5
-  yTiltLeftSpeed: 3.29999995
-  normalTurningRate: 200
-  driftingTurningRate: 500
   normalPitchRate: 15
   nosedivingPitchRate: 300
-  timeUntilMaxTurning: 8
-  timeUntilMaxPitch: 2.5999999
   crosshairs: {fileID: 11400004}
-  lookSpeed: 100
-  driftTiltMax: 60
+  normalTurnSpeed: 100
+  driftTurnSpeed: 200
+  timeUntilMaxDriftTurn: 2.5999999
   driftTiltRate: 4
-  driftAlignRate: 1.5
-  nosediveTiltMax: 85
-  nosediveTiltRate: 2.5
-  nosediveAlignRate: 1.5
+  normalTiltRate: 2.5
+  tiltAlignRate: 2
+  driftTiltMax: 70
+  normalTiltMax: 35
   distanceToRaycastForward: 25
 --- !u!114 &11400002
 MonoBehaviour:
@@ -2760,21 +2750,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayManager: {fileID: 0}
-  spaceshipModel: {fileID: 100042}
+  spaceshipModelRoot: {fileID: 100042}
+  spaceshipModel: {fileID: 100084}
   spaceshipCamera: {fileID: 2000000}
-  crosshairs: {fileID: 0}
+  crosshairs: {fileID: 100016}
   xTiltLeft: 0
   yTiltLeft: 0
   xTiltRight: 0
   yTiltRight: 0
-  strafeAmount: 0
   boostAmount: 0
   brakeAmount: 0
   shooting: 0
   boosting: 0
-  strafing: 0
   braking: 0
-  reversing: 0
   drifting: 0
   nosediving: 0
   idle: 0
@@ -2782,12 +2770,8 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   heightAboveGround: 0
-  enforceHeightLimit: 0
-  heightLimit: 30
   currentBoostVelocity: 0
-  maxBoostVelocity: 700
-  currentStrafeVelocity: 0
-  maxStrafeVelocity: 150
+  maxBoostVelocity: 825
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

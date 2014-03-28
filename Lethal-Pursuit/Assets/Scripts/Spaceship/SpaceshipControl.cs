@@ -7,45 +7,25 @@ public class SpaceshipControl : SpaceshipComponent {
 	
 	
 	public float boostAcceleration = 10.0f;
-	public float strafeAcceleration = 5.0f; 
-	
-	public float normalExtraAccelerationY = 5.0f; 
-	public float nosedivingExtraAccelerationY = 30.0f; 
-	
-	
-	public float deaccelerationBrake = 500;
-	public float deaccelerationDrift = 50;
 	public float deaccelerationIdle = 500;
-	
-	
-	public float xTiltLeftSpeed = 1.5f;
-	public float yTiltLeftSpeed = 3.3f;
-	
-	
-	public float normalTurningRate = 115.0f;
-	public float driftingTurningRate = 300.0f;
+
 	public float normalPitchRate = 300.0f;
 	public float nosedivingPitchRate = 300.0f;
 	
-	public float timeUntilMaxTurning = 2.6f;
-	private float timeSinceStartedTurning = 0.0f;
-	
-	public float timeUntilMaxPitch = 2.6f;
-	private float timeSinceStartedPitch = 0.0f;
-	
 	public HudCrosshairs crosshairs;
-	public float lookSpeed = 1.0f;
+	public float normalTurnSpeed = 1.0f;
+	public float driftTurnSpeed = 2.0f;
+	private float currentTurnSpeed;
+	public float timeUntilMaxDriftTurn = 2.6f;
+	private float timeSinceStartedDriftTurn = 0.0f;
 	
-	public float driftTiltMax = 90f;
-	private float currentDriftTilt = 0f;
 	public float driftTiltRate = 2.5f;
-	public float driftAlignRate = 1.5f;
-	
-	public float nosediveTiltMax = 90f;
-	private float currentNosediveTilt = 0f;
-	public float nosediveTiltRate = 2.5f;
-	public float nosediveAlignRate = 1.5f;
-	
+	public float normalTiltRate = 2.5f;
+	public float tiltAlignRate = 1.5f;
+	public float driftTiltMax = 90f;
+	public float normalTiltMax = 35f;
+	private float currentTilt = 0f;
+
 	public float distanceToRaycastForward = 1000;
 	
 	
@@ -55,17 +35,12 @@ public class SpaceshipControl : SpaceshipComponent {
 	}
 	
 	
-	
-	
-	
 	public override void Update () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			base.Update();
 		}
 	}
-	
-	
-	
+
 	
 	// This happens at a fixed timestep
 	void FixedUpdate () {
@@ -77,12 +52,7 @@ public class SpaceshipControl : SpaceshipComponent {
 	}
 	
 	
-	
-	
-	
-	
 	void HandleMovement() {
-		
 		spaceship.rigidbody.velocity = Vector3.zero;
 		
 		/* Adjust velocities based on current spaceship behavior. */
@@ -90,12 +60,10 @@ public class SpaceshipControl : SpaceshipComponent {
 			currentBoostVelocity += boostAcceleration;
 		}
 		else if (idle) {
-			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, 0, deaccelerationBrake*Time.deltaTime);
+			currentBoostVelocity = Mathf.Lerp(currentBoostVelocity, 0, deaccelerationIdle*Time.deltaTime);
 		} 
-		
-		currentBoostVelocity = Mathf.Clamp(currentBoostVelocity, -maxBoostVelocity, maxBoostVelocity);
-		
-		
+		currentBoostVelocity = Mathf.Clamp(currentBoostVelocity, 0, maxBoostVelocity);
+
 		Vector3 adjustedForward = forward;
 		
 		/* Do some collision detection. If you're about to hit the environment, then adjust for it. */
@@ -118,104 +86,64 @@ public class SpaceshipControl : SpaceshipComponent {
 					
 					this.rigidbody.MoveRotation(
 						Quaternion.Slerp (
-						this.transform.localRotation,
-						Quaternion.Euler(adjustedForward),
-						Time.deltaTime
+							this.transform.localRotation,
+							Quaternion.Euler(adjustedForward),
+							Time.deltaTime
 						)
-						);
+					);
 				}
 			}
 		}
 		
 		/* Boost forward. */
-		//		rigidbody.MovePosition(
-		//			rigidbody.position + Vector3.Slerp(Vector3.zero, adjustedForward*Time.deltaTime*currentVelocity, Mathf.Abs(currentVelocity)/maxVelocity)
-		//		);
 		rigidbody.MovePosition(
-			rigidbody.position + Vector3.Slerp(Vector3.zero, forward*Mathf.Abs(boostAmount)*currentBoostVelocity, Time.deltaTime)
-			);
-		
-		//		rigidbody.MovePosition(
-		//			rigidbody.position + Vector3.Slerp(Vector3.zero, right*strafeAmount*currentStrafeVelocity, Time.deltaTime)	
-		//		);
-		
-		/* Strafe left and right. */
-		
-		/* Additional boost up/down. */
-		//		rigidbody.MovePosition(
-		//			rigidbody.position + Vector3.Slerp(Vector3.zero, right*Time.deltaTime*currentVelocity, Mathf.Abs(currentVelocity)/maxVelocity)
-		//		);;
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	void HandleTilt() {
-		//		return;
-		
-		//		float pitchRateThisFrame = normalPitchRate;
-		
-		//		if (nosediving) {
-		//			pitchRateThisFrame = nosedivingPitchRate;
-		//		}
-		
-		/* Handle drifting tilt. */
-		if (drifting) {
-			currentDriftTilt = Mathf.Lerp(currentDriftTilt, -xTiltLeft*driftTiltMax, driftTiltRate*Time.deltaTime);
-		}
-		else {
-			currentDriftTilt = Mathf.Lerp(currentDriftTilt, 0.0f, driftAlignRate*Time.deltaTime);
-		}
-		/* Handle nosediving tilt. */
-		//		if (yTiltLeft != 0.0f) {
-		//			currentNosediveTilt = Mathf.Lerp(currentNosediveTilt, -yTiltLeft*nosediveTiltMax, nosediveTiltRate*Time.deltaTime);
-		//		}
-		//		else {
-		//			currentNosediveTilt = Mathf.Lerp(currentNosediveTilt, 0.0f, nosediveAlignRate*Time.deltaTime);
-		//		}
-		
-		
-		//		spaceshipModel.transform.RotateAround(spaceshipModel.transform.position, Vector3.up, xTiltLeft*Time.deltaTime*xTiltLeftSpeed);
-		//		spaceship.transform.RotateAround(spaceshipModel.transform.position, Vector3.right, yTiltLeft*Time.deltaTime*yTiltLeftSpeed);
-		
-		
-		spaceshipModel.transform.localRotation = Quaternion.Euler(
-			new Vector3(0.0f, 0.0f, currentDriftTilt)
+			rigidbody.position + Vector3.Slerp(
+				Vector3.zero, 
+				forward*Mathf.Abs(boostAmount)*currentBoostVelocity*Time.deltaTime, 
+				Mathf.Abs(currentBoostVelocity)/maxBoostVelocity
+			)
 		);
 		
-		
 	}
+
 	
-	
-	
-	
+	void HandleTilt() {
+		/* Handle drifting tilt. */
+		if (drifting) {
+			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeft*driftTiltMax, driftTiltRate*Time.deltaTime);
+		}
+		else if (xTiltLeft != 0.0f) {
+			currentTilt = Mathf.Lerp(currentTilt, -xTiltLeft*normalTiltMax, driftTiltRate*Time.deltaTime);
+		}
+		else {
+			currentTilt = Mathf.Lerp(currentTilt, 0.0f, tiltAlignRate*Time.deltaTime);
+		}
+		spaceshipModel.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, currentTilt));
+	}
 	
 	
 	void HandleRotation() {
-		
-		//		Vector3 v = new Vector3(xTiltLeft, xTiltRight, 0.0f);
-		
-		//		spaceshipModel.transform.forward = Vector3.RotateTowards(spaceshipModel.transform.forward, spaceshipModel.transform.InverseTransformPoint(v), lookSpeed*Time.deltaTime, lookSpeed*Time.deltaTime);
-		//		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Mathf.Clamp01(lookSpeed*Time.deltaTime));
-		
-		if (xTiltLeft != 0.0f || xTiltRight != 0.0f) {
-			timeSinceStartedTurning += Time.deltaTime;
+		if (xTiltLeft != 0.0f) {
+			timeSinceStartedDriftTurn += Time.deltaTime;
 		}
 		else {
-			timeSinceStartedTurning = 0.0f;
+			timeSinceStartedDriftTurn = 0.0f;
 		}
-		
+
+		if (drifting) {
+			currentTurnSpeed = Mathf.Lerp(currentTurnSpeed, driftTurnSpeed, Time.deltaTime*driftTurnSpeed);
+		}
+		else {
+			currentTurnSpeed = Mathf.Lerp(currentTurnSpeed, normalTurnSpeed, Time.deltaTime*driftTurnSpeed);
+		}
+
+		/* Left/right look rotation. */
 		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(
-			spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*lookSpeed, 0.0f)
+			spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(0.0f, xTiltLeft*Time.deltaTime*currentTurnSpeed, 0.0f)
 		);
-		
-		Vector3 newRotationX = spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
-		//		Debug.Log ("newRotationX.x: " + newRotationX.x);
-		
+
+		/* Up/down look rotation. */
+		Vector3 newRotationX = spaceshipModelRoot.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*currentTurnSpeed, 0.0f, 0.0f);
 		if (newRotationX.x < 180 && newRotationX.x >= 0) {
 			newRotationX.x = Mathf.Clamp(newRotationX.x, 0f, 85f);
 		}
@@ -225,77 +153,9 @@ public class SpaceshipControl : SpaceshipComponent {
 		else {
 			newRotationX.x = Mathf.Clamp(newRotationX.x, 275f, 360f);
 		}
-		
-		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(
-			newRotationX
-			);
-		
-		//		this.transform.RotateAround(this.transform.position, Vector3.right, yTiltRight*Time.deltaTime*lookSpeed);
-		
-		return;
-		if (xTiltLeft != 0) {
-			float turningRateForThisFrame = normalTurningRate;
-			
-			/* Allow drift turning if player is holding down brake. */
-			if (drifting) {
-				turningRateForThisFrame = driftingTurningRate;
-			}
-			
-			this.rigidbody.MoveRotation(
-				Quaternion.Slerp (
-				this.transform.localRotation,
-				Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.up*xTiltLeft*turningRateForThisFrame*Time.deltaTime),
-				Mathf.Clamp01(timeSinceStartedTurning/timeUntilMaxTurning)
-				)
-				);
-			timeSinceStartedTurning += Time.deltaTime;
-		}
-		else {
-			timeSinceStartedTurning = 0.0f;
-		}
-		
-		
-		//		if (yTiltLeft != 0) {
-		//			float pitchRateForThisFrame = normalPitchRate;
-		//			
-		//			/* Allow drift turning if player is holding down brake. */
-		//			if (nosediving) {
-		//				pitchRateForThisFrame = nosedivingPitchRate;
-		//			}
-		//			
-		//			this.rigidbody.MoveRotation(
-		//				Quaternion.Slerp (
-		//					this.transform.localRotation,
-		//					Quaternion.Euler(this.transform.localRotation.eulerAngles + Vector3.left*yTiltLeft*pitchRateForThisFrame*Time.deltaTime),
-		//					Mathf.Clamp01(timeSinceStartedPitch/timeUntilMaxPitch)
-		//				)
-		//			);
-		//			timeSinceStartedPitch += Time.deltaTime;
-		//		}
-		//		else {
-		//			timeSinceStartedPitch = 0.0f;
-		//		}
-		
+		spaceshipModelRoot.transform.localRotation = Quaternion.Euler(newRotationX);
 	}
-	
-	
-	
-	
-	
-	
-	//	void HandleFalling() {
-	//
-	//		if (enforceHeightLimit && spaceship.transform.position.y > maxHeightBeforeFalling) {
-	//			rigidbody.MovePosition(
-	//				Vector3.Slerp(
-	//					rigidbody.position,
-	//					rigidbody.position + Vector3.down*Time.deltaTime*fallingRate,
-	//					Time.deltaTime
-	//				)
-	//			);
-	//		}
-	//	}
-	
-	
+
 	
 }
+
