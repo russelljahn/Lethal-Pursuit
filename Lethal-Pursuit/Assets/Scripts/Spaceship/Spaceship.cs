@@ -8,12 +8,12 @@ using System.Collections;
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class Spaceship : MonoBehaviour {
-
+	
 	public GameplayManager gameplayManager;
 	public GameObject spaceshipModel;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
-
+	
 	#region input variables
 	public float xTiltLeft; /* Tilt of left analogue stick every frame. */
 	public float yTiltLeft; /* Tilt of left analogue stick every frame. */
@@ -33,31 +33,31 @@ public class Spaceship : MonoBehaviour {
 	[HideInInspector]
 	public bool  debugSelfDestruct;
 	#endregion
-
+	
 	public Vector3 forward;
 	public Vector3 right;
 	public float heightAboveGround;
-
+	
 	public bool enforceHeightLimit = true;
 	public float heightLimit = 50.0f; // Height limit above the ground.
-
+	
 	public float currentBoostVelocity;
 	public float maxBoostVelocity = 150.0f;
 	public float currentStrafeVelocity;
 	public float maxStrafeVelocity = 150.0f;
-
-
+	
+	
 	void Start () {
 		gameplayManager = GameplayManager.instance;
 	}
-
+	
 	void Awake() {
 		if (!NetworkManager.IsSinglePlayer() && !networkView.isMine) {
 			spaceshipCamera.gameObject.SetActive(false);
-			crosshairs.SetActive(false);
+			//			crosshairs.SetActive(false);
 		}
 	}
-
+	
 	
 	void FixedUpdate () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
@@ -65,9 +65,9 @@ public class Spaceship : MonoBehaviour {
 			HandleHeightCheck();
 		}
 	}
-
-
-
+	
+	
+	
 	void Update () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			forward = spaceshipModel.transform.forward;
@@ -84,10 +84,9 @@ public class Spaceship : MonoBehaviour {
 		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
 		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
 	}
-
-
+	
+	
 	void HandleInput() {
-<<<<<<< HEAD
 		xTiltLeft = InputManager.ActiveDevice.LeftStickX.Value;		
 		yTiltLeft = InputManager.ActiveDevice.LeftStickY.Value;
 		xTiltRight = InputManager.ActiveDevice.RightStickX.Value;		
@@ -96,45 +95,37 @@ public class Spaceship : MonoBehaviour {
 		strafeAmount = xTiltLeft;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
 		strafing = strafeAmount != 0;
-=======
-		xTilt = InputManager.ActiveDevice.LeftStickX.Value;		
-		yTilt = InputManager.ActiveDevice.LeftStickY.Value;
-		boostAmount = InputManager.ActiveDevice.RightTrigger.Value;
-		brakeAmount = InputManager.ActiveDevice.LeftTrigger.Value;
-		shooting = InputManager.ActiveDevice.Action3.State;
-		debugSelfDestruct = debugSelfDestructEnabled && InputManager.ActiveDevice.Action4.State;
->>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
-
+		
 		boosting = false;
 		braking = false;
 		reversing = false;
 		drifting = false;
 		nosediving = false;
 		idle = false;
-
-
+		
+		
 		if (boostAmount > 0) {
 			boosting = true;
 		}
 		else if (boostAmount < 0) {
-//			drifting = (xTiltLeft != 0);
-//			nosediving = (yTiltLeft != 0);
-//			braking = true;
+			//			drifting = (xTiltLeft != 0);
+			//			nosediving = (yTiltLeft != 0);
+			//			braking = true;
 			reversing = true;
 		}
-
+		
 		idle = !boosting || !reversing || !strafing;
-
+		
 	}
-
-
+	
+	
 	void HandleHeightCheck() {
 		RaycastHit hit;
 		Physics.Raycast(this.transform.position, -this.transform.up, out hit);
 		heightAboveGround = hit.distance;
 	}
-
-
+	
+	
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
 	private float syncTime = 0f;
@@ -175,28 +166,28 @@ public class Spaceship : MonoBehaviour {
 			shooting = isShooting;
 		}
 	}
-
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

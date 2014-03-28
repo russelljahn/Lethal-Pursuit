@@ -809,7 +809,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .713311672, z: 0, w: .70084697}
-  m_LocalPosition: {x: 39931.1719, y: -79.2333908, z: -28624.2754}
+  m_LocalPosition: {x: 0, y: 901.87384, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400042}
@@ -2785,7 +2785,7 @@ MonoBehaviour:
   enforceHeightLimit: 0
   heightLimit: 30
   currentBoostVelocity: 0
-  maxBoostVelocity: 400
+  maxBoostVelocity: 700
   currentStrafeVelocity: 0
   maxStrafeVelocity: 150
 --- !u!114 &11400014
@@ -2839,8 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  pointToLookAt: {fileID: 100016}
-  yLookAmount: 1
+  target: {fileID: 100082}
   rotationSpeed: 3
   lookSpeed: 4
 --- !u!114 &11400018

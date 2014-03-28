@@ -24,21 +24,14 @@ public class HudCrosshairs : SpaceshipComponent {
 		debugLine.SetWidth(10f, 10f);
 		debugLine.SetColors(Color.blue, Color.green);
 
-<<<<<<< HEAD
+
 		this.renderer.material.renderQueue = 4000;
 //		this.transform.parent = null;
-=======
->>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 	}
 	
 
 	void Update () {
 
-<<<<<<< HEAD
-//		this.transform.position = spaceship.transform.position - initialLocalPosition;
-
-=======
->>>>>>> 5d2353ada24dfbfbad2d973c89b8f0975f0e56af
 		if (debug) {
 			debugLine.enabled = true;
 			debugLine.SetPosition(0, spaceship.spaceshipModel.transform.position);
