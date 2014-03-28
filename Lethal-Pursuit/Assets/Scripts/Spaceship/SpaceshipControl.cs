@@ -224,7 +224,7 @@ public class SpaceshipControl : SpaceshipComponent {
 		);
 
 		Vector3 newRotationX = spaceshipModel.transform.localRotation.eulerAngles + new Vector3(-yTiltLeft*Time.deltaTime*lookSpeed, 0.0f, 0.0f);
-		Debug.Log ("newRotationX.x: " + newRotationX.x);
+//		Debug.Log ("newRotationX.x: " + newRotationX.x);
 
 		if (newRotationX.x < 180 && newRotationX.x >= 0) {
 			newRotationX.x = Mathf.Clamp(newRotationX.x, 0f, 85f);

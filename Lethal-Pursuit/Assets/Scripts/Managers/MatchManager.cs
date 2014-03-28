@@ -78,6 +78,9 @@ public class MatchManager : MonoBehaviour {
 	}
 	
 	public bool IsMatchOver() {
+		if (NetworkManager.IsSinglePlayer()) {
+			return false;
+		}
 		switch (rule) {
 		case MatchRule.REACH_TARGET_KILLS:
 			//Update GUI values here
