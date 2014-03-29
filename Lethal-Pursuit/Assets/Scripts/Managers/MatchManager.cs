@@ -37,6 +37,8 @@ public class MatchManager : MonoBehaviour {
 	public float timeElapsed = 0.0f;
 	public bool matchOver = false;
 
+	public int scoreLeader;
+
 
 	// Use this for initialization
 	void Start () {
@@ -58,8 +60,10 @@ public class MatchManager : MonoBehaviour {
 	}	
 	
 	void Update() {
+
+		scoreLeader = killscores[CheckMatchScoreLeader()];
 		
-		if(Network.isServer) {
+		if (Network.isServer) {
 			timeElapsed += Time.deltaTime;
 		}
 		
@@ -70,8 +74,8 @@ public class MatchManager : MonoBehaviour {
 			networkView.RPC("OnMatchOver", RPCMode.All);
 		}
 
-		if(Network.isServer) {
-			for(int i=0; i<killscores.Length; i++) {
+		if (Network.isServer) {
+			for (int i=0; i<killscores.Length; i++) {
 				Debug.Log("Player " + i + " has score " + killscores[i]);
 			}
 		}
@@ -82,13 +86,13 @@ public class MatchManager : MonoBehaviour {
 			return false;
 		}
 		switch (rule) {
-		case MatchRule.REACH_TARGET_KILLS:
-			//Update GUI values here
-			int scoreLeader = killscores[CheckMatchScoreLeader()];
-			return scoreLeader >= targetKills;
-			
-		default:
-			throw new Exception("IsMatchOver(): Unknown gameplay mode: " + rule);
+			case MatchRule.REACH_TARGET_KILLS:
+				//Update GUI values here
+				
+				return scoreLeader >= targetKills;
+				
+			default:
+				throw new Exception("IsMatchOver(): Unknown gameplay mode: " + rule);
 		}
 		return false;
 	}
@@ -97,8 +101,8 @@ public class MatchManager : MonoBehaviour {
 		int playerID = 0;
 		int bestScore = 0;
 
-		for(int i=0; i<killscores.Length; i++) {
-			if(killscores[i] > bestScore) {
+		for (int i=0; i<killscores.Length; i++) {
+			if (killscores[i] > bestScore) {
 				playerID = i;
 				bestScore = killscores[i];
 			}
@@ -110,6 +114,9 @@ public class MatchManager : MonoBehaviour {
 	[RPC]
 	public void OnMatchOver() {
 		OnMatchOverGUI();
+		for (int i = 0; i < killscores.Length; ++i) {
+			killscores[i] = 0;
+		}
 	}
 
 	public void OnMatchOverGUI() {
