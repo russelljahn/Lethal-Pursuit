@@ -89,7 +89,7 @@ public class MatchManager : MonoBehaviour {
 			case MatchRule.REACH_TARGET_KILLS:
 				//Update GUI values here
 				
-				return scoreLeader >= targetKills;
+				return killscores[scoreLeader] >= targetKills;
 				
 			default:
 				throw new Exception("IsMatchOver(): Unknown gameplay mode: " + rule);
@@ -134,8 +134,15 @@ public class MatchManager : MonoBehaviour {
 
 	[RPC]
 	public void TallyKill(int playerID) {
-		Debug.Log("Kill tallied for player " + playerID);
-		killscores[playerID]++;
+		Debug.Log("Kill tallied for player: " + playerID);
+		++killscores[playerID];
+		networkView.RPC ("InformClientsUpdatedKillscores", RPCMode.Others, this.killscores);
+	}
+
+	[RPC]
+	public void InformClientsUpdatedKillscores(int [] killscores) {
+		Debug.Log("New killscores: " + killscores);
+		this.killscores = killscores;
 	}
 
 

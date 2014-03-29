@@ -9,7 +9,7 @@ public class HudWinnerText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		winnerText = GetComponent<UILabel>();
-		winnerText.text = string.Format("PLAYER {0} WINS", matchManager.scoreLeader);
+		winnerText.text = string.Format("PLAYER {0} WINS", (matchManager.scoreLeader+1));
 	}
 
 }
