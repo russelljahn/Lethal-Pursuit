@@ -28,7 +28,7 @@ public class MatchManager : MonoBehaviour {
 	public int targetKills = 5;
 	public float timeLimit = 5 * 60.0f;
 
-	private int[] killscores;
+	public int[] killscores;
 
 	private Level currentLevel;
 	
@@ -61,7 +61,7 @@ public class MatchManager : MonoBehaviour {
 	
 	void Update() {
 
-		scoreLeader = killscores[CheckMatchScoreLeader()];
+		scoreLeader = CheckMatchScoreLeader();
 		
 		if (Network.isServer) {
 			timeElapsed += Time.deltaTime;

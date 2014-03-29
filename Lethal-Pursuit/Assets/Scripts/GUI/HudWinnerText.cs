@@ -4,7 +4,7 @@ using System.Collections;
 public class HudWinnerText : MonoBehaviour {
 
 	UILabel winnerText;
-	MatchManager matchManager;
+	public MatchManager matchManager;
 
 	// Use this for initialization
 	void Start () {
