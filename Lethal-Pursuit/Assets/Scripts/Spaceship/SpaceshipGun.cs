@@ -9,8 +9,6 @@ public class SpaceshipGun : SpaceshipComponent {
 	public float cooldownBetweenShots = 0.1f;
 	private float timeUntilCanShoot = 0.0f;
 	
-	public float forceFactor = 1.0f;
-	
 	private GameObject cachedBullet;
 	public AudioSource guns;
 	public AudioClip shot;
@@ -41,16 +39,13 @@ public class SpaceshipGun : SpaceshipComponent {
 			GameObject bulletGameObject = GameObject.Instantiate(
 				cachedBullet,
 				this.transform.position, 
-				Quaternion.identity
-				) as GameObject;
+				spaceshipModel.transform.rotation
+			) as GameObject;
 			
 			Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 			bullet.direction = spaceshipModel.transform.forward;
 			bullet.sourceSpaceship = spaceship;
-			bullet.speed *= forceFactor;
-			
-			
-			
+
 			bulletGameObject.SetActive(true);
 			
 			timeUntilCanShoot = cooldownBetweenShots;
@@ -61,7 +56,10 @@ public class SpaceshipGun : SpaceshipComponent {
 		}
 	}
 	
-	
+
+	void OnDestroy() {
+		cachedBullet.SetActive(true);
+	}
 	
 	
 }

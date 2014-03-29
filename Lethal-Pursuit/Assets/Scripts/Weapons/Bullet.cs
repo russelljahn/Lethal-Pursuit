@@ -12,12 +12,12 @@ public class Bullet : MonoBehaviour {
 
 	public Spaceship sourceSpaceship;
 
-	public Detonator detonater;
+	public GameObject explosion;
 
 
 	// Use this for initialization
 	void Start () {
-		direction.Normalize();
+//		direction.Normalize();
 	}
 
 
@@ -49,8 +49,8 @@ public class Bullet : MonoBehaviour {
 			Debug.Log (this.gameObject.name + "collided with: " + collision.gameObject.name);
 			
 			alreadyActivatedOnDeath = true;
-			detonater.transform.parent = null;
-			detonater.Explode();
+			explosion.transform.parent = null;
+			explosion.SetActive(true);
 			StartCoroutine(OnDeath());
 		}
 
