@@ -136,13 +136,13 @@ public class MatchManager : MonoBehaviour {
 	public void TallyKill(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
-		networkView.RPC ("InformClientsUpdatedKillscores", RPCMode.Others, this.killscores);
+		networkView.RPC ("InformClientsTallyKill", RPCMode.OthersBuffered, this.killscores);
 	}
 
 	[RPC]
-	public void InformClientsUpdatedKillscores(int [] killscores) {
-		Debug.Log("New killscores: " + killscores);
-		this.killscores = killscores;
+	public void InformClientsTallyKill(int playerID) {
+		Debug.Log("Kill tallied for player: " + playerID);
+		++killscores[playerID];
 	}
 
 
