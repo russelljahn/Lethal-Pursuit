@@ -65,12 +65,24 @@ public class SpaceshipGun : SpaceshipComponent {
 		currentEnergy = Mathf.Min(maxEnergy, currentEnergy + energyRechargeRate*Time.deltaTime);
 
 		if (shooting && timeUntilCanShoot == 0.0f && currentEnergy >= energyPerShot) {
-			GameObject bulletGameObject = GameObject.Instantiate(
-				cachedBullet,
-				this.transform.position, 
-				spaceshipModel.transform.rotation
-			) as GameObject;
-			
+
+			GameObject bulletGameObject;
+			if (NetworkManager.IsSinglePlayer()) {
+				bulletGameObject = GameObject.Instantiate(
+					cachedBullet,
+					this.transform.position, 
+					spaceshipModel.transform.rotation
+				) as GameObject;
+			}
+			else {
+				bulletGameObject = Network.Instantiate(
+					cachedBullet,
+					this.transform.position, 
+					spaceshipModel.transform.rotation,
+					666
+				) as GameObject;
+			}
+
 			Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 			bullet.direction = spaceshipModel.transform.forward;
 			bullet.sourceSpaceship = spaceship;
