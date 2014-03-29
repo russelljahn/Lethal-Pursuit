@@ -218,6 +218,7 @@ MonoBehaviour:
   sourceSpaceship: {fileID: 0}
   explosion: {fileID: 100008}
   direction: {x: 0, y: 0, z: 0}
+  damage: 15
   speed: 6000
   timeUntilDeath: 2
 --- !u!114 &11400004
@@ -499,7 +500,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 15.6100969
+  simulationStarted: 6.6778059
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
