@@ -947,10 +947,27 @@ GameObject:
   m_Component:
   - 4: {fileID: 400114}
   - 114: {fileID: 11400134}
+  - 114: {fileID: 11400136}
   m_Layer: 8
-  m_Name: Chargebar
+  m_Name: Energybar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100116
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400116}
+  - 114: {fileID: 11400138}
+  m_Layer: 0
+  m_Name: Playground Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1241,6 +1258,7 @@ Transform:
   - {fileID: 400044}
   - {fileID: 400048}
   - {fileID: 400040}
+  - {fileID: 400116}
   m_Father: {fileID: 400012}
 --- !u!4 &400048
 Transform:
@@ -1273,7 +1291,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .381347656, z: 0}
+  m_LocalPosition: {x: 0, y: .28553772, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400108}
@@ -1289,7 +1307,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 253.762695, z: 0}
+  m_LocalPosition: {x: 428, y: 253.571075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -1322,7 +1340,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -510, y: 249.762695, z: 77}
+  m_LocalPosition: {x: -510, y: 249.571075, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400058}
@@ -1645,10 +1663,21 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100114}
   m_LocalRotation: {x: .57357651, y: 0, z: 0, w: .819151998}
-  m_LocalPosition: {x: 54, y: -25, z: 1}
-  m_LocalScale: {x: .850000024, y: 3.0999999, z: 1}
+  m_LocalPosition: {x: 55.8600006, y: -25, z: 1}
+  m_LocalScale: {x: .814999998, y: 3.0999999, z: 1}
   m_Children: []
   m_Father: {fileID: 400060}
+--- !u!4 &400116
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3147.53174, y: 144.692871, z: -1154.95911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400046}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -3507,9 +3536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb28b25bd167a44ac8be7f85fb564f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthyColor: {r: 0, g: .68235296, b: .250980407, a: .843137264}
-  injuredColor: {r: .997850358, g: 1, b: .301470578, a: .843137264}
-  criticalColor: {r: .808823526, g: 0, b: 0, a: .843137264}
+  healthyColor: {r: 0, g: .68235296, b: .250980407, a: .784313738}
+  injuredColor: {r: .997850358, g: 1, b: .301470578, a: .784313738}
+  criticalColor: {r: .808823526, g: 0, b: 0, a: .784313738}
 --- !u!114 &11400090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4409,6 +4438,70 @@ MonoBehaviour:
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   nextSprite: {fileID: 0}
+--- !u!114 &11400136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c1c48534b604648b2f84e80403dd72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullColor: {r: .0941176489, g: .556862772, b: .917647064, a: .784313738}
+  drainedColor: {r: .514350951, g: .231617644, b: .926470578, a: .784313738}
+  criticalColor: {r: .670776188, g: .263624579, b: .676470578, a: .784313738}
+--- !u!114 &11400138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9439b39076c41f7afc64d9afc353f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystems:
+  - {fileID: 11400006, guid: 5fae9a94e6cc44245825c799c91a2a51, type: 2}
+  manipulators: []
+  paintMaxPositions: 10000
+  calculate: 1
+  pixelFilterMode: 1
+  garbageCollectOnResize: 1
+  autoGroup: 1
+  buildZeroAlphaPixels: 0
+  drawGizmos: 1
+  showShuriken: 0
+  paintToolbox: 1
+  collisionPlaneScale: .100000001
+  maximumAllowedLifetime: 100
+  maximumAllowedParticles: 100000
+  maximumAllowedRotation: 360
+  maximumAllowedSize: 10
+  maximumAllowedDeltaMovementStrength: 100
+  maximumAllowedScale: 10
+  maximumAllowedDamping: 10
+  maximumAllowedVelocity: 100
+  maximumAllowedMass: 100
+  maximumAllowedCollisionRadius: 10
+  maximumAllowedBounciness: 2
+  minimumAllowedUpdateRate: 10
+  maximumAllowedTransitionTime: 10
+  minimumAllowedTimescale: .00999999978
+  maximumAllowedTimescale: 2
+  maximumAllowedPaintPositions: 100000
+  minimumAllowedBrushScale: .00100000005
+  maximumAllowedBrushScale: 1
+  maximumAllowedPaintSpacing: 10
+  maximumAllowedInitialVelocity: 100
+  minimumEraserRadius: .00100000005
+  maximumEraserRadius: 100
+  maximumRenderSliders: 10
+  maximumAllowedManipulatorSize: 100
+  maximumAllowedManipulatorStrength: 100
+  maximumAllowedManipulatorZeroVelocity: 10
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

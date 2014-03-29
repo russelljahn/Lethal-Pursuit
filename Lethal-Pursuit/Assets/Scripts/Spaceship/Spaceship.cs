@@ -14,6 +14,7 @@ public class Spaceship : MonoBehaviour {
 	public GameObject spaceshipModel;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
+	public SpaceshipGun gun;
 	
 	#region input variables
 	public float xTiltLeftStick; /* Tilt of left analogue stick every frame. */

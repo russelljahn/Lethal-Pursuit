@@ -2,40 +2,69 @@
 using InControl;
 using System.Collections;
 
+public enum EnergyState {
+	FULL,
+	DRAINED,
+	CRITICAL
+}
+
+[RequireComponent(typeof(AudioSource))]
 public class SpaceshipGun : SpaceshipComponent {
-	
-	public string bulletResourcePath = "Bullets/TestLaz0r";
-	
+
+	public float maxEnergy = 100f;
+	public float currentEnergy;
+
+	public float energyPerShot = 10.0f;
+	public float energyRechargeRate = 5.0f;
+	public float energyRechargeMultiplierWhenNotShooting = 1.3f;
 	public float cooldownBetweenShots = 0.1f;
 	private float timeUntilCanShoot = 0.0f;
 	
+	public string bulletResourcePath = "Bullets/HexLaserBullet";
+
+	public EnergyState state = EnergyState.FULL;
+	public float energyRatioToBeDrained = 0.60f;
+	public float energyRatioToBeCritical = 0.30f;
+
 	private GameObject cachedBullet;
-	public AudioSource guns;
-	public AudioClip shot;
+	public AudioClip shootingSound;
 	
 	
-	
-	// Use this for initialization
 	public override void Start () {
 		base.Start();
-		
+		currentEnergy = maxEnergy;
 		cachedBullet = Resources.Load(bulletResourcePath, typeof(GameObject)) as GameObject;
 		cachedBullet.SetActive(false);
 	}
-
 	
 	
-	// Update is called once per frame
 	public override void Update () {
 		base.Update();	
+		
+		float fractionOfMaxEnergy = currentEnergy/maxEnergy;
+		
+		if (fractionOfMaxEnergy <= energyRatioToBeCritical) {
+			this.state = EnergyState.CRITICAL;
+		}
+		else if (fractionOfMaxEnergy <= energyRatioToBeDrained) {
+			this.state = EnergyState.DRAINED;
+		}
+		else {
+			this.state = EnergyState.FULL;
+		}
 	}
 	
-	
-	
+
 	void FixedUpdate() {
-		
-		if (shooting && timeUntilCanShoot == 0.0f) {
-			
+		timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
+
+		float currentRechargeRate = energyRechargeRate;
+		if (timeUntilCanShoot == 0.0f) {
+			currentEnergy *= energyRechargeMultiplierWhenNotShooting;
+		}
+		currentEnergy = Mathf.Min(maxEnergy, currentEnergy + energyRechargeRate*Time.deltaTime);
+
+		if (shooting && timeUntilCanShoot == 0.0f && currentEnergy >= energyPerShot) {
 			GameObject bulletGameObject = GameObject.Instantiate(
 				cachedBullet,
 				this.transform.position, 
@@ -49,10 +78,8 @@ public class SpaceshipGun : SpaceshipComponent {
 			bulletGameObject.SetActive(true);
 			
 			timeUntilCanShoot = cooldownBetweenShots;
-			audio.PlayOneShot(shot);
-		}
-		else {
-			timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
+			currentEnergy -= energyPerShot;
+			this.audio.PlayOneShot(shootingSound);
 		}
 	}
 	

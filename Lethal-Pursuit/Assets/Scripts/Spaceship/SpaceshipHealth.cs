@@ -111,13 +111,5 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+

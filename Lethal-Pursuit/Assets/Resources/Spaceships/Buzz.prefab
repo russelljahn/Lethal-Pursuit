@@ -2426,7 +2426,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: .48884365, g: .470588207, b: 1, a: 1}
@@ -2526,10 +2526,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  bulletResourcePath: Bullets/HexLaserBullet
+  maxEnergy: 100
+  currentEnergy: 0
+  energyPerShot: 10
+  energyRechargeRate: 10
+  energyRechargeMultiplierWhenNotShooting: 1.03999996
   cooldownBetweenShots: .200000003
-  guns: {fileID: 0}
-  shot: {fileID: 8300000, guid: 240cf2b1718c4ec47be60c4d0157e0e9, type: 3}
+  bulletResourcePath: Bullets/HexLaserBullet
+  state: 0
+  energyRatioToBeDrained: .600000024
+  energyRatioToBeCritical: .300000012
+  shootingSound: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2640,6 +2647,7 @@ MonoBehaviour:
   spaceshipModel: {fileID: 100084}
   spaceshipCamera: {fileID: 2000000}
   crosshairs: {fileID: 100016}
+  gun: {fileID: 11400002}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
