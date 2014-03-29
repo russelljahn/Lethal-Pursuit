@@ -124,8 +124,8 @@ public class MatchManager : MonoBehaviour {
 	}
 
 	public void InformServerForKilledBy(int playerID) {
-		if(Network.isClient) {
-			networkView.RPC("TallyKill", RPCMode.Server, playerID);
+		if (Network.isClient) {
+			networkView.RPC("ServerTallyKill", RPCMode.Server, playerID);
 		}
 		else {
 			killscores[playerID]++;
@@ -133,14 +133,14 @@ public class MatchManager : MonoBehaviour {
 	}
 
 	[RPC]
-	public void TallyKill(int playerID) {
+	public void ServerTallyKill(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
-		networkView.RPC ("InformClientsTallyKill", RPCMode.OthersBuffered, playerID);
+		networkView.RPC ("ClientTallyKill", RPCMode.OthersBuffered, playerID);
 	}
 
 	[RPC]
-	public void InformClientsTallyKill(int playerID) {
+	public void ClientTallyKill(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
 	}
