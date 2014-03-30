@@ -96,7 +96,12 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	void OnPlayerConnected(NetworkPlayer player) {
-		UpdateClientPlayerInfo();
+		if(LevelManager.IsMainMenu()) {
+			UpdateClientPlayerInfo();
+		}
+		else {
+			Network.CloseConnection(player, true);
+		}
 	}
 	
 	void OnConnectedToServer ()
@@ -115,7 +120,7 @@ public class NetworkManager : MonoBehaviour {
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 
-		UpdateClientPlayerInfo();
+		//UpdateClientPlayerInfo();
 	}
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
