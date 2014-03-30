@@ -1770,7 +1770,7 @@ MonoBehaviour:
     gameObject: {fileID: 2072174154}
     transform: {fileID: 2072174155}
     rigidbody: {fileID: 0}
-    cachedId: 830628
+    cachedId: 842982
     meshFilter: {fileID: 2072174157}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 3.32112002
+  simulationStarted: 81.163269
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3413,7 +3413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &92841529
 Transform:
   m_ObjectHideFlags: 0
@@ -15903,7 +15903,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 392435180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.59291077, z: 0}
+  m_LocalPosition: {x: 0, y: -.49559021, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 603212213}
@@ -16171,15 +16171,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.59291077
+      value: -.49559021
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 249.814178
+      value: 252.00882
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 247.314178
+      value: 249.50882
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -20847,7 +20847,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 249.814178, z: 0}
+  m_LocalPosition: {x: 428, y: 252.00882, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312740159}
@@ -45632,7 +45632,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.4333334
+  aspectRatio: 6.22580624
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -45858,7 +45858,7 @@ MonoBehaviour:
     gameObject: {fileID: 817030991}
     transform: {fileID: 817030992}
     rigidbody: {fileID: 0}
-    cachedId: 829496
+    cachedId: 841850
     meshFilter: {fileID: 817030994}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -46160,7 +46160,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 540.685303
+  simulationStarted: 81.163269
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -46200,7 +46200,7 @@ ParticleSystemRenderer:
   m_Mesh3: {fileID: 0}
 --- !u!198 &1198095002
 ParticleSystem:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 19800006, guid: e6019c313a604fb47b76e0c69d512eae,
     type: 2}
   m_PrefabInternal: {fileID: 708674245}
@@ -52651,9 +52651,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 11.3317938
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -57014,7 +57014,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
@@ -57113,7 +57113,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 11400006, guid: 5fae9a94e6cc44245825c799c91a2a51, type: 2}
+  - {fileID: 52860269}
   - {fileID: 1198095000}
+  - {fileID: 1392535205}
+  - {fileID: 1894841660}
+  - {fileID: 1985077074}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -58725,7 +58729,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .969696999
+  aspectRatio: .949494958
   mSprite: {fileID: 21300000, guid: 5da4aba28cc87664a9aa1586aeb161a5, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -58737,7 +58741,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -670, y: 247.314178, z: 77}
+  m_LocalPosition: {x: -670, y: 249.50882, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 1258546899}
@@ -58781,7 +58785,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: .969696999
 --- !u!1 &1692516088
 GameObject:
   m_ObjectHideFlags: 0
@@ -60401,7 +60405,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.02564096
+  aspectRatio: 5.05128193
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -64872,7 +64876,7 @@ MonoBehaviour:
     gameObject: {fileID: 1788426716}
     transform: {fileID: 1788426717}
     rigidbody: {fileID: 0}
-    cachedId: 830338
+    cachedId: 842692
     meshFilter: {fileID: 1788426719}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -65174,7 +65178,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 3.32112002
+  simulationStarted: 81.163269
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -69889,7 +69893,7 @@ MonoBehaviour:
     gameObject: {fileID: 1246241462}
     transform: {fileID: 1246241463}
     rigidbody: {fileID: 0}
-    cachedId: 829880
+    cachedId: 842234
     meshFilter: {fileID: 1246241465}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -70191,7 +70195,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 3.32112002
+  simulationStarted: 81.163269
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
