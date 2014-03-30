@@ -108,10 +108,12 @@ public class HudManager : MonoBehaviour {
 		}
 	}
 
+
 	[RPC]
 	private void NetworkReplayMatch() {
 		LevelManager.ReloadLevel();
 	}
+
 
 	public void LoadMainMenu() {
 		if (Network.isServer) {

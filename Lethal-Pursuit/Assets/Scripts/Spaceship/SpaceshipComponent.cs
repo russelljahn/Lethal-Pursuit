@@ -56,6 +56,11 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.idle;
 		}
 	}
+	protected bool swappingWeapon {
+		get {
+			return spaceship.swappingWeapon;
+		}
+	}
 	protected GameplayManager gameplayManager {
 		get {
 			return spaceship.gameplayManager;

@@ -26,7 +26,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 		}
 
 		/* Swap guns if hitting bumpers. */
-		if (currentPickup != null && remainingSwapCooldownTime == 0.0f && (InputManager.ActiveDevice.RightBumper.IsPressed || InputManager.ActiveDevice.LeftBumper.IsPressed)) {
+		if (currentPickup != null && remainingSwapCooldownTime == 0.0f && swappingWeapon) {
 			pickupIsActive = !pickupIsActive;
 			currentPickup.SetActive(pickupIsActive);
 			remainingSwapCooldownTime = pickupSwapCooldown;

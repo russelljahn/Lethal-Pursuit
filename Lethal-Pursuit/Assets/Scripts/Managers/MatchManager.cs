@@ -52,12 +52,14 @@ public class MatchManager : MonoBehaviour {
 		currentLevel = LevelManager.GetLoadedLevel();
 	}
 
+
 	[RPC]
 	public void SetStartTime(float startTime) {
 		timeStartMatch = startTime;
 		timeElapsed = 0.0f;
 		Debug.Log("Start Time given from server: " + timeStartMatch);
 	}	
+
 	
 	void Update() {
 
@@ -71,7 +73,7 @@ public class MatchManager : MonoBehaviour {
 			timeFinishMatch = timeStartMatch + timeElapsed;
 			Debug.Log ("Match ended, Winner is Player " + CheckMatchScoreLeader() + " at time '" + timeFinishMatch + "'!");
 			matchOver = true;
-			networkView.RPC("OnMatchOver", RPCMode.All);
+			networkView.RPC("OnMatchOver", RPCMode.All, CheckMatchScoreLeader());
 		}
 
 		if (Network.isServer) {
@@ -80,6 +82,7 @@ public class MatchManager : MonoBehaviour {
 			}
 		}
 	}
+
 	
 	public bool IsMatchOver() {
 		if (NetworkManager.IsSinglePlayer()) {
@@ -97,6 +100,7 @@ public class MatchManager : MonoBehaviour {
 		return false;
 	}
 
+
 	private int CheckMatchScoreLeader() {
 		int playerID = 0;
 		int bestScore = 0;
@@ -111,17 +115,21 @@ public class MatchManager : MonoBehaviour {
 		return playerID; 
 	}
 
+
 	[RPC]
-	public void OnMatchOver() {
+	public void OnMatchOver(int winnerID) {
 		OnMatchOverGUI();
+		scoreLeader = winnerID;
 		for (int i = 0; i < killscores.Length; ++i) {
 			killscores[i] = 0;
 		}
 	}
 
+
 	public void OnMatchOverGUI() {
 		hudManager.DisplayMatchOver();
 	}
+
 
 	public void InformServerForKilledBy(int playerID) {
 		if (Network.isClient) {
@@ -132,39 +140,13 @@ public class MatchManager : MonoBehaviour {
 		}
 	}
 
+
 	[RPC]
 	public void ServerTallyKill(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
 		networkView.RPC ("ClientTallyKill", RPCMode.OthersBuffered, playerID);
 	}
-
-	[RPC]
-	public void ClientTallyKill(int playerID) {
-		Debug.Log("Kill tallied for player: " + playerID);
-		++killscores[playerID];
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

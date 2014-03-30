@@ -26,6 +26,7 @@ public class Spaceship : MonoBehaviour {
 	public bool  braking;
 	public bool  drifting;
 	public bool  idle;
+	public bool  swappingWeapon;
 	[HideInInspector]
 	public bool  debugSelfDestruct;
 	#endregion
@@ -80,6 +81,7 @@ public class Spaceship : MonoBehaviour {
 		braking = InputManager.ActiveDevice.Action1.IsPressed;
 		boosting = !braking && InputManager.ActiveDevice.Action3.IsPressed;
 		idle = !boosting && !braking;
+		swappingWeapon = InputManager.ActiveDevice.LeftBumper.IsPressed || InputManager.ActiveDevice.RightBumper.IsPressed;
 	}
 	
 	
@@ -123,11 +125,14 @@ public class Spaceship : MonoBehaviour {
 		Vector3 syncPosition = Vector3.zero;
 		Quaternion syncRotation = Quaternion.identity;
 		bool isShooting = false;
+		bool isSwappingWeapon = false;
+		
 		
 		if (stream.isWriting) {
 			syncPosition = transform.position;
 			syncRotation = transform.rotation;
 			isShooting = shooting;
+			isSwappingWeapon = swappingWeapon;
 			
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
@@ -149,6 +154,7 @@ public class Spaceship : MonoBehaviour {
 			syncEndRotation = syncRotation;
 			
 			shooting = isShooting;
+			swappingWeapon = isSwappingWeapon;
 		}
 	}
 	
