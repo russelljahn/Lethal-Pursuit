@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(LineRenderer))]
+
 public class AuroraCannon : Pickup {
 
 	public PlaygroundParticles laserBeamEffect;
+	public PlaygroundPresetLaser laserBeamEffectScript;
+	
 	public float damageRate = 30.0f;
 	public float laserHitForce = 1000.0f;
 	public float currentEnergy = 100f;
 	public float energyDrainRate = 50.0f;
 	public float laserLength = 500.0f;
 	private GameObject hitGameObject;
-	
-
-	public override void Start() {
-	}
 
 
 	public override void Update() {
@@ -25,7 +23,7 @@ public class AuroraCannon : Pickup {
 			Ray ray = new Ray(spaceship.spaceshipModel.transform.position, spaceship.spaceshipModel.transform.forward);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit)) {
+			if (Physics.Raycast(ray, out hit, laserLength)) {
 				Debug.Log("ray hit: " + hit.collider.gameObject);
 				
 				/* Apply laser force. */
@@ -33,8 +31,6 @@ public class AuroraCannon : Pickup {
 					hitGameObject = hit.collider.gameObject;
 					hit.rigidbody.AddForceAtPosition(ray.direction*laserHitForce, hit.point);
 				}
-			}
-			else {
 			}
 		}
 		else {
@@ -67,6 +63,7 @@ public class AuroraCannon : Pickup {
 		this.transform.localPosition = Vector3.zero;
 		laserBeamEffect.transform.localScale = Vector3.one;
 		laserBeamEffect.sourceTransform = spaceship.spaceshipModel.transform;
+		laserBeamEffectScript.laserMaxDistance = laserLength;
 	}
 
 
