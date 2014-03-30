@@ -8,12 +8,16 @@ public class SpaceshipPickups : SpaceshipComponent {
 	public Pickup currentPickup = null;
 	public bool pickupIsActive = false;
 
+	public float pickupSwapCooldown = 0.125f;
+	public float remainingSwapCooldownTime;
+
 	void Start () {
 	
 	}
 
 
 	void Update () {
+		remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
 
 		if (currentPickup != null && currentPickup.ShouldDrop()) {
 			currentPickup.OnDrop();
@@ -22,9 +26,10 @@ public class SpaceshipPickups : SpaceshipComponent {
 		}
 
 		/* Swap guns if hitting bumpers. */
-		if (currentPickup != null && (InputManager.ActiveDevice.RightBumper.IsPressed || InputManager.ActiveDevice.LeftBumper.IsPressed)) {
+		if (currentPickup != null && remainingSwapCooldownTime == 0.0f && (InputManager.ActiveDevice.RightBumper.IsPressed || InputManager.ActiveDevice.LeftBumper.IsPressed)) {
 			pickupIsActive = !pickupIsActive;
 			currentPickup.SetActive(pickupIsActive);
+			remainingSwapCooldownTime = pickupSwapCooldown;
 			if (!pickupIsActive) {
 				spaceship.EnableGun();
 			}
