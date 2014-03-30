@@ -16,6 +16,10 @@ public class AuroraCannon : Pickup {
 
 
 	public override void Update() {
+		if (!active) {
+			laserBeamEffect.emissionRate = 0.0f;
+			return;
+		}
 		if (spaceship != null && spaceship.shooting) {
 			currentEnergy -= energyDrainRate*Time.deltaTime;
 			laserBeamEffect.emissionRate = 1.0f;	
@@ -41,6 +45,9 @@ public class AuroraCannon : Pickup {
 
 
 	void FixedUpdate() {
+		if (!active) {
+			return;
+		}
 		if (hitGameObject == null) {
 			return;
 		}
@@ -64,6 +71,7 @@ public class AuroraCannon : Pickup {
 		laserBeamEffect.transform.localScale = Vector3.one;
 		laserBeamEffect.sourceTransform = spaceship.spaceshipModel.transform;
 		laserBeamEffectScript.laserMaxDistance = laserLength;
+		active = true;
 	}
 
 

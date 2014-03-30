@@ -4,6 +4,7 @@ using System.Collections;
 public class Pickup : MonoBehaviour {
 
 	protected Spaceship spaceship;
+	protected bool active = true;
 
 	public virtual void Start() {
 
@@ -24,6 +25,10 @@ public class Pickup : MonoBehaviour {
 
 	public virtual void OnDrop() {
 		Debug.Log (this.gameObject.name + " was dropped up by: " + spaceship.name);
+	}
+
+	public void SetActive(bool active) {
+		this.active = active;
 	}
 	
 }

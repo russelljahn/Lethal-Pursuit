@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
+
 
 public class SpaceshipPickups : SpaceshipComponent {
 
 	public Pickup currentPickup = null;
+	public bool pickupIsActive = false;
 
 	void Start () {
 	
@@ -11,11 +14,25 @@ public class SpaceshipPickups : SpaceshipComponent {
 
 
 	void Update () {
+
 		if (currentPickup != null && currentPickup.ShouldDrop()) {
 			currentPickup.OnDrop();
 			GameObject.Destroy(currentPickup.gameObject);
 			currentPickup = null;
 		}
+
+		/* Swap guns if hitting bumpers. */
+		if (currentPickup != null && (InputManager.ActiveDevice.RightBumper.IsPressed || InputManager.ActiveDevice.LeftBumper.IsPressed)) {
+			pickupIsActive = !pickupIsActive;
+			currentPickup.SetActive(pickupIsActive);
+			if (!pickupIsActive) {
+				spaceship.EnableGun();
+			}
+			else {
+				spaceship.DisableGun();
+			}
+		}
+
 	}
 
 
@@ -29,5 +46,6 @@ public class SpaceshipPickups : SpaceshipComponent {
 		currentPickup = pickup;
 		pickup.OnPickup(this.spaceship);
 		pickup.gameObject.SetActive(true);
+		pickupIsActive = true;
 	}
 }
