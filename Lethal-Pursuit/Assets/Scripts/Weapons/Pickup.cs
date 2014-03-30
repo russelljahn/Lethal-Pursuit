@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Pickup : MonoBehaviour {
 
-	Spaceship spaceship;
+	protected Spaceship spaceship;
 
 	public virtual void Start() {
 
@@ -19,10 +19,11 @@ public class Pickup : MonoBehaviour {
 
 	public virtual void OnPickup(Spaceship spaceship) {
 		this.spaceship = spaceship;
+		Debug.Log (this.gameObject.name + " was picked up by: " + spaceship.name);
 	}
 
 	public virtual void OnDrop() {
-
+		Debug.Log (this.gameObject.name + " was dropped up by: " + spaceship.name);
 	}
 	
 }
