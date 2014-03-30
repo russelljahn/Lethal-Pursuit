@@ -42,15 +42,22 @@ public class SpaceshipPickups : SpaceshipComponent {
 
 
 	public bool CanPickup(Pickup pickup) {
+		if (pickup is PickupHealth) {
+			SpaceshipHealth health = spaceship.GetComponent<SpaceshipHealth>();
+			return health.currentHealth < health.maxHealth;
+		}
 		return currentPickup == null;
 	}
 
 
 	public void GetPickup(Pickup pickup) {
 		pickup.gameObject.transform.parent = this.transform;
-		currentPickup = pickup;
+		if (!(pickup is PickupHealth)) {
+			currentPickup = pickup;
+			pickupIsActive = true;
+		}
+			
 		pickup.OnPickup(this.spaceship);
 		pickup.gameObject.SetActive(true);
-		pickupIsActive = true;
 	}
 }

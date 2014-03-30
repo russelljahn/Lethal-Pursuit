@@ -30,7 +30,7 @@ public class HudCurrentWeapon : MonoBehaviour {
 			if (pickupsComponent.currentPickup == null || !pickupsComponent.pickupIsActive) {
 				currentWeaponSprite.sprite2D = defaultLaser;
 			}
-			else if (pickupsComponent.currentPickup is AuroraCannon) {
+			else if (pickupsComponent.currentPickup is PickupAuroraCannon) {
 				currentWeaponSprite.sprite2D = auroraCannon;
 			}
 			else {
