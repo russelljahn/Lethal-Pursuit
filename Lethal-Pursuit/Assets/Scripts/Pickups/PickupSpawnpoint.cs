@@ -7,7 +7,9 @@ using System.Collections;
 public class PickupSpawnPoint : MonoBehaviour {
 
 
-	public Pickup pickup; // Should be attached to a separate GameObject.
+	public string pathToPickupResource;
+	private Pickup pickup;
+
 	public float respawnTime = 10.0f;
 	public float timeRemainingUntilRespawn = 0.0f;
 	public AudioClip pickupSound;
@@ -18,6 +20,7 @@ public class PickupSpawnPoint : MonoBehaviour {
 
 	void Start() {
 		this.collider.isTrigger = true;
+		pickup = (GameObject.Instantiate(Resources.Load(pathToPickupResource)) as GameObject).GetComponent<Pickup>();
 		pickup.gameObject.SetActive(false);
 	}
 
@@ -53,8 +56,15 @@ public class PickupSpawnPoint : MonoBehaviour {
 				pickupClone = GameObject.Instantiate(pickup.gameObject) as GameObject;
 			}
 			else {
-				pickupClone = Network.Instantiate(pickup.gameObject, Vector3.zero, Quaternion.identity, 667) as GameObject;
+				pickupClone = (Network.Instantiate(
+					Resources.Load(pathToPickupResource),
+				    Vector3.zero, 
+				    Quaternion.identity, 
+				    667) as GameObject
+				);
 			}
+			Debug.Log ("Pickup clone: " + pickupClone);
+			Debug.Log("collider.gameObject.GetComponent<SpaceshipPickups>(): " + collider.gameObject.GetComponent<SpaceshipPickups>());
 			collider.gameObject.GetComponent<SpaceshipPickups>().GetPickup(pickupClone.GetComponent<Pickup>());
 			
 			if (NetworkManager.IsSinglePlayer()) {

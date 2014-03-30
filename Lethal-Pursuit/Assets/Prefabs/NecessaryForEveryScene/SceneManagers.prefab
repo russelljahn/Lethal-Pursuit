@@ -500,6 +500,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400060}
+  - 114: {fileID: 11400144}
   m_Layer: 8
   m_Name: TopLeft
   m_TagString: Untagged
@@ -1307,7 +1308,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .108428955, z: 0}
+  m_LocalPosition: {x: 0, y: .412841797, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400108}
@@ -1323,7 +1324,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 253.216858, z: 0}
+  m_LocalPosition: {x: 428, y: 253.825684, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -1356,7 +1357,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -510, y: 250.133087, z: 77}
+  m_LocalPosition: {x: -670, y: 251.325684, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400058}
@@ -1370,8 +1371,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
-  m_LocalRotation: {x: -.588984847, y: 2.73591581e-07, z: 9.84919382e-08, w: .808144152}
-  m_LocalPosition: {x: 58.5, y: 20.677494, z: -7.00055885}
+  m_LocalRotation: {x: -.582108796, y: .00406438531, z: .0056767785, w: .813080966}
+  m_LocalPosition: {x: 49.9961548, y: 26.0039597, z: 655.150024}
   m_LocalScale: {x: .810000002, y: 3.0999999, z: 1}
   m_Children: []
   m_Father: {fileID: 400060}
@@ -1679,8 +1680,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100114}
-  m_LocalRotation: {x: .57357651, y: 0, z: 0, w: .819151998}
-  m_LocalPosition: {x: 55.8600006, y: -25, z: 1}
+  m_LocalRotation: {x: .524537683, y: .0110790879, z: -.0179771483, w: .8511253}
+  m_LocalPosition: {x: 50.9961548, y: -17.7480202, z: 664.292114}
   m_LocalScale: {x: .810000002, y: 3.0999999, z: 1}
   m_Children: []
   m_Father: {fileID: 400060}
@@ -1702,7 +1703,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 48.2244568}
+  m_LocalPosition: {x: -1.00384521, y: 3.00395966, z: 630.659485}
   m_LocalScale: {x: 1.73000002, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 400060}
@@ -3527,30 +3528,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400060}
     relative: 0
-    absolute: -102
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: -2
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: -100
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
     absolute: 0
+  rightAnchor:
+    target: {fileID: 400060}
+    relative: 0
+    absolute: 94
+  bottomAnchor:
+    target: {fileID: 400060}
+    relative: 1
+    absolute: -96
+  topAnchor:
+    target: {fileID: 400060}
+    relative: 1
+    absolute: 3
   mColor: {r: 1, g: 1, b: 1, a: .90196079}
   mPivot: 4
-  mWidth: 100
-  mHeight: 100
-  mDepth: 12
+  mWidth: 94
+  mHeight: 99
+  mDepth: 14
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: .969696999
   mSprite: {fileID: 21300000, guid: 5da4aba28cc87664a9aa1586aeb161a5, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -3581,30 +3582,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400060}
     relative: 0
-    absolute: 0
+    absolute: 98
   rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400060}
     relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
+    absolute: 295
+  bottomAnchor:
+    target: {fileID: 400060}
     relative: 1
-    absolute: 0
+    absolute: -43
+  topAnchor:
+    target: {fileID: 400060}
+    relative: 1
+    absolute: -4
   mColor: {r: 0, g: .68235296, b: .250980407, a: .843137264}
   mPivot: 3
-  mWidth: 204
-  mHeight: 42
+  mWidth: 197
+  mHeight: 39
   mDepth: 11
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.85714293
+  aspectRatio: 5.02564096
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -4440,30 +4441,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400060}
     relative: 0
-    absolute: 0
+    absolute: 99
   rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400060}
     relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
+    absolute: 292
+  bottomAnchor:
+    target: {fileID: 400060}
     relative: 1
-    absolute: 0
+    absolute: -83
+  topAnchor:
+    target: {fileID: 400060}
+    relative: .5
+    absolute: -2
   mColor: {r: 0, g: .503448486, b: 1, a: .843137264}
   mPivot: 3
-  mWidth: 204
-  mHeight: 42
+  mWidth: 193
+  mHeight: 31
   mDepth: 11
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.85714293
+  aspectRatio: 6.4333334
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -4495,7 +4496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 11400006, guid: 5fae9a94e6cc44245825c799c91a2a51, type: 2}
-  - {fileID: 0}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -4560,6 +4560,42 @@ MonoBehaviour:
   auroraCannon: {fileID: 21300000, guid: 47b347ade7781a24d87396ec8646cc27, type: 3}
   punkMissiles: {fileID: 0}
   stickyMines: {fileID: 0}
+--- !u!114 &11400144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 400012}
+    relative: 0
+    absolute: -78
+  rightAnchor:
+    target: {fileID: 400012}
+    relative: 0
+    absolute: 18
+  bottomAnchor:
+    target: {fileID: 400012}
+    relative: 1
+    absolute: -159
+  topAnchor:
+    target: {fileID: 400012}
+    relative: 1
+    absolute: -60
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 96
+  mHeight: 99
+  mDepth: 13
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

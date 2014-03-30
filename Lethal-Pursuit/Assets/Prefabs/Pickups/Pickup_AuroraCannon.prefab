@@ -65,6 +65,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 135: {fileID: 13500000}
   - 82: {fileID: 8200000}
+  - 148: {fileID: 14800000}
   m_Layer: 0
   m_Name: Pickup_AuroraCannon
   m_TagString: Untagged
@@ -793,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30625276e5240b745a83e97cd482dab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 11400008}
+  pathToPickupResource: Pickups/Pickup_Aurora_Cannon
   respawnTime: 10
   timeRemainingUntilRespawn: 0
   pickupSound: {fileID: 8300000, guid: f64179d968af4bc4ba90327cb29454e9, type: 3}
@@ -1112,6 +1113,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 12
   m_Center: {x: 2.5, y: -1, z: 2.5}
+--- !u!148 &14800000
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 400006}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

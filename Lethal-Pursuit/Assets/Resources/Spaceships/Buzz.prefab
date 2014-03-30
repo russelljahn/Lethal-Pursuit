@@ -707,6 +707,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400080}
   - 114: {fileID: 11400010}
+  - 148: {fileID: 14800014}
   m_Layer: 0
   m_Name: VFX
   m_TagString: Untagged
@@ -806,7 +807,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: .713311672, z: 0, w: .70084697}
-  m_LocalPosition: {x: -9787, y: 7.0093689, z: 2529.81006}
+  m_LocalPosition: {x: 0, y: 901.87384, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400042}
@@ -2997,7 +2998,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 123.405884
+  simulationStarted: 21.7117424
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3169,6 +3170,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 400012}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800014
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100080}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 400024}
   m_ViewID:
     m_ID: 0
     m_Type: 0
