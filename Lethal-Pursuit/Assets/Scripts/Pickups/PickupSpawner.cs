@@ -4,7 +4,7 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider))]
-public class PickupSpawnPoint : MonoBehaviour {
+public class PickupSpawner : MonoBehaviour {
 
 
 	public string pathToPickupResource;
