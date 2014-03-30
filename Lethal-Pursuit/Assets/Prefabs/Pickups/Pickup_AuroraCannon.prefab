@@ -101,8 +101,6 @@ GameObject:
   - 199: {fileID: 19900002}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
-  - 20: {fileID: 2000000}
-  - 114: {fileID: 11400010}
   m_Layer: 0
   m_Name: Aurora Laser
   m_TagString: Untagged
@@ -181,35 +179,6 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1.99999995e-05}
   m_Children: []
   m_Father: {fileID: 400008}
---- !u!20 &2000000
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -810,7 +779,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 1.94961488
+  simulationStarted: 130.333725
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -842,28 +811,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd51c27a669ff841837bce6089e4c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserBeamEffect: {fileID: 100010}
+  laserBeamEffect: {fileID: 11400014}
   damageRate: 30
   laserHitForce: 1000
   currentEnergy: 100
-  energyDrainRate: 35
+  energyDrainRate: 20
   laserLength: 750
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a37ea67929dee4d8c7836d4e834c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GodRaysShader: {fileID: 4800000, guid: 13ac036ee9a75214bb4add4327e453bb, type: 3}
-  RadialBlurShader: {fileID: 4800000, guid: 58342d2dc919b7f42bf02eaaf1c2871a, type: 3}
-  BlurAmount: 0
-  BlurMode: 0
-  GodRaysIntensity: .300000012
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -875,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab1b66aa288c4dcfa762bfa50eb502a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserMaxDistance: 500
+  laserMaxDistance: 2000
   laserColor:
     key0:
       serializedVersion: 2
@@ -919,7 +872,7 @@ MonoBehaviour:
     atime7: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
-  particleCount: 1000
+  particleCount: 500
   collisionLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -952,9 +905,9 @@ MonoBehaviour:
   overflowMode: 0
   overflowOffset: {x: 0, y: 0, z: 4.95049524}
   sorting: 3
-  sizeMin: 15
-  sizeMax: 35
-  scale: 10
+  sizeMin: 5
+  sizeMax: 20
+  scale: 9
   initialRotationMin: 280
   initialRotationMax: 340
   rotationSpeedMin: 300
