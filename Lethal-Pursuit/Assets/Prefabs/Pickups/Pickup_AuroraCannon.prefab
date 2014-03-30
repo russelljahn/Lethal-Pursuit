@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: .353553414, y: .353553414, z: -.14644663, w: .853553355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.99999987e-05, y: 4.99999987e-05, z: 4.99999987e-05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
   - {fileID: 400002}
@@ -149,8 +149,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0500000007, y: .0246376153, z: -.0330315009}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalPosition: {x: 13.6191835, y: .0246376153, z: -.0330315009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400004}
@@ -778,7 +778,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 5.39170551
+  simulationStarted: 76.9801025
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -1110,8 +1110,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .00039999999
-  m_Center: {x: 9.99999975e-05, y: 0, z: 9.99999975e-05}
+  m_Radius: 12
+  m_Center: {x: 2.5, y: -1, z: 2.5}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

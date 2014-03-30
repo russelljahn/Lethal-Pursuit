@@ -48,7 +48,13 @@ public class PickupSpawnPoint : MonoBehaviour {
 //			Debug.Log (this.gameObject.name + " was picked up by: " + collider.gameObject.name);
 			audio.PlayOneShot(pickupSound);
 
-			GameObject pickupClone = GameObject.Instantiate(pickup.gameObject) as GameObject;
+			GameObject pickupClone;
+			if (NetworkManager.IsSinglePlayer()) {
+				pickupClone = GameObject.Instantiate(pickup.gameObject) as GameObject;
+			}
+			else {
+				pickupClone = Network.Instantiate(pickup.gameObject, Vector3.zero, Quaternion.identity, 667) as GameObject;
+			}
 			collider.gameObject.GetComponent<SpaceshipPickups>().GetPickup(pickupClone.GetComponent<Pickup>());
 			
 			if (NetworkManager.IsSinglePlayer()) {
