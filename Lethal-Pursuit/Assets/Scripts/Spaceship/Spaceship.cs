@@ -88,6 +88,16 @@ public class Spaceship : MonoBehaviour {
 		Physics.Raycast(this.transform.position, -this.transform.up, out hit);
 		heightAboveGround = hit.distance;
 	}
+
+
+	public void EnableGun() {
+		gun.enabled = true;
+	}
+
+
+	public void DisableGun() {
+		gun.enabled = false;
+	}
 	
 
 	/* 

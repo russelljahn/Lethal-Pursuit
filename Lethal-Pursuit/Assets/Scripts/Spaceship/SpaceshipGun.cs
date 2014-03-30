@@ -29,6 +29,8 @@ public class SpaceshipGun : SpaceshipComponent {
 	private GameObject cachedBullet;
 	public AudioClip shootingSound;
 	
+	public bool enabled = true;
+	
 	
 	public override void Start () {
 		base.Start();
@@ -63,6 +65,10 @@ public class SpaceshipGun : SpaceshipComponent {
 			currentEnergy *= energyRechargeMultiplierWhenNotShooting;
 		}
 		currentEnergy = Mathf.Min(maxEnergy, currentEnergy + energyRechargeRate*Time.deltaTime);
+
+		if (!enabled) {
+			return;
+		}
 
 		if (shooting && timeUntilCanShoot == 0.0f && currentEnergy >= energyPerShot) {
 
