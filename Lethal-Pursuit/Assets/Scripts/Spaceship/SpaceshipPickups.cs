@@ -94,6 +94,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 		if (pickup.IsEquippable()) {
 			currentPickup = pickup;
 			equippedItem = EquipType.SUB_WEAPON;
+			spaceship.DisableGun();
 		}
 			
 		pickup.OnPickup(this.spaceship);
