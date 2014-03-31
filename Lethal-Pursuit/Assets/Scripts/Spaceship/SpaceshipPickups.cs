@@ -67,6 +67,11 @@ public class SpaceshipPickups : SpaceshipComponent {
 	public void GetPickup(Pickup pickup) {
 		pickup.gameObject.transform.parent = this.transform;
 
+		Debug.Log ("In GetPickup()!");
+		Debug.Log ("this.transform: " + this.transform);
+		Debug.Log ("pickup.gameObject: " + pickup.gameObject);
+		Debug.Log ("pickup.gameObject.transform.parent: " + pickup.gameObject.transform.parent);
+
 		// Basically checking if item is equippable. Need to eventually make less hacky.
 		if (pickup.IsEquippable()) {
 			currentPickup = pickup;
@@ -75,5 +80,6 @@ public class SpaceshipPickups : SpaceshipComponent {
 			
 		pickup.OnPickup(this.spaceship);
 		pickup.gameObject.SetActive(true);
+		Debug.Log("pickup.gameObject.activeInHierarchy: " + pickup.gameObject.activeInHierarchy);
 	}
 }
