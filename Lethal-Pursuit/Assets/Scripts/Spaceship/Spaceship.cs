@@ -137,11 +137,13 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
+			stream.Serialize(ref isSwappingWeapon);
 		}
 		else {
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
+			stream.Serialize(ref isSwappingWeapon);
 			
 			syncTime = 0f;
 			syncDelay = Time.time - lastSynchronizationTime;
