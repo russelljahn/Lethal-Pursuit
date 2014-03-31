@@ -2072,7 +2072,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 1.84265566
+  simulationStarted: 462.793549
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3374,7 +3374,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 88618216}
   m_ViewID:
-    m_ID: 68
+    m_ID: 80
     m_Type: 1
 --- !u!95 &88618218
 Animator:
@@ -3407,9 +3407,6 @@ GameObject:
   - 54: {fileID: 92841537}
   - 135: {fileID: 92841533}
   - 148: {fileID: 92841531}
-  - 20: {fileID: 92841541}
-  - 114: {fileID: 92841540}
-  - 114: {fileID: 92841539}
   m_Layer: 0
   m_Name: Buzz
   m_TagString: Spaceship
@@ -3475,7 +3472,7 @@ NetworkView:
   m_StateSynchronization: 2
   m_Observed: {fileID: 92841530}
   m_ViewID:
-    m_ID: 70
+    m_ID: 82
     m_Type: 1
 --- !u!114 &92841532
 MonoBehaviour:
@@ -3604,67 +3601,6 @@ MonoBehaviour:
   currentPickup: {fileID: 0}
   pickupSwapCooldown: .125
   remainingSwapCooldownTime: 0
---- !u!114 &92841539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92841528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a37ea67929dee4d8c7836d4e834c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GodRaysShader: {fileID: 4800000, guid: 13ac036ee9a75214bb4add4327e453bb, type: 3}
-  RadialBlurShader: {fileID: 4800000, guid: 58342d2dc919b7f42bf02eaaf1c2871a, type: 3}
-  BlurAmount: 0
-  BlurMode: 0
-  GodRaysIntensity: .300000012
---- !u!114 &92841540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92841528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a37ea67929dee4d8c7836d4e834c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GodRaysShader: {fileID: 4800000, guid: 13ac036ee9a75214bb4add4327e453bb, type: 3}
-  RadialBlurShader: {fileID: 4800000, guid: 58342d2dc919b7f42bf02eaaf1c2871a, type: 3}
-  BlurAmount: 0
-  BlurMode: 0
-  GodRaysIntensity: .300000012
---- !u!20 &92841541
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92841528}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
 --- !u!1 &93196581
 GameObject:
   m_ObjectHideFlags: 0
@@ -15965,7 +15901,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 392435180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.310775757, z: 0}
+  m_LocalPosition: {x: 0, y: -.251403809, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 603212213}
@@ -16233,15 +16169,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.310775757
+      value: -.251403809
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 252.378448
+      value: 252.497192
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 249.878448
+      value: 249.997192
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -20251,7 +20187,7 @@ NetworkView:
   m_StateSynchronization: 2
   m_Observed: {fileID: 1392535204}
   m_ViewID:
-    m_ID: 71
+    m_ID: 76
     m_Type: 1
 --- !u!1 &498805916
 GameObject:
@@ -20909,7 +20845,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 252.378448, z: 0}
+  m_LocalPosition: {x: 428, y: 252.497192, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312740159}
@@ -22493,7 +22429,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800006, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 68
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 14800006, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22501,7 +22437,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 70
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 14800000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22509,7 +22445,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800014, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 71
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 14800014, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22517,7 +22453,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800002, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 69
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 14800002, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22525,7 +22461,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800010, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 66
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 14800010, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22533,7 +22469,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800008, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 67
+      value: 79
       objectReference: {fileID: 0}
     - target: {fileID: 14800008, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -22541,7 +22477,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 14800012, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_ID
-      value: 65
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 14800012, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
       propertyPath: m_ViewID.m_Type
@@ -45722,7 +45658,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.22580624
+  aspectRatio: 6.4333334
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -46250,7 +46186,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 1.84265566
+  simulationStarted: 462.793549
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -52017,7 +51953,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 1372511929}
   m_ViewID:
-    m_ID: 69
+    m_ID: 81
     m_Type: 1
 --- !u!114 &1372511931
 MonoBehaviour:
@@ -52430,7 +52366,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 1385050645}
   m_ViewID:
-    m_ID: 66
+    m_ID: 78
     m_Type: 1
 --- !u!1 &1389052957
 GameObject:
@@ -52743,7 +52679,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 8.20758438
+  simulationStarted: 462.793549
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -57078,6 +57014,10 @@ Prefab:
       propertyPath: m_ViewID.m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
   m_RootGameObject: {fileID: 1055686014}
@@ -57175,11 +57115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 11400006, guid: 5fae9a94e6cc44245825c799c91a2a51, type: 2}
-  - {fileID: 52860269}
-  - {fileID: 1198095000}
-  - {fileID: 1894841660}
-  - {fileID: 1985077074}
-  - {fileID: 1392535205}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -58791,7 +58726,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .949494958
+  aspectRatio: .969696999
   mSprite: {fileID: 21300000, guid: 5da4aba28cc87664a9aa1586aeb161a5, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -58803,7 +58738,7 @@ Transform:
   m_PrefabInternal: {fileID: 407335280}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -670, y: 249.878448, z: 77}
+  m_LocalPosition: {x: -670, y: 249.997192, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 1258546899}
@@ -58847,7 +58782,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .969696999
+  aspectRatio: 1
 --- !u!1 &1692516088
 GameObject:
   m_ObjectHideFlags: 0
@@ -60467,7 +60402,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.05128193
+  aspectRatio: 5.02564096
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -64675,7 +64610,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 1877517573}
   m_ViewID:
-    m_ID: 67
+    m_ID: 79
     m_Type: 1
 --- !u!1 &1878949472
 GameObject:
@@ -65240,7 +65175,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 1.84265566
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -66909,7 +66844,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 1922899444}
   m_ViewID:
-    m_ID: 65
+    m_ID: 77
     m_Type: 1
 --- !u!1 &1927097543
 GameObject:
@@ -70255,7 +70190,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 1.84265566
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
