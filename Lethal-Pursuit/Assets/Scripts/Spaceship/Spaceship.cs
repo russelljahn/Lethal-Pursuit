@@ -3,9 +3,10 @@ using InControl;
 using System.Collections;
 
 
-public enum ItemType {
+public enum EquipType {
 	DEFAULT_WEAPON,
 	SUB_WEAPON,
+	//ITEM
 }
 
 
@@ -34,12 +35,11 @@ public class Spaceship : MonoBehaviour {
 	public bool  drifting;
 	public bool  idle;
 	public bool  swappingWeapon;
-	public ItemType equippedItem;
+	public EquipType equippedItem;
 	#endregion
 	
 	public Vector3 forward;
 	public Vector3 right;
-	public float heightAboveGround;
 	
 	public float currentBoostVelocity;
 	public float maxBoostVelocity = 150.0f;
@@ -131,7 +131,7 @@ public class Spaceship : MonoBehaviour {
 			syncRotation = transform.rotation;
 			isShooting = shooting;
 			isSwappingWeapon = swappingWeapon;
-			equippedDefaultGun = (equippedItem == ItemType.DEFAULT_WEAPON);
+			equippedDefaultGun = (equippedItem == EquipType.DEFAULT_WEAPON);
 			
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
@@ -159,10 +159,10 @@ public class Spaceship : MonoBehaviour {
 			shooting = isShooting;
 			swappingWeapon = isSwappingWeapon;
 			if (equippedDefaultGun) {
-				equippedItem = ItemType.DEFAULT_WEAPON;
+				equippedItem = EquipType.DEFAULT_WEAPON;
 			}
 			else {
-				equippedItem = ItemType.SUB_WEAPON;
+				equippedItem = EquipType.SUB_WEAPON;
 			}
 		}
 	}

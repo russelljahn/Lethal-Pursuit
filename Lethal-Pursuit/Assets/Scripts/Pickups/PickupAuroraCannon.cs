@@ -59,6 +59,11 @@ public class PickupAuroraCannon : Pickup {
 	}
 
 
+	public override bool IsEquippable() {
+		return true;
+	}
+
+
 	public override bool ShouldDrop() {
 		return currentEnergy <= 0.0f;
 	}

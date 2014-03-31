@@ -10,10 +10,9 @@ using System;
 public class SpaceshipPickups : SpaceshipComponent {
 	
 	public Pickup currentPickup = null;
-	public bool pickupIsActive = false;
-
 	public float pickupSwapCooldown = 0.125f;
 	public float remainingSwapCooldownTime;
+
 
 	void Start () {
 	
@@ -25,7 +24,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 			currentPickup.OnDrop();
 			GameObject.Destroy(currentPickup.gameObject);
 			currentPickup = null;
-			equippedItem = ItemType.DEFAULT_WEAPON;
+			equippedItem = EquipType.DEFAULT_WEAPON;
 		}
 
 		remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
@@ -33,20 +32,20 @@ public class SpaceshipPickups : SpaceshipComponent {
 		/* Swap guns if hitting bumpers. */
 		if (remainingSwapCooldownTime == 0.0f && swappingWeapon) {
 			switch (equippedItem) {
-				case ItemType.DEFAULT_WEAPON:
+				case EquipType.DEFAULT_WEAPON:
 					if (currentPickup != null) {
 						currentPickup.SetActive(true);
 						spaceship.DisableGun();
-						equippedItem = ItemType.SUB_WEAPON;	
+						equippedItem = EquipType.SUB_WEAPON;	
 					}
 					break;
-				case ItemType.SUB_WEAPON:
+				case EquipType.SUB_WEAPON:
 					currentPickup.SetActive(false);
 					spaceship.EnableGun();
-					equippedItem = ItemType.DEFAULT_WEAPON;
+					equippedItem = EquipType.DEFAULT_WEAPON;
 					break;
 				default:
-					throw new Exception("Unknown ItemType: " + equippedItem);
+					throw new Exception("Unknown EquipType: " + equippedItem);
 			}
 			remainingSwapCooldownTime = pickupSwapCooldown;
 		}
@@ -59,15 +58,19 @@ public class SpaceshipPickups : SpaceshipComponent {
 			SpaceshipHealth health = spaceship.GetComponent<SpaceshipHealth>();
 			return health.currentHealth < health.maxHealth;
 		}
-		return currentPickup == null;
+		else {
+			return currentPickup == null;
+		}
 	}
 
 
 	public void GetPickup(Pickup pickup) {
 		pickup.gameObject.transform.parent = this.transform;
-		if (!(pickup is PickupHealth)) {
+
+		// Basically checking if item is equippable. Need to eventually make less hacky.
+		if (pickup.IsEquippable()) {
 			currentPickup = pickup;
-			pickupIsActive = true;
+			equippedItem = EquipType.SUB_WEAPON;
 		}
 			
 		pickup.OnPickup(this.spaceship);

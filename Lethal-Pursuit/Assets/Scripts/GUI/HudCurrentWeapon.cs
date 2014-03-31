@@ -27,7 +27,7 @@ public class HudCurrentWeapon : MonoBehaviour {
 			}
 		}
 		else {
-			if (pickupsComponent.currentPickup == null || !pickupsComponent.pickupIsActive) {
+			if (pickupsComponent.spaceship.equippedItem == EquipType.DEFAULT_WEAPON) {
 				currentWeaponSprite.sprite2D = defaultLaser;
 			}
 			else if (pickupsComponent.currentPickup is PickupAuroraCannon) {

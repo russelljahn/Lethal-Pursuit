@@ -18,6 +18,10 @@ public class Pickup : MonoBehaviour {
 		return false;
 	}
 
+	public virtual bool IsEquippable() {
+		return false;
+	}
+
 	public virtual void OnPickup(Spaceship spaceship) {
 		this.spaceship = spaceship;
 		Debug.Log (this.gameObject.name + " was picked up by: " + spaceship.name);

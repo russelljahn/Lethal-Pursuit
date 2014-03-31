@@ -61,7 +61,7 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.swappingWeapon;
 		}
 	}
-	protected ItemType equippedItem {
+	protected EquipType equippedItem {
 		get {
 			return spaceship.equippedItem;
 		}
@@ -82,11 +82,6 @@ public class SpaceshipComponent : MonoBehaviour {
 	protected GameObject spaceshipModel {
 		get {
 			return spaceship.spaceshipModel;
-		}
-	}
-	protected float heightAboveGround {
-		get {
-			return spaceship.heightAboveGround;
 		}
 	}
 	protected Vector3 forward {
