@@ -16,7 +16,7 @@ public class PickupPunkMissiles : Pickup {
 
 	public string bulletResourcePath = "Bullets/PunkMissileBullet";
 
-	private GameObject cachedBullet;
+//	private GameObject cachedBullet;
 	public AudioClip shootingSound;
 	
 	public bool enabled = true;
@@ -31,7 +31,7 @@ public class PickupPunkMissiles : Pickup {
 		}
 		
 		if (spaceship.shooting && timeUntilCanShoot == 0.0f && numberOfShots > 0) {
-//			SpawnMissile();
+			SpawnMissile();
 			timeUntilCanShoot = cooldownBetweenShots;
 			--numberOfShots;
 		}
@@ -40,21 +40,21 @@ public class PickupPunkMissiles : Pickup {
 
 	public void SpawnMissile() {
 		GameObject bulletGameObject;
-		if (NetworkManager.IsSinglePlayer()) {
+//		if (NetworkManager.IsSinglePlayer()) {
 			bulletGameObject = GameObject.Instantiate(
-				cachedBullet,
+				Resources.Load(bulletResourcePath),
 				this.transform.position, 
 				spaceship.spaceshipModel.transform.rotation
 			) as GameObject;
-		}
-		else {
-			bulletGameObject = Network.Instantiate(
-				cachedBullet,
-				this.transform.position, 
-				spaceship.spaceshipModel.transform.rotation,
-				777
-			) as GameObject;
-		}
+//		}
+//		else {
+//			bulletGameObject = Network.Instantiate(
+//				cachedBullet,
+//				this.transform.position, 
+//				spaceship.spaceshipModel.transform.rotation,
+//				777
+//			) as GameObject;
+//		}
 		
 		Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 		bullet.direction = spaceship.spaceshipModel.transform.forward;

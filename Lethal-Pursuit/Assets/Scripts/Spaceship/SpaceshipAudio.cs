@@ -4,86 +4,80 @@ using System.Collections;
 
 public class SpaceshipAudio : SpaceshipComponent {
 
-	public AudioSource track1;
-	public AudioSource track2;
-	public AudioSource track3;
-	public AudioSource driftSFX;
+	public AudioSource engine1;
+	public AudioSource engine2;
+	public AudioSource engine3;
+	public AudioSource drift1;
 
+	public AudioClip engine1Clip;
+	public AudioClip engine2Clip;
+	public AudioClip engine3Clip;
+	public AudioClip drift1Clip;
 
-	public AudioClip wind1;
-	public AudioClip engine1; 
-	public AudioClip engine3; 
-	public AudioClip windStorm;
-	public AudioClip driftWind;
-	
-	private float boostTime = 0.0f;
-	private float maxBoostTime = 2.0f;
+	public float engine1MinVolume = 0.0f;
+	public float engine1MaxVolume = 1.0f;
+	public float engine2MinVolume = 0.0f;
+	public float engine2MaxVolume = 1.0f;
+	public float engine3MinVolume = 0.0f;
+	public float engine3MaxVolume = 1.0f;
+	public float drift1MinVolume = 0.0f;
+	public float drift1MaxVolume = 1.0f;
 
-	private float driftTime = 0.0f;
-	private float maxDriftTime = 0.85f;
-	
-	public float maxPitchEngine1 = 5.0f;
+	public float engine1VolumeFadeRate = 1.0f;
+	public float engine2VolumeFadeRate = 1.0f;
+	public float engine3VolumeFadeRate = 1.0f;
+	public float drift1VolumeFadeRate = 1.0f;
 
-	public float sputteringTurbulenceAmount1 = 1.5f;
-	public float sputteringTurbulenceAmount2 = 1.5f;
-	public float sputteringTurbulenceRate = 3.0f;
+	public float engine1MinPitch = 1.0f;
+	public float engine1MaxPitch = 1.0f;
+	public float engine2MinPitch = 1.0f;
+	public float engine2MaxPitch = 1.0f;
+	public float engine3MinPitch = 1.0f;
+	public float engine3MaxPitch = 1.0f;
+	public float drift1MinPitch = 1.0f;
+	public float drift1MaxPitch = 1.0f;
+
+	public float engine1PitchFadeRate = 1.0f;
+	public float engine2PitchFadeRate = 1.0f;
+	public float engine3PitchFadeRate = 1.0f;
+	public float drift1PitchFadeRate = 1.0f;
 
 
 
 	public override void Start () {
 		base.Start();
-		track1.clip = engine3;
-		track1.loop = true;
-		track1.Play();
+		engine1.clip = engine1Clip;
+		engine1.loop = true;
+		engine1.Play();
 
-		track2.clip = wind1;
-		track2.loop = true;
-		track2.Play();
+		engine2.clip = engine2Clip;
+		engine2.loop = true;
+		engine2.Play();;
 
-		track3.clip = windStorm;
-		track3.loop = true;
-		track3.Play();
+		engine3.clip = engine3Clip;
+		engine3.loop = true;
+		engine3.Play();
 
-		driftSFX.clip = driftWind;
-		track3.loop = true;
-		driftSFX.Play();
-
+		drift1.clip = drift1Clip;
+		drift1.loop = true;
+		drift1.Play();
 	}
 
 
 
 	public override void Update () {
-//		base.Update();
-//						
-//		if (boosting) {
-//			boostTime = Mathf.Min(maxBoostTime, boostTime+Time.deltaTime);
-//		}
-//		else {
-//			boostTime = Mathf.Max(0f, boostTime-Time.deltaTime);	
-//		}
-//
-//		if (drifting) {
-//			driftTime = Mathf.Min(maxDriftTime, driftTime+Time.deltaTime);
-//		}
-//		else {
-//			driftTime = Mathf.Max(0f, driftTime-Time.deltaTime);	
-//		}
-//
-//				
-//		track1.pitch = spaceship.currentVelocity/150 + .3f;
-//		track1.volume = spaceship.currentVelocity / 150 + .44f;
-//		track2.pitch = Mathf.Clamp(spaceship.currentVelocity, spaceship.currentVelocity/250 + .4f, 1.1f);
-//		track2.volume = spaceship.currentVelocity/450+.4f;
-//		track3.pitch = spaceship.currentVelocity/450 + .4f;
-//		track3.volume = spaceship.currentVelocity/300- 1;
-//
-//
-//		track1.pan = xTiltLeftStick;
-//		track2.pan = xTiltLeftStick;
-//
-//		driftSFX.volume = driftTime/maxDriftTime;
 
+		engine1.volume = Mathf.Lerp(engine1.volume, engine1MinVolume+(engine1MaxVolume-engine1MinVolume)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine1VolumeFadeRate);
+		engine2.volume = Mathf.Lerp(engine2.volume, engine2MinVolume+(engine1MaxVolume-engine2MinVolume)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine2VolumeFadeRate);
+		engine3.volume = Mathf.Lerp(engine3.volume, engine3MinVolume+(engine1MaxVolume-engine3MinVolume)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine3VolumeFadeRate);
+		drift1.volume = Mathf.Lerp(drift1.volume, drift1MinVolume+(drift1MaxVolume-drift1MinVolume)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*drift1VolumeFadeRate);
+		
 
+		engine1.pitch = Mathf.Lerp(engine1.pitch, engine1MinPitch+(engine1MaxPitch-engine1MinPitch)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine1PitchFadeRate);
+		engine2.pitch = Mathf.Lerp(engine2.pitch, engine2MinPitch+(engine1MaxPitch-engine2MinPitch)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine2PitchFadeRate);
+		engine3.pitch = Mathf.Lerp(engine3.pitch, engine3MinPitch+(engine1MaxPitch-engine3MinPitch)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*engine3PitchFadeRate);
+		drift1.pitch = Mathf.Lerp(drift1.pitch, drift1MinPitch+(drift1MaxPitch-drift1MinPitch)*spaceship.currentBoostVelocity/spaceship.maxBoostVelocity, Time.deltaTime*drift1PitchFadeRate);
+		
 	}
 
 

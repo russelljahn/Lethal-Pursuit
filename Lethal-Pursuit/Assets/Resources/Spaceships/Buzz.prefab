@@ -68,7 +68,7 @@ GameObject:
   - 4: {fileID: 400006}
   - 82: {fileID: 8200002}
   m_Layer: 0
-  m_Name: Track1
+  m_Name: engine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +466,7 @@ GameObject:
   - 4: {fileID: 400052}
   - 82: {fileID: 8200004}
   m_Layer: 0
-  m_Name: DriftSFX
+  m_Name: drift1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -642,7 +642,7 @@ GameObject:
   - 4: {fileID: 400072}
   - 82: {fileID: 8200006}
   m_Layer: 0
-  m_Name: Track2
+  m_Name: engine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -664,7 +664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100076
 GameObject:
   m_ObjectHideFlags: 1
@@ -675,7 +675,7 @@ GameObject:
   - 4: {fileID: 400076}
   - 82: {fileID: 8200008}
   m_Layer: 0
-  m_Name: Track3
+  m_Name: engine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1968,7 +1968,7 @@ AudioSource:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 87700e9b8557f49a7ae817056d3839cc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 124bfac4c3986f74387129affbddf2d1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2026,7 +2026,7 @@ AudioSource:
   m_GameObject: {fileID: 100052}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c78a2a0abeb07f146aa8a00ee3496693, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1793fcee722c2457ab8d07918ec324e1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .814999998
   m_Pitch: .400000006
@@ -2084,7 +2084,7 @@ AudioSource:
   m_GameObject: {fileID: 100072}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 8292f52d2c744144e988fc7bb6130ca3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2142,7 +2142,7 @@ AudioSource:
   m_GameObject: {fileID: 100076}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e0258bf77684ca84db88a566faeeff0d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2c92b22856eb34f22af29fa5e1ec1467, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .702000022
   m_Pitch: 1
@@ -2742,19 +2742,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  track1: {fileID: 8200002}
-  track2: {fileID: 8200006}
-  track3: {fileID: 8200008}
-  driftSFX: {fileID: 8200004}
-  wind1: {fileID: 8300000, guid: 8292f52d2c744144e988fc7bb6130ca3, type: 3}
-  engine1: {fileID: 8300000, guid: 124bfac4c3986f74387129affbddf2d1, type: 3}
-  engine3: {fileID: 8300000, guid: 05ff7b93ca0e2488981256270bee88f2, type: 3}
-  windStorm: {fileID: 8300000, guid: e0258bf77684ca84db88a566faeeff0d, type: 3}
-  driftWind: {fileID: 8300000, guid: c47a3c28315bd8b498f1f8440e39d180, type: 3}
-  maxPitchEngine1: 5
-  sputteringTurbulenceAmount1: 3
-  sputteringTurbulenceAmount2: 1
-  sputteringTurbulenceRate: 10
+  engine1: {fileID: 8200002}
+  engine2: {fileID: 8200006}
+  engine3: {fileID: 8200008}
+  drift1: {fileID: 8200004}
+  engine1Clip: {fileID: 8300000, guid: 124bfac4c3986f74387129affbddf2d1, type: 3}
+  engine2Clip: {fileID: 8300000, guid: 44529ef5096f945419e9a70b199d20a1, type: 3}
+  engine3Clip: {fileID: 8300000, guid: c5600bf4b850da64cba0ec82561056c8, type: 3}
+  drift1Clip: {fileID: 8300000, guid: 90bfad0c041a44101824dbfb5aa98ed2, type: 3}
+  engine1MinVolume: 0
+  engine1MaxVolume: 1
+  engine2MinVolume: 0
+  engine2MaxVolume: 1
+  engine3MinVolume: 0
+  engine3MaxVolume: 1
+  drift1MinVolume: 0
+  drift1MaxVolume: 1
+  engine1VolumeFadeRate: 2
+  engine2VolumeFadeRate: 2
+  engine3VolumeFadeRate: 2
+  drift1VolumeFadeRate: 2
+  engine1MinPitch: 1
+  engine1MaxPitch: 1
+  engine2MinPitch: 1
+  engine2MaxPitch: 1
+  engine3MinPitch: 1
+  engine3MaxPitch: 1
+  drift1MinPitch: 1
+  drift1MaxPitch: 1
+  engine1PitchFadeRate: 1
+  engine2PitchFadeRate: 1
+  engine3PitchFadeRate: 1
+  drift1PitchFadeRate: 1
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2973,7 +2992,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800006}
-  particleSystemId: 2
+  particleSystemId: 4
   particleSystemGameObject: {fileID: 100024}
   particleSystemTransform: {fileID: 400024}
   particleSystemRenderer: {fileID: 19900006}
@@ -2997,7 +3016,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 8.20758438
+  simulationStarted: 16.766077
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
