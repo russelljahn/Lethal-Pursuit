@@ -37,11 +37,13 @@ public class SpaceshipPickups : SpaceshipComponent {
 					if (currentPickup != null) {
 						currentPickup.SetActive(true);
 						spaceship.DisableGun();
+						equippedItem = ItemType.SUB_WEAPON;	
 					}
 					break;
 				case ItemType.SUB_WEAPON:
 					currentPickup.SetActive(false);
 					spaceship.EnableGun();
+					equippedItem = ItemType.DEFAULT_WEAPON;
 					break;
 				default:
 					throw new Exception("Unknown ItemType: " + equippedItem);
