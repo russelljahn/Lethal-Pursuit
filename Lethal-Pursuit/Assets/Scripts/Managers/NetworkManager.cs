@@ -99,9 +99,15 @@ public class NetworkManager : MonoBehaviour {
 		if(LevelManager.IsMainMenu()) {
 			UpdateClientPlayerInfo();
 		}
-		else {
+		else{
+			networkView.RPC("ResetToMain", player);
 			Network.CloseConnection(player, true);
 		}
+	}
+
+	[RPC]
+	public void ResetToMain() {
+		LevelManager.LoadMainMenu();
 	}
 	
 	void OnConnectedToServer ()
