@@ -27,29 +27,45 @@ public class SpaceshipPickups : SpaceshipComponent {
 			equippedItem = EquipType.DEFAULT_WEAPON;
 		}
 
-		remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
+		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
 
-		/* Swap guns if hitting bumpers. */
-		if (remainingSwapCooldownTime == 0.0f && swappingWeapon) {
-			switch (equippedItem) {
-				case EquipType.DEFAULT_WEAPON:
-					if (currentPickup != null) {
-						currentPickup.SetActive(true);
-						spaceship.DisableGun();
-						equippedItem = EquipType.SUB_WEAPON;	
-					}
-					break;
-				case EquipType.SUB_WEAPON:
-					currentPickup.SetActive(false);
-					spaceship.EnableGun();
-					equippedItem = EquipType.DEFAULT_WEAPON;
-					break;
-				default:
-					throw new Exception("Unknown EquipType: " + equippedItem);
+			/* Swap guns if hitting bumpers. */
+			if (remainingSwapCooldownTime == 0.0f && swappingWeapon) {
+				SwapEquippedItem();
+				if (!NetworkManager.IsSinglePlayer()) {
+					networkView.RPC("NetworkSwapEquippedItem", RPCMode.OthersBuffered);
+				}
+				remainingSwapCooldownTime = pickupSwapCooldown;
+				
 			}
-			remainingSwapCooldownTime = pickupSwapCooldown;
 		}
+	}
 
+
+	public void SwapEquippedItem() {
+		switch (equippedItem) {
+			case EquipType.DEFAULT_WEAPON:
+				if (currentPickup != null) {
+					currentPickup.SetActive(true);
+					spaceship.DisableGun();
+					equippedItem = EquipType.SUB_WEAPON;	
+				}
+				break;
+			case EquipType.SUB_WEAPON:
+				currentPickup.SetActive(false);
+				spaceship.EnableGun();
+				equippedItem = EquipType.DEFAULT_WEAPON;
+				break;
+			default:
+				throw new Exception("Unknown EquipType: " + equippedItem);
+		}
+	}
+
+
+	[RPC]
+	void NetworkSwapEquippedItem() {
+		SwapEquippedItem();
 	}
 
 
