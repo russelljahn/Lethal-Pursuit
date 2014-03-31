@@ -96,7 +96,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	void OnPlayerConnected(NetworkPlayer player) {
-		if(!LevelManager.IsMainMenu()) {
+		if(LevelManager.IsMainMenu()) {
 			UpdateClientPlayerInfo();
 		}
 		else {
