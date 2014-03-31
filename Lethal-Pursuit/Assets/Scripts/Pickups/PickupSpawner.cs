@@ -38,11 +38,12 @@ public class PickupSpawner : MonoBehaviour {
 
 //		Debug.Log (collider.gameObject + " entered spawn area.");
 //		Debug.Log ("collider.gameObject.CompareTag ('Spaceship')? " + collider.gameObject.CompareTag ("Spaceship")); 
-		Debug.Log ("Can " + collider.gameObject.name + " pickup " + this.gameObject.name + "? " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
-		
+		Debug.Log ("enable? " + enabled);
 		if (!enabled || !collider.gameObject.CompareTag ("Spaceship")) {
 			return;
 		}
+		Debug.Log ("Can " + collider.gameObject.name + " pickup " + this.gameObject.name + "? " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
+		
 //		Debug.Log ("Spawn point is enabled!");
 
 		Debug.Log ("collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup): " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
@@ -66,14 +67,14 @@ public class PickupSpawner : MonoBehaviour {
 			Debug.Log("collider.gameObject.GetComponent<SpaceshipPickups>(): " + collider.gameObject.GetComponent<SpaceshipPickups>());
 			collider.gameObject.GetComponent<SpaceshipPickups>().GetPickup(pickupClone.GetComponent<Pickup>());
 			
-			if (NetworkManager.IsSinglePlayer()) {
+//			if (NetworkManager.IsSinglePlayer()) {
 				enabled = false;
 				visuals.SetActive(false);
 				timeRemainingUntilRespawn = respawnTime;
-			}
-			else {
-				networkView.RPC("NetworkHidePickupSpawnPoint", RPCMode.All);
-			}	
+//			}
+//			else {
+//				networkView.RPC("NetworkHidePickupSpawnPoint", RPCMode.All);
+//			}	
 		}
 		
 	}
@@ -86,9 +87,9 @@ public class PickupSpawner : MonoBehaviour {
 
 	[RPC]
 	void NetworkHidePickupSpawnPoint() {
-		enabled = false;
-		visuals.SetActive(false);
-		timeRemainingUntilRespawn = respawnTime;
+//		enabled = false;
+//		visuals.SetActive(false);
+//		timeRemainingUntilRespawn = respawnTime;
 	}
 
 	
