@@ -1770,7 +1770,7 @@ MonoBehaviour:
     gameObject: {fileID: 2072174154}
     transform: {fileID: 2072174155}
     rigidbody: {fileID: 0}
-    cachedId: 98372
+    cachedId: 82650
     meshFilter: {fileID: 2072174157}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 462.793549
+  simulationStarted: 3.57856989
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -45884,7 +45884,7 @@ MonoBehaviour:
     gameObject: {fileID: 817030991}
     transform: {fileID: 817030992}
     rigidbody: {fileID: 0}
-    cachedId: 97240
+    cachedId: 81518
     meshFilter: {fileID: 817030994}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -46186,7 +46186,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 462.793549
+  simulationStarted: 3.57856989
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -52679,7 +52679,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 462.793549
+  simulationStarted: 8.20758438
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -64873,7 +64873,7 @@ MonoBehaviour:
     gameObject: {fileID: 1788426716}
     transform: {fileID: 1788426717}
     rigidbody: {fileID: 0}
-    cachedId: 98082
+    cachedId: 82360
     meshFilter: {fileID: 1788426719}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -65175,7 +65175,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 3.57856989
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -69888,7 +69888,7 @@ MonoBehaviour:
     gameObject: {fileID: 1246241462}
     transform: {fileID: 1246241463}
     rigidbody: {fileID: 0}
-    cachedId: 97624
+    cachedId: 81902
     meshFilter: {fileID: 1246241465}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -70190,7 +70190,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 3.57856989
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -75304,6 +75304,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2106007202}
   - 114: {fileID: 2106007203}
+  - 148: {fileID: 2106007204}
   m_Layer: 0
   m_Name: Aurora Cannon Pickup
   m_TagString: Untagged
@@ -75342,6 +75343,19 @@ MonoBehaviour:
   currentEnergy: 100
   energyDrainRate: 15
   laserLength: 2500
+--- !u!148 &2106007204
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 14800000, guid: b9dcadaa6c219a14bb57855b666f12d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 411820257}
+  m_GameObject: {fileID: 2106007201}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 2106007202}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1 &2107479482
 GameObject:
   m_ObjectHideFlags: 0

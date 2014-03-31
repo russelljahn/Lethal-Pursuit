@@ -28,6 +28,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400004}
+  - 148: {fileID: 14800000}
   m_Layer: 0
   m_Name: Pickup_Aurora_Cannon
   m_TagString: Untagged
@@ -359,6 +360,18 @@ MonoBehaviour:
   currentEnergy: 100
   energyDrainRate: 15
   laserLength: 2500
+--- !u!148 &14800000
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 400002}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
