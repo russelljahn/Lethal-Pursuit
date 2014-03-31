@@ -99,10 +99,6 @@ public class NetworkManager : MonoBehaviour {
 		if(LevelManager.IsMainMenu()) {
 			UpdateClientPlayerInfo();
 		}
-		else{
-			networkView.RPC("ResetToMain", player);
-			Network.CloseConnection(player, true);
-		}
 	}
 
 	[RPC]
@@ -168,8 +164,8 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	public static void ServerCleanup() {
+		MasterServer.UnregisterHost();		
 		Network.Disconnect();
-		MasterServer.UnregisterHost();
 	}
 	
 	public static int GetPlayerIndex(string ipAddr)

@@ -372,6 +372,9 @@ public class MainMenu : MonoBehaviour {
 	
 	
 	public void OnLaunchClick() {
+		if(Network.isServer) {
+			MasterServer.UnregisterHost();
+		}
 		networkView.RPC("SwitchLoad", RPCMode.All);
 		networkView.RPC("LevelLoader", RPCMode.All);
 	}
