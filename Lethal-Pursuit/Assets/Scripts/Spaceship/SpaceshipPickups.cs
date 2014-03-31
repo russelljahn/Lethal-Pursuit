@@ -25,7 +25,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 			GameObject.Destroy(currentPickup.gameObject);
 			currentPickup = null;
 			equippedItem = EquipType.DEFAULT_WEAPON;
-			spaceship.DisableGun();
+			spaceship.EnableGun();
 		}
 
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {

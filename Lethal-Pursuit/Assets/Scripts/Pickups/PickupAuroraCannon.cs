@@ -79,7 +79,7 @@ public class PickupAuroraCannon : Pickup {
 
 
 	public override void OnDrop() {
-		spaceship.EnableGun();
+
 	}
 	
 }

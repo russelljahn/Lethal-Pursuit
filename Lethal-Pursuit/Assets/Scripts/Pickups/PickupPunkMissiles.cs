@@ -82,7 +82,7 @@ public class PickupPunkMissiles : Pickup {
 
 
 	public override void OnDrop() {
-		spaceship.EnableGun();
+
 	}
 	
 }
