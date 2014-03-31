@@ -55,6 +55,18 @@ namespace InControl
 					Target = InputControlType.Action1,
 					Source = KeyCodeButton(KeyCode.LeftControl)
 				},
+				new InputControlMapping
+				{
+					Handle = "Q",
+					Target = InputControlType.LeftBumper,
+					Source = KeyCodeButton(KeyCode.Q)
+				},
+				new InputControlMapping
+				{
+					Handle = "E",
+					Target = InputControlType.RightBumper,
+					Source = KeyCodeButton(KeyCode.E)
+				},
 			};
 
 			AnalogMappings = new[]

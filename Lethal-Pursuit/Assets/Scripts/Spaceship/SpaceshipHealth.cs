@@ -19,7 +19,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	
 	public float healthRatioToBeInjured = 0.60f;
 	public float healthRatioToBeCritical = 0.30f;
-
+	
 	public bool invulnerable = false;
 	
 	public MatchManager matchManager;
@@ -74,12 +74,15 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount, GameObject damager, string message) {
 		
+		Debug.Log("My ipaddr is: " + Network.player.ipAddress);
+		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
+		
 		Debug.Log (message);
 		if (!invulnerable) {
 			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
-				lastHurtByPlayerID = -1;
+				//lastHurtByPlayerID = -1;
 			}
 			else {
 				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
@@ -87,9 +90,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				// Need to check if not -1 for non existing game object
 				
 				networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
-				//				networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);
-				
-				
+				//networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);				
 			}
 		}
 		else {
@@ -112,4 +113,3 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	}
 	
 }
-

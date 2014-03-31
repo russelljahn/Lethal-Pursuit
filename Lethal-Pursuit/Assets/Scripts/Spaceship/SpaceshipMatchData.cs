@@ -3,18 +3,18 @@ using System;
 using System.Collections;
 
 public class SpaceshipMatchData : SpaceshipComponent {
-
+	
 	private Level currentLevel;
-
+	
 	public float timeStartMatch = 0.0f;
 	public float timeFinishMatch = Mathf.Infinity;
 	public float timeElapsed = 0.0f;
 	public bool matchOver = false;
-
+	
 	private MatchManager matchManager;
 	public int totalKills = 0;
-
-/*
+	
+	/*
 	public override void Start () {
 		base.Start();
 
@@ -52,5 +52,5 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	}
 
 */
-
+	
 }
