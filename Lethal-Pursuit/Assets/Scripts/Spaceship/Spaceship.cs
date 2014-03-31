@@ -2,6 +2,13 @@
 using InControl;
 using System.Collections;
 
+
+public enum ItemType {
+	DEFAULT_WEAPON,
+	SUB_WEAPON,
+}
+
+
 /* 
 	Contains input and misc spaceship data that's updated every frame for spaceship components to use.
  */
@@ -27,8 +34,7 @@ public class Spaceship : MonoBehaviour {
 	public bool  drifting;
 	public bool  idle;
 	public bool  swappingWeapon;
-	[HideInInspector]
-	public bool  debugSelfDestruct;
+	public ItemType equippedItem;
 	#endregion
 	
 	public Vector3 forward;
@@ -55,7 +61,6 @@ public class Spaceship : MonoBehaviour {
 	void FixedUpdate () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			HandleInput();
-			HandleHeightCheck();
 		}
 	}
 	
@@ -82,13 +87,6 @@ public class Spaceship : MonoBehaviour {
 		boosting = !braking && InputManager.ActiveDevice.Action3.IsPressed;
 		idle = !boosting && !braking;
 		swappingWeapon = InputManager.ActiveDevice.LeftBumper.IsPressed || InputManager.ActiveDevice.RightBumper.IsPressed;
-	}
-	
-	
-	void HandleHeightCheck() {
-		RaycastHit hit;
-		Physics.Raycast(this.transform.position, -this.transform.up, out hit);
-		heightAboveGround = hit.distance;
 	}
 
 
@@ -126,24 +124,27 @@ public class Spaceship : MonoBehaviour {
 		Quaternion syncRotation = Quaternion.identity;
 		bool isShooting = false;
 		bool isSwappingWeapon = false;
-		
+		bool equippedDefaultGun = false;
 		
 		if (stream.isWriting) {
 			syncPosition = transform.position;
 			syncRotation = transform.rotation;
 			isShooting = shooting;
 			isSwappingWeapon = swappingWeapon;
+			equippedDefaultGun = (equippedItem == ItemType.DEFAULT_WEAPON);
 			
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
 			stream.Serialize(ref isSwappingWeapon);
+			stream.Serialize(ref equippedDefaultGun);
 		}
 		else {
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
 			stream.Serialize(ref isSwappingWeapon);
+			stream.Serialize(ref equippedDefaultGun);
 			
 			syncTime = 0f;
 			syncDelay = Time.time - lastSynchronizationTime;
@@ -157,6 +158,12 @@ public class Spaceship : MonoBehaviour {
 			
 			shooting = isShooting;
 			swappingWeapon = isSwappingWeapon;
+			if (equippedDefaultGun) {
+				equippedItem = ItemType.DEFAULT_WEAPON;
+			}
+			else {
+				equippedItem = ItemType.SUB_WEAPON;
+			}
 		}
 	}
 	

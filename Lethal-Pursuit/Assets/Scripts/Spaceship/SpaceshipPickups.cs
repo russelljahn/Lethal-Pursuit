@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using System;
+
+
+
 
 
 public class SpaceshipPickups : SpaceshipComponent {
-
+	
 	public Pickup currentPickup = null;
 	public bool pickupIsActive = false;
 
@@ -17,25 +21,32 @@ public class SpaceshipPickups : SpaceshipComponent {
 
 
 	void Update () {
-		remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
-
 		if (currentPickup != null && currentPickup.ShouldDrop()) {
 			currentPickup.OnDrop();
 			GameObject.Destroy(currentPickup.gameObject);
 			currentPickup = null;
+			equippedItem = ItemType.DEFAULT_WEAPON;
 		}
 
+		remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
+
 		/* Swap guns if hitting bumpers. */
-		if (currentPickup != null && remainingSwapCooldownTime == 0.0f && swappingWeapon) {
-			pickupIsActive = !pickupIsActive;
-			currentPickup.SetActive(pickupIsActive);
+		if (remainingSwapCooldownTime == 0.0f && swappingWeapon) {
+			switch (equippedItem) {
+				case ItemType.DEFAULT_WEAPON:
+					if (currentPickup != null) {
+						currentPickup.SetActive(true);
+						spaceship.DisableGun();
+					}
+					break;
+				case ItemType.SUB_WEAPON:
+					currentPickup.SetActive(false);
+					spaceship.EnableGun();
+					break;
+				default:
+					throw new Exception("Unknown ItemType: " + equippedItem);
+			}
 			remainingSwapCooldownTime = pickupSwapCooldown;
-			if (!pickupIsActive) {
-				spaceship.EnableGun();
-			}
-			else {
-				spaceship.DisableGun();
-			}
 		}
 
 	}

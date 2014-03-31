@@ -61,6 +61,14 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.swappingWeapon;
 		}
 	}
+	protected ItemType equippedItem {
+		get {
+			return spaceship.equippedItem;
+		}
+		set {
+			spaceship.equippedItem = value;
+		}
+	}
 	protected GameplayManager gameplayManager {
 		get {
 			return spaceship.gameplayManager;
