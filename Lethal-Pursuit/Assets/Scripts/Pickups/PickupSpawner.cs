@@ -36,19 +36,18 @@ public class PickupSpawner : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 
-		Debug.Log (collider.gameObject + " entered spawn area.");
-		Debug.Log ("collider.gameObject.CompareTag ('Spaceship')? " + collider.gameObject.CompareTag ("Spaceship")); 
-
-		if (!enabled) {
+//		Debug.Log (collider.gameObject + " entered spawn area.");
+//		Debug.Log ("collider.gameObject.CompareTag ('Spaceship')? " + collider.gameObject.CompareTag ("Spaceship")); 
+		Debug.Log ("Can " + collider.gameObject.name + " pickup " + this.gameObject.name + "? " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
+		
+		if (!enabled || !collider.gameObject.CompareTag ("Spaceship")) {
 			return;
 		}
-		Debug.Log ("Spawn point is enabled!");
-		if (collider.gameObject.CompareTag ("Spaceship")) {
-			Debug.Log ("Can Pickup? " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
-		}
+//		Debug.Log ("Spawn point is enabled!");
 
+		Debug.Log ("collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup): " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
 		if (collider.gameObject.CompareTag ("Spaceship") && collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup)) {
-//			Debug.Log (this.gameObject.name + " was picked up by: " + collider.gameObject.name);
+			Debug.Log (this.gameObject.name + " was picked up by: " + collider.gameObject.name);
 			audio.PlayOneShot(pickupSound);
 
 			GameObject pickupClone;
