@@ -145,7 +145,6 @@ public class MatchManager : MonoBehaviour {
 	public void ServerTallyKill(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
-		networkView.RPC ("ClientTallyKill", RPCMode.OthersBuffered, playerID);
 	}
 
 

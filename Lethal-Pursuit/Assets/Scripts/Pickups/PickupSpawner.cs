@@ -21,6 +21,7 @@ public class PickupSpawner : MonoBehaviour {
 	void Start() {
 		this.collider.isTrigger = true;
 		pickup = (GameObject.Instantiate(Resources.Load(pathToPickupResource)) as GameObject).GetComponent<Pickup>();
+		pickup.transform.parent = this.transform;
 		pickup.gameObject.SetActive(false);
 	}
 
@@ -66,15 +67,10 @@ public class PickupSpawner : MonoBehaviour {
 			Debug.Log ("Pickup clone: " + pickupClone);
 			Debug.Log("collider.gameObject.GetComponent<SpaceshipPickups>(): " + collider.gameObject.GetComponent<SpaceshipPickups>());
 			collider.gameObject.GetComponent<SpaceshipPickups>().GetPickup(pickupClone.GetComponent<Pickup>());
-			
-//			if (NetworkManager.IsSinglePlayer()) {
-				enabled = false;
-				visuals.SetActive(false);
-				timeRemainingUntilRespawn = respawnTime;
-//			}
-//			else {
-//				networkView.RPC("NetworkHidePickupSpawnPoint", RPCMode.All);
-//			}	
+			enabled = false;
+			visuals.SetActive(false);
+			timeRemainingUntilRespawn = respawnTime;
+
 		}
 		
 	}
@@ -82,14 +78,6 @@ public class PickupSpawner : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider) {
 		Debug.Log (collider.gameObject + " left spawn area.");
-	}
-
-
-	[RPC]
-	void NetworkHidePickupSpawnPoint() {
-//		enabled = false;
-//		visuals.SetActive(false);
-//		timeRemainingUntilRespawn = respawnTime;
 	}
 
 	
