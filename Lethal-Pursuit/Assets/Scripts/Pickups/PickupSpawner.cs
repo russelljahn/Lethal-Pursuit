@@ -22,7 +22,7 @@ public class PickupSpawner : MonoBehaviour {
 		this.collider.isTrigger = true;
 		pickup = (GameObject.Instantiate(Resources.Load(pathToPickupResource)) as GameObject).GetComponent<Pickup>();
 		pickup.transform.parent = this.transform;
-		pickup.gameObject.SetActive(false);
+		pickup.transform.localPosition = Vector3.zero;
 	}
 
 

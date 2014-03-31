@@ -33,6 +33,9 @@ public class HudCurrentWeapon : MonoBehaviour {
 			else if (pickupsComponent.currentPickup is PickupAuroraCannon) {
 				currentWeaponSprite.sprite2D = auroraCannon;
 			}
+			else if (pickupsComponent.currentPickup is PickupPunkMissiles) {
+				currentWeaponSprite.sprite2D = punkMissiles;
+			}
 			else {
 				throw new Exception("HudCurrentWeapon(); Unrecognized pickup type: " + pickupsComponent.currentPickup);
 			}

@@ -25,6 +25,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 			GameObject.Destroy(currentPickup.gameObject);
 			currentPickup = null;
 			equippedItem = EquipType.DEFAULT_WEAPON;
+			spaceship.DisableGun();
 		}
 
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
@@ -82,6 +83,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 
 	public void GetPickup(Pickup pickup) {
 		pickup.gameObject.transform.parent = this.transform;
+		pickup.transform.localPosition = Vector3.zero;
 
 		Debug.Log ("In GetPickup()!");
 		Debug.Log ("this.transform: " + this.transform);

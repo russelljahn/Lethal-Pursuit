@@ -1308,7 +1308,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .412841797, z: 0}
+  m_LocalPosition: {x: 0, y: -.310775757, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400108}
@@ -1324,7 +1324,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 253.825684, z: 0}
+  m_LocalPosition: {x: 428, y: 252.378448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -1357,7 +1357,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -670, y: 251.325684, z: 77}
+  m_LocalPosition: {x: -670, y: 249.878448, z: 77}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400058}
@@ -3551,7 +3551,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .969696999
+  aspectRatio: .949494958
   mSprite: {fileID: 21300000, guid: 5da4aba28cc87664a9aa1586aeb161a5, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -3605,7 +3605,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.02564096
+  aspectRatio: 5.05128193
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -4464,7 +4464,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.4333334
+  aspectRatio: 6.22580624
   mSprite: {fileID: 21300000, guid: 54040721f33c84b88b247b53e734223b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -4558,8 +4558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultLaser: {fileID: 21300000, guid: 5da4aba28cc87664a9aa1586aeb161a5, type: 3}
   auroraCannon: {fileID: 21300000, guid: 47b347ade7781a24d87396ec8646cc27, type: 3}
-  punkMissiles: {fileID: 0}
-  stickyMines: {fileID: 0}
+  punkMissiles: {fileID: 21300000, guid: c817667f952bd8a4fb33c39bd8d4f09a, type: 3}
+  stickyMines: {fileID: 21300000, guid: c1ae54174cf3e93458e018997fc8fdff, type: 3}
 --- !u!114 &11400144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4595,7 +4595,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: .969696999
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

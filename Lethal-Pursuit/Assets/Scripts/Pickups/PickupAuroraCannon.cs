@@ -71,8 +71,6 @@ public class PickupAuroraCannon : Pickup {
 
 	public override void OnPickup (Spaceship spaceship) {
 		base.OnPickup (spaceship);
-		spaceship.DisableGun();
-		this.transform.localPosition = Vector3.zero;
 		laserBeamEffect.transform.localScale = Vector3.one;
 		laserBeamEffect.sourceTransform = spaceship.spaceshipModel.transform;
 		laserBeamEffectScript.laserMaxDistance = laserLength;
