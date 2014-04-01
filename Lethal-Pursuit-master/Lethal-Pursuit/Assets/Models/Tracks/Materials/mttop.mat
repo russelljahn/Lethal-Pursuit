@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: mttop
+  m_Shader: {fileID: 4800000, guid: a65f134a70cd949ffa24ef832100c3b1, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: d7d3afad556c14c45ab6767c14c60efa, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _NumColors
+        second: 3.46607089
+      data:
+        first:
+          name: _OutlineWidth
+        second: .571428537
+      data:
+        first:
+          name: _ColorMerge
+        second: 7142.92139
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 0, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: 0, g: 1, b: .917241573, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: .255172253, b: 1, a: 1}
