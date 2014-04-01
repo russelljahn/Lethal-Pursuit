@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PunkMissilesExplosion
+  m_Name: PunkMissilesExplosion1
   m_Shader: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 7109919165f60408d9f3bc6e855b91fa, type: 3}
+          m_Texture: {fileID: 2800000, guid: c40e6cdf03acf415e99ad67ea0e23262, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -37,12 +37,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Shininess
-        second: .078125
-      data:
-        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Shininess
+        second: .078125
     m_Colors:
       data:
         first:

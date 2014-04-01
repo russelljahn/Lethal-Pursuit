@@ -616,8 +616,8 @@ GameObject:
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
   - 45: {fileID: 4500000}
-  - 114: {fileID: 11400016}
   - 148: {fileID: 14800002}
+  - 114: {fileID: 11400016}
   m_Layer: 0
   m_Name: SpaceshipCamera
   m_TagString: MainCamera
@@ -2513,7 +2513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  spaceshipCamera: {fileID: 11400016}
+  spaceshipCamera: {fileID: 0}
   movementSpeed: 100
   xExtent: 10000
   yExtent: 10000
@@ -2539,6 +2539,8 @@ MonoBehaviour:
   invulnerable: 0
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
+  damageOverlaySpeed: .5
+  damageOverlayOpacity: .174999997
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2633,7 +2635,7 @@ MonoBehaviour:
   spaceship: {fileID: 11400012}
   target: {fileID: 100082}
   rotationSpeed: 3
-  lookSpeed: 4
+  lookSpeed: 8
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2906,9 +2908,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 10.1271181
+  simulationStarted: 186.218918
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

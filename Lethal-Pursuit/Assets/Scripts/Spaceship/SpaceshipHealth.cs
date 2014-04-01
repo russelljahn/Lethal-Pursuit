@@ -25,7 +25,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public MatchManager matchManager;
 	
 	public int lastHurtByPlayerID = -1;
-	
+
+	private bool damageOverlayCurrentlyAnimating = false;
+	private Texture2D damageOverlayImage;
+	public float damageOverlaySpeed = 0.5f;
+	public float damageOverlayOpacity = 0.175f;
 	
 	public override void Start() {
 		base.Start();
@@ -83,6 +87,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 				//lastHurtByPlayerID = -1;
+				FadeInDamageOverlay();
 			}
 			else {
 				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
@@ -109,7 +114,36 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 			lastHurtByPlayerID = playerID;
 			Debug.Log("Hurt by playerID: " + playerID);
+
+			FadeInDamageOverlay();
 		}
+	}
+	
+
+	// Use this for initialization
+	public void FadeInDamageOverlay () {
+		if (damageOverlayCurrentlyAnimating) {
+			return;
+		}
+		damageOverlayCurrentlyAnimating = true;
+
+		Hashtable iTweenSettings = new Hashtable();
+		iTweenSettings["oncomplete"] = "OnFinishedAnimatingDamageOverlay";
+		iTweenSettings["oncompletetarget"] = this.gameObject;
+		iTweenSettings["amount"] = damageOverlayOpacity;
+		iTweenSettings["time"] = damageOverlaySpeed;
+		iTweenSettings["easetype"] = "easeInOutQuad";
+
+		if (damageOverlayImage == null) {
+			damageOverlayImage = iTween.CameraTexture(Color.red);
+			iTween.CameraFadeAdd(damageOverlayImage); // Replace w/ tex eventually
+		}
+		iTween.CameraFadeFrom(iTweenSettings);
+	}
+
+
+	public void OnFinishedAnimatingDamageOverlay() {
+		damageOverlayCurrentlyAnimating = false;	
 	}
 	
 }

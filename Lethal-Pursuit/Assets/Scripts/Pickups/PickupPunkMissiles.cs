@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
 public class PickupPunkMissiles : Pickup {
 //
 //	public PlaygroundParticles laserBeamEffect;
@@ -18,7 +17,8 @@ public class PickupPunkMissiles : Pickup {
 
 //	private GameObject cachedBullet;
 	public AudioClip shootingSound;
-	
+
+	public Vector3 spawnOffsetFromGun = new Vector3(0.0f, 0.0f, 10.0f);
 	public bool enabled = true;
 	
 
@@ -40,28 +40,28 @@ public class PickupPunkMissiles : Pickup {
 
 	public void SpawnMissile() {
 		GameObject bulletGameObject;
-//		if (NetworkManager.IsSinglePlayer()) {
+		if (NetworkManager.IsSinglePlayer()) {
 			bulletGameObject = GameObject.Instantiate(
 				Resources.Load(bulletResourcePath),
-				this.transform.position, 
-				spaceship.spaceshipModel.transform.rotation
+				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 
+				spaceship.gun.transform.rotation
 			) as GameObject;
-//		}
-//		else {
-//			bulletGameObject = Network.Instantiate(
-//				cachedBullet,
-//				this.transform.position, 
-//				spaceship.spaceshipModel.transform.rotation,
-//				777
-//			) as GameObject;
-//		}
+		}
+		else {
+			bulletGameObject = Network.Instantiate(
+				Resources.Load(bulletResourcePath),
+				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 
+				spaceship.gun.transform.rotation,
+				667
+			) as GameObject;
+		}
 		
 		Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 		bullet.direction = spaceship.spaceshipModel.transform.forward;
 		bullet.sourceSpaceship = spaceship;
 		
 		bulletGameObject.SetActive(true);
-		this.audio.PlayOneShot(shootingSound);
+		spaceship.gun.audio.PlayOneShot(shootingSound);
 	}
 
 
