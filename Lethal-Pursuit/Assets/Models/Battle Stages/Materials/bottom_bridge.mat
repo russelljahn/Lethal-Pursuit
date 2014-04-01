@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: bottom_bridge
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: c5b300edba031496f8d1cb0251e9530b, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,36 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 63eb9f88adbb54890a4b4a8a77715b2b, type: 3}
+          m_Scale: {x: 10, y: 8.39999962}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _NumColors
+        second: 30
+      data:
+        first:
+          name: _OutlineWidth
+        second: .4375
+      data:
+        first:
+          name: _Brightness
+        second: 1.64285719
+      data:
+        first:
+          name: _OutlineFalloff
+        second: 1.0625
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: .588235319, g: .588235319, b: .588235319, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .816176474, g: .931541502, b: 1, a: 1}

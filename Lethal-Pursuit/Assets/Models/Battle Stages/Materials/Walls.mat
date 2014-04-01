@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walls
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 34, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,26 +17,37 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 2925aad9dfd5f49ed97d7228a4c8d7e6, type: 3}
-          m_Scale: {x: 10, y: 10}
+          m_Texture: {fileID: 2800000, guid: 2e8db6fd6a4844f88852320669fc4e7f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
           name: _Shininess
-        second: .00999999978
+        second: .100000016
       data:
         first:
           name: _NumColors
         second: 30
       data:
         first:
-          name: _Brightness
-        second: 4.85714293
-      data:
-        first:
           name: _OutlineWidth
         second: .100000001
+      data:
+        first:
+          name: _Brightness
+        second: 4.85714293
       data:
         first:
           name: _OutlineFalloff
@@ -45,16 +56,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .309803933, g: .309803933, b: .309803933, a: 1}
+        second: {r: .357482672, g: .838235259, b: .599516749, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: 1, g: .908427536, b: .674509764, a: 1}
+        second: {r: 1, g: .718662977, b: 0, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .325490206, g: .233917758, b: 0, a: 1}
       data:
         first:
           name: _OutlineColor
         second: {r: .227450982, g: 0, b: 0, a: 1}
       data:
         first:
-          name: _MainColor
-        second: {r: .325490206, g: .233917758, b: 0, a: 1}
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Second1
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: c5b300edba031496f8d1cb0251e9530b, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,44 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c96ab627dbd444a46a1db27d9469b59d, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: a532a6355c3f6423d8822a34bfab12a7, type: 3}
+          m_Scale: {x: 3, y: 3}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .0488910079
+      data:
+        first:
+          name: _NumColors
+        second: 30
+      data:
+        first:
+          name: _OutlineWidth
+        second: .4375
+      data:
+        first:
+          name: _Brightness
+        second: 5.8214283
+      data:
+        first:
+          name: _OutlineFalloff
+        second: .580357134
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .347426474, g: .65005064, b: .75, a: 1}
+        second: {r: .595588207, g: .595588207, b: .595588207, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .601718128, g: .904411793, b: .026600372, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .191176474, g: .17852509, b: .17852509, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .211126745, g: .316433847, b: .404411793, a: 1}
