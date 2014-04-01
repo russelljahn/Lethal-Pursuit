@@ -70,7 +70,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 1
@@ -1884,7 +1884,7 @@ AudioSource:
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: .100000001
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -1896,12 +1896,12 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .527363181
+      value: 1
       inSlope: 0
       outSlope: -1.00200403
       tangentMode: 0
     - time: 1
-      value: 0
+      value: .865168452
       inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
@@ -1921,7 +1921,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: .219101146
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2052,17 +2052,17 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 3.01999998
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2085,7 +2085,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: .109999999
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2095,7 +2095,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: .191666663
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2110,17 +2110,17 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 2c92b22856eb34f22af29fa5e1ec1467, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: .702000022
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2128,13 +2128,13 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: .539325833
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: 0
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -2143,7 +2143,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: .853932619
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2153,7 +2153,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: .0842696428
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2499,7 +2499,7 @@ MonoBehaviour:
   state: 0
   energyRatioToBeDrained: .600000024
   energyRatioToBeCritical: .300000012
-  shootingSound: {fileID: 8300000, guid: 31038a26078f34e95a17806d2b227895, type: 3}
+  shootingSound: {fileID: 8300000, guid: 041edf047c2d74795875fcf8ae535f8b, type: 3}
   enabled: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -2648,12 +2648,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
-  engine1: {fileID: 8200002}
+  engine1: {fileID: 8200008}
   engine2: {fileID: 8200006}
   engine3: {fileID: 8200008}
   drift1: {fileID: 8200004}
   engine1Clip: {fileID: 8300000, guid: a7de759dd3ccc485799e80f148536a87, type: 3}
-  engine2Clip: {fileID: 8300000, guid: 3245b942aa1d044deabecd69f68e20ff, type: 3}
+  engine2Clip: {fileID: 8300000, guid: 44529ef5096f945419e9a70b199d20a1, type: 3}
   engine3Clip: {fileID: 8300000, guid: ec53f3ac63aad456d81fa18f1935d949, type: 3}
   drift1Clip: {fileID: 8300000, guid: 76a54e78bf43a43d5b9742b7d4797f81, type: 3}
   engine1MinVolume: 0
@@ -2886,7 +2886,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800006}
-  particleSystemId: 4
+  particleSystemId: 7
   particleSystemGameObject: {fileID: 100024}
   particleSystemTransform: {fileID: 400024}
   particleSystemRenderer: {fileID: 19900006}
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 186.218918
+  simulationStarted: 153.069672
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
