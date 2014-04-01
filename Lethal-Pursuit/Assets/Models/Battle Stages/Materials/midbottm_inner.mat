@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: midbottm_inner
+  m_Shader: {fileID: 4800000, guid: c5b300edba031496f8d1cb0251e9530b, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 8da496becc37c42caba836015060b094, type: 3}
+          m_Scale: {x: 20, y: 40}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .078125
+      data:
+        first:
+          name: _NumColors
+        second: 30
+      data:
+        first:
+          name: _OutlineWidth
+        second: .726785719
+      data:
+        first:
+          name: _Brightness
+        second: 1.16071427
+      data:
+        first:
+          name: _OutlineFalloff
+        second: .660714269
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .367647052, g: .337910891, b: .337910891, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .0519031174, g: .624698699, b: .705882311, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .845588207, g: .845588207, b: .845588207, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .79411763, g: .79411763, b: .79411763, a: 1}

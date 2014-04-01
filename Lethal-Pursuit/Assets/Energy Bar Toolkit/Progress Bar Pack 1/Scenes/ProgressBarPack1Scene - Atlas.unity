@@ -1,0 +1,2711 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+SceneSettings:
+  m_ObjectHideFlags: 0
+  m_PVSData: 
+  m_QueryMode: 1
+  m_PVSObjectsArray: []
+  m_PVSPortalsArray: []
+  m_OcclusionBakeSettings:
+    viewCellSize: 1
+    bakeMode: 2
+    memoryUsage: 10485760
+--- !u!104 &2
+RenderSettings:
+  m_Fog: 0
+  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: .00999999978
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: .5
+  m_FlareStrength: 1
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 0}
+  m_ObjectHideFlags: 0
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
+--- !u!157 &4
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  m_LightProbes: {fileID: 0}
+  m_Lightmaps: []
+  m_LightmapsMode: 1
+  m_BakedColorSpace: 0
+  m_UseDualLightmapsInForward: 0
+  m_LightmapEditorSettings:
+    m_Resolution: 50
+    m_LastUsedResolution: 0
+    m_TextureWidth: 1024
+    m_TextureHeight: 1024
+    m_BounceBoost: 1
+    m_BounceIntensity: 1
+    m_SkyLightColor: {r: .860000014, g: .930000007, b: 1, a: 1}
+    m_SkyLightIntensity: 0
+    m_Quality: 0
+    m_Bounces: 1
+    m_FinalGatherRays: 1000
+    m_FinalGatherContrastThreshold: .0500000007
+    m_FinalGatherGradientThreshold: 0
+    m_FinalGatherInterpolationPoints: 15
+    m_AOAmount: 0
+    m_AOMaxDistance: .100000001
+    m_AOContrast: 1
+    m_LODSurfaceMappingDistance: 1
+    m_Padding: 0
+    m_TextureCompression: 0
+    m_LockAtlas: 0
+--- !u!196 &5
+NavMeshSettings:
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    agentRadius: .5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: .400000006
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    accuratePlacement: 0
+    minRegionArea: 2
+    widthInaccuracy: 16.666666
+    heightInaccuracy: 10
+  m_NavMesh: {fileID: 0}
+--- !u!1 &67653613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 67653614}
+  - 114: {fileID: 67653616}
+  - 114: {fileID: 67653615}
+  m_Layer: 0
+  m_Name: bar 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67653614
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67653613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.22272491e-05, y: 161.45636, z: 0}
+  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
+  m_Children:
+  - {fileID: 1552188992}
+  - {fileID: 1245754406}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &67653615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67653613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: b4406f388ca4932438b0331073d38caa
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 1245754407}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: f26603e1b03eee84e86d0db1d62c988e
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: -612961024
+  spriteBar: {fileID: 1552188993}
+  spriteBurnBar: {fileID: 0}
+--- !u!114 &67653616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67653613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 107
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &85376718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 85376719}
+  - 114: {fileID: 85376721}
+  - 114: {fileID: 85376720}
+  m_Layer: 0
+  m_Name: bar 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &85376719
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85376718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.22272491e-05, y: 35.8791924, z: 0}
+  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
+  m_Children:
+  - {fileID: 1179767207}
+  - {fileID: 1048130119}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &85376720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85376718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 1048130120}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: c947e31fbd511ce489f4553dc705e734
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: 645104384
+  spriteBar: {fileID: 1179767208}
+  spriteBurnBar: {fileID: 0}
+--- !u!114 &85376721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85376718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 107
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &165509209
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 165509210}
+  - 114: {fileID: 165509211}
+  m_Layer: 0
+  m_Name: bar_effect_burn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &165509210
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 165509209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 982749915}
+--- !u!114 &165509211
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 165509209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 0, b: 0, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  lastTextureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0265486725
+  liveBottom: .150000006
+  liveRight: .971681416
+  liveTop: .839999974
+  fillType: 1
+  fillValue: .5
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &195275559
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 195275560}
+  - 114: {fileID: 195275561}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195275560
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195275559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 982749915}
+--- !u!114 &195275561
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195275559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  lastTextureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 34
+  eventFlags: 15
+  liveLeft: .0265486725
+  liveBottom: .150000006
+  liveRight: .971681416
+  liveTop: .839999974
+  fillType: 1
+  fillValue: .5
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &345029098
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 345029099}
+  - 114: {fileID: 345029100}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &345029099
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 345029098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 484657520}
+--- !u!114 &345029100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 345029098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
+  lastTextureAtlasSpriteGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0265486725
+  liveBottom: .150000006
+  liveRight: .971681416
+  liveTop: .839999974
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &408168267
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408168268}
+  - 114: {fileID: 408168269}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408168268
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408168267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1877196879}
+--- !u!114 &408168269
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408168267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 72693c00377af2045afba97c7e61c168
+  lastTextureAtlasSpriteGUID: 72693c00377af2045afba97c7e61c168
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0222222228
+  liveBottom: .150000006
+  liveRight: .976296306
+  liveTop: .839999974
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!43 &468801436
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Generated Mesh
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 78
+    topology: 0
+    firstVertex: 0
+    vertexCount: 52
+    localAABB:
+      m_Center: {x: -6.10351562e-05, y: 1.62884521, z: 0}
+      m_Extent: {x: 512.040955, y: 338.666626, z: 0}
+  m_Shapes: []
+  m_ShapeVertices: []
+  m_MeshCompression: 0
+  m_StreamCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexBuffer: 000001000200000002000300040005000600040006000700080009000a0008000a000b000c000d000e000c000e000f00100011001200100012001300140015001600140016001700180019001a0018001a001b001c001d001e001c001e001f00200021002200200022002300240025002600240026002700280029002a0028002a002b002c002d002e002c002e002f00300031003200300032003300
+  m_Skin: []
+  m_BindPose: []
+  m_VertexData:
+    m_CurrentChannels: 15
+    m_VertexCount: 52
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 2
+      dimension: 1
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_Streams:
+    - channelMask: 15
+      offset: 0
+      stride: 36
+      dividerOp: 0
+      frequency: 0
+    - channelMask: 0
+      offset: 0
+      stride: 0
+      dividerOp: 0
+      frequency: 0
+    - channelMask: 0
+      offset: 0
+      stride: 0
+      dividerOp: 0
+      frequency: 0
+    - channelMask: 0
+      offset: 0
+      stride: 0
+      dividerOp: 0
+      frequency: 0
+    m_DataSize: 1872
+    _typelessdata: e6428dc3e7fb59c300000000000000000000000000000000ffffffff00c00d3f00003f3ee6428dc3b6f3ebc200000000000000000000000000000000ffffffff00c00d3f0000713ee2428d43b6f3ebc200000000000000000000000000000000ffffffff0060543f0000713ee2428d43e7fb59c300000000000000000000000000000000ffffffff0060543f00003f3ea00200c429faf3c000000000000000000000000000000000ffffffff000000000000bf3da00200c4eec39e4200000000000000000000000000000000ffffffff0000000000000b3e9e020044eec39e4200000000000000000000000000000000ffffffff0000003f00000b3e9e02004429faf3c000000000000000000000000000000000ffffffff0000003f0000bf3dc584e8c3c942d2c200000000000000000000000000000000ffffffff0040003f0000bf3dc584e8c3d67f0cc200000000000000000000000000000000ffffffff0040003f0080023ec184e843d67f0cc200000000000000000000000000000000ffffffff0080743f0080023ec184e843c942d2c200000000000000000000000000000000ffffffff0080743f0000bf3d77c3a8c3d684a8c300000000000000000000000000000000ffffffff0000000000000c3e77c3a8c3a0076dc300000000000000000000000000000000ffffffff0000000000003e3e73c3a843a0076dc300000000000000000000000000000000ffffffff00c0a83e00003e3e73c3a843d684a8c300000000000000000000000000000000ffffffff00c0a83e00000c3e00408dc3a44b704300000000000000000000000000000000ffffffff0040293f00000c3e00408dc3d225aa4300000000000000000000000000000000ffffffff0040293f00003e3e00408d43d225aa4300000000000000000000000000000000ffffffff00e06f3f00003e3e00408d43a44b704300000000000000000000000000000000ffffffff00e06f3f00000c3ea444e2c39ce7de4200000000000000000000000000000000ffffffff0000000000000000a444e2c3da75534300000000000000000000000000000000ffffffff000000000000483da044e243da75534300000000000000000000000000000000ffffffff0040e23e0000483da044e2439ce7de4200000000000000000000000000000000ffffffff0040e23e00000000a444e2c39ce7de4200000000000000000000000000000000ffffffff00c0e23e00000000a444e2c3da75534300000000000000000000000000000000ffffffff00c0e23e0000483da044e243da75534300000000000000000000000000000000ffffffff0080623f0000483da044e2439ce7de4200000000000000000000000000000000ffffffff0080623f00000000a00200c429faf3c000000000000000000000000000000000ffffffff0000000000004c3da00200c4eec39e4200000000000000000000000000000000ffffffff000000000000bd3d9e020044eec39e4200000000000000000000000000000000ffffffff0000003f0000bd3d9e02004429faf3c000000000000000000000000000000000ffffffff0000003f00004c3dc584e8c3c942d2c200000000000000000000000000000000ffffffff0040003f00004c3dc584e8c3d67f0cc200000000000000000000000000000000ffffffff0040003f0000ac3dc184e843d67f0cc200000000000000000000000000000000ffffffff0080743f0000ac3dc184e843c942d2c200000000000000000000000000000000ffffffff0080743f00004c3d00408dc3a44b704300000000000000000000000000000000ff0000ff0000000000003f3e00408dc3d225aa4300000000000000000000000000000000ff0000ff000000000000713efeffffbed225aa4300000000000000000000000000000000ff0000ff00000d3e0000713efeffffbea44b704300000000000000000000000000000000ff0000ff00000d3e00003f3e77c3a8c3d684a8c300000000000000000000000000000000ffffffff0040a93e00000c3e77c3a8c3a0076dc300000000000000000000000000000000ffffffff0040a93e00003e3e73c3a843a0076dc300000000000000000000000000000000ffffffff0000293f00003e3e73c3a843d684a8c300000000000000000000000000000000ffffffff0000293f00000c3ee6428dc3e7fb59c300000000000000000000000000000000ffffffff00c08d3e00003f3ee6428dc3b6f3ebc200000000000000000000000000000000ffffffff00c08d3e0000713ee2428d43b6f3ebc200000000000000000000000000000000ffffffff00800d3f0000713ee2428d43e7fb59c300000000000000000000000000000000ffffffff00800d3f00003f3e00408dc3a44b704300000000000000000000000000000000ffffffff0000000000003f3e00408dc3d225aa4300000000000000000000000000000000ffffffff000000000000713efeffffbed225aa4300000000000000000000000000000000ffffffff00000d3e0000713efeffffbea44b704300000000000000000000000000000000ffffffff00000d3e00003f3e
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BindPoses:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Colors:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+  m_LocalAABB:
+    m_Center: {x: -6.10351562e-05, y: 1.62884521, z: 0}
+    m_Extent: {x: 512.040955, y: 338.666626, z: 0}
+  m_MeshUsageFlags: 0
+  m_MeshOptimized: 0
+--- !u!1 &484657519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 484657520}
+  - 114: {fileID: 484657522}
+  - 114: {fileID: 484657521}
+  m_Layer: 0
+  m_Name: bar 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &484657520
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484657519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.22272491e-05, y: -167.979996, z: 0}
+  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
+  m_Children:
+  - {fileID: 345029099}
+  - {fileID: 698278415}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &484657521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484657519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: 309c06c886374154eabf7bd575e076db
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 698278414}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: -797724416
+  spriteBar: {fileID: 345029100}
+  spriteBurnBar: {fileID: 0}
+--- !u!114 &484657522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484657519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 107
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &605392404
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 605392405}
+  - 114: {fileID: 605392406}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605392405
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 605392404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1123167726}
+--- !u!114 &605392406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 605392404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: dbc62ca044ac58d42b977e178f54f428
+  lastTextureAtlasSpriteGUID: dbc62ca044ac58d42b977e178f54f428
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0107526882
+  liveBottom: .285714298
+  liveRight: .988172054
+  liveTop: .699999988
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &698278413
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 698278415}
+  - 114: {fileID: 698278414}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &698278414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698278413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 309c06c886374154eabf7bd575e076db
+  lastTextureAtlasSpriteGUID: 309c06c886374154eabf7bd575e076db
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!4 &698278415
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698278413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 484657520}
+--- !u!1 &981187728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 981187729}
+  - 114: {fileID: 981187731}
+  - 20: {fileID: 981187730}
+  m_Layer: 0
+  m_Name: Camera 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981187729
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981187728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: .00999999978}
+  m_Children:
+  - {fileID: 1919284744}
+  m_Father: {fileID: 2113828663}
+--- !u!20 &981187730
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981187728}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: .5, g: .5, b: .5, a: 1}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: -2
+  far clip plane: 2
+  field of view: 60
+  orthographic: 1
+  orthographic size: 1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_HDR: 0
+--- !u!114 &981187731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981187728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1784410490, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+--- !u!1 &982749914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 982749915}
+  - 114: {fileID: 982749917}
+  - 114: {fileID: 982749916}
+  m_Layer: 0
+  m_Name: bar 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &982749915
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982749914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.96046448e-08, y: 290.295471, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 195275560}
+  - {fileID: 165509210}
+  - {fileID: 1909934129}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &982749916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982749914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 1909934130}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 1
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: -1968465600
+  spriteBar: {fileID: 195275561}
+  spriteBurnBar: {fileID: 165509211}
+--- !u!114 &982749917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982749914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 50
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &1048130118
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1048130119}
+  - 114: {fileID: 1048130120}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048130119
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048130118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 85376719}
+--- !u!114 &1048130120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048130118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
+  lastTextureAtlasSpriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1123167725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1123167726}
+  - 114: {fileID: 1123167728}
+  - 114: {fileID: 1123167727}
+  m_Layer: 0
+  m_Name: bar 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123167726
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123167725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.22272491e-05, y: -70.1276398, z: 0}
+  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
+  m_Children:
+  - {fileID: 605392405}
+  - {fileID: 1612312586}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &1123167727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123167725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: 8c9459920e74bd44582662fbbdb81e2f
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 1612312587}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: dbc62ca044ac58d42b977e178f54f428
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: 1963286272
+  spriteBar: {fileID: 605392406}
+  spriteBurnBar: {fileID: 0}
+--- !u!114 &1123167728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123167725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 107
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &1179767206
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1179767207}
+  - 114: {fileID: 1179767208}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179767207
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1179767206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 85376719}
+--- !u!114 &1179767208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1179767206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: c947e31fbd511ce489f4553dc705e734
+  lastTextureAtlasSpriteGUID: c947e31fbd511ce489f4553dc705e734
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0185546875
+  liveBottom: .218390808
+  liveRight: .98046875
+  liveTop: .758620679
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1245754405
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1245754406}
+  - 114: {fileID: 1245754407}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1245754406
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245754405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 67653614}
+--- !u!114 &1245754407
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245754405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: b4406f388ca4932438b0331073d38caa
+  lastTextureAtlasSpriteGUID: b4406f388ca4932438b0331073d38caa
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1552188991
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1552188992}
+  - 114: {fileID: 1552188993}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1552188992
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552188991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 67653614}
+--- !u!114 &1552188993
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552188991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: f26603e1b03eee84e86d0db1d62c988e
+  lastTextureAtlasSpriteGUID: f26603e1b03eee84e86d0db1d62c988e
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: .0165745858
+  liveBottom: .150000006
+  liveRight: .982320428
+  liveTop: .839999974
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1612312585
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1612312586}
+  - 114: {fileID: 1612312587}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612312586
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1612312585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1123167726}
+--- !u!114 &1612312587
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1612312585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 8c9459920e74bd44582662fbbdb81e2f
+  lastTextureAtlasSpriteGUID: 8c9459920e74bd44582662fbbdb81e2f
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1867042053
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1867042054}
+  - 114: {fileID: 1867042055}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867042054
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867042053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1877196879}
+--- !u!114 &1867042055
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867042053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: b96bf7991cd9052439a945e62e0c125f
+  lastTextureAtlasSpriteGUID: b96bf7991cd9052439a945e62e0c125f
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1877196878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1877196879}
+  - 114: {fileID: 1877196881}
+  - 114: {fileID: 1877196880}
+  m_Layer: 0
+  m_Name: bar 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1877196879
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877196878}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.22272491e-05, y: -287.033783, z: 0}
+  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
+  m_Children:
+  - {fileID: 408168268}
+  - {fileID: 1867042054}
+  m_Father: {fileID: 1919284744}
+--- !u!114 &1877196880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877196878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc5213f218c7e4bb335db4b6cd2397, type: 3}
+  m_Name: 
+  version: 169
+  texturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 85dd12640060b1d4285d11cb0f60b8a7, type: 3}
+  texturesForeground: []
+  guiDepth: 1
+  anchorObject: {fileID: 0}
+  anchorCamera: {fileID: 0}
+  labelEnabled: 0
+  labelSkin: {fileID: 0}
+  labelPosition: {x: 0, y: 0}
+  labelPositionNormalized: 1
+  labelFormat: '{cur}/{max}'
+  labelColor: {r: 1, g: 1, b: 1, a: 1}
+  effectSmoothChange: 0
+  effectSmoothChangeSpeed: .5
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  textureMode: 1
+  atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  atlasTexturesBackground:
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    spriteGUID: b96bf7991cd9052439a945e62e0c125f
+  atlasTexturesForeground: []
+  labelFont: {fileID: 0}
+  labelScale: 32
+  labelPivot: 8
+  editorSelectable: 1
+  labelSprite: {fileID: 0}
+  spriteObjectsBg:
+  - {fileID: 1867042055}
+  spriteObjectsFg: []
+  _pivot: 8
+  textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
+  atlasTextureBarGUID: 72693c00377af2045afba97c7e61c168
+  textureBarColorType: 0
+  textureBarColor: {r: 1, g: 1, b: 1, a: 1}
+  textureBarGradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  growDirection: 0
+  radialOffset: 0
+  radialLength: 1
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  effectBlink: 0
+  effectBlinkValue: .200000003
+  effectBlinkRatePerSecond: 1
+  effectBlinkColor: {r: 1, g: 1, b: 1, a: 0}
+  effectFollow: 0
+  effectFollowObject: {fileID: 0}
+  effectFollowScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowRotation:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  effectFollowColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  effectFollowDefaultsSet: 1
+  effectFollowSprite: {fileID: 0}
+  lastRebuildHash: 1252847360
+  spriteBar: {fileID: 408168269}
+  spriteBurnBar: {fileID: 0}
+--- !u!114 &1877196881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877196878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfc393ba3e9ba4886cecff90d9a611, type: 3}
+  m_Name: 
+  valueCurrent: 107
+  valueMin: 0
+  valueMax: 100
+  animationEnabled: 0
+  animValueF: 0
+--- !u!1 &1909934128
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1909934129}
+  - 114: {fileID: 1909934130}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1909934129
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1909934128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 982749915}
+--- !u!114 &1909934130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1909934128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
+  lastTextureAtlasSpriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 0
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1919284743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1919284744}
+  - 33: {fileID: 1919284749}
+  - 23: {fileID: 1919284748}
+  - 114: {fileID: 1919284747}
+  - 114: {fileID: 1919284746}
+  - 114: {fileID: 1919284745}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919284744
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .73888886, y: .73888886, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 982749915}
+  - {fileID: 67653614}
+  - {fileID: 85376719}
+  - {fileID: 1123167726}
+  - {fileID: 484657520}
+  - {fileID: 1877196879}
+  m_Father: {fileID: 981187729}
+--- !u!114 &1919284745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1167294237, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  halfPixelOffset: 1
+--- !u!114 &1919284746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -404057372, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+--- !u!114 &1919284747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1383066385, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+--- !u!23 &1919284748
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &1919284749
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919284743}
+  m_Mesh: {fileID: 468801436}
+--- !u!1 &2113828662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2113828663}
+  - 114: {fileID: 2113828664}
+  m_Layer: 0
+  m_Name: Energy Bar Toolkit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113828663
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113828662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .00277777785, y: .00277777785, z: .00277777785}
+  m_Children:
+  - {fileID: 981187729}
+  m_Father: {fileID: 0}
+--- !u!114 &2113828664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113828662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1364248236, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  resizeMode: 1
+  manualHeight: 720
+  minimumHeight: 320
+  maximumHeight: 1536
