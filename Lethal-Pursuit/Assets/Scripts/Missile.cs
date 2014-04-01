@@ -6,6 +6,7 @@ public class Missile : MonoBehaviour {
 	
 	public Spaceship sourceSpaceship;
 	public GameObject explosion;
+	public MeshRenderer missileModel;
 
 	public Vector3 direction = Vector3.forward;
 	public float damage = 15f;
@@ -70,6 +71,7 @@ public class Missile : MonoBehaviour {
 		float originalRadius = sphereCollider.radius;
 		explosion.SetActive(true);
 		explosion.transform.parent = null;
+		missileModel.enabled = false;
 		
 		while (timeUntilMaxExplosionRadius > 0) {
 			timeUntilMaxExplosionRadius -= Time.deltaTime;
