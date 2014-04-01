@@ -10,10 +10,10 @@ public class PickupPunkMissiles : Pickup {
 	private GameObject hitGameObject;
 	
 	public int numberOfShots = 5;
-	public float cooldownBetweenShots = 0.1f;
+	public float cooldownBetweenShots = 0.25f;
 	private float timeUntilCanShoot = 0.0f;
 
-	public string bulletResourcePath = "Bullets/PunkMissileBullet";
+	public string missileResourcePath = "Bullets/PunkMissileBullet";
 
 //	private GameObject cachedBullet;
 	public AudioClip shootingSound;
@@ -39,28 +39,28 @@ public class PickupPunkMissiles : Pickup {
 
 
 	public void SpawnMissile() {
-		GameObject bulletGameObject;
+		GameObject missileGameObject;
 		if (NetworkManager.IsSinglePlayer()) {
-			bulletGameObject = GameObject.Instantiate(
-				Resources.Load(bulletResourcePath),
+			missileGameObject = GameObject.Instantiate(
+				Resources.Load(missileResourcePath),
 				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
 		else {
-			bulletGameObject = Network.Instantiate(
-				Resources.Load(bulletResourcePath),
+			missileGameObject = Network.Instantiate(
+				Resources.Load(missileResourcePath),
 				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 
 				spaceship.gun.transform.rotation,
 				667
 			) as GameObject;
 		}
 		
-		Bullet bullet = bulletGameObject.GetComponent<Bullet>();
-		bullet.direction = spaceship.spaceshipModel.transform.forward;
-		bullet.sourceSpaceship = spaceship;
+		Missile missile = missileGameObject.GetComponent<Missile>();
+		missile.direction = spaceship.spaceshipModel.transform.forward;
+		missile.sourceSpaceship = spaceship;
 		
-		bulletGameObject.SetActive(true);
+		missileGameObject.SetActive(true);
 		spaceship.gun.audio.PlayOneShot(shootingSound);
 	}
 

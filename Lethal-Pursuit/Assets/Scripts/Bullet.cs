@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Collider))]
 public class Bullet : MonoBehaviour {
 
 	public Spaceship sourceSpaceship;
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
+			this.transform.position = collision.contacts[0].point;
 			alreadyDying = true;
 			explosion.transform.parent = null;
 			explosion.SetActive(true);
