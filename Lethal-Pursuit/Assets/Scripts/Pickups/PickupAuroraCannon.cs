@@ -9,7 +9,8 @@ public class PickupAuroraCannon : Pickup {
 	
 	public float damageRate = 30.0f;
 	public float laserHitForce = 1000.0f;
-	public float currentEnergy = 100f;
+	public float maxEnergy = 100f;
+	public float currentEnergy;
 	public float energyDrainRate = 50.0f;
 	public float laserLength = 500.0f;
 	private GameObject hitGameObject;
@@ -74,6 +75,7 @@ public class PickupAuroraCannon : Pickup {
 		laserBeamEffect.transform.localScale = Vector3.one;
 		laserBeamEffect.sourceTransform = spaceship.spaceshipModel.transform;
 		laserBeamEffectScript.laserMaxDistance = laserLength;
+		currentEnergy = maxEnergy;
 		active = true;
 	}
 

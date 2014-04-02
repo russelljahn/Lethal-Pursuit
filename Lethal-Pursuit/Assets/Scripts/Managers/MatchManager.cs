@@ -25,8 +25,8 @@ public class MatchManager : MonoBehaviour {
 	
 	HudManager hudManager;
 
-	public int targetKills = 10;
-	public float timeLimit = 5 * 60.0f;
+	public static int targetKills = 10;
+	public static float timeLimit = 5 * 60.0f;
 
 	public int[] killscores;
 
@@ -146,12 +146,6 @@ public class MatchManager : MonoBehaviour {
 		Debug.Log("Kill tallied for player: " + playerID);
 		++killscores[playerID];
 	}
-
-
-
-
-
-
 
 
 

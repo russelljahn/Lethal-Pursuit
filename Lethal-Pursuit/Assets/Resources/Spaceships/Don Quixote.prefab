@@ -2518,6 +2518,7 @@ MonoBehaviour:
   spaceshipCamera: {fileID: 2000000}
   crosshairs: {fileID: 100068}
   gun: {fileID: 11400002}
+  pickups: {fileID: 11400014}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -2810,7 +2811,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800024}
-  particleSystemId: 7
+  particleSystemId: 11
   particleSystemGameObject: {fileID: 100064}
   particleSystemTransform: {fileID: 400064}
   particleSystemRenderer: {fileID: 19900024}
@@ -2834,7 +2835,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 108.599991
+  simulationStarted: 174.510101
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
