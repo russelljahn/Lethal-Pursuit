@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 07 - Default
-  m_Shader: {fileID: 4800000, guid: a65f134a70cd949ffa24ef832100c3b1, type: 3}
+  m_Name: Buzz - Glossy 3
+  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,8 +17,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9270b1857de5b4649855101fe06f32ea, type: 3}
-          m_Scale: {x: 12, y: 1}
+          m_Texture: {fileID: 2800000, guid: 001f3150169444c4ba77aa24fa980f57, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -30,34 +30,38 @@ Material:
     m_Floats:
       data:
         first:
+          name: _Outline
+        second: .0115
+      data:
+        first:
           name: _NumColors
-        second: 19.3214283
+        second: 16.2803574
       data:
         first:
           name: _OutlineWidth
-        second: .178571433
+        second: .400000006
       data:
         first:
           name: _Brightness
-        second: 2.28571415
+        second: 1
+      data:
+        first:
+          name: _OutlineFalloff
+        second: 4
       data:
         first:
           name: _ColorMerge
-        second: 20000
-      data:
-        first:
-          name: _Outline
-        second: .0115
+        second: 8
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .13333334, g: .796078503, b: .541176498, a: 1}
-      data:
-        first:
-          name: _MainColor
-        second: {r: .79411763, g: .291954994, b: .291954994, a: 1}
+        second: {r: 1, g: .0808823705, b: .0808823705, a: 1}
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .198529422, g: .198529422, b: .198529422, a: 1}

@@ -297,7 +297,7 @@ MonoBehaviour:
   damage: 20
   speed: 7500
   timeUntilDeath: 5
-  maxExplosionRadius: 800
+  maxExplosionRadius: 700
   timeUntilMaxExplosionRadius: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -9250,7 +9250,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 100
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800002
 ParticleSystem:
