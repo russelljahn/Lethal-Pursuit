@@ -28,7 +28,7 @@ namespace InControl
 				new InputControlMapping
 				{
 					Handle = "Spacebar",
-					Target = InputControlType.Action3,
+					Target = InputControlType.Action1,
 					Source = KeyCodeButton( KeyCode.Space )
 				},
 				new InputControlMapping
@@ -52,7 +52,7 @@ namespace InControl
 				new InputControlMapping
 				{
 					Handle = "Left Control",
-					Target = InputControlType.Action1,
+					Target = InputControlType.Action3,
 					Source = KeyCodeButton(KeyCode.LeftControl)
 				},
 				new InputControlMapping
