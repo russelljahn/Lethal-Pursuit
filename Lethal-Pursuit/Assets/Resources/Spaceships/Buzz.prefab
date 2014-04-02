@@ -2049,7 +2049,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100072}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
   m_PlayOnAwake: 0
@@ -2058,11 +2058,11 @@ AudioSource:
   Loop: 1
   Mute: 0
   Priority: 128
-  DopplerLevel: 3.01999998
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2070,12 +2070,12 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: .30898875
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0
+      value: .0505617969
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2120,7 +2120,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2664,9 +2664,9 @@ MonoBehaviour:
   engine3MaxVolume: 1
   drift1MinVolume: 0
   drift1MaxVolume: 1
-  engine1VolumeFadeRate: 2
-  engine2VolumeFadeRate: 2
-  engine3VolumeFadeRate: 2
+  engine1VolumeFadeRate: 1.5
+  engine2VolumeFadeRate: 1.5
+  engine3VolumeFadeRate: 1.5
   drift1VolumeFadeRate: 2
   engine1MinPitch: 1
   engine1MaxPitch: 1
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 153.069672
+  simulationStarted: 19.9007912
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
