@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
 	
 	public string vehicle1Filepath = "Spaceships/Buzz";
 	public string vehicle2Filepath = "Spaceships/Magneto II";
-	public string vehicle3Filepath = "Spaceships/Patriot 69Z";
+	public string vehicle3Filepath = "Spaceships/Don Quixote";
 	
 	public string tutorialFilename = "Tutorial";
 	public string level1Filename = "Arena";
