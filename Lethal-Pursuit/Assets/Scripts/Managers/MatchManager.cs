@@ -25,7 +25,7 @@ public class MatchManager : MonoBehaviour {
 	
 	HudManager hudManager;
 
-	public int targetKills = 5;
+	public int targetKills = 10;
 	public float timeLimit = 5 * 60.0f;
 
 	public int[] killscores;
