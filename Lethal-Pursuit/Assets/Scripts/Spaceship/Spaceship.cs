@@ -23,6 +23,8 @@ public class Spaceship : MonoBehaviour {
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
 	public SpaceshipGun gun;
+	public SpaceshipPickups pickups;
+	
 	
 	#region input variables
 	public float xTiltLeftStick; /* Tilt of left analogue stick every frame. */

@@ -4,15 +4,20 @@ using System.Collections;
 
 public class HudEnergy : MonoBehaviour {
 
-	public Color fullColor = Color.cyan;
-	public Color drainedColor = Color.blue;
-	public Color criticalColor = Color.grey;
+	public Color defaultGunColor = Color.cyan;
+	public Color auroraCannonColor = Color.cyan;
+	public Color punkMissilesColor = Color.cyan;
+	
+//	public Color drainedColor = Color.blue;
+//	public Color criticalColor = Color.grey;
 
-	private SpaceshipGun gunComponent;
-	private UI2DSprite energybarSprite;
+	private SpaceshipGun gun;
+	private SpaceshipPickups pickups;
+	
+	public UI2DSprite energybarSprite;
 
-	private Vector3 initialScale;
-	private Vector3 currentScale;
+	public Vector3 initialScale;
+	public Vector3 currentScale;
 
 
 	// Use this for initialization
@@ -25,29 +30,29 @@ public class HudEnergy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (gunComponent == null) {
+		if (gun == null || pickups == null) {
 			Spaceship ship = GameplayManager.spaceship;
 			if (ship != null) {
-				gunComponent = ship.gun;
+				gun = ship.gun;
+				pickups = ship.pickups;
 			}
 		}
-		else {
-			currentScale.x = gunComponent.currentEnergy/gunComponent.maxEnergy * initialScale.x;
-			this.transform.localScale = currentScale;
-	
-			switch (gunComponent.state) {
-				case EnergyState.FULL:
-					energybarSprite.color = fullColor;
-					break;
-				case EnergyState.DRAINED:
-					energybarSprite.color = drainedColor;
-					break;
-				case EnergyState.CRITICAL:
-					energybarSprite.color = criticalColor;
-					break;
-				default:
-					throw new Exception("Unknown Energy state: " + gunComponent.state);
+		else if (gun.enabled) {
+			energybarSprite.color = defaultGunColor;
+			currentScale.x = gun.currentEnergy/gun.maxEnergy * initialScale.x;	
+		}
+		else if (pickups.currentPickup != null) {
+			if (pickups.currentPickup is PickupAuroraCannon) {
+				energybarSprite.color = auroraCannonColor;
+				PickupAuroraCannon auroraCannon = pickups.currentPickup as PickupAuroraCannon;
+				currentScale.x = auroraCannon.currentEnergy/auroraCannon.maxEnergy * initialScale.x;
+			}
+			else if (pickups.currentPickup is PickupPunkMissiles) {
+				energybarSprite.color = punkMissilesColor;
+				PickupPunkMissiles punkMissiles = pickups.currentPickup as PickupPunkMissiles;
+				currentScale.x = ((float)punkMissiles.currentShots)/punkMissiles.maxShots * initialScale.x;
 			}
 		}
+		this.transform.localScale = currentScale;
 	}
 }

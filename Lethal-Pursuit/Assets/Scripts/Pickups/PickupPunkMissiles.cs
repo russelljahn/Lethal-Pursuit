@@ -8,8 +8,9 @@ public class PickupPunkMissiles : Pickup {
 
 	
 	private GameObject hitGameObject;
-	
-	public int numberOfShots = 5;
+
+	public int maxShots = 5;
+	public int  currentShots;
 	public float cooldownBetweenShots = 0.25f;
 	private float timeUntilCanShoot = 0.0f;
 
@@ -30,10 +31,10 @@ public class PickupPunkMissiles : Pickup {
 			return;
 		}
 		
-		if (spaceship.shooting && timeUntilCanShoot == 0.0f && numberOfShots > 0) {
+		if (spaceship.shooting && timeUntilCanShoot == 0.0f && currentShots > 0) {
 			SpawnMissile();
 			timeUntilCanShoot = cooldownBetweenShots;
-			--numberOfShots;
+			--currentShots;
 		}
 	}
 
@@ -71,12 +72,13 @@ public class PickupPunkMissiles : Pickup {
 
 
 	public override bool ShouldDrop() {
-		return numberOfShots <= 0;
+		return currentShots <= 0;
 	}
 
 
 	public override void OnPickup (Spaceship spaceship) {
 		base.OnPickup (spaceship);
+		currentShots = maxShots;
 		active = true;
 	}
 
