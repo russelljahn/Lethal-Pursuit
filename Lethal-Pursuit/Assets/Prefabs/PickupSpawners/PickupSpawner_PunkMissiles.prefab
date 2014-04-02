@@ -114,8 +114,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120.202232, y: 140.973343, z: -7.42525625}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: 125.783524, y: -7.66042185, z: -1.33733141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -720,7 +720,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 75.6141129
+  simulationStarted: 148.402313
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToPickupResource: Pickups/Pickup_Punk_Missiles
-  respawnTime: 10
+  respawnTime: 15
   timeRemainingUntilRespawn: 0
   pickupSound: {fileID: 8300000, guid: f64179d968af4bc4ba90327cb29454e9, type: 3}
   visuals: {fileID: 100004}
