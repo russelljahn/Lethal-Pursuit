@@ -30,7 +30,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	private Texture2D damageOverlayImage;
 	public float damageOverlaySpeed = 0.5f;
 	public float damageOverlayOpacity = 0.175f;
-	
+
+	public GameObject damageIndicator;
+	public GameObject lastDamager;
+
 	public override void Start() {
 		base.Start();
 		currentHealth = maxHealth;
@@ -57,6 +60,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			this.state = HealthState.HEALTHY;
 		}
 		HandleDeath();
+		HandleDamageIndicator();
 	}
 	
 	
@@ -72,6 +76,16 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 		}
 	}
+
+
+
+	void HandleDamageIndicator() {
+		if (lastDamager != null) {
+			damageIndicator.transform.LookAt(lastDamager.transform.position);
+			Debug.Log ("lastDamager.transform.position: " + lastDamager.transform.position);
+		}
+		
+	}
 	
 	
 	
@@ -80,8 +94,12 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		
 		Debug.Log("My ipaddr is: " + Network.player.ipAddress);
 		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
-		
+
 		Debug.Log (message);
+		Debug.Log(string.Format("Damager: {0}, location: {1}", damager, damager.transform.position));
+//		damageIndicator.transform.rotation = Quaternion.LookRotation(damager.transform.position-this.transform.position);
+//		damageIndicator.transform.rotation = Quaternion.Euler(damageIndicator.transform.rotation.eulerAngles + new Vector3(0.0f, 90f, 0f));
+		lastDamager = damager;
 		if (!invulnerable) {
 			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
@@ -102,6 +120,9 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			Debug.Log ("Being hurt BUT INVINCIBLE!");
 		}
 	}
+
+
+
 	public bool IsDead() {
 		return currentHealth <= 0.0f;
 	}
