@@ -25,14 +25,17 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public MatchManager matchManager;
 	
 	public int lastHurtByPlayerID = -1;
-
-	private bool damageOverlayCurrentlyAnimating = false;
-	private Texture2D damageOverlayImage;
-	public float damageOverlaySpeed = 0.5f;
+	
+	public UI2DSprite damageOverlayImage;
+	public float damageOverlayMaxOpacity = 0.4f;
+	public float damageOverlayHideSpeed = 0.5f;
 	public float damageOverlayOpacity = 0.175f;
 
-//	public GameObject damageIndicator;
-//	public GameObject lastDamager;
+	public GameObject currentDamager;
+	public GameObject lastDamager;
+
+	public float timeToShowDamageOverlay = 2.0f;
+	public float remainingTimeToDamageOverlay;
 
 	public override void Start() {
 		base.Start();
@@ -59,8 +62,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		else {
 			this.state = HealthState.HEALTHY;
 		}
+
+		HandleDamageOverlay();
 		HandleDeath();
-		HandleDamageIndicator();
+		lastDamager = currentDamager;
+		currentDamager = null;
 	}
 	
 	
@@ -78,15 +84,44 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	}
 
 
+	void HandleDamageOverlay() {
+		if (damageOverlayImage == null) {
+			return;
+		}
 
-	void HandleDamageIndicator() {
-//		if (lastDamager != null) {
-//			damageIndicator.transform.LookAt(lastDamager.transform.position);
-//			Debug.Log ("lastDamager.transform.position: " + lastDamager.transform.position);
-//		}
-		
+		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			if (IsDead()) {
+				damageOverlayImage.alpha = 0.0f;
+				return;
+			}
+
+			if (currentDamager != null && currentDamager != lastDamager) {
+				damageOverlayImage.alpha = damageOverlayMaxOpacity;
+				remainingTimeToDamageOverlay = timeToShowDamageOverlay;
+			}
+			else {
+				remainingTimeToDamageOverlay = Mathf.Max(0.0f, remainingTimeToDamageOverlay-Time.deltaTime);
+			}
+			if (remainingTimeToDamageOverlay <= 0.0f) {
+				damageOverlayImage.alpha = Mathf.Max(0.0f, damageOverlayImage.alpha-Time.deltaTime*damageOverlayHideSpeed);
+				lastDamager = null;
+			}
+		}
 	}
-	
+
+
+	// Use this for initialization
+	public void FadeInDamageOverlay () {
+		
+		Hashtable iTweenSettings = new Hashtable();
+		iTweenSettings["oncomplete"] = "OnFinishedAnimatingDamageOverlay";
+		iTweenSettings["oncompletetarget"] = this.gameObject;
+		iTweenSettings["amount"] = damageOverlayOpacity;
+		iTweenSettings["time"] = damageOverlayHideSpeed;
+		iTweenSettings["easetype"] = "easeInOutQuad";
+
+		iTween.CameraFadeFrom(iTweenSettings);
+	}
 	
 	
 	// Implementing Damageable interface.
@@ -94,24 +129,19 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		
 		Debug.Log("My ipaddr is: " + Network.player.ipAddress);
 		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
-
 		Debug.Log (message);
-//		Debug.Log(string.Format("Damager: {0}, location: {1}", damager, damager.transform.position));
-//		damageIndicator.transform.rotation = Quaternion.LookRotation(damager.transform.position-this.transform.position);
-//		damageIndicator.transform.rotation = Quaternion.Euler(damageIndicator.transform.rotation.eulerAngles + new Vector3(0.0f, 90f, 0f));
-//		lastDamager = damager;
+
+		lastDamager = currentDamager;
+		currentDamager = damager;
 		if (!invulnerable) {
-			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 				//lastHurtByPlayerID = -1;
-				FadeInDamageOverlay();
 			}
 			else {
 				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
 				
 				// Need to check if not -1 for non existing game object
-				
 				networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
 				//networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);				
 			}
@@ -135,36 +165,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 			lastHurtByPlayerID = playerID;
 			Debug.Log("Hurt by playerID: " + playerID);
-
-			FadeInDamageOverlay();
 		}
 	}
 	
 
-	// Use this for initialization
-	public void FadeInDamageOverlay () {
-		if (damageOverlayCurrentlyAnimating) {
-			return;
-		}
-		damageOverlayCurrentlyAnimating = true;
 
-		Hashtable iTweenSettings = new Hashtable();
-		iTweenSettings["oncomplete"] = "OnFinishedAnimatingDamageOverlay";
-		iTweenSettings["oncompletetarget"] = this.gameObject;
-		iTweenSettings["amount"] = damageOverlayOpacity;
-		iTweenSettings["time"] = damageOverlaySpeed;
-		iTweenSettings["easetype"] = "easeInOutQuad";
-
-		if (damageOverlayImage == null) {
-			damageOverlayImage = iTween.CameraTexture(Color.red);
-			iTween.CameraFadeAdd(damageOverlayImage); // Replace w/ tex eventually
-		}
-		iTween.CameraFadeFrom(iTweenSettings);
-	}
-
-
-	public void OnFinishedAnimatingDamageOverlay() {
-		damageOverlayCurrentlyAnimating = false;	
-	}
 	
 }
