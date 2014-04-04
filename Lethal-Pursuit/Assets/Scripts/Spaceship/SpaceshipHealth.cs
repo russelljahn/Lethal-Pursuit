@@ -31,8 +31,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public float damageOverlaySpeed = 0.5f;
 	public float damageOverlayOpacity = 0.175f;
 
-	public GameObject damageIndicator;
-	public GameObject lastDamager;
+//	public GameObject damageIndicator;
+//	public GameObject lastDamager;
 
 	public override void Start() {
 		base.Start();
@@ -80,10 +80,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	void HandleDamageIndicator() {
-		if (lastDamager != null) {
-			damageIndicator.transform.LookAt(lastDamager.transform.position);
-			Debug.Log ("lastDamager.transform.position: " + lastDamager.transform.position);
-		}
+//		if (lastDamager != null) {
+//			damageIndicator.transform.LookAt(lastDamager.transform.position);
+//			Debug.Log ("lastDamager.transform.position: " + lastDamager.transform.position);
+//		}
 		
 	}
 	
@@ -96,10 +96,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
 
 		Debug.Log (message);
-		Debug.Log(string.Format("Damager: {0}, location: {1}", damager, damager.transform.position));
+//		Debug.Log(string.Format("Damager: {0}, location: {1}", damager, damager.transform.position));
 //		damageIndicator.transform.rotation = Quaternion.LookRotation(damager.transform.position-this.transform.position);
 //		damageIndicator.transform.rotation = Quaternion.Euler(damageIndicator.transform.rotation.eulerAngles + new Vector3(0.0f, 90f, 0f));
-		lastDamager = damager;
+//		lastDamager = damager;
 		if (!invulnerable) {
 			Debug.Log ("Being hurt and not invincible!");
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
@@ -117,7 +117,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 		}
 		else {
-			Debug.Log ("Being hurt BUT INVINCIBLE!");
+			Debug.Log ("Being hit BUT INVINCIBLE!");
 		}
 	}
 
