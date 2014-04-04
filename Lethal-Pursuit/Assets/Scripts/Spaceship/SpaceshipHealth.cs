@@ -27,15 +27,15 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public int lastHurtByPlayerID = -1;
 	
 	public UI2DSprite damageOverlayImage;
-	public float damageOverlayMaxOpacity = 0.4f;
+	public float damageOverlayOpacity = 0.4f;
+	public float timeToShowDamageOverlay = 2.0f;
+	private float remainingDamageOverlayTime;
 	public float damageOverlayHideSpeed = 0.5f;
-	public float damageOverlayOpacity = 0.175f;
 
 	public GameObject currentDamager;
 	public GameObject lastDamager;
 
-	public float timeToShowDamageOverlay = 2.0f;
-	public float remainingTimeToDamageOverlay;
+
 
 	public override void Start() {
 		base.Start();
@@ -96,34 +96,20 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 
 			if (currentDamager != null && currentDamager != lastDamager) {
-				damageOverlayImage.alpha = damageOverlayMaxOpacity;
-				remainingTimeToDamageOverlay = timeToShowDamageOverlay;
+				damageOverlayImage.alpha = damageOverlayOpacity;
+				remainingDamageOverlayTime = timeToShowDamageOverlay;
 			}
 			else {
-				remainingTimeToDamageOverlay = Mathf.Max(0.0f, remainingTimeToDamageOverlay-Time.deltaTime);
+				remainingDamageOverlayTime = Mathf.Max(0.0f, remainingDamageOverlayTime-Time.deltaTime);
 			}
-			if (remainingTimeToDamageOverlay <= 0.0f) {
+			if (remainingDamageOverlayTime <= 0.0f) {
 				damageOverlayImage.alpha = Mathf.Max(0.0f, damageOverlayImage.alpha-Time.deltaTime*damageOverlayHideSpeed);
 				lastDamager = null;
 			}
 		}
 	}
-
-
-	// Use this for initialization
-	public void FadeInDamageOverlay () {
-		
-		Hashtable iTweenSettings = new Hashtable();
-		iTweenSettings["oncomplete"] = "OnFinishedAnimatingDamageOverlay";
-		iTweenSettings["oncompletetarget"] = this.gameObject;
-		iTweenSettings["amount"] = damageOverlayOpacity;
-		iTweenSettings["time"] = damageOverlayHideSpeed;
-		iTweenSettings["easetype"] = "easeInOutQuad";
-
-		iTween.CameraFadeFrom(iTweenSettings);
-	}
 	
-	
+
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount, GameObject damager, string message) {
 		
