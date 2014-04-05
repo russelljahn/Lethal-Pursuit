@@ -2662,8 +2662,12 @@ MonoBehaviour:
   invulnerable: 0
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
-  damageOverlaySpeed: .5
-  damageOverlayOpacity: .174999997
+  damageOverlayImage: {fileID: 0}
+  damageOverlayOpacity: .400000006
+  timeToShowDamageOverlay: 2
+  damageOverlayHideSpeed: .5
+  currentDamager: {fileID: 0}
+  lastDamager: {fileID: 0}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2911,7 +2915,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 206.170731
+  simulationStarted: 55.3069115
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

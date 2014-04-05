@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Ramps
-  m_Shader: {fileID: 2, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 20, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,13 +18,13 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 20b4daf000f730248b8cf664745926a4, type: 3}
-          m_Scale: {x: 10, y: 10}
+          m_Scale: {x: 25, y: 10}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: f3c480e6202bb49718019135c01e582e, type: 3}
+          m_Texture: {fileID: 2800000, guid: 9147bb8d4efa6ad43adc8caf9fdca581, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -32,6 +32,13 @@ Material:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 8900000, guid: 51e3f49dbd110a7011005aba44295342, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -47,7 +54,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .882352948, g: .841277897, b: .707179964, a: .509803951}
+        second: {r: .102941155, g: .0476859808, b: .0476859808, a: .97647059}
       data:
         first:
           name: _SpecColor
@@ -56,3 +63,7 @@ Material:
         first:
           name: _Emission
         second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: .551470578, g: .551470578, b: .551470578, a: .53725493}
