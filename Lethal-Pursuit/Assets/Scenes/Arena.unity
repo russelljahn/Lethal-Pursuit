@@ -645,7 +645,7 @@ MonoBehaviour:
     gameObject: {fileID: 2072174154}
     transform: {fileID: 2072174155}
     rigidbody: {fileID: 0}
-    cachedId: 23874
+    cachedId: 16264
     meshFilter: {fileID: 2072174157}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -3551,7 +3551,7 @@ MonoBehaviour:
     gameObject: {fileID: 592551081}
     transform: {fileID: 592551082}
     rigidbody: {fileID: 0}
-    cachedId: 22354
+    cachedId: 14746
     meshFilter: {fileID: 592551084}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -12638,7 +12638,7 @@ MonoBehaviour:
     gameObject: {fileID: 1790506339}
     transform: {fileID: 1790506340}
     rigidbody: {fileID: 0}
-    cachedId: 23590
+    cachedId: 15972
     meshFilter: {fileID: 1790506342}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -18744,7 +18744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &487956321
 Transform:
   m_ObjectHideFlags: 0
@@ -18789,6 +18789,7 @@ MonoBehaviour:
   idle: 0
   swappingWeapon: 0
   equippedItem: 0
+  selectPressedLastFrame: 0
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
@@ -20652,6 +20653,10 @@ Prefab:
     - target: {fileID: 14800004, guid: 2e0339c4153454688a14e704336a169c, type: 2}
       propertyPath: m_ViewID.m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e0339c4153454688a14e704336a169c, type: 2}
@@ -30366,7 +30371,7 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
   simulationStarted: 0
   loopExceeded: 0
@@ -36093,7 +36098,7 @@ MonoBehaviour:
     gameObject: {fileID: 200213328}
     transform: {fileID: 200213329}
     rigidbody: {fileID: 0}
-    cachedId: 21974
+    cachedId: 14378
     meshFilter: {fileID: 200213331}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -37699,6 +37704,7 @@ MonoBehaviour:
   idle: 0
   swappingWeapon: 0
   equippedItem: 0
+  selectPressedLastFrame: 0
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
@@ -41300,7 +41306,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
@@ -45049,6 +45067,8 @@ MonoBehaviour:
   - {fileID: 494964561}
   - {fileID: 2070586851}
   uiCamera: {fileID: 1094628507}
+  onScreenSprite: {fileID: 21300000, guid: 8a2ec9b172f4a4036b24798d538ca346, type: 3}
+  offScreenSprite: {fileID: 21300000, guid: e2acc32a59a9d44cb98f42bdbd8aa869, type: 3}
 --- !u!1 &1215255081
 GameObject:
   m_ObjectHideFlags: 0
@@ -50475,7 +50495,7 @@ MonoBehaviour:
     gameObject: {fileID: 1165633937}
     transform: {fileID: 1165633938}
     rigidbody: {fileID: 0}
-    cachedId: 22944
+    cachedId: 15328
     meshFilter: {fileID: 1165633940}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -52161,7 +52181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1434406608
 Transform:
   m_ObjectHideFlags: 0
@@ -59702,6 +59722,32 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400158, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: onScreenSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a2ec9b172f4a4036b24798d538ca346,
+        type: 3}
+    - target: {fileID: 11400158, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: offScreenSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e2acc32a59a9d44cb98f42bdbd8aa869,
+        type: 3}
+    - target: {fileID: 100134, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100138, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100136, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100132, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
   m_RootGameObject: {fileID: 1312740155}
@@ -63025,7 +63071,7 @@ MonoBehaviour:
     gameObject: {fileID: 1319106696}
     transform: {fileID: 1319106697}
     rigidbody: {fileID: 0}
-    cachedId: 23084
+    cachedId: 15468
     meshFilter: {fileID: 1319106699}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -65750,7 +65796,7 @@ Transform:
   m_PrefabInternal: {fileID: 1099413402}
   m_GameObject: {fileID: 1779242366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 71.6800003, z: -200}
+  m_LocalPosition: {x: 0, y: 71.6800003, z: -250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 353742944}
@@ -71129,7 +71175,7 @@ MonoBehaviour:
     gameObject: {fileID: 1718949227}
     transform: {fileID: 1718949228}
     rigidbody: {fileID: 0}
-    cachedId: 23462
+    cachedId: 15844
     meshFilter: {fileID: 1718949230}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -76726,6 +76772,7 @@ MonoBehaviour:
   idle: 0
   swappingWeapon: 0
   equippedItem: 0
+  selectPressedLastFrame: 0
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
@@ -78366,7 +78413,7 @@ MonoBehaviour:
     gameObject: {fileID: 2002976257}
     transform: {fileID: 2002976258}
     rigidbody: {fileID: 0}
-    cachedId: 23780
+    cachedId: 16154
     meshFilter: {fileID: 2002976260}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -80207,7 +80254,7 @@ MonoBehaviour:
     gameObject: {fileID: 1929403982}
     transform: {fileID: 1929403983}
     rigidbody: {fileID: 0}
-    cachedId: 23704
+    cachedId: 16092
     meshFilter: {fileID: 1929403985}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:

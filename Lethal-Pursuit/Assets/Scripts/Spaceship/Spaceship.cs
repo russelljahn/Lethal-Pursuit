@@ -39,6 +39,8 @@ public class Spaceship : MonoBehaviour {
 	public bool  swappingWeapon;
 	public EquipType equippedItem;
 	#endregion
+
+	public bool selectPressedLastFrame;
 	
 	public Vector3 forward;
 	public Vector3 right;
@@ -64,6 +66,12 @@ public class Spaceship : MonoBehaviour {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			HandleInput();
 		}
+
+		if (selectPressedLastFrame && !InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed) {
+			Debug.Log ("Flipping Y-Axis Invert...");
+			InputManager.InvertYAxis = !InputManager.InvertYAxis;
+		}
+		selectPressedLastFrame = InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed;
 	}
 	
 	

@@ -66,15 +66,15 @@ namespace InControl
 				},
 				new InputControlMapping
 				{
-					Handle = "Start",
+					Handle = "Options",
 					Target = InputControlType.Start,
-					Source = Button13
+					Source = Button9
 				},
 				new InputControlMapping
 				{
-					Handle = "Options",
+					Handle = "Share",
 					Target = InputControlType.Select,
-					Source = Button9
+					Source = Button8
 				},
 				new InputControlMapping
 				{
