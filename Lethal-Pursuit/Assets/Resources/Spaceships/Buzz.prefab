@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 1
@@ -377,7 +377,7 @@ GameObject:
   - 4: {fileID: 400042}
   - 148: {fileID: 14800006}
   m_Layer: 0
-  m_Name: 3D Model Root
+  m_Name: 3D Model Root (Pitch and Yaw)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -732,7 +732,44 @@ GameObject:
   m_Component:
   - 4: {fileID: 400084}
   m_Layer: 0
-  m_Name: 3D Model
+  m_Name: 3D Model (Roll)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100086
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400086}
+  - 33: {fileID: 3300006}
+  - 23: {fileID: 2300006}
+  - 95: {fileID: 9500000}
+  - 114: {fileID: 11400020}
+  m_Layer: 0
+  m_Name: Ship Outer Shell VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100088
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400088}
+  - 33: {fileID: 3300008}
+  - 23: {fileID: 2300008}
+  - 95: {fileID: 9500002}
+  m_Layer: 0
+  m_Name: Ship Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,8 +853,7 @@ Transform:
   m_LocalRotation: {x: -.5, y: .5, z: .500000119, w: .49999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children:
-  - {fileID: 400080}
+  m_Children: []
   m_Father: {fileID: 400084}
 --- !u!4 &400014
 Transform:
@@ -838,7 +874,7 @@ Transform:
   m_GameObject: {fileID: 100016}
   m_LocalRotation: {x: .70710659, y: -1.78813934e-07, z: 1.78813934e-07, w: -.707107008}
   m_LocalPosition: {x: .00227355957, y: -.000595092773, z: 10000}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_Children: []
   m_Father: {fileID: 400084}
 --- !u!4 &400018
@@ -1164,7 +1200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 54, z: -150}
+  m_LocalPosition: {x: 0, y: 90, z: -350}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
@@ -1223,12 +1259,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -8.40350296e-08, y: -2.9717782e-08, z: 8.89000518e-08, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
-  m_Father: {fileID: 400012}
+  m_Father: {fileID: 400088}
 --- !u!4 &400082
 Transform:
   m_ObjectHideFlags: 1
@@ -1250,9 +1286,34 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 400088}
   - {fileID: 400016}
   - {fileID: 400012}
   m_Father: {fileID: 400042}
+--- !u!4 &400086
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 400088}
+--- !u!4 &400088
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_LocalRotation: {x: -.5, y: .5, z: .5, w: .5}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 150, y: 150, z: 150}
+  m_Children:
+  - {fileID: 400086}
+  - {fileID: 400080}
+  m_Father: {fileID: 400084}
 --- !u!12 &1200000
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -1636,6 +1697,51 @@ Renderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
+--- !u!23 &2300006
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 9d9f6794fff34aa4d8ea1dc1932bafce, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!23 &2300008
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 9ce8cb1fc670643738f512d8b35d8efe, type: 2}
+  - {fileID: 2100000, guid: 4667046096fac401b821ccc3ec3d3c5c, type: 2}
+  - {fileID: 2100000, guid: 72049a5a1af1c4020b5a1c78f4750774, type: 2}
+  - {fileID: 2100000, guid: c1948d06f52ab4c769e8bf380a7329d8, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!26 &2600000
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -1813,6 +1919,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Mesh: {fileID: 4300000, guid: 22da0b00530e6854491b0a232bea4583, type: 3}
+--- !u!33 &3300006
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Mesh: {fileID: 4300000, guid: 2a5fdfcfbe6a1674fb26936617b05d59, type: 3}
+--- !u!33 &3300008
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Mesh: {fileID: 4300000, guid: 650b8b215020e6649b52fb106d7492e9, type: 3}
 --- !u!45 &4500000
 Skybox:
   m_ObjectHideFlags: 1
@@ -2166,6 +2286,34 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100070}
   m_Enabled: 1
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 2a5fdfcfbe6a1674fb26936617b05d59, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!95 &9500002
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 650b8b215020e6649b52fb106d7492e9, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!96 &9600000
 TrailRenderer:
   m_ObjectHideFlags: 1
@@ -2607,6 +2755,7 @@ MonoBehaviour:
   idle: 0
   swappingWeapon: 0
   equippedItem: 0
+  selectPressedLastFrame: 0
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
@@ -2685,6 +2834,20 @@ MonoBehaviour:
   engine2PitchFadeRate: 1
   engine3PitchFadeRate: 1
   drift1PitchFadeRate: 1
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86310f07a6c94443799a49280b05e913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToScroll: {fileID: 2100000, guid: 9d9f6794fff34aa4d8ea1dc1932bafce, type: 2}
+  xRate: .330000013
+  yRate: .5
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2913,9 +3076,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 77.9544144
+  simulationStarted: 1776.1748
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
