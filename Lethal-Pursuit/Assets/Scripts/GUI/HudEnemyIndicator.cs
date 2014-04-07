@@ -49,28 +49,38 @@ public class HudEnemyIndicator : MonoBehaviour {
 					Vector3 newIndicatorPosition = 2.0f*(screenPosition-screenCenter);
 					newIndicatorPosition.z = 0f;
 					indicatorSprites[j].sprite2D = onScreenSprite;
+					indicatorSprites[j].alpha = 1.0f;
 					indicatorSprites[j].enabled = true;
 					indicatorSprites[j].transform.localPosition = newIndicatorPosition;
 				}
-//				else if (screenPosition.z < 0) {
-//					screenPosition.z *= -1.0f;
+//				else {
+//					Debug.Log (string.Format("Untransformed screenPosition of {0}: {1}", ship.gameObject, screenPosition));
+////					screenPosition.z *= -1.0f;
 //					float border = 0.9f;
 //					
 //					screenPosition -= screenCenter; // Map screen coords origin to center of screen
+//					Debug.Log (string.Format("Transformed to origin screenPosition of {0}: {1}", ship.gameObject, screenPosition));
+//					
 //					float slope = screenPosition.x/screenPosition.y;
 //					//y = mx
 //					//x = y/m
+//					float halfWidth = 0.5f*Screen.width;
+//					float halfHeight = 0.5f*Screen.height;
 //
-//					screenPosition.x = Mathf.Clamp((0.5f*Screen.height)/slope, -border, border);
-//					screenPosition.y = Mathf.Clamp(slope*(0.5f*Screen.width), -border, border);
+//					screenPosition.x = Mathf.Clamp(Screen.height/slope, -border*halfWidth, border*halfWidth);
+//					screenPosition.y = Mathf.Clamp(slope*Screen.width, -border*halfHeight, border*halfHeight);
+//					Debug.Log (string.Format("Transformed screenPosition of {0} after clamping: {1}", ship.gameObject, screenPosition));
 //					
 //
 //					screenPosition += screenCenter;
+//					Debug.Log (string.Format("ScreenPosition of {0} after clamping and remapping to screen coordinates: {1}", ship.gameObject, screenPosition));
+//					
 ////					Debug.Log(string.Format("Viewport position for {0}: {1}", ship, viewportPosition));
 ////					screenPosition = spaceship.spaceshipCamera.ViewportToScreenPoint(viewportPosition);
 ////					Vector3 newIndicatorPosition = 2.0f*(screenPosition-screenCenter);
 //					Vector3 newIndicatorPosition = screenPosition;
 //					indicatorSprites[j].sprite2D = offScreenSprite;
+//					indicatorSprites[j].alpha = 0.75f;
 //					indicatorSprites[j].enabled = true;
 //					indicatorSprites[j].transform.localPosition = newIndicatorPosition;
 //				}
