@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 02 - Default
-  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
+  m_Name: Material Test
+  m_Shader: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,7 +17,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 8caa437b19957a045866b84c6218a0db, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3a46215bf4b4148f4a4cbd004727f821, type: 3}
+          m_Scale: {x: .100000001, y: .100000001}
+          m_Offset: {x: 20.5631409, y: 82.2525635}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -30,14 +37,18 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Outline
-        second: .0115
+          name: PixelSnap
+        second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: 0, g: 1, b: .0482759476, a: 1}
+          name: _TintColor
+        second: {r: 1, g: 1, b: 1, a: .501960814}
