@@ -14580,7 +14580,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341440170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -212.060852, y: -139.571442, z: -1.52587891e-05}
+  m_LocalPosition: {x: -326.727539, y: -204.071442, z: -1.52587891e-05}
   m_LocalScale: {x: .74999994, y: 1, z: .50000006}
   m_Children: []
   m_Father: {fileID: 1748918628}
@@ -19748,6 +19748,7 @@ MonoBehaviour:
   spaceshipCamera: {fileID: 1788693038}
   crosshairs: {fileID: 350191715}
   gun: {fileID: 681394990}
+  pickups: {fileID: 490447509}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -20274,7 +20275,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528357059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.09375, z: 0}
+  m_LocalPosition: {x: 0, y: .09375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552580724}
@@ -20322,8 +20323,8 @@ MonoBehaviour:
     absolute: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 597
-  mHeight: 448
+  mWidth: 827
+  mHeight: 620
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -28680,7 +28681,7 @@ NetworkView:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 732870047}
   m_Enabled: 1
-  m_StateSynchronization: 0
+  m_StateSynchronization: 1
   m_Observed: {fileID: 732870049}
   m_ViewID:
     m_ID: 1
@@ -55005,6 +55006,7 @@ MonoBehaviour:
   spaceshipCamera: {fileID: 1424972407}
   crosshairs: {fileID: 1879547873}
   gun: {fileID: 1710610853}
+  pickups: {fileID: 1677083325}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -56863,6 +56865,7 @@ MonoBehaviour:
   spaceshipCamera: {fileID: 492540799}
   crosshairs: {fileID: 1137915000}
   gun: {fileID: 277996948}
+  pickups: {fileID: 1766606024}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -59202,7 +59205,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1843540120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -287.666656, y: -117, z: -66.948288}
+  m_LocalPosition: {x: -402.333344, y: -181.5, z: -66.948288}
   m_LocalScale: {x: 1.33815587, y: .455988586, z: .455988586}
   m_Children: []
   m_Father: {fileID: 1748918628}
@@ -59575,7 +59578,7 @@ Transform:
   m_GameObject: {fileID: 1883625915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00595238106, y: .00595238106, z: .00595238106}
+  m_LocalScale: {x: .00430107536, y: .00430107536, z: .00430107536}
   m_Children:
   - {fileID: 1517977203}
   - {fileID: 1226945686}

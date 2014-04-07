@@ -20,6 +20,7 @@ public class NetworkManager : MonoBehaviour {
 	public  static int maxPlayersAllowed = 16;
 	private static List<NetworkPlayer> playerList = new List<NetworkPlayer>();
 	private static int playerID = -1;
+	public  static int numPlayers = 1;
 	
 	private static NetworkManager instance {
 		get {
@@ -121,8 +122,10 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("Clean up after player: " + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
-
-		//UpdateClientPlayerInfo();
+		
+		if(LevelManager.IsMainMenu()) {
+			UpdateClientPlayerInfo();
+		}
 	}
 	
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
@@ -199,6 +202,8 @@ public class NetworkManager : MonoBehaviour {
 
 		playerList.AddRange(Network.connections);
 		playerList.TrimExcess();
+		
+		numPlayers = playerList.Count;
 
 		Debug.Log("Sending out RPPC to update client information");
 
@@ -234,6 +239,8 @@ public class NetworkManager : MonoBehaviour {
 		foreach (NetworkPlayer player in playerList) {
 			Debug.Log("IPAddr : " + player.ipAddress);
 		}
+		
+		numPlayers = playerList.Count;
 	
 	}
 	
