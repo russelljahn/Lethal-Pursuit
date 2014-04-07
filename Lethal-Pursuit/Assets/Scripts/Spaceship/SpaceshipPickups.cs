@@ -71,13 +71,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 
 
 	public bool CanPickup(Pickup pickup) {
-		if (pickup is PickupHealth) {
-			SpaceshipHealth health = spaceship.GetComponent<SpaceshipHealth>();
-			return health.currentHealth < health.maxHealth;
-		}
-		else {
-			return currentPickup == null;
-		}
+		return true;
 	}
 
 
@@ -90,8 +84,12 @@ public class SpaceshipPickups : SpaceshipComponent {
 		Debug.Log ("pickup.gameObject: " + pickup.gameObject);
 		Debug.Log ("pickup.gameObject.transform.parent: " + pickup.gameObject.transform.parent);
 
-		// Basically checking if item is equippable. Need to eventually make less hacky.
+
 		if (pickup.IsEquippable()) {
+			if (currentPickup != null) {
+				currentPickup.OnDrop();
+				GameObject.Destroy(currentPickup.gameObject);
+			}
 			currentPickup = pickup;
 			equippedItem = EquipType.SUB_WEAPON;
 			spaceship.DisableGun();
