@@ -29,6 +29,7 @@ public class MatchManager : MonoBehaviour {
 	public static float timeLimit = 5 * 60.0f;
 
 	public int[] killscores;
+	public int personalScore = 0;
 
 	private Level currentLevel;
 	
@@ -132,20 +133,63 @@ public class MatchManager : MonoBehaviour {
 
 
 	public void InformServerForKilledBy(int playerID) {
-		if (Network.isClient) {
-			networkView.RPC("ServerTallyKill", RPCMode.Server, playerID);
-		}
-		else {
-			killscores[playerID]++;
+		if(playerID != -1) {
+			if (Network.isClient) {
+				networkView.RPC("ServerTallyKill", RPCMode.Server, playerID);
+			}
+			else {
+				IncrementScore(playerID);
+			}
 		}
 	}
-
-
+	
 	[RPC]
 	public void ServerTallyKill(int playerID) {
-		Debug.Log("Kill tallied for player: " + playerID);
-		++killscores[playerID];
+		IncrementScore(playerID);
 	}
+	
+	public void IncrementScore(int playerID) {
+		Debug.Log("Kill tallied for player: " + playerID);
+		if(playerID != NetworkManager.GetPlayerID()) {
+			
+			killscores[playerID]++;
+			
+			if(Network.isServer) {
+				personalScore = killscores[playerID];
+			}
+			else {
+				networkView.RPC("UpdatePlayerScore", 
+			                	NetworkManager.GetPlayerList()[playerID], 
+			                	killscores[playerID]);
+			}
+		}
+	}
+	
+	[RPC]
+	public void UpdatePlayerScore(int score) {
+		personalScore = score;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

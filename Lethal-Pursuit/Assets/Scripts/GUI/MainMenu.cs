@@ -39,6 +39,8 @@ public class MainMenu : MonoBehaviour {
 	public string tutorialFilename = "Tutorial";
 	public string level1Filename = "Arena";
 	
+	private int playersReady = 1;
+	
 	
 	public void Start() {
 		HideAllMenus();
@@ -368,15 +370,21 @@ public class MainMenu : MonoBehaviour {
 	public void OnLobbyClick() {
 		HideAllMenus();
 		lobbyPanel.SetActive(true);
+		
+		if(Network.isClient) {
+			networkView.RPC("PlayerReady", RPCMode.Server);
+		}
 	}
 	
 	
 	public void OnLaunchClick() {
-		if(Network.isServer) {
-			MasterServer.UnregisterHost();
+		if(playersReady == NetworkManager.numPlayers) {		//This is assuming no client drops which is not robust
+			if(Network.isServer) {							
+				MasterServer.UnregisterHost();
+			}
+			networkView.RPC("SwitchLoad", RPCMode.All);
+			networkView.RPC("LevelLoader", RPCMode.All);
 		}
-		networkView.RPC("SwitchLoad", RPCMode.All);
-		networkView.RPC("LevelLoader", RPCMode.All);
 	}
 	
 	
@@ -391,8 +399,19 @@ public class MainMenu : MonoBehaviour {
 		LevelManager.NetworkLoadLevel(level1Filename, 1);	
 	}
 	
+	[RPC]
+	private void PlayerReady() {
+		playersReady++;
+	}
 	
-	
+	/*	In order to decrement proper we need to keep track of
+		playerid which changes each time a player connects
+		and that adds another layer of consistency checking.
+		This method cannot decrement properly if a player who
+		declares himself as ready leaves which causes issues when
+		the server is then able to launch without a player being
+		ready. Ideally this case works when no one drops.
+	*/
 	
 	
 	
