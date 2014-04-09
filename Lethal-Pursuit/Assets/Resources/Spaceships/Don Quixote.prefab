@@ -792,8 +792,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
-  m_LocalRotation: {x: 0, y: -.713311672, z: 0, w: .70084703}
-  m_LocalPosition: {x: -674, y: 901.87384, z: 0}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
+  m_LocalPosition: {x: -2070.81006, y: 901.87384, z: -24.6255646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -2679,6 +2679,7 @@ MonoBehaviour:
   invulnerable: 0
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
+  damageVFX: {fileID: 2100000, guid: 271072384f93c3641a8219e49377aa55, type: 2}
   damageOverlayImage: {fileID: 0}
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
@@ -2915,7 +2916,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 1776.1748
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

@@ -25,7 +25,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public MatchManager matchManager;
 	
 	public int lastHurtByPlayerID = -1;
-	
+
+	public Material damageVFX;
 	public UI2DSprite damageOverlayImage;
 	public float damageOverlayOpacity = 0.4f;
 	public float timeToShowDamageOverlay = 2.0f;
@@ -85,18 +86,23 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	void HandleDamageOverlay() {
-		if (damageOverlayImage == null) {
+		if (damageOverlayImage == null || damageVFX == null) {
 			return;
 		}
 
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			Color newShellColor = damageVFX.GetColor("_TintColor");
+			
 			if (IsDead()) {
 				damageOverlayImage.alpha = 0.0f;
+				newShellColor.a = 0.0f;
+				damageVFX.SetColor("_TintColor", newShellColor);	
 				return;
 			}
 
 			if (currentDamager != null && currentDamager != lastDamager) {
 				damageOverlayImage.alpha = damageOverlayOpacity;
+				newShellColor.a = damageOverlayOpacity;
 				remainingDamageOverlayTime = timeToShowDamageOverlay;
 			}
 			else {
@@ -104,9 +110,12 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 			if (remainingDamageOverlayTime <= 0.0f) {
 				damageOverlayImage.alpha = Mathf.Max(0.0f, damageOverlayImage.alpha-Time.deltaTime*damageOverlayHideSpeed);
+				newShellColor.a = Mathf.Max(0.0f, newShellColor.a-Time.deltaTime*damageOverlayHideSpeed);
 				lastDamager = null;
 			}
+			damageVFX.SetColor("_TintColor", newShellColor);
 		}
+		
 	}
 	
 
