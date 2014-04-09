@@ -47,11 +47,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		base.Start();
 		currentHealth = maxHealth;
 		matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
-//		damageOverlayImage = GameObject.FindGameObjectWithTag("DamageOverlay").GetComponent<UI2DSprite>();
+		damageOverlayImage = GameObject.FindGameObjectWithTag("DamageOverlay").GetComponent<UI2DSprite>();
 
-//		if (damageOverlayImage == null) {
-//			Debug.Log("No UI2DSprite tagged with 'DamageOverlay' was found in the scene!");
-//		}
+		if (damageOverlayImage == null) {
+			Debug.Log("No UI2DSprite tagged with 'DamageOverlay' was found in the scene!");
+		}
 	}
 	
 	

@@ -30,10 +30,6 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Outline
-        second: .0299999993
-      data:
-        first:
           name: _NumColors
         second: 4
       data:
@@ -44,6 +40,10 @@ Material:
         first:
           name: _Brightness
         second: 1
+      data:
+        first:
+          name: _Outline
+        second: .0299999993
       data:
         first:
           name: _OutlineFalloff
@@ -60,4 +60,4 @@ Material:
       data:
         first:
           name: _MainColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: 1, g: .0441176295, b: .0441176295, a: 1}
