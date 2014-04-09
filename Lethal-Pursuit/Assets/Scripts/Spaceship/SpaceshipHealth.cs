@@ -26,8 +26,13 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	
 	public int lastHurtByPlayerID = -1;
 
-	public Material damageVFX;
-	public UI2DSprite damageOverlayImage;
+	public Material electricField;
+	public float electricFieldOpacity = 0.4f;
+	public float timeToShowElectricField = 2.0f;
+	private float remainingElectricFieldTime;
+	public float electricFieldHideSpeed = 0.5f;
+
+	private UI2DSprite damageOverlayImage;
 	public float damageOverlayOpacity = 0.4f;
 	public float timeToShowDamageOverlay = 2.0f;
 	private float remainingDamageOverlayTime;
@@ -42,6 +47,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		base.Start();
 		currentHealth = maxHealth;
 		matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
+//		damageOverlayImage = GameObject.FindGameObjectWithTag("DamageOverlay").GetComponent<UI2DSprite>();
+
+//		if (damageOverlayImage == null) {
+//			Debug.Log("No UI2DSprite tagged with 'DamageOverlay' was found in the scene!");
+//		}
 	}
 	
 	
@@ -65,6 +75,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		}
 
 		HandleDamageOverlay();
+		HandleDamageElectricField();
 		HandleDeath();
 		lastDamager = currentDamager;
 		currentDamager = null;
@@ -86,23 +97,19 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	void HandleDamageOverlay() {
-		if (damageOverlayImage == null || damageVFX == null) {
+		if (damageOverlayImage == null) {
 			return;
 		}
 
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
-			Color newShellColor = damageVFX.GetColor("_TintColor");
 			
 			if (IsDead()) {
 				damageOverlayImage.alpha = 0.0f;
-				newShellColor.a = 0.0f;
-				damageVFX.SetColor("_TintColor", newShellColor);	
 				return;
 			}
 
 			if (currentDamager != null && currentDamager != lastDamager) {
 				damageOverlayImage.alpha = damageOverlayOpacity;
-				newShellColor.a = damageOverlayOpacity;
 				remainingDamageOverlayTime = timeToShowDamageOverlay;
 			}
 			else {
@@ -110,12 +117,38 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 			if (remainingDamageOverlayTime <= 0.0f) {
 				damageOverlayImage.alpha = Mathf.Max(0.0f, damageOverlayImage.alpha-Time.deltaTime*damageOverlayHideSpeed);
-				newShellColor.a = Mathf.Max(0.0f, newShellColor.a-Time.deltaTime*damageOverlayHideSpeed);
 				lastDamager = null;
 			}
-			damageVFX.SetColor("_TintColor", newShellColor);
+		}
+	}
+
+
+		
+	void HandleDamageElectricField() {
+		if (electricField == null) {
+			return;
 		}
 		
+		Color newShellColor = electricField.GetColor("_TintColor");
+		
+		if (IsDead()) {
+			newShellColor.a = 0.0f;
+			electricField.SetColor("_TintColor", newShellColor);	
+			return;
+		}
+		
+		if (currentDamager != null && currentDamager != lastDamager) {
+			newShellColor.a = damageOverlayOpacity;
+			remainingElectricFieldTime = timeToShowElectricField;
+		}
+		else {
+			remainingElectricFieldTime = Mathf.Max(0.0f, remainingElectricFieldTime-Time.deltaTime);
+		}
+		if (remainingElectricFieldTime <= 0.0f) {
+			newShellColor.a = Mathf.Max(0.0f, newShellColor.a-Time.deltaTime*damageOverlayHideSpeed);
+			lastDamager = null;
+		}
+		electricField.SetColor("_TintColor", newShellColor);
 	}
 	
 

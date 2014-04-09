@@ -1081,7 +1081,7 @@ GameObject:
   - 114: {fileID: 11400160}
   m_Layer: 8
   m_Name: Damage Overlay
-  m_TagString: Untagged
+  m_TagString: DamageOverlay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1470,7 +1470,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.41557312, z: 0}
+  m_LocalPosition: {x: 0, y: -.0821228027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400128}
@@ -1488,7 +1488,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 428, y: 252.108917, z: 0}
+  m_LocalPosition: {x: 428, y: 252.835754, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400122}
@@ -1524,7 +1524,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -670, y: 249.608917, z: 33.8239174}
+  m_LocalPosition: {x: -670, y: 250.335754, z: 33.8239174}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400118}
@@ -4798,6 +4798,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -5149,7 +5150,7 @@ MonoBehaviour:
   mColor: {r: 1, g: 0, b: 0, a: 0}
   mPivot: 4
   mWidth: 1280
-  mHeight: 719
+  mHeight: 720
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

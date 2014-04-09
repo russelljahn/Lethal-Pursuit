@@ -2679,7 +2679,7 @@ MonoBehaviour:
   invulnerable: 0
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
-  damageVFX: {fileID: 2100000, guid: 271072384f93c3641a8219e49377aa55, type: 2}
+  electricField: {fileID: 2100000, guid: 271072384f93c3641a8219e49377aa55, type: 2}
   damageOverlayImage: {fileID: 0}
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
@@ -2914,9 +2914,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 303.130371
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
