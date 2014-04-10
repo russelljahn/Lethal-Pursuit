@@ -158,6 +158,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		Debug.Log("My ipaddr is: " + Network.player.ipAddress);
 		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
 		Debug.Log (message);
+		Debug.Log ("Amount to damage: " + amount);
 
 		lastDamager = currentDamager;
 		currentDamager = damager;

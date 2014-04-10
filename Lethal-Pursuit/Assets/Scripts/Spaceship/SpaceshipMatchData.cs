@@ -13,6 +13,8 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	
 	private MatchManager matchManager;
 	public int totalKills = 0;
+
+	public float spawnTimeRemaining = 0.0f;
 	
 	/*
 	public override void Start () {
