@@ -41,6 +41,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public GameObject currentDamager;
 	public GameObject lastDamager;
 
+	private SpaceshipMatchData matchData;
+
 
 
 	public override void Start() {
@@ -48,6 +50,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		currentHealth = maxHealth;
 		matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
 		damageOverlayImage = GameObject.FindGameObjectWithTag("DamageOverlay").GetComponent<UI2DSprite>();
+		matchData = spaceship.GetComponent<SpaceshipMatchData>();
 
 		if (damageOverlayImage == null) {
 			Debug.Log("No UI2DSprite tagged with 'DamageOverlay' was found in the scene!");
@@ -86,6 +89,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	void HandleDeath() {
 		if (IsDead()) {
 			Debug.Log ("Player is dead!");
+			matchData.lastKilledBy = currentDamager;
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
 			timeUntilVulnerable = respawnInvulnerabilityTime;

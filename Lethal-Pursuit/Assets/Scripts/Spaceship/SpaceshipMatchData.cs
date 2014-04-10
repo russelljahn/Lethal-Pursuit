@@ -15,6 +15,7 @@ public class SpaceshipMatchData : SpaceshipComponent {
 	public int totalKills = 0;
 
 	public float spawnTimeRemaining = 0.0f;
+	public GameObject lastKilledBy;
 	
 	/*
 	public override void Start () {
