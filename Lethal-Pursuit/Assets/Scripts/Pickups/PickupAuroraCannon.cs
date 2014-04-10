@@ -55,7 +55,7 @@ public class PickupAuroraCannon : Pickup {
 		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
 
 		if (damageableObject != null) {
-			damageableObject.ApplyDamage(damageRate*Time.deltaTime, hitGameObject, gameObject.name + " is calling ApplyDamage()!");
+			damageableObject.ApplyDamage(damageRate*Time.deltaTime, spaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
 		}
 	}
 
