@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EnemyIndicatorRay
-  m_Shader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -19,10 +19,26 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: 01033c0c006994d25bfa8c463e945b4c, type: 3}
           m_Scale: {x: 30, y: 1}
-          m_Offset: {x: -45.7571259, y: 0}
-    m_Floats: {}
+          m_Offset: {x: -328.072144, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: PixelSnap
+        second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 1, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 0, b: 0, a: .501960814}

@@ -43,6 +43,11 @@ public class NetworkManager : MonoBehaviour {
 
 	public void Awake() {
 		DontDestroyOnLoad(this);
+
+		MasterServer.ipAddress = "70.114.154.148";
+		MasterServer.port = 23466;
+		Network.natFacilitatorIP = "70.114.154.148";
+		Network.natFacilitatorPort = 50005;
 	}
 
 	

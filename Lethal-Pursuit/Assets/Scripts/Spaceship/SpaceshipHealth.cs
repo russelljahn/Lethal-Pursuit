@@ -38,6 +38,13 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	private float remainingDamageOverlayTime;
 	public float damageOverlayHideSpeed = 0.5f;
 
+	public  LineRenderer enemyIndicator;
+	private GameObject enemyToTrack;
+	public float enemyIndicatorOpacity = 0.4f;
+	public float timeToShowEnemyIndicator = 2.0f;
+	private float remainingEnemyIndicatorTime;
+	public float enemyIndicatorHideSpeed = 0.5f;
+	
 	public GameObject currentDamager;
 	public GameObject lastDamager;
 
@@ -79,6 +86,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 		HandleDamageOverlay();
 		HandleDamageElectricField();
+		HandleEnemyIndicators();
 		HandleDeath();
 		lastDamager = currentDamager;
 		currentDamager = null;
@@ -101,17 +109,14 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 	void HandleDamageOverlay() {
-		if (damageOverlayImage == null) {
-			return;
-		}
-
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
-			
+			if (damageOverlayImage == null) {
+				return;
+			}
 			if (IsDead()) {
 				damageOverlayImage.alpha = 0.0f;
 				return;
 			}
-
 			if (currentDamager != null && currentDamager != lastDamager) {
 				damageOverlayImage.alpha = damageOverlayOpacity;
 				remainingDamageOverlayTime = timeToShowDamageOverlay;
@@ -154,6 +159,42 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		}
 		electricField.SetColor("_TintColor", newShellColor);
 	}
+
+
+
+	void HandleEnemyIndicators() {
+		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
+			if (enemyIndicator == null) {
+				return;
+			}
+			Color indicatorColor = enemyIndicator.renderer.material.GetColor("_TintColor");
+			if (IsDead()) {
+				indicatorColor.a = 0.0f;
+				enemyIndicator.SetColors(indicatorColor, indicatorColor);	
+				return;
+			}
+			if (currentDamager != null && currentDamager != lastDamager) {
+				indicatorColor.a = enemyIndicatorOpacity;
+				remainingEnemyIndicatorTime = timeToShowEnemyIndicator;
+				enemyToTrack = currentDamager;
+				enemyIndicator.renderer.material.SetColor("_TintColor", indicatorColor);	
+				enemyIndicator.SetPosition(0, enemyToTrack.transform.position);
+				enemyIndicator.SetPosition(1, spaceship.transform.position);
+			}
+			else if (enemyToTrack != null) {
+				remainingEnemyIndicatorTime = Mathf.Max(0.0f, timeToShowEnemyIndicator-Time.deltaTime);
+				enemyIndicator.renderer.material.SetColor("_TintColor", indicatorColor);	
+				enemyIndicator.SetPosition(0, enemyToTrack.transform.position);
+				enemyIndicator.SetPosition(1, spaceship.transform.position);
+			}
+			if (remainingElectricFieldTime <= 0.0f) {
+				indicatorColor.a = Mathf.Max(0.0f, indicatorColor.a-Time.deltaTime*enemyIndicatorHideSpeed);
+				lastDamager = null;
+			}
+			enemyIndicator.renderer.material.SetColor("_TintColor", indicatorColor);
+		}
+	}
+	
 	
 
 	// Implementing Damageable interface.

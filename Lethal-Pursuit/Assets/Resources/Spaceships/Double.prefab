@@ -757,6 +757,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &100088
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400088}
+  - 120: {fileID: 12000002}
+  - 114: {fileID: 11400028}
+  - 114: {fileID: 11400026}
+  m_Layer: 8
+  m_Name: Enemy Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -858,6 +876,7 @@ Transform:
   m_LocalScale: {x: 154.389847, y: 9.81843281, z: 58.9164886}
   m_Children:
   - {fileID: 400042}
+  - {fileID: 400088}
   m_Father: {fileID: 400000}
 --- !u!4 &400018
 Transform:
@@ -1284,6 +1303,17 @@ Transform:
   - {fileID: 400084}
   - {fileID: 400012}
   m_Father: {fileID: 400072}
+--- !u!4 &400088
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_LocalRotation: {x: -5.44351906e-08, y: .00266364194, z: 1.17037473e-08, w: .999996483}
+  m_LocalPosition: {x: 3.21123242, y: -1.59744585, z: 3.39286065}
+  m_LocalScale: {x: .00161910173, y: .00282914541, z: .00282917032}
+  m_Children: []
+  m_Father: {fileID: 400016}
 --- !u!12 &1200000
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -2682,6 +2712,10 @@ MonoBehaviour:
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
   damageOverlayHideSpeed: .5
+  enemyIndicator: {fileID: 12000002}
+  enemyIndicatorOpacity: 1
+  timeToShowEnemyIndicator: 2
+  enemyIndicatorHideSpeed: .5
   currentDamager: {fileID: 0}
   lastDamager: {fileID: 0}
 --- !u!114 &11400014
@@ -2965,9 +2999,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 315.608398
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3027,6 +3061,31 @@ MonoBehaviour:
   target: {fileID: 100008}
   rotationSpeed: 3
   lookSpeed: 8
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86310f07a6c94443799a49280b05e913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialToScroll: {fileID: 2100000, guid: 0774b1f09b2c246d29642bbc043f1ca9, type: 2}
+  xRate: -2
+  yRate: 0
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530ea84c7809cdb46b96e467ef669245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -3039,7 +3098,7 @@ LineRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1136ac457c5234a6b9c72347d7297409, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3054,6 +3113,40 @@ LineRenderer:
   m_Parameters:
     startWidth: 10
     endWidth: 10
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
+--- !u!120 &12000002
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100088}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 0774b1f09b2c246d29642bbc043f1ca9, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Positions:
+  - {x: -1040, y: 900, z: -7}
+  - {x: -700, y: 900, z: 940}
+  m_Parameters:
+    startWidth: 50
+    endWidth: 50
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295
