@@ -324,7 +324,9 @@ public class LevelManager : MonoBehaviour {
 			) as GameObject;
 		}
 			
-		SpawnManager.SpawnSpaceship(spaceship.GetComponent<Spaceship>());
+		Spaceship spaceshipComponent = spaceship.GetComponent<Spaceship>();
+		spaceship.name = spaceshipComponent.name;
+		SpawnManager.SpawnSpaceship(spaceshipComponent);
 
 	}
 

@@ -2603,6 +2603,7 @@ MonoBehaviour:
   crosshairs: {fileID: 100062}
   gun: {fileID: 11400022}
   pickups: {fileID: 11400008}
+  name: Double
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -2651,6 +2652,8 @@ MonoBehaviour:
   timeElapsed: 0
   matchOver: 0
   totalKills: 0
+  spawnTimeRemaining: 0
+  lastKilledBy: {fileID: 0}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2673,7 +2676,9 @@ MonoBehaviour:
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
   electricField: {fileID: 2100000, guid: 3c71cdddd5e94e741abc8005488de266, type: 2}
-  damageOverlayImage: {fileID: 0}
+  electricFieldOpacity: .400000006
+  timeToShowElectricField: 2
+  electricFieldHideSpeed: .5
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
   damageOverlayHideSpeed: .5

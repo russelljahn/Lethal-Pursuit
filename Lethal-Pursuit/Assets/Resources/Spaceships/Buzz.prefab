@@ -2691,7 +2691,6 @@ MonoBehaviour:
   electricFieldOpacity: .400000006
   timeToShowElectricField: 2
   electricFieldHideSpeed: .5
-  damageOverlayImage: {fileID: 0}
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
   damageOverlayHideSpeed: .5
@@ -2714,6 +2713,8 @@ MonoBehaviour:
   timeElapsed: 0
   matchOver: 0
   totalKills: 0
+  spawnTimeRemaining: 0
+  lastKilledBy: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2748,6 +2749,7 @@ MonoBehaviour:
   crosshairs: {fileID: 100016}
   gun: {fileID: 11400002}
   pickups: {fileID: 11400022}
+  name: Buzz
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0

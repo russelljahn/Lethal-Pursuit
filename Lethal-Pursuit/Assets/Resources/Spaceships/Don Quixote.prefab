@@ -2594,6 +2594,7 @@ MonoBehaviour:
   crosshairs: {fileID: 100068}
   gun: {fileID: 11400002}
   pickups: {fileID: 11400014}
+  name: Don Quixote
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -2658,6 +2659,8 @@ MonoBehaviour:
   timeElapsed: 0
   matchOver: 0
   totalKills: 0
+  spawnTimeRemaining: 0
+  lastKilledBy: {fileID: 0}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2680,7 +2683,9 @@ MonoBehaviour:
   matchManager: {fileID: 0}
   lastHurtByPlayerID: -1
   electricField: {fileID: 2100000, guid: 271072384f93c3641a8219e49377aa55, type: 2}
-  damageOverlayImage: {fileID: 0}
+  electricFieldOpacity: .400000006
+  timeToShowElectricField: 2
+  electricFieldHideSpeed: .5
   damageOverlayOpacity: .400000006
   timeToShowDamageOverlay: 2
   damageOverlayHideSpeed: .5

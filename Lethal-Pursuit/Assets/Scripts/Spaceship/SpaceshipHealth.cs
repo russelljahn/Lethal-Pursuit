@@ -159,8 +159,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount, GameObject damager, string message) {
 		
-		Debug.Log("My ipaddr is: " + Network.player.ipAddress);
-		Debug.Log("damager ipaddr: " + damager.networkView.owner.ipAddress);
+		Debug.Log(string.Format("I am '{0}', My ipaddr is '{1}'", this.gameObject, Network.player.ipAddress, damager));
+		Debug.Log(string.Format ("My damager is '{0}', damager ipaddr is '{1}' ", damager, damager.networkView.owner.ipAddress));
 		Debug.Log (message);
 		Debug.Log ("Amount to damage: " + amount);
 
