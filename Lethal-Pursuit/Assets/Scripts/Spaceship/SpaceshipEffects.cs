@@ -21,7 +21,7 @@ public class SpaceshipEffects : SpaceshipComponent {
 				particleSystem.emissionRate = minEmissionRate + (maxEmmissionRate-minEmissionRate)*speedRatio;
 			}
 		}
-		if (!NetworkManager.IsSinglePlayer() && networkView.isMine) {
+		if (!NetworkManager.IsSinglePlayer() && networkView.isMine && spaceship.isVisible) {
 			networkView.RPC("NetworkUpdateEffects", RPCMode.OthersBuffered, speedRatio);
 		}
 	}

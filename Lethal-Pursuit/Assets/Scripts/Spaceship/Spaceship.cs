@@ -80,6 +80,13 @@ public class Spaceship : MonoBehaviour {
 	
 	
 	void Update () {
+		// Update visibility
+		spaceshipModelRoot.SetActive(isVisible);
+		collider.enabled = isVisible;
+
+		// Update if controls are currently disabled/enabled
+		controls.enabled = controlsEnabled;
+			
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			forward = spaceshipModel.transform.forward;
 			right = spaceshipModel.transform.right;
@@ -88,12 +95,6 @@ public class Spaceship : MonoBehaviour {
 			SyncMovement();
 		}
 
-		// Update visibility
-		spaceshipModelRoot.SetActive(isVisible);
-		collider.enabled = isVisible;
-
-		// Update if controls are currently disabled/enabled
-		controls.enabled = controlsEnabled;
 	}
 
 
