@@ -2784,6 +2784,7 @@ MonoBehaviour:
   crosshairs: {fileID: 100016}
   gun: {fileID: 11400002}
   pickups: {fileID: 11400022}
+  controls: {fileID: 11400000}
   name: Buzz
   xTiltLeftStick: 0
   yTiltLeftStick: 0
@@ -2796,6 +2797,8 @@ MonoBehaviour:
   idle: 0
   swappingWeapon: 0
   equippedItem: 0
+  isVisible: 1
+  controlsEnabled: 1
   selectPressedLastFrame: 0
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
@@ -3117,9 +3120,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 5.79643393
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

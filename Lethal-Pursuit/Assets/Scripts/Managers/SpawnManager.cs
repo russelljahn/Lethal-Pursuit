@@ -65,12 +65,15 @@ public class SpawnManager : MonoBehaviour {
 		Collider collider = spaceship.GetComponent<Collider>();
 	
 		matchData.spawnTimeRemaining = normalSpawnWait;
+
+		spaceship.isVisible = false;
+		spaceship.controlsEnabled = false;
 		
-		instance.networkView.RPC("SetVisibility", RPCMode.All, false); 
+//		instance.networkView.RPC("SetVisibility", RPCMode.All, false); 
 		
-		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
-		controls.enabled = instance.isVisible;
-		collider.enabled = instance.isVisible;
+//		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
+//		controls.enabled = instance.isVisible;
+//		collider.enabled = instance.isVisible;
 
 		while (matchData.spawnTimeRemaining > 0.0f) {
 			yield return null;
@@ -80,11 +83,14 @@ public class SpawnManager : MonoBehaviour {
 		spaceship.transform.position = spawnPoints[lastCheckpointID].transform.position;
 		spaceship.transform.rotation = spawnPoints[lastCheckpointID].transform.rotation;
 
-		instance.networkView.RPC("SetVisibility", RPCMode.All, true); 
+//		instance.networkView.RPC("SetVisibility", RPCMode.All, true); 
 		
-		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
-		controls.enabled = instance.isVisible;
-		collider.enabled = instance.isVisible;
+//		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
+//		controls.enabled = instance.isVisible;
+//		collider.enabled = instance.isVisible;
+
+		spaceship.isVisible = true;
+		spaceship.controlsEnabled = true;
 
 		Debug.Log ("Spawning '" + spaceship + "' at SpawnPoint " + lastCheckpointID + "!");
 	}

@@ -24,6 +24,7 @@ public class Spaceship : MonoBehaviour {
 	public GameObject crosshairs;
 	public SpaceshipGun gun;
 	public SpaceshipPickups pickups;
+	public SpaceshipControl controls;
 	public string name;
 	
 	#region input variables
@@ -39,6 +40,9 @@ public class Spaceship : MonoBehaviour {
 	public bool  swappingWeapon;
 	public EquipType equippedItem;
 	#endregion
+
+	public bool isVisible = true;
+	public bool controlsEnabled = true;
 
 	public bool selectPressedLastFrame;
 	
@@ -83,6 +87,13 @@ public class Spaceship : MonoBehaviour {
 		else {
 			SyncMovement();
 		}
+
+		// Update visibility
+		spaceshipModelRoot.SetActive(isVisible);
+		collider.enabled = isVisible;
+
+		// Update if controls are currently disabled/enabled
+		controls.enabled = controlsEnabled;
 	}
 
 
@@ -135,19 +146,25 @@ public class Spaceship : MonoBehaviour {
 		bool isShooting = false;
 		bool isSwappingWeapon = false;
 		bool equippedDefaultGun = false;
-		
+		bool serializedControlsEnabled = false;
+		bool serializedIsVisible = false;
+
 		if (stream.isWriting) {
 			syncPosition = transform.position;
 			syncRotation = transform.rotation;
 			isShooting = shooting;
 			isSwappingWeapon = swappingWeapon;
 			equippedDefaultGun = (equippedItem == EquipType.DEFAULT_WEAPON);
+			serializedIsVisible = isVisible;
+			serializedControlsEnabled = controlsEnabled;
 			
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
 			stream.Serialize(ref isShooting);
 			stream.Serialize(ref isSwappingWeapon);
 			stream.Serialize(ref equippedDefaultGun);
+			stream.Serialize(ref serializedIsVisible);
+			stream.Serialize(ref serializedControlsEnabled);
 		}
 		else {
 			stream.Serialize(ref syncPosition);
@@ -155,7 +172,9 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref isShooting);
 			stream.Serialize(ref isSwappingWeapon);
 			stream.Serialize(ref equippedDefaultGun);
-			
+			stream.Serialize(ref serializedIsVisible);
+			stream.Serialize(ref serializedControlsEnabled);
+
 			syncTime = 0f;
 			syncDelay = Time.time - lastSynchronizationTime;
 			lastSynchronizationTime = Time.time;
@@ -174,6 +193,9 @@ public class Spaceship : MonoBehaviour {
 			else {
 				equippedItem = EquipType.SUB_WEAPON;
 			}
+
+			isVisible = serializedIsVisible;
+			controlsEnabled = serializedControlsEnabled;
 		}
 	}
 	
