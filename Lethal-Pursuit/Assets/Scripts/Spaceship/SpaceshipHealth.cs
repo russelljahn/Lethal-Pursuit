@@ -44,6 +44,8 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public float timeToShowEnemyIndicator = 2.0f;
 	private float remainingEnemyIndicatorTime;
 	public float enemyIndicatorHideSpeed = 0.5f;
+
+	public string deathExplosionResourcePath = "Explosions/ShipDeathExplosion_01";
 	
 	public GameObject currentDamager;
 	public GameObject lastDamager;
@@ -62,6 +64,9 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		if (damageOverlayImage == null) {
 			Debug.Log("No UI2DSprite tagged with 'DamageOverlay' was found in the scene!");
 		}
+		Color indicatorColor = enemyIndicator.renderer.material.GetColor("_TintColor");
+		indicatorColor.a = 0.0f;
+		enemyIndicator.renderer.material.SetColor("_Tint", indicatorColor);
 	}
 	
 	
@@ -98,9 +103,30 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		if (IsDead()) {
 			Debug.Log ("Player is dead!");
 			matchData.lastKilledBy = currentDamager;
+
+			Debug.Log ("deathExplosionResourcePath: " + deathExplosionResourcePath);
+
+			// Spawn death explosion.
+			GameObject deathExplosion;
+			if (NetworkManager.IsSinglePlayer()) {
+				deathExplosion = GameObject.Instantiate(
+					Resources.Load(deathExplosionResourcePath) as GameObject,
+					this.transform.position, 
+					spaceshipModel.transform.rotation
+				) as GameObject;
+			}
+			else {
+				deathExplosion = Network.Instantiate(
+					Resources.Load(deathExplosionResourcePath) as GameObject,
+					this.transform.position, 
+					spaceshipModel.transform.rotation,
+					123
+				) as GameObject;
+			}
+
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
-			timeUntilVulnerable = respawnInvulnerabilityTime;
+//			timeUntilVulnerable = respawnInvulnerabilityTime; // Times out during respawn wait right now.
 			if (!NetworkManager.IsSinglePlayer()) {
 				matchManager.InformServerForKilledBy(lastHurtByPlayerID);
 			}

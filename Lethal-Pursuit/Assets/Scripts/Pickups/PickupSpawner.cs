@@ -39,7 +39,7 @@ public class PickupSpawner : MonoBehaviour {
 
 //		Debug.Log (collider.gameObject + " entered spawn area.");
 //		Debug.Log ("collider.gameObject.CompareTag ('Spaceship')? " + collider.gameObject.CompareTag ("Spaceship")); 
-		Debug.Log ("enable? " + enabled);
+//		Debug.Log ("enable? " + enabled);
 		if (!enabled || !collider.gameObject.CompareTag ("Spaceship")) {
 			return;
 		}
@@ -47,7 +47,7 @@ public class PickupSpawner : MonoBehaviour {
 		
 //		Debug.Log ("Spawn point is enabled!");
 
-		Debug.Log ("collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup): " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
+//		Debug.Log ("collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup): " + collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup));
 		if (collider.gameObject.CompareTag ("Spaceship") && collider.gameObject.GetComponent<SpaceshipPickups>().CanPickup(pickup)) {
 			Debug.Log (this.gameObject.name + " was picked up by: " + collider.gameObject.name);
 			audio.PlayOneShot(pickupSound);
@@ -64,8 +64,8 @@ public class PickupSpawner : MonoBehaviour {
 				    667) as GameObject
 				);
 			}
-			Debug.Log ("Pickup clone: " + pickupClone);
-			Debug.Log("collider.gameObject.GetComponent<SpaceshipPickups>(): " + collider.gameObject.GetComponent<SpaceshipPickups>());
+//			Debug.Log ("Pickup clone: " + pickupClone);
+//			Debug.Log("collider.gameObject.GetComponent<SpaceshipPickups>(): " + collider.gameObject.GetComponent<SpaceshipPickups>());
 			collider.gameObject.GetComponent<SpaceshipPickups>().GetPickup(pickupClone.GetComponent<Pickup>());
 			enabled = false;
 			visuals.SetActive(false);

@@ -2723,6 +2723,7 @@ MonoBehaviour:
   enemyIndicatorOpacity: 1
   timeToShowEnemyIndicator: 2
   enemyIndicatorHideSpeed: .5
+  deathExplosionResourcePath: Explosions/ShipDeathExplosion_01
   currentDamager: {fileID: 0}
   lastDamager: {fileID: 0}
 --- !u!114 &11400014
@@ -2931,7 +2932,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800024}
-  particleSystemId: 11
+  particleSystemId: 10
   particleSystemGameObject: {fileID: 100064}
   particleSystemTransform: {fileID: 400064}
   particleSystemRenderer: {fileID: 19900024}
@@ -2953,9 +2954,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 9.69999981
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 222.9897
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

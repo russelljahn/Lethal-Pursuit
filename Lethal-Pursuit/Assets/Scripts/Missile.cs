@@ -46,7 +46,7 @@ public class Missile : MonoBehaviour {
 
 
 	bool ShouldExplodeOnContact(GameObject other) {
-		Debug.Log ("other == sourceSpaceship.gameObject? " + (other == sourceSpaceship.gameObject));
+//		Debug.Log ("other == sourceSpaceship.gameObject? " + (other == sourceSpaceship.gameObject));
 		return !(other.CompareTag("Bullet") || other == sourceSpaceship.gameObject);
 	}
 
