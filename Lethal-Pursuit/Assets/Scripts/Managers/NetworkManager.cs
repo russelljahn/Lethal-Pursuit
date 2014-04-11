@@ -18,7 +18,7 @@ public class NetworkManager : MonoBehaviour {
 	private static string chosenShip = null;
 
 	public  static int maxPlayersAllowed = 16;
-	private static List<NetworkPlayer> playerList = new List<NetworkPlayer>();
+	public  static List<NetworkPlayer> playerList = new List<NetworkPlayer>();
 	private static int playerID = -1;
 	public  static int numPlayers = 1;
 	
@@ -44,10 +44,10 @@ public class NetworkManager : MonoBehaviour {
 	public void Awake() {
 		DontDestroyOnLoad(this);
 
-		MasterServer.ipAddress = "70.114.154.148";
-		MasterServer.port = 23466;
-		Network.natFacilitatorIP = "70.114.154.148";
-		Network.natFacilitatorPort = 50005;
+//		MasterServer.ipAddress = "25.23.7.130";
+//		MasterServer.port = 23466;
+//		Network.natFacilitatorIP = "25.23.7.130";
+//		Network.natFacilitatorPort = 50005;
 	}
 
 	
@@ -180,6 +180,8 @@ public class NetworkManager : MonoBehaviour {
 	{
 		for(int i=0; i<playerList.Count; i++)
 		{
+			Debug.Log("In getplayerindex: given string " + ipAddr);
+			Debug.Log("In getplayerindex: currently looking at player " + i + " with ip " + playerList[i].ipAddress);
 			if (playerList[i].ipAddress.Equals(ipAddr))
 			{
 				return i;
@@ -219,6 +221,13 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		networkView.RPC("FinalizeClientPlayerInfo", RPCMode.Others);
+
+		Debug.Log("PlayerList finished constructing. Given player ID: " + playerID);
+		Debug.Log("Received RPC to update client information");
+		Debug.Log("Number of players: " + playerList.Count);
+		foreach (NetworkPlayer player in playerList) {
+			Debug.Log("IPAddr : " + player.ipAddress);
+		}
 		
 	}
 

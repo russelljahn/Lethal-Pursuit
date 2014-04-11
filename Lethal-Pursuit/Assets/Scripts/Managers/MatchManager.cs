@@ -133,6 +133,9 @@ public class MatchManager : MonoBehaviour {
 
 
 	public void InformServerForKilledBy(int playerID) {
+
+		Debug.Log("Killed by player " + playerID);
+
 		if(playerID != -1) {
 			if (Network.isClient) {
 				networkView.RPC("ServerTallyKill", RPCMode.Server, playerID);

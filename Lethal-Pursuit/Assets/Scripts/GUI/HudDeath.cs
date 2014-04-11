@@ -24,7 +24,7 @@ public class HudDeath : MonoBehaviour {
 			}
 		}
 		else {
-			if (matchData.spawnTimeRemaining > 1.0f) { 
+			if (matchData.lastKilledBy != null && matchData.spawnTimeRemaining > 1.0f) { 
 				label.text = string.Format("Slain by {0}!\nRespawning in {1}...", matchData.lastKilledBy.name, (int)matchData.spawnTimeRemaining); 
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {

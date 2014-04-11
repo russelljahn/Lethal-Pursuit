@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using System.Collections.Generic;
 
 public enum HealthState {
 	HEALTHY,
@@ -231,6 +232,13 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		Debug.Log (message);
 		Debug.Log ("Amount to damage: " + amount);
 
+		Debug.Log("I am player " + NetworkManager.GetPlayerID());
+		List<NetworkPlayer> playerList = NetworkManager.GetPlayerList();
+		Debug.Log("Number of players: " + playerList.Count);
+		foreach (NetworkPlayer player in playerList) {
+			Debug.Log("IPAddr : " + player.ipAddress);
+		}
+
 		lastDamager = currentDamager;
 		currentDamager = damager;
 		if (!invulnerable) {
@@ -239,8 +247,14 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				//lastHurtByPlayerID = -1;
 			}
 			else {
-				int index = NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress);
+				int index = NetworkManager.GetPlayerIndex(this.networkView.owner.ipAddress);
+
+				Debug.Log("Damager inside before rpc call for damage: " + damager.networkView.owner.ipAddress);
+				Debug.Log("Damage to inside before rpc call for damage: " + this.networkView.owner.ipAddress);
+
 				
+				Debug.Log("Hurt by player " + index);
+				Debug.Log("Player IP found: " + NetworkManager.GetPlayerList()[index].ipAddress);
 				// Need to check if not -1 for non existing game object
 				networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
 				//networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);				
