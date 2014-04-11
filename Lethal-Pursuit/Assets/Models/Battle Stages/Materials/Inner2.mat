@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Inner2
-  m_Shader: {fileID: 5, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,14 +17,21 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 8da496becc37c42caba836015060b094, type: 3}
-          m_Scale: {x: 30, y: 30}
+          m_Texture: {fileID: 2800000, guid: b318e02a63f3841e4956c57d27fc0684, type: 3}
+          m_Scale: {x: 20, y: 20}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Detail
         second:
-          m_Texture: {fileID: 2800000, guid: a66a3767e10246742b33c1478e7dbf4c, type: 3}
+          m_Texture: {fileID: 2800000, guid: e5239e75f94d0754cb2fd308f2cbd9d5, type: 3}
           m_Scale: {x: 1, y: 3}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -52,16 +59,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .216479257, g: .231388777, b: .323529422, a: 1}
+        second: {r: .382352948, g: .382352948, b: .382352948, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .0117647061, g: .0117647061, b: .0117647061, a: 1}
-      data:
-        first:
-          name: _MainColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: .132352948, g: .132352948, b: .132352948, a: 1}
       data:
         first:
           name: _OutlineColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _MainColor
         second: {r: .5, g: .5, b: .5, a: 1}

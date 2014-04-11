@@ -30,12 +30,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _NumColors
-        second: 30
-      data:
-        first:
           name: _Shininess
         second: 1
+      data:
+        first:
+          name: _NumColors
+        second: 30
       data:
         first:
           name: _OutlineWidth
@@ -52,7 +52,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .389705896, g: .357296288, b: .272221029, a: 1}
+        second: {r: .74763459, g: .745025992, b: .779411793, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:
           name: _OutlineColor
@@ -60,10 +64,6 @@ Material:
       data:
         first:
           name: _MainColor
-        second: {r: .5, g: .5, b: .5, a: 1}
-      data:
-        first:
-          name: _SpecColor
         second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:

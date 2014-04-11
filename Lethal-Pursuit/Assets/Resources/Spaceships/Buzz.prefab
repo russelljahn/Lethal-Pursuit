@@ -225,7 +225,7 @@ GameObject:
   - 199: {fileID: 19900006}
   - 114: {fileID: 11400024}
   m_Layer: 0
-  m_Name: Booster0001
+  m_Name: Light Stream
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
   m_NavMeshLayer: 0
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   rotationSpeedMax: 100
   rotateTowardsDirection: 0
   rotationNormal: {x: -0, y: -0, z: -1}
-  lifetime: 9.69999981
+  lifetime: 4
   lifetimeOffset: 0
   lifetimeSize:
     serializedVersion: 2
@@ -2995,19 +2995,19 @@ MonoBehaviour:
   lifetimeColor:
     key0:
       serializedVersion: 2
-      rgba: 4282893823
+      rgba: 4286190848
     key1:
       serializedVersion: 2
-      rgba: 470855741
+      rgba: 469827569
     key2:
       serializedVersion: 2
-      rgba: 1703171
+      rgba: 856600
     key3:
       serializedVersion: 2
-      rgba: 1179486
+      rgba: 986895
     key4:
       serializedVersion: 2
-      rgba: 856600
+      rgba: 986895
     key5:
       serializedVersion: 2
       rgba: 986895
@@ -3017,15 +3017,15 @@ MonoBehaviour:
     key7:
       serializedVersion: 2
       rgba: 0
-    ctime0: 5783
-    ctime1: 12143
-    ctime2: 26407
-    ctime3: 32575
-    ctime4: 47031
+    ctime0: 0
+    ctime1: 32575
+    ctime2: 47031
+    ctime3: 65535
+    ctime4: 65535
     ctime5: 65535
     ctime6: 0
     ctime7: 0
-    atime0: 0
+    atime0: 29876
     atime1: 58596
     atime2: 65535
     atime3: 65535
@@ -3033,7 +3033,7 @@ MonoBehaviour:
     atime5: 0
     atime6: 0
     atime7: 0
-    m_NumColorKeys: 6
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 3
   colorSource: 1
   sourceUsesLifetimeAlpha: 0
@@ -3115,11 +3115,11 @@ MonoBehaviour:
   previousVelocityMax: {x: 0, y: 0, z: 0}
   previousLocalVelocityMin: {x: 20.6216221, y: 0, z: 0}
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
-  previousLifetime: 9.69999981
+  previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 222.9897
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

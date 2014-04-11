@@ -22,14 +22,21 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _DecalTex
         second:
-          m_Texture: {fileID: 2800000, guid: f3c480e6202bb49718019135c01e582e, type: 3}
-          m_Scale: {x: 100, y: 200}
+          m_Texture: {fileID: 2800000, guid: e5239e75f94d0754cb2fd308f2cbd9d5, type: 3}
+          m_Scale: {x: 10, y: 20}
           m_Offset: {x: 0, y: 0}
     m_Floats: {}
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .176470578, g: .176470578, b: .176470578, a: 1}
+        second: {r: .264705896, g: .264705896, b: .264705896, a: 1}

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: topmidring_outer
-  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
+  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,10 +17,21 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 72693c00377af2045afba97c7e61c168, type: 3}
-          m_Scale: {x: 10, y: 20}
+          m_Texture: {fileID: 2800000, guid: a228ccc4c9e58419d9e30bc6509dedd1, type: 3}
+          m_Scale: {x: 50, y: 50}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
+          m_Scale: {x: 20, y: 20}
           m_Offset: {x: 0, y: 0}
     m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .078125
       data:
         first:
           name: _NumColors
@@ -37,12 +48,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .118079603, g: .128853977, b: .154411793, a: 1}
+        second: {r: .141176477, g: .172549024, b: .215686277, a: 1}
       data:
         first:
-          name: _MainColor
-        second: {r: .16911763, g: .16911763, b: .16911763, a: 1}
+          name: _SpecColor
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _OutlineColor
         second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .16911763, g: .16911763, b: .16911763, a: 1}
