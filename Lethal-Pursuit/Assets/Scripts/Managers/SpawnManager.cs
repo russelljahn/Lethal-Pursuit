@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour {
 
 	public static float normalSpawnWait = 5.9f;
 
-	public bool respawning = false;
+	public bool isVisible = false;
 	
 	private static SpawnManager singletonInstance = null;
 
@@ -44,8 +44,7 @@ public class SpawnManager : MonoBehaviour {
 	public static void SpawnSpaceship(Spaceship spaceship) {
 		
 		if (spawnPoints.Length > 0) {
-			instance.networkView.RPC("DisableShipsRespawn", RPCMode.All, spaceship);
-			//instance.StartCoroutine(HandleSpawnWait(spaceship));	
+			instance.StartCoroutine(HandleSpawnWait(spaceship));	
 
 			if (NetworkManager.IsSinglePlayer()) {
 				lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;	
@@ -64,12 +63,14 @@ public class SpawnManager : MonoBehaviour {
 		SpaceshipMatchData matchData = spaceship.GetComponent<SpaceshipMatchData>();
 		SpaceshipControl controls = spaceship.GetComponent<SpaceshipControl>();
 		Collider collider = spaceship.GetComponent<Collider>();
-		
+	
 		matchData.spawnTimeRemaining = normalSpawnWait;
 		
-		spaceship.spaceshipModelRoot.gameObject.SetActive(false);
-		controls.enabled = false;
-		collider.enabled = false;
+		instance.networkView.RPC("SetVisibility", RPCMode.All, false); 
+		
+		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
+		controls.enabled = instance.isVisible;
+		collider.enabled = instance.isVisible;
 
 		while (matchData.spawnTimeRemaining > 0.0f) {
 			yield return null;
@@ -79,19 +80,19 @@ public class SpawnManager : MonoBehaviour {
 		spaceship.transform.position = spawnPoints[lastCheckpointID].transform.position;
 		spaceship.transform.rotation = spawnPoints[lastCheckpointID].transform.rotation;
 
-		spaceship.spaceshipModelRoot.gameObject.SetActive(true);
-		controls.enabled = true;
-		collider.enabled = true;
+		instance.networkView.RPC("SetVisibility", RPCMode.All, true); 
+		
+		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
+		controls.enabled = instance.isVisible;
+		collider.enabled = instance.isVisible;
 
 		Debug.Log ("Spawning '" + spaceship + "' at SpawnPoint " + lastCheckpointID + "!");
 	}
 
 	[RPC]
-	private void DisableShipsRespawn(Spaceship spaceship) {
-		instance.StartCoroutine(HandleSpawnWait(spaceship));	
-	}
-
-	                                                       
+	private void SetVisibility(bool val) {
+		isVisible = val;
+	}	                                                       
 
 
 }
