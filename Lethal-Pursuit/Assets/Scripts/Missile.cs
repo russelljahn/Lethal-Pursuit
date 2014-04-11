@@ -15,7 +15,7 @@ public class Missile : MonoBehaviour {
 	private bool alreadyDying = false;
 
 	public float maxExplosionRadius = 300.0f;
-	public float timeUntilMaxExplosionRadius = 1.0f;
+	public float timeUntilMaxExplosionRadius = 0.05f;
 
 
 	void FixedUpdate () {
