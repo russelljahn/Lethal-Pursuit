@@ -10,6 +10,8 @@ public class SpawnManager : MonoBehaviour {
 	private static int lastCheckpointID = 0;
 
 	public static float normalSpawnWait = 5.9f;
+
+	public bool respawning = false;
 	
 	private static SpawnManager singletonInstance = null;
 
@@ -42,7 +44,8 @@ public class SpawnManager : MonoBehaviour {
 	public static void SpawnSpaceship(Spaceship spaceship) {
 		
 		if (spawnPoints.Length > 0) {
-			instance.StartCoroutine(HandleSpawnWait(spaceship));	
+			instance.networkView.RPC("DisableShipsRespawn", RPCMode.All, spaceship);
+			//instance.StartCoroutine(HandleSpawnWait(spaceship));	
 
 			if (NetworkManager.IsSinglePlayer()) {
 				lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;	
@@ -63,6 +66,7 @@ public class SpawnManager : MonoBehaviour {
 		Collider collider = spaceship.GetComponent<Collider>();
 		
 		matchData.spawnTimeRemaining = normalSpawnWait;
+		
 		spaceship.spaceshipModelRoot.gameObject.SetActive(false);
 		controls.enabled = false;
 		collider.enabled = false;
@@ -80,6 +84,11 @@ public class SpawnManager : MonoBehaviour {
 		collider.enabled = true;
 
 		Debug.Log ("Spawning '" + spaceship + "' at SpawnPoint " + lastCheckpointID + "!");
+	}
+
+	[RPC]
+	private void DisableShipsRespawn(Spaceship spaceship) {
+		instance.StartCoroutine(HandleSpawnWait(spaceship));	
 	}
 
 	                                                       
