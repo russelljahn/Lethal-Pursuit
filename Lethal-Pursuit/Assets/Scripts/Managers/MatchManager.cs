@@ -153,18 +153,17 @@ public class MatchManager : MonoBehaviour {
 	
 	public void IncrementScore(int playerID) {
 		Debug.Log("Kill tallied for player: " + playerID);
-		if(playerID != NetworkManager.GetPlayerID()) {
 			
-			killscores[playerID]++;
-			
-			if(Network.isServer) {
-				personalScore = killscores[playerID];
-			}
-			else {
-				networkView.RPC("UpdatePlayerScore", 
-			                	NetworkManager.GetPlayerList()[playerID], 
-			                	killscores[playerID]);
-			}
+		killscores[playerID]++;
+		
+		if(playerID == 0) {
+			personalScore = killscores[playerID];
+		}
+		else {
+			Debug.Log("Sending score update to player " + playerID);
+			networkView.RPC("UpdatePlayerScore", 
+		                	NetworkManager.GetPlayerList()[playerID], 
+		                	killscores[playerID]);
 		}
 	}
 	
