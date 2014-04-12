@@ -4629,9 +4629,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -13374,9 +13374,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -24962,9 +24962,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -40479,9 +40479,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -48568,9 +48568,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -59263,9 +59263,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -80184,9 +80184,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -89094,7 +89094,7 @@ Transform:
   m_PrefabInternal: {fileID: 2044452709}
   m_GameObject: {fileID: 2027900672}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 62.2299919, z: -0}
+  m_LocalPosition: {x: 0, y: 61.0299988, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 3.16363955}
   m_Children: []
   m_Father: {fileID: 1646325202}
@@ -90875,9 +90875,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -92115,6 +92115,10 @@ Prefab:
     - target: {fileID: 11400038, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
       propertyPath: respawnTime
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 61.0299988
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
@@ -98178,9 +98182,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -101205,9 +101209,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 4.88975
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
