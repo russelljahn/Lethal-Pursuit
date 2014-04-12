@@ -18204,7 +18204,7 @@ MonoBehaviour:
   pathToPickupResource: Pickups/Pickup_Punk_Missiles
   respawnTime: 15
   timeRemainingUntilRespawn: 0
-  pickupSound: {fileID: 8300000, guid: bd2ecce124957be4bb960a6a7e4b07b6, type: 3}
+  pickupSound: {fileID: 8300000, guid: c5095e09e056db94391c792e59ae3814, type: 3}
   visuals: {fileID: 2113153506}
   enabled: 0
 --- !u!1 &329736592
@@ -92172,6 +92172,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 61.0299988
       objectReference: {fileID: 0}
+    - target: {fileID: 11400040, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c5095e09e056db94391c792e59ae3814, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
   m_RootGameObject: {fileID: 1055686014}
