@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Magneto_ElectricField
+  m_Name: HealthyGlow
   m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,20 +17,20 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: fda2e27680cab4051b726b41a5fec8cf, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 608.442566, y: 608.442566}
+          m_Texture: {fileID: 2800000, guid: 9ae6f22a1a939a241a45f21d43fe27bf, type: 3}
+          m_Scale: {x: 2, y: 2}
+          m_Offset: {x: 2200.60938, y: 4401.21875}
     m_Floats:
       data:
         first:
           name: _InvFade
-        second: 1
+        second: .00999999978
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .588235319, g: .588235319, b: .588235319, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _TintColor
-        second: {r: .137498349, g: .713725507, b: .0901960507, a: 0}
+        second: {r: .126318455, g: .345588207, b: 0, a: .501960814}

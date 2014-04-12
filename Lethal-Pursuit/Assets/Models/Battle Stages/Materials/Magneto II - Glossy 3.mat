@@ -19,7 +19,7 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: 4c891e6d692101348b607baf84f48f17, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+          m_Offset: {x: 572.335205, y: 572.335205}
       data:
         first:
           name: _BumpMap
@@ -58,16 +58,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Outline
-        second: .00499999989
+          name: _Shininess
+        second: .078125
       data:
         first:
           name: _NumColors
         second: 4.37142849
-      data:
-        first:
-          name: _Shininess
-        second: .078125
       data:
         first:
           name: _OutlineWidth
@@ -76,6 +72,10 @@ Material:
         first:
           name: _Brightness
         second: 2.44642878
+      data:
+        first:
+          name: _Outline
+        second: .00499999989
       data:
         first:
           name: _Parallax
@@ -87,13 +87,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
           name: _OutlineColor
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _MainColor
         second: {r: .241379261, g: 0, b: 1, a: .486274511}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
