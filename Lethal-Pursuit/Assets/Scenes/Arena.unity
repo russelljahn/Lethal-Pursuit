@@ -10930,7 +10930,7 @@ MonoBehaviour:
   state: 0
   energyRatioToBeDrained: .600000024
   energyRatioToBeCritical: .300000012
-  shootingSound: {fileID: 8300000, guid: 041edf047c2d74795875fcf8ae535f8b, type: 3}
+  shootingSound: {fileID: 8300000, guid: d065df8dddde34641b8bf698c4c73a09, type: 3}
   enabled: 1
 --- !u!148 &118544221
 NetworkView:
@@ -10956,8 +10956,8 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: .800000012
+  m_Volume: .600000024
+  m_Pitch: 1.10000002
   Loop: 0
   Mute: 0
   Priority: 128
@@ -11619,7 +11619,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 5.79643393
+  simulationStarted: 29.4680634
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -16174,7 +16174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &255745041
 Transform:
   m_ObjectHideFlags: 0
@@ -26251,7 +26251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_Enabled
@@ -27384,7 +27384,7 @@ MonoBehaviour:
   state: 0
   energyRatioToBeDrained: .600000024
   energyRatioToBeCritical: .300000012
-  shootingSound: {fileID: 8300000, guid: 041edf047c2d74795875fcf8ae535f8b, type: 3}
+  shootingSound: {fileID: 8300000, guid: 0d08569453fa0384e885d55e300368bb, type: 3}
   enabled: 1
 --- !u!148 &604210533
 NetworkView:
@@ -27410,8 +27410,8 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: .800000012
+  m_Volume: .699999988
+  m_Pitch: .5
   Loop: 0
   Mute: 0
   Priority: 128
@@ -34043,7 +34043,7 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 1641736325}
   m_GameObject: {fileID: 794527540}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
   m_PlayOnAwake: 0
@@ -44494,9 +44494,9 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 1164797502}
   m_GameObject: {fileID: 987656972}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a7de759dd3ccc485799e80f148536a87, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -48544,7 +48544,7 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
   simulationStarted: 0
   loopExceeded: 0
@@ -53164,7 +53164,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200008, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200008, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7de759dd3ccc485799e80f148536a87, type: 3}
+    - target: {fileID: 11400002, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d065df8dddde34641b8bf698c4c73a09, type: 3}
+    - target: {fileID: 8200000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_Volume
+      value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_Pitch
+      value: 1.10000002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
@@ -75823,6 +75843,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d08569453fa0384e885d55e300368bb, type: 3}
+    - target: {fileID: 8200000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: m_Pitch
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
+      propertyPath: m_Volume
+      value: .699999988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
   m_RootGameObject: {fileID: 2084976309}
@@ -78139,7 +78179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1656952586
 Transform:
   m_ObjectHideFlags: 0
@@ -100470,7 +100510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2122934393
 Transform:
   m_ObjectHideFlags: 0
