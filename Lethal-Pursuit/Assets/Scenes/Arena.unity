@@ -4629,9 +4629,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -11619,7 +11619,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 29.4680634
+  simulationStarted: 5.79643393
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -13374,9 +13374,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -16169,12 +16169,12 @@ GameObject:
   - 135: {fileID: 255745045}
   - 148: {fileID: 255745044}
   m_Layer: 0
-  m_Name: Double
+  m_Name: Excalibro
   m_TagString: Spaceship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &255745041
 Transform:
   m_ObjectHideFlags: 0
@@ -24962,9 +24962,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -26251,7 +26251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_Enabled
@@ -26263,6 +26263,14 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 75532ec05b9729840a84fcbfce0b84d1, type: 3}
     - target: {fileID: 8200006, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_Pitch
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Name
+      value: Excalibro
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Volume
       value: .800000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -29027,6 +29035,22 @@ Prefab:
       propertyPath: simulationStarted
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 37c0dc36b224c7240b7e24264d42145b, type: 3}
+    - target: {fileID: 8200004, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: m_Volume
+      value: .75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200008, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200004, guid: 2e0339c4153454688a14e704336a169c, type: 2}
+      propertyPath: m_Pitch
+      value: .600000024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e0339c4153454688a14e704336a169c, type: 2}
   m_RootGameObject: {fileID: 955707071}
@@ -31743,7 +31767,7 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 655005574}
   m_GameObject: {fileID: 708337258}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: d9ae7c6d3346bbc4b816bfe00e355452, type: 3}
   m_PlayOnAwake: 0
@@ -40455,9 +40479,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -48546,7 +48570,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -53164,7 +53188,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200008, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
       propertyPath: m_Enabled
@@ -53185,6 +53209,10 @@ Prefab:
     - target: {fileID: 8200000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
       propertyPath: m_Pitch
       value: 1.10000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2c9587410fc7467e88326a865af3f99, type: 2}
@@ -58461,7 +58489,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .800000012
   m_Pitch: .800000012
   Loop: 0
   Mute: 0
@@ -59235,9 +59263,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -66879,7 +66907,7 @@ MonoBehaviour:
   state: 0
   energyRatioToBeDrained: .600000024
   energyRatioToBeCritical: .300000012
-  shootingSound: {fileID: 8300000, guid: 041edf047c2d74795875fcf8ae535f8b, type: 3}
+  shootingSound: {fileID: 8300000, guid: 37c0dc36b224c7240b7e24264d42145b, type: 3}
   enabled: 1
 --- !u!148 &1525927995
 NetworkView:
@@ -66905,8 +66933,8 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: .800000012
+  m_Volume: .75
+  m_Pitch: .600000024
   Loop: 0
   Mute: 0
   Priority: 128
@@ -78179,7 +78207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1656952586
 Transform:
   m_ObjectHideFlags: 0
@@ -80156,9 +80184,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -90847,9 +90875,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -98150,9 +98178,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -101177,9 +101205,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 4.88975
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
