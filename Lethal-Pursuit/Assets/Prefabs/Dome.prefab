@@ -4025,25 +4025,25 @@ AudioSource:
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: 1
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -4636,7 +4636,7 @@ MonoBehaviour:
     gameObject: {fileID: 100088}
     transform: {fileID: 400088}
     rigidbody: {fileID: 0}
-    cachedId: 130232
+    cachedId: 209652
     meshFilter: {fileID: 3300050}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -4938,7 +4938,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -5150,7 +5150,7 @@ MonoBehaviour:
     gameObject: {fileID: 100140}
     transform: {fileID: 400140}
     rigidbody: {fileID: 0}
-    cachedId: 131746
+    cachedId: 211166
     meshFilter: {fileID: 3300070}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -5452,7 +5452,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -5633,7 +5633,7 @@ MonoBehaviour:
     gameObject: {fileID: 100076}
     transform: {fileID: 400076}
     rigidbody: {fileID: 0}
-    cachedId: 129766
+    cachedId: 209186
     meshFilter: {fileID: 3300048}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -5935,7 +5935,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -6099,7 +6099,7 @@ MonoBehaviour:
     gameObject: {fileID: 100060}
     transform: {fileID: 400060}
     rigidbody: {fileID: 0}
-    cachedId: 130864
+    cachedId: 210284
     meshFilter: {fileID: 3300042}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -6377,7 +6377,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800000}
-  particleSystemId: 6
+  particleSystemId: 12
   particleSystemGameObject: {fileID: 100082}
   particleSystemTransform: {fileID: 400082}
   particleSystemRenderer: {fileID: 19900000}
@@ -6401,7 +6401,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -6477,7 +6477,7 @@ MonoBehaviour:
   pathToPickupResource: Pickups/Pickup_Punk_Missiles
   respawnTime: 15
   timeRemainingUntilRespawn: 0
-  pickupSound: {fileID: 8300000, guid: c5095e09e056db94391c792e59ae3814, type: 3}
+  pickupSound: {fileID: 8300000, guid: bd2ecce124957be4bb960a6a7e4b07b6, type: 3}
   visuals: {fileID: 100132}
   enabled: 0
 --- !u!114 &11400042
@@ -6494,7 +6494,7 @@ MonoBehaviour:
   pathToPickupResource: Pickups/Pickup_Aurora_Cannon
   respawnTime: 30
   timeRemainingUntilRespawn: 0
-  pickupSound: {fileID: 8300000, guid: 073668ad421854deaa0ec5574ee7a516, type: 3}
+  pickupSound: {fileID: 8300000, guid: 885a31d8dc8a9f84581172c595a1aeb0, type: 3}
   visuals: {fileID: 100092}
   enabled: 0
 --- !u!114 &11400044
@@ -6710,7 +6710,7 @@ MonoBehaviour:
     gameObject: {fileID: 100106}
     transform: {fileID: 400106}
     rigidbody: {fileID: 0}
-    cachedId: 130974
+    cachedId: 210394
     meshFilter: {fileID: 3300054}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7012,7 +7012,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -7188,7 +7188,7 @@ MonoBehaviour:
     gameObject: {fileID: 100118}
     transform: {fileID: 400118}
     rigidbody: {fileID: 0}
-    cachedId: 131618
+    cachedId: 211038
     meshFilter: {fileID: 3300060}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7490,7 +7490,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -7666,7 +7666,7 @@ MonoBehaviour:
     gameObject: {fileID: 100146}
     transform: {fileID: 400146}
     rigidbody: {fileID: 0}
-    cachedId: 131930
+    cachedId: 211350
     meshFilter: {fileID: 3300076}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7968,7 +7968,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -8178,7 +8178,7 @@ MonoBehaviour:
     gameObject: {fileID: 100122}
     transform: {fileID: 400122}
     rigidbody: {fileID: 0}
-    cachedId: 131114
+    cachedId: 210534
     meshFilter: {fileID: 3300062}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -8480,7 +8480,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -8680,7 +8680,7 @@ MonoBehaviour:
     gameObject: {fileID: 100126}
     transform: {fileID: 400126}
     rigidbody: {fileID: 0}
-    cachedId: 131876
+    cachedId: 211296
     meshFilter: {fileID: 3300066}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -8982,7 +8982,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 39.320797
+  simulationStarted: 2.073174
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
