@@ -4629,9 +4629,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -13374,9 +13374,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -24962,9 +24962,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -26272,6 +26272,58 @@ Prefab:
     - target: {fileID: 8200006, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
       propertyPath: m_Volume
       value: .699999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .741975844
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 4.56717885e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: .670426607
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 8.51829668e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 985.607788
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 89.6260529
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 674.082092
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: InitialModule.startSize.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: InitialModule.startSize.minCurve.m_Curve.Array.data[0].value
+      value: .714285731
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.key0.rgba
+      value: 4294901948
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
@@ -40479,9 +40531,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -48568,9 +48620,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -59263,9 +59315,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -80184,9 +80236,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -90875,9 +90927,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -98182,9 +98234,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -99402,8 +99454,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400056, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
   m_PrefabInternal: {fileID: 547007796}
   m_GameObject: {fileID: 2119205786}
-  m_LocalRotation: {x: .729983389, y: -1.0377174e-07, z: .683464885, w: 3.49209358e-07}
-  m_LocalPosition: {x: 985.959778, y: 89.5592728, z: 674.167419}
+  m_LocalRotation: {x: .741975844, y: 4.56717885e-07, z: .670426607, w: 8.51829668e-07}
+  m_LocalPosition: {x: 985.607788, y: 89.6260529, z: 674.082092}
   m_LocalScale: {x: .000250000128, y: .000250000012, z: .00250000204}
   m_Children: []
   m_Father: {fileID: 2125960825}
@@ -99535,7 +99587,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: -2.24000001
+      scalar: -200
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -99571,7 +99623,7 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278255390
+          rgba: 4294901948
         key1:
           serializedVersion: 2
           rgba: 10840325
@@ -99662,7 +99714,7 @@ ParticleSystem:
         rgba: 4278255580
       minMaxState: 1
     startSize:
-      scalar: 2
+      scalar: 700
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -99677,7 +99729,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
+          value: .714285731
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -100627,7 +100679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2125960825
 Transform:
   m_ObjectHideFlags: 0
@@ -101209,9 +101261,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.92008591
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
