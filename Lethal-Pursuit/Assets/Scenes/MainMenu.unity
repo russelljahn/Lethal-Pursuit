@@ -1707,7 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: 8b5373b38fbc1ef47b97cca9d321af60, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -2096,7 +2096,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341440170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -197.838654, y: -131.571442, z: -1.52587891e-05}
+  m_LocalPosition: {x: -342.795898, y: -131.571442, z: -1.52587891e-05}
   m_LocalScale: {x: .74999994, y: 1, z: .50000006}
   m_Children: []
   m_Father: {fileID: 1748918628}
@@ -3171,7 +3171,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528357059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.0796813965, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552580724}
@@ -3219,8 +3219,8 @@ MonoBehaviour:
     absolute: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 569
-  mHeight: 427
+  mWidth: 859
+  mHeight: 644
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -3531,6 +3531,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: fee46b827274e694aa251e2d36700135, type: 2}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c36deb18c1712a64f9cf19dbf1efd561, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: fee46b827274e694aa251e2d36700135, type: 2}
@@ -4322,6 +4326,10 @@ Prefab:
       propertyPath: mColor.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: fee46b827274e694aa251e2d36700135, type: 2}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c36deb18c1712a64f9cf19dbf1efd561, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: fee46b827274e694aa251e2d36700135, type: 2}
@@ -6207,7 +6215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: 8b5373b38fbc1ef47b97cca9d321af60, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -7068,9 +7076,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: d488929c3295f6c4b8eea3b34d2119ec, type: 3}
   trigger: 0
-  volume: 1
+  volume: .550000012
   pitch: 1
 --- !u!65 &1061714937
 BoxCollider:
@@ -7589,7 +7597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: 8b5373b38fbc1ef47b97cca9d321af60, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -8137,7 +8145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: c36deb18c1712a64f9cf19dbf1efd561, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -8615,7 +8623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: 8b5373b38fbc1ef47b97cca9d321af60, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -10172,7 +10180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: c36deb18c1712a64f9cf19dbf1efd561, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -10614,7 +10622,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1843540120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -273.444458, y: -109, z: -66.948288}
+  m_LocalPosition: {x: -418.401703, y: -109, z: -66.948288}
   m_LocalScale: {x: 1.33815587, y: .455988586, z: .455988586}
   m_Children: []
   m_Father: {fileID: 1748918628}
@@ -11577,9 +11585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
+  audioClip: {fileID: 8300000, guid: d488929c3295f6c4b8eea3b34d2119ec, type: 3}
   trigger: 0
-  volume: 1
+  volume: .699999988
   pitch: 1
 --- !u!65 &2052760921
 BoxCollider:
