@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: DonQuixote_01
-  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
+  m_Shader: {fileID: 4800000, guid: c5b300edba031496f8d1cb0251e9530b, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,8 +17,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 6295b447e78684a81a04068320674f15, type: 3}
+          m_Scale: {x: 12, y: 12}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -31,15 +31,15 @@ Material:
       data:
         first:
           name: _NumColors
-        second: 4
-      data:
-        first:
-          name: _OutlineWidth
-        second: .400000006
+        second: 4.37142801
       data:
         first:
           name: _Brightness
-        second: 1
+        second: 6.14285707
+      data:
+        first:
+          name: _OutlineWidth
+        second: .774999976
       data:
         first:
           name: _Outline
@@ -47,7 +47,7 @@ Material:
       data:
         first:
           name: _OutlineFalloff
-        second: 4
+        second: 1.54464281
     m_Colors:
       data:
         first:
@@ -55,9 +55,9 @@ Material:
         second: {r: .13333334, g: .796078503, b: .541176498, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+          name: _MainColor
+        second: {r: .0882353187, g: .0882353187, b: .0882353187, a: 1}
       data:
         first:
-          name: _MainColor
-        second: {r: 1, g: .0441176295, b: .0441176295, a: 1}
+          name: _OutlineColor
+        second: {r: .477941155, g: .411169976, b: .411169976, a: 1}
