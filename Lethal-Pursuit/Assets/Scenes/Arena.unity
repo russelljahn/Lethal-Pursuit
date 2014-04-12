@@ -11619,7 +11619,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 20.2315979
+  simulationStarted: 217.756073
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -17902,7 +17902,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 288825639}
   m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
-  m_LocalPosition: {x: 14.1847048, y: -124.371338, z: 267.992126}
+  m_LocalPosition: {x: 13.1034384, y: -124.371338, z: 206.661163}
   m_LocalScale: {x: 199.999985, y: 200, z: 199.999985}
   m_Children: []
   m_Father: {fileID: 979556624}
@@ -17916,9 +17916,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .242647067, g: .278904587, b: .647058845, a: 1}
-  m_Intensity: 5.26000023
-  m_Range: 10
+  m_Color: {r: .0266544148, g: .0354715809, b: .125, a: 1}
+  m_Intensity: 8
+  m_Range: 23.7900009
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -17931,7 +17931,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -27507,6 +27507,43 @@ Prefab:
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
       value: -1.46406388
       objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Color.r
+      value: .161764681
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Color.g
+      value: .0661496148
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Color.b
+      value: .0142733585
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Intensity
+      value: 3.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Range
+      value: 72.7900009
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 11.9703445
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 237.370483
+      objectReference: {fileID: 0}
+    - target: {fileID: 400018, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -115.358337
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
+      propertyPath: m_Flare
+      value: 
+      objectReference: {fileID: 12100000, guid: 28f1e8eff353b4e69941c036ea093e73,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e6a0e8771aa5a84e8f02b2bddbd3654, type: 2}
   m_RootGameObject: {fileID: 255745040}
@@ -46295,7 +46332,7 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
   simulationStarted: 0
   loopExceeded: 0
@@ -74026,7 +74063,7 @@ Transform:
   m_PrefabInternal: {fileID: 547007796}
   m_GameObject: {fileID: 1577605199}
   m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
-  m_LocalPosition: {x: 14.1847048, y: -124.371338, z: 267.992126}
+  m_LocalPosition: {x: 11.9703445, y: -115.358337, z: 237.370483}
   m_LocalScale: {x: 199.999985, y: 200, z: 199.999985}
   m_Children: []
   m_Father: {fileID: 494703687}
@@ -74040,9 +74077,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .242647067, g: .278904587, b: .647058845, a: 1}
-  m_Intensity: 5.26000023
-  m_Range: 10
+  m_Color: {r: .161764681, g: .0661496148, b: .0142733585, a: 1}
+  m_Intensity: 3.79999995
+  m_Range: 72.7900009
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -74055,7 +74092,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 28f1e8eff353b4e69941c036ea093e73, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -81436,7 +81473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1656952586
 Transform:
   m_ObjectHideFlags: 0
@@ -81964,7 +82001,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1687129457}
   m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
-  m_LocalPosition: {x: 8.77272415, y: -98.5377808, z: 283.887726}
+  m_LocalPosition: {x: -1.15003359, y: -54.6154976, z: 277.725677}
   m_LocalScale: {x: 199.999985, y: 200, z: 199.999985}
   m_Children: []
   m_Father: {fileID: 1703798376}
@@ -81978,7 +82015,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .242647067, g: .278904587, b: .647058845, a: 1}
+  m_Color: {r: .0962370411, g: .654411793, b: .123183459, a: 1}
   m_Intensity: 8
   m_Range: 187.289993
   m_SpotAngle: 30
@@ -92066,7 +92103,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1981317819}
   m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
-  m_LocalPosition: {x: 1.65671563, y: -52.9746895, z: 116.986832}
+  m_LocalPosition: {x: -24.1996174, y: -70.4224854, z: 223.768524}
   m_LocalScale: {x: 199.999985, y: 200, z: 199.999985}
   m_Children: []
   m_Father: {fileID: 1434406608}
@@ -92080,7 +92117,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .86206913, g: 0, b: 1, a: 1}
+  m_Color: {r: .110294104, g: 0, b: 0, a: 1}
   m_Intensity: 8
   m_Range: 190
   m_SpotAngle: 30
@@ -92095,7 +92132,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 28f1e8eff353b4e69941c036ea093e73, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -98267,7 +98304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2084976310
 Transform:
   m_ObjectHideFlags: 0
