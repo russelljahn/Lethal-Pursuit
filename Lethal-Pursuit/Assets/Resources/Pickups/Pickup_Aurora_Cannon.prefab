@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1215.94043, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1.99999995e-05}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -202,7 +202,7 @@ MonoBehaviour:
   applyInitialLocalVelocity: 0
   initialLocalVelocityMin: {x: 0, y: 0, z: 0}
   initialLocalVelocityMax: {x: 0, y: 0, z: 0}
-  applyVelocityBending: 0
+  applyVelocityBending: 1
   velocityBending: {x: 0, y: 0, z: 0}
   gravity: {x: 0, y: 0, z: 0}
   maxVelocity: 100
@@ -324,8 +324,8 @@ MonoBehaviour:
   previousParticleCount: 100
   previousEmissionRate: 1
   cameFromNonCalculatedFrame: 0
-  previousSizeMin: 5
-  previousSizeMax: 20
+  previousSizeMin: 30
+  previousSizeMax: 50
   previousInitialRotationMin: 280
   previousInitialRotationMax: 340
   previousRotationSpeedMin: 300
@@ -338,7 +338,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 6.73309088
+  simulationStarted: 421.251953
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -1448,9 +1448,9 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_RenderMode: 0
   m_MaxParticleSize: 1
-  m_CameraVelocityScale: .200000003
-  m_VelocityScale: .400000006
-  m_LengthScale: -.600000024
+  m_CameraVelocityScale: 1
+  m_VelocityScale: 1
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_SortMode: 0
