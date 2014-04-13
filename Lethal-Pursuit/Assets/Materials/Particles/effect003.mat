@@ -29,14 +29,14 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ToonShade
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Ramp
+          name: _ToonShade
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -60,25 +60,29 @@ Material:
         second: 4
       data:
         first:
-          name: _OutlineWidth
-        second: .400000006
+          name: _BumpAmt
+        second: 10
       data:
         first:
-          name: _ColorMerge
-        second: 8
+          name: _OutlineWidth
+        second: .400000006
       data:
         first:
           name: _Outline
         second: .0299999993
       data:
         first:
-          name: _BumpAmt
-        second: 10
+          name: _ColorMerge
+        second: 8
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 0, g: .793103218, b: 1, a: .619607866}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .116944224, g: .757352948, b: .704353571, a: .501960814}
       data:
         first:
           name: _SpecColor
@@ -91,7 +95,3 @@ Material:
         first:
           name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: .116944224, g: .757352948, b: .704353571, a: .501960814}

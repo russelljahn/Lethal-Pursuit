@@ -19526,7 +19526,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 332328083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -480, y: -360, z: 0}
+  m_LocalPosition: {x: -870.623169, y: -360, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 248721610}
@@ -27632,7 +27632,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 268, y: 253, z: 0}
+  m_LocalPosition: {x: 658.623169, y: 253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 553623146}
@@ -52979,7 +52979,7 @@ MonoBehaviour:
     absolute: 0
   mColor: {r: 1, g: 0, b: 0, a: 0}
   mPivot: 4
-  mWidth: 960
+  mWidth: 1741
   mHeight: 720
   mDepth: 0
   autoResizeBoxCollider: 0
@@ -79124,7 +79124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1629777185
 Transform:
   m_ObjectHideFlags: 0
@@ -79149,7 +79149,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: af80e5a9b7fa14c6f86b104e98cc3eb3, type: 2}
+  - {fileID: 2100000, guid: d5a15b1c232a14457b975c8aa063deb3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -79161,7 +79161,7 @@ ParticleSystemRenderer:
   m_RenderMode: 1
   m_MaxParticleSize: .100000001
   m_CameraVelocityScale: 0
-  m_VelocityScale: 7.5
+  m_VelocityScale: 319.420013
   m_LengthScale: -0
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -79348,7 +79348,7 @@ ParticleSystem:
         rgba: 805306367
       minMaxState: 0
     startSize:
-      scalar: 1.20000005
+      scalar: 400
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -79420,7 +79420,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 8
-    radius: .00999999978
+    radius: 18.6599998
     angle: 13
     length: 0
     boxX: 1
@@ -83214,7 +83214,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -510, y: 250.5, z: 33.8239174}
+  m_LocalPosition: {x: -900.623169, y: 250.5, z: 33.8239174}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 82442272}
@@ -87603,7 +87603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 268
+      value: 658.623169
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
@@ -87615,11 +87615,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400142, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -480
+      value: -870.623169
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -510
+      value: -900.623169
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
@@ -91602,7 +91602,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1912979396}
   m_Layer: 0
-  m_Name: SpeedEffects
+  m_Name: GodRays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91730,7 +91730,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: af80e5a9b7fa14c6f86b104e98cc3eb3, type: 2}
+  - {fileID: 2100000, guid: 718e41097d59148dbaf3954c80e11f5c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -91742,7 +91742,7 @@ ParticleSystemRenderer:
   m_RenderMode: 1
   m_MaxParticleSize: .100000001
   m_CameraVelocityScale: 0
-  m_VelocityScale: 7.5
+  m_VelocityScale: 29.9899998
   m_LengthScale: -0
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -91926,10 +91926,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 805306367
+        rgba: 4278221548
       minMaxState: 0
     startSize:
-      scalar: .170000002
+      scalar: 400
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -92001,7 +92001,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 8
-    radius: .00999999978
+    radius: 9.93999958
     angle: 13
     length: 0
     boxX: 1
