@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3314.36353, y: 2743.26489, z: 920.070129}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -74,10 +74,10 @@ MonoBehaviour:
   laserColor:
     key0:
       serializedVersion: 2
-      rgba: 2029977757
+      rgba: 4278190335
     key1:
       serializedVersion: 2
-      rgba: 1607729265
+      rgba: 5221764
     key2:
       serializedVersion: 2
       rgba: 1996488959
@@ -97,7 +97,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     ctime0: 0
-    ctime1: 35466
+    ctime1: 65535
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -105,15 +105,15 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 32768
+    atime1: 37779
     atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   particleCount: 500
   collisionLayer:
     serializedVersion: 2
@@ -145,7 +145,7 @@ MonoBehaviour:
   particleCount: 100
   emissionRate: 1
   overflowMode: 0
-  overflowOffset: {x: 0, y: 0, z: 4.95049524}
+  overflowOffset: {x: 0, y: 0, z: 19.801981}
   sorting: 3
   sizeMin: 5
   sizeMax: 20
@@ -214,10 +214,10 @@ MonoBehaviour:
   lifetimeColor:
     key0:
       serializedVersion: 2
-      rgba: 2029977757
+      rgba: 4278190335
     key1:
       serializedVersion: 2
-      rgba: 1607729265
+      rgba: 5221764
     key2:
       serializedVersion: 2
       rgba: 1996488959
@@ -237,7 +237,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 0
     ctime0: 0
-    ctime1: 35466
+    ctime1: 65535
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -245,15 +245,15 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 32768
+    atime1: 37779
     atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   colorSource: 0
   sourceUsesLifetimeAlpha: 0
   scriptedEmissionIndex: 0
@@ -324,8 +324,8 @@ MonoBehaviour:
   previousParticleCount: 100
   previousEmissionRate: 1
   cameFromNonCalculatedFrame: 0
-  previousSizeMin: 15
-  previousSizeMax: 35
+  previousSizeMin: 5
+  previousSizeMax: 20
   previousInitialRotationMin: 280
   previousInitialRotationMax: 340
   previousRotationSpeedMin: 300
@@ -338,7 +338,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 3727.49023
+  simulationStarted: 6.73309088
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -357,6 +357,7 @@ MonoBehaviour:
   laserBeamEffectScript: {fileID: 11400000}
   damageRate: 50
   laserHitForce: 1000
+  maxEnergy: 100
   currentEnergy: 75
   energyDrainRate: 15
   laserLength: 2500
