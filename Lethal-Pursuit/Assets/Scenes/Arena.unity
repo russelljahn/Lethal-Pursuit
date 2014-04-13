@@ -3027,7 +3027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66308890
 Transform:
   m_ObjectHideFlags: 0
@@ -4629,9 +4629,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -14524,9 +14524,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -17324,7 +17324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &255745041
 Transform:
   m_ObjectHideFlags: 0
@@ -17585,7 +17585,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272451413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72863793, y: 1.67158508, z: 2.1413579}
+  m_LocalPosition: {x: 1.78438485, y: 1.62206841, z: 2.12343597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1579212194}
@@ -19608,16 +19608,16 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &357008363
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400034, guid: 04108a4b79b114ed9a8de6a562aaf950, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357008362}
-  m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
-  m_LocalPosition: {x: 330.13324, y: -359.539795, z: -406.394348}
-  m_LocalScale: {x: 199.999985, y: 200, z: 199.999985}
+  m_LocalRotation: {x: -.0232592355, y: -.706724167, z: -.706724167, w: -.0232592355}
+  m_LocalPosition: {x: 2.70929575, y: -2.2008884, z: -2.39693213}
+  m_LocalScale: {x: 1.3333329, y: 1.33333313, z: 1.33333325}
   m_Children:
   - {fileID: 1658198680}
   - {fileID: 66308890}
@@ -19629,7 +19629,7 @@ Transform:
   - {fileID: 2063375959}
   - {fileID: 753476679}
   - {fileID: 1894888977}
-  m_Father: {fileID: 705785093}
+  m_Father: {fileID: 659235392}
 --- !u!1 &381570006
 GameObject:
   m_ObjectHideFlags: 0
@@ -25986,9 +25986,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -29777,7 +29777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &651059391
 Transform:
   m_ObjectHideFlags: 0
@@ -29785,7 +29785,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 651059390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72863793, y: 1.67158508, z: 2.1413579}
+  m_LocalPosition: {x: 1.87483931, y: 1.78937376, z: 1.03147805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357008363}
@@ -29811,8 +29811,8 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Time: 6
-  m_StartWidth: .100000001
+  m_Time: 2
+  m_StartWidth: 5
   m_EndWidth: 3
   m_Colors:
     m_Color[0]:
@@ -29820,10 +29820,10 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4289657850
+      rgba: 4294967295
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4287234036
+      rgba: 4294967295
     m_Color[3]:
       serializedVersion: 2
       rgba: 4294967295
@@ -29861,6 +29861,7 @@ Transform:
   m_LocalScale: {x: 150, y: 150, z: 150}
   m_Children:
   - {fileID: 1040043221}
+  - {fileID: 357008363}
   - {fileID: 149036160}
   m_Father: {fileID: 1864265897}
 --- !u!95 &659235393
@@ -33671,7 +33672,6 @@ Transform:
   m_Children:
   - {fileID: 1864265897}
   - {fileID: 1986839246}
-  - {fileID: 357008363}
   - {fileID: 1548997464}
   - {fileID: 2062218981}
   m_Father: {fileID: 2084976310}
@@ -38904,7 +38904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &891793469
 Transform:
   m_ObjectHideFlags: 0
@@ -41285,9 +41285,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -42414,7 +42414,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 947191155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.59344506, y: 2.05743408, z: .976684809}
+  m_LocalPosition: {x: 1.69969666, y: 2.0227704, z: .972218633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1579212194}
@@ -43695,7 +43695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &955707072
 Transform:
   m_ObjectHideFlags: 0
@@ -48363,7 +48363,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1053038032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.57165551, y: 1.6807785, z: .949890435}
+  m_LocalPosition: {x: 1.69187295, y: 1.63155091, z: .951427579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1579212194}
@@ -62462,9 +62462,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -64763,7 +64763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1415169746
 Transform:
   m_ObjectHideFlags: 0
@@ -77530,7 +77530,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1614977288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.66369653, y: 2.03359222, z: 2.15509057}
+  m_LocalPosition: {x: 1.77141416, y: 2.03359222, z: 2.11560965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1579212194}
@@ -84415,9 +84415,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -95106,9 +95106,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -97747,7 +97747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2063375959
 Transform:
   m_ObjectHideFlags: 0
@@ -97755,7 +97755,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063375958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.66369653, y: 2.03359222, z: 2.15509057}
+  m_LocalPosition: {x: 1.95207441, y: 1.78923678, z: 2.01643634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357008363}
@@ -97781,8 +97781,8 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Time: 6
-  m_StartWidth: .100000001
+  m_Time: 2
+  m_StartWidth: 5
   m_EndWidth: 3
   m_Colors:
     m_Color[0]:
@@ -101120,9 +101120,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -104147,9 +104147,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 10.3503542
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
