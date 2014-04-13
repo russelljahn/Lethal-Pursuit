@@ -10957,7 +10957,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .400000006
+  m_Volume: .5
   m_Pitch: .600000024
   Loop: 0
   Mute: 0
@@ -11618,9 +11618,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 1.51876259
+  simulationStarted: 23.0655003
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -27521,7 +27521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
-      value: .310606062
+      value: .196969688
       objectReference: {fileID: 0}
     - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
@@ -27533,7 +27533,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: a0d0124944eec5340882e21829fe35e7, type: 3}
     - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
       propertyPath: m_Volume
-      value: .699999988
+      value: .600000024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
@@ -70195,7 +70195,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: a0d0124944eec5340882e21829fe35e7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .699999988
+  m_Volume: .600000024
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -70217,7 +70217,7 @@ AudioSource:
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: .310606062
+      value: .196969688
       inSlope: -2.12866521
       outSlope: -2.12866521
       tangentMode: 0
@@ -70321,7 +70321,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ffaefc8a59bd54a0485cd555fdf8fcaf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .600000024
+  m_Volume: .5
   m_Pitch: .550000012
   Loop: 0
   Mute: 0
