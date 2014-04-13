@@ -4629,9 +4629,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -14524,9 +14524,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -17377,7 +17377,7 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
-  maxBoostVelocity: 850
+  maxBoostVelocity: 950
 --- !u!114 &255745043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19526,7 +19526,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 332328083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -870.623169, y: -360, z: 0}
+  m_LocalPosition: {x: -480, y: -360, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 248721610}
@@ -25986,9 +25986,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -27676,7 +27676,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 581093419}
   m_LocalRotation: {x: -.00569347432, y: .130401984, z: -.0432462245, w: .990501285}
-  m_LocalPosition: {x: 658.623169, y: 253, z: 0}
+  m_LocalPosition: {x: 268, y: 253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 553623146}
@@ -28473,7 +28473,7 @@ MonoBehaviour:
   maxEnergy: 100
   currentEnergy: 0
   energyPerShot: 25
-  energyRechargeRate: 10
+  energyRechargeRate: 15
   energyRechargeMultiplierWhenNotShooting: 1.03999996
   cooldownBetweenShots: .200000003
   bulletResourcePath: Bullets/HexLaserBullet
@@ -41473,9 +41473,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -43936,7 +43936,7 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
-  maxBoostVelocity: 800
+  maxBoostVelocity: 880
 --- !u!148 &955707074
 NetworkView:
   m_ObjectHideFlags: 0
@@ -46149,9 +46149,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -53023,7 +53023,7 @@ MonoBehaviour:
     absolute: 0
   mColor: {r: 1, g: 0, b: 0, a: 0}
   mPivot: 4
-  mWidth: 1741
+  mWidth: 960
   mHeight: 720
   mDepth: 0
   autoResizeBoxCollider: 0
@@ -62650,9 +62650,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -82818,7 +82818,7 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
-  maxBoostVelocity: 850
+  maxBoostVelocity: 900
 --- !u!1 &1658198679
 GameObject:
   m_ObjectHideFlags: 0
@@ -83258,7 +83258,7 @@ Transform:
   m_PrefabInternal: {fileID: 1814312852}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -900.623169, y: 250.5, z: 33.8239174}
+  m_LocalPosition: {x: -510, y: 250.5, z: 33.8239174}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 82442272}
@@ -84603,9 +84603,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -87647,7 +87647,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 658.623169
+      value: 268
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.y
@@ -87659,11 +87659,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400142, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -870.623169
+      value: -480
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -900.623169
+      value: -510
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
@@ -95294,9 +95294,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -96801,7 +96801,7 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
   simulationStarted: 0
   loopExceeded: 0
@@ -99361,7 +99361,7 @@ MonoBehaviour:
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
-  maxBoostVelocity: 850
+  maxBoostVelocity: 1050
 --- !u!148 &2084976312
 NetworkView:
   m_ObjectHideFlags: 0
@@ -101308,9 +101308,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -104335,9 +104335,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 0, y: 0, z: 0}
   previousLifetime: 1
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 1.84510684
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
