@@ -27491,6 +27491,50 @@ Prefab:
       propertyPath: respawnTime
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: .00200000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
+      value: -1.00200403
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200006, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
+      value: -1.00200403
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: .310606062
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0d0124944eec5340882e21829fe35e7, type: 3}
+    - target: {fileID: 8200014, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
+      propertyPath: m_Volume
+      value: .699999988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6019c313a604fb47b76e0c69d512eae, type: 2}
   m_RootGameObject: {fileID: 1055686014}
@@ -59866,7 +59910,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 44ebab6da64d44338bfbab1344aa7ae8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -59875,21 +59919,21 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: 1
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -70149,9 +70193,9 @@ AudioSource:
   m_GameObject: {fileID: 1518530931}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 2b53011f268ef4f0ebd85642a6e8e23c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a0d0124944eec5340882e21829fe35e7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .699999988
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -70173,7 +70217,7 @@ AudioSource:
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0
+      value: .310606062
       inSlope: -2.12866521
       outSlope: -2.12866521
       tangentMode: 0
@@ -92922,21 +92966,21 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
+    - time: .960674167
+      value: 1
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
