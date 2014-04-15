@@ -371,20 +371,20 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		lobbyPanel.SetActive(true);
 		
-		if(Network.isClient) {
-			networkView.RPC("PlayerReady", RPCMode.Server);
-		}
+		//if(Network.isClient) {
+			//networkView.RPC("PlayerReady", RPCMode.Server);
+		//}
 	}
 	
 	
 	public void OnLaunchClick() {
-		if(playersReady == NetworkManager.numPlayers) {		//This is assuming no client drops which is not robust
+		//if(playersReady == NetworkManager.numPlayers) {		//This is assuming no client drops which is not robust
 			if(Network.isServer) {							
 				MasterServer.UnregisterHost();
 			}
 			networkView.RPC("SwitchLoad", RPCMode.All);
 			networkView.RPC("LevelLoader", RPCMode.All);
-		}
+		//}
 	}
 	
 	
