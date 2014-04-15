@@ -27,7 +27,9 @@ public class Spaceship : MonoBehaviour {
 	public SpaceshipPickups pickups;
 	public SpaceshipControl controls;
 	public string name;
-	
+
+	public GameObject [] effects;
+
 	#region input variables
 	public float xTiltLeftStick; /* Tilt of left analogue stick every frame. */
 	public float yTiltLeftStick; /* Tilt of left analogue stick every frame. */
@@ -84,6 +86,9 @@ public class Spaceship : MonoBehaviour {
 		// Update visibility
 		spaceshipMesh.renderer.enabled = isVisible;
 		collider.enabled = isVisible;
+		for (int i = 0; i < effects.Length; ++i) {
+			effects[i].SetActive(isVisible);
+		}
 
 		// Update if controls are currently disabled/enabled
 		controls.enabled = controlsEnabled;
@@ -137,8 +142,8 @@ public class Spaceship : MonoBehaviour {
 
 	private void SyncMovement() {
 		syncTime += Time.deltaTime;
-		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
-		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
+		transform.position = Vector3.Slerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
+		transform.rotation = Quaternion.Slerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
 	}
 
 

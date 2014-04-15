@@ -2974,6 +2974,14 @@ MonoBehaviour:
   pickups: {fileID: 11400020}
   controls: {fileID: 11400000}
   name: Magneto II
+  effects:
+  - {fileID: 100026}
+  - {fileID: 100092}
+  - {fileID: 100052}
+  - {fileID: 100094}
+  - {fileID: 100036}
+  - {fileID: 100030}
+  - {fileID: 100040}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -3257,7 +3265,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 19800022}
-  particleSystemId: 12
+  particleSystemId: 13
   particleSystemGameObject: {fileID: 100064}
   particleSystemTransform: {fileID: 400064}
   particleSystemRenderer: {fileID: 19900022}
@@ -3281,7 +3289,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 437.641327
+  simulationStarted: 68.7216949
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

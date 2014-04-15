@@ -3011,6 +3011,14 @@ MonoBehaviour:
   pickups: {fileID: 11400022}
   controls: {fileID: 11400000}
   name: Buzz
+  effects:
+  - {fileID: 100094}
+  - {fileID: 100008}
+  - {fileID: 100002}
+  - {fileID: 100026}
+  - {fileID: 100062}
+  - {fileID: 100050}
+  - {fileID: 100032}
   xTiltLeftStick: 0
   yTiltLeftStick: 0
   xTiltRightStick: 0
@@ -3352,7 +3360,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 403.419952
+  simulationStarted: 1264.46155
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
