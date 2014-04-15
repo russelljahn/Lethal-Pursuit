@@ -54,6 +54,8 @@ public class Spaceship : MonoBehaviour {
 	
 	public float currentBoostVelocity;
 	public float maxBoostVelocity = 150.0f;
+
+	public int ownerPlayerID = -1; //NetworkManager.GetPlayerIndex(spaceshipMesh.networkView.owner.ipAddress);
 	
 	
 	void Start () {
@@ -160,6 +162,8 @@ public class Spaceship : MonoBehaviour {
 		bool serializedControlsEnabled = false;
 		bool serializedIsVisible = false;
 
+		int ownerID = -1;
+
 		if (stream.isWriting) {
 			syncPosition = transform.position;
 			syncRotation = transform.rotation;
@@ -168,6 +172,10 @@ public class Spaceship : MonoBehaviour {
 			equippedDefaultGun = (equippedItem == EquipType.DEFAULT_WEAPON);
 			serializedIsVisible = isVisible;
 			serializedControlsEnabled = controlsEnabled;
+
+			if(Network.isServer) {
+				ownerID = NetworkManager.GetPlayerIndex(spaceshipMesh.networkView.owner.ipAddress);
+			}
 			
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncRotation);
@@ -176,6 +184,10 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref equippedDefaultGun);
 			stream.Serialize(ref serializedIsVisible);
 			stream.Serialize(ref serializedControlsEnabled);
+			
+			if(Network.isServer) {
+				stream.Serialize(ref ownerID);
+			}
 		}
 		else {
 			stream.Serialize(ref syncPosition);
@@ -185,6 +197,10 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref equippedDefaultGun);
 			stream.Serialize(ref serializedIsVisible);
 			stream.Serialize(ref serializedControlsEnabled);
+
+			if(Network.isClient) {
+				stream.Serialize(ref ownerID);
+			}
 
 			syncTime = 0f;
 			syncDelay = Time.time - lastSynchronizationTime;
@@ -207,6 +223,8 @@ public class Spaceship : MonoBehaviour {
 
 			isVisible = serializedIsVisible;
 			controlsEnabled = serializedControlsEnabled;
+
+			ownerPlayerID = ownerID;
 		}
 	}
 	

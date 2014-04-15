@@ -247,10 +247,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				//lastHurtByPlayerID = -1;
 			}
 			else {
-				int index = NetworkManager.GetPlayerIndex(this.networkView.owner.ipAddress);
+				int index = spaceship.ownerPlayerID;
 
 				Debug.Log("Damager inside before rpc call for damage: " + damager.networkView.owner.ipAddress);
-				Debug.Log("Damage to inside before rpc call for damage: " + this.networkView.owner.ipAddress);
+				Debug.Log("Damage to inside before rpc call for damage: " + spaceship.ownerPlayerID);
 
 				
 				Debug.Log("Hurt by player " + index);
