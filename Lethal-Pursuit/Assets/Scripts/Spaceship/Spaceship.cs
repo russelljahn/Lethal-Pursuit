@@ -89,6 +89,7 @@ public class Spaceship : MonoBehaviour {
 		for (int i = 0; i < effects.Length; ++i) {
 			effects[i].SetActive(isVisible);
 		}
+		crosshairs.gameObject.SetActive(isVisible);
 
 		// Update if controls are currently disabled/enabled
 		controls.enabled = controlsEnabled;
