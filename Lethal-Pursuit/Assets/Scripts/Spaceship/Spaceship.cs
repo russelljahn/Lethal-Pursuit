@@ -92,6 +92,7 @@ public class Spaceship : MonoBehaviour {
 
 		// Update if controls are currently disabled/enabled
 		controls.enabled = controlsEnabled;
+		shooting = shooting && controlsEnabled;
 			
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			forward = spaceshipModelRoll.transform.forward;
