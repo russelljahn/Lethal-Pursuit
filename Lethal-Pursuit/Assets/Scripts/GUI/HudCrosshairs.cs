@@ -27,7 +27,7 @@ public class HudCrosshairs : SpaceshipComponent {
 	public override void Update () {
 		if (debug) {
 			debugLine.enabled = true;
-			debugLine.SetPosition(0, spaceship.spaceshipModel.transform.position);
+			debugLine.SetPosition(0, spaceshipModel.transform.position);
 			debugLine.SetPosition(1, this.transform.position);
 		}
 		else {

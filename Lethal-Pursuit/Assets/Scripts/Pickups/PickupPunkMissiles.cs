@@ -58,7 +58,7 @@ public class PickupPunkMissiles : Pickup {
 		}
 		
 		Missile missile = missileGameObject.GetComponent<Missile>();
-		missile.direction = spaceship.spaceshipModel.transform.forward;
+		missile.direction = spaceship.spaceshipMesh.transform.forward;
 		missile.sourceSpaceship = spaceship;
 		
 		missileGameObject.SetActive(true);

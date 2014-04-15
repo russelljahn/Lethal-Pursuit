@@ -18,8 +18,9 @@ public enum EquipType {
 public class Spaceship : MonoBehaviour {
 	
 	public GameplayManager gameplayManager;
-	public GameObject spaceshipModelRoot;
-	public GameObject spaceshipModel;
+	public GameObject spaceshipModelPitchYaw;
+	public GameObject spaceshipModelRoll;
+	public GameObject spaceshipMesh;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
 	public SpaceshipGun gun;
@@ -81,15 +82,15 @@ public class Spaceship : MonoBehaviour {
 	
 	void Update () {
 		// Update visibility
-		spaceshipModelRoot.SetActive(isVisible);
+		spaceshipMesh.renderer.enabled = isVisible;
 		collider.enabled = isVisible;
 
 		// Update if controls are currently disabled/enabled
 		controls.enabled = controlsEnabled;
 			
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
-			forward = spaceshipModel.transform.forward;
-			right = spaceshipModel.transform.right;
+			forward = spaceshipModelRoll.transform.forward;
+			right = spaceshipModelRoll.transform.right;
 		}
 		else {
 			SyncMovement();

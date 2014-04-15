@@ -76,12 +76,12 @@ public class SpaceshipComponent : MonoBehaviour {
 	}
 	protected GameObject spaceshipModelRoot {
 		get {
-			return spaceship.spaceshipModelRoot;
+			return spaceship.spaceshipModelPitchYaw;
 		}
 	}
 	protected GameObject spaceshipModel {
 		get {
-			return spaceship.spaceshipModel;
+			return spaceship.spaceshipModelRoll;
 		}
 	}
 	protected Vector3 forward {

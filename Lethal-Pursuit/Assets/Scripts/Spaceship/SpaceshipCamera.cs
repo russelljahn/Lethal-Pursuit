@@ -28,8 +28,8 @@ public class SpaceshipCamera : MonoBehaviour {
 	
 	void Update() {
 		
-		Vector3 newCameraPosition = spaceship.spaceshipModel.transform.TransformPoint(
-			spaceship.spaceshipModel.transform.localPosition + cameraToModel
+		Vector3 newCameraPosition = spaceship.spaceshipModelRoll.transform.TransformPoint(
+			spaceship.spaceshipModelRoll.transform.localPosition + cameraToModel
 			);
 				
 		this.transform.position = Vector3.Lerp(
