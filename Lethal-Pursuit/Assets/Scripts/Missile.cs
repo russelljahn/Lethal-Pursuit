@@ -33,7 +33,7 @@ public class Missile : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		// Ignore explosion if spaceship just shot missile and is within the collider
-		if (!alreadyDying && collision.gameObject == sourceSpaceship.gameObject) {
+		if (!alreadyDying && sourceSpaceship != null && collision.gameObject == sourceSpaceship.gameObject) {
 			return;
 		}
 		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {

@@ -25,7 +25,7 @@ public class PickupAuroraCannon : Pickup {
 			currentEnergy -= energyDrainRate*Time.deltaTime;
 			laserBeamEffect.emissionRate = 1.0f;	
 			
-			Ray ray = new Ray(spaceship.spaceshipMesh.transform.position, spaceship.spaceshipMesh.transform.forward);
+			Ray ray = new Ray(spaceship.spaceshipModelPitchYaw.transform.position, spaceship.spaceshipModelPitchYaw.transform.forward);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit, laserLength)) {
@@ -73,7 +73,7 @@ public class PickupAuroraCannon : Pickup {
 	public override void OnPickup (Spaceship spaceship) {
 		base.OnPickup (spaceship);
 		laserBeamEffect.transform.localScale = Vector3.one;
-		laserBeamEffect.sourceTransform = spaceship.spaceshipMesh.transform;
+		laserBeamEffect.sourceTransform = spaceship.spaceshipModelPitchYaw.transform;
 		laserBeamEffectScript.laserMaxDistance = laserLength;
 		currentEnergy = maxEnergy;
 		active = true;
