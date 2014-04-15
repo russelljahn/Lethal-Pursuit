@@ -15,7 +15,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 	public float maxHealth = 100;
 	
 	public HealthState state = HealthState.HEALTHY;
-	public float respawnInvulnerabilityTime = 3.0f;
+	public float respawnInvulnerabilityTime = 6.0f;
 	private float timeUntilVulnerable = 0.0f;
 	
 	public float healthRatioToBeInjured = 0.60f;
@@ -127,7 +127,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 			SpawnManager.SpawnSpaceship(this.spaceship);
 			currentHealth = maxHealth;
-//			timeUntilVulnerable = respawnInvulnerabilityTime; // Times out during respawn wait right now.
+			timeUntilVulnerable = respawnInvulnerabilityTime;
 			if (!NetworkManager.IsSinglePlayer() && currentDamager != this.gameObject) {
 				matchManager.InformServerForKilledBy(lastHurtByPlayerID);
 			}
