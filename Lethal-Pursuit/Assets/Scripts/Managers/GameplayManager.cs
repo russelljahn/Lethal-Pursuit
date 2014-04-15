@@ -49,7 +49,7 @@ public class GameplayManager : MonoBehaviour {
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );
 
-//		InputManager.InvertYAxis = true;
+		InputManager.InvertYAxis = true;
 	}
 
 

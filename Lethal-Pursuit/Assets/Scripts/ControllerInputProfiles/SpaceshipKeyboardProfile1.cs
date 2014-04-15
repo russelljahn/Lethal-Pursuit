@@ -67,6 +67,12 @@ namespace InControl
 					Target = InputControlType.RightBumper,
 					Source = KeyCodeButton(KeyCode.E)
 				},
+				new InputControlMapping
+				{
+					Handle = "Tab",
+					Target = InputControlType.Select,
+					Source = KeyCodeButton(KeyCode.Tab)
+				},
 			};
 
 			AnalogMappings = new[]
