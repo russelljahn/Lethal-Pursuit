@@ -110,7 +110,7 @@ public class Spaceship : MonoBehaviour {
 		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value;
 		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;		
 		yTiltRightStick = InputManager.ActiveDevice.RightStickY.Value;
-		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed;
+		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed && controlsEnabled;
 		drifting = InputManager.ActiveDevice.LeftTrigger.IsPressed;
 		braking = InputManager.ActiveDevice.Action3.IsPressed;
 		boosting = !braking && InputManager.ActiveDevice.Action1.IsPressed;
