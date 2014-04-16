@@ -2217,7 +2217,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 700
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -2231,10 +2231,10 @@ AudioSource:
       inSlope: 0
       outSlope: -1.00200403
       tangentMode: 0
-    - time: 1
-      value: .865168452
-      inSlope: -1.00200403
-      outSlope: 0
+    - time: .912087917
+      value: 0
+      inSlope: -6.06666708
+      outSlope: -6.06666708
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3026,8 +3026,8 @@ MonoBehaviour:
   electricFieldOpacity: .400000006
   timeToShowElectricField: 2
   electricFieldHideSpeed: .5
-  damageOverlayOpacity: .400000006
-  timeToShowDamageOverlay: 2
+  damageOverlayOpacity: .699999988
+  timeToShowDamageOverlay: 3
   damageOverlayHideSpeed: .5
   enemyIndicator: {fileID: 12000000}
   enemyIndicatorOpacity: 1
@@ -3290,7 +3290,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 130.305344
+  simulationStarted: 70.8693466
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
