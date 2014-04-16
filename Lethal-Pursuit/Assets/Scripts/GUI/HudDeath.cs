@@ -26,7 +26,7 @@ public class HudDeath : MonoBehaviour {
 			}
 		}
 		else {
-			if (matchData.lastKilledBy != null && matchData.spawnTimeRemaining > 1.0f) { 
+			if (matchData.spawnTimeRemaining > 1.0f) { 
 				label.text = string.Format("Slain by Player {0}!\nRespawning in {1}...", (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
