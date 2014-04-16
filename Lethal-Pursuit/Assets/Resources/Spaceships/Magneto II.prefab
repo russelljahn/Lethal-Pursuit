@@ -1090,7 +1090,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
-  m_LocalRotation: {x: -1.82017729e-07, y: -.729983449, z: 1.94406368e-07, w: .683464944}
+  m_LocalRotation: {x: -1.820177e-07, y: -.729983389, z: 1.9440634e-07, w: .683464885}
   m_LocalPosition: {x: 41.2666626, y: -44.9425011, z: -50.7992821}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
@@ -1147,7 +1147,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100050}
-  m_LocalRotation: {x: 0, y: -.729983449, z: 0, w: .683464944}
+  m_LocalRotation: {x: 0, y: -.729983389, z: 0, w: .683464885}
   m_LocalPosition: {x: 147488.047, y: -17918.791, z: -187852.406}
   m_LocalScale: {x: 199.999954, y: 200, z: 199.999969}
   m_Children:
@@ -3000,6 +3000,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
   maxBoostVelocity: 900
+  ownerPlayerID: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3013,7 +3014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400014}
   currentHealth: 0
-  maxHealth: 80
+  maxHealth: 160
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024

@@ -822,7 +822,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: .729983389, y: 0, z: .683465004, w: 0}
+  m_LocalRotation: {x: .72998333, y: 0, z: .683464944, w: 0}
   m_LocalPosition: {x: 985.535645, y: 89.5946198, z: 674.137939}
   m_LocalScale: {x: .000250000012, y: .000249999954, z: .00249999994}
   m_Children: []
@@ -2802,6 +2802,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
   maxBoostVelocity: 950
+  ownerPlayerID: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2865,7 +2866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   currentHealth: 0
-  maxHealth: 90
+  maxHealth: 180
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024

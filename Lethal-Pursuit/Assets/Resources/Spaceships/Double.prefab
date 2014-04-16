@@ -2839,6 +2839,7 @@ MonoBehaviour:
   right: {x: 0, y: 0, z: 0}
   currentBoostVelocity: 0
   maxBoostVelocity: 1050
+  ownerPlayerID: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2886,7 +2887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400006}
   currentHealth: 0
-  maxHealth: 85
+  maxHealth: 170
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024

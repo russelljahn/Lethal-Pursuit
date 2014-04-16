@@ -88,7 +88,8 @@ public class SpawnManager : MonoBehaviour {
 //		spaceship.spaceshipModelRoot.gameObject.SetActive(instance.isVisible);
 //		controls.enabled = instance.isVisible;
 //		collider.enabled = instance.isVisible;
-
+		SpaceshipHealth healthComponent = spaceship.GetComponent<SpaceshipHealth>();
+		healthComponent.currentHealth = healthComponent.maxHealth;
 		spaceship.isVisible = true;
 		spaceship.controlsEnabled = true;
 
