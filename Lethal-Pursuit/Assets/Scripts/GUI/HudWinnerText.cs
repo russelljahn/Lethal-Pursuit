@@ -9,7 +9,7 @@ public class HudWinnerText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		winnerText = GetComponent<UILabel>();
-		if (NetworkManager.GetPlayerID() == matchManager.matchManager.scoreLeader) {
+		if (NetworkManager.GetPlayerID() == matchManager.scoreLeader) {
 			winnerText.text = string.Format("YOU ARE THE VICTOR!");
 		}
 		else {
