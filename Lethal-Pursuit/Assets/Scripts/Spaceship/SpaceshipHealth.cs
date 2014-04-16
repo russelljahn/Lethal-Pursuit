@@ -249,15 +249,17 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			else {
 				int index = spaceship.ownerPlayerID;
 
-				Debug.Log("Damager inside before rpc call for damage: " + damager.networkView.owner.ipAddress);
-				Debug.Log("Damage to inside before rpc call for damage: " + spaceship.ownerPlayerID);
+				Spaceship ship = damager.GetComponent<Spaceship>();
 
+				Debug.Log("What is this index? Who does it belong to? " + index);
 				
-				Debug.Log("Hurt by player " + index);
-				Debug.Log("Player IP found: " + NetworkManager.GetPlayerList()[index].ipAddress);
-				// Need to check if not -1 for non existing game object
-				networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, NetworkManager.GetPlayerID());
-				//networkView.RPC("NetworkApplyDamage", RPCMode.Others, amount);				
+				Debug.Log("Damager ipaddress: " + damager.networkView.owner.ipAddress);
+				Debug.Log("Damager owned by player " + NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress));
+				Debug.Log("Damage about to be applied to player: " + spaceship.ownerPlayerID);
+
+				if(ship != null) {
+					networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, ship.ownerPlayerID);
+				}
 			}
 		}
 		else {
