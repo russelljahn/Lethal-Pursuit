@@ -149,8 +149,8 @@ public class Spaceship : MonoBehaviour {
 
 	private void SyncMovement() {
 		syncTime += Time.deltaTime;
-		transform.position = Vector3.Slerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
-		transform.rotation = Quaternion.Slerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
+		transform.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime/syncDelay);
+		transform.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime/syncDelay);
 	}
 
 

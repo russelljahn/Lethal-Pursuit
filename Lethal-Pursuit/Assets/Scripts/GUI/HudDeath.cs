@@ -5,6 +5,7 @@ public class HudDeath : MonoBehaviour {
 
 
 	public SpaceshipMatchData matchData;
+	public SpaceshipHealth spaceshipHealth;
 	private UILabel label;
 
 	// Use this for initialization
@@ -21,11 +22,12 @@ public class HudDeath : MonoBehaviour {
 			
 			if (ship != null) {
 				matchData = GameplayManager.spaceship.GetComponent<SpaceshipMatchData>();
+				spaceshipHealth = GameplayManager.spaceship.GetComponent<SpaceshipHealth>();
 			}
 		}
 		else {
 			if (matchData.lastKilledBy != null && matchData.spawnTimeRemaining > 1.0f) { 
-				label.text = string.Format("Slain by {0}!\nRespawning in {1}...", matchData.lastKilledBy.name, (int)matchData.spawnTimeRemaining); 
+				label.text = string.Format("Slain by Player {0}!\nRespawning in {1}...", (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
 				label.text = string.Format("Preparing for descent..."); 
