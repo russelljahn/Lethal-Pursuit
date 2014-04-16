@@ -15,6 +15,8 @@ public class PickupAuroraCannon : Pickup {
 	public float laserLength = 500.0f;
 	private GameObject hitGameObject;
 
+	private float damageCooldown = 0.0f;
+	private float maxDamageCooldown = 0.25f;
 
 	public override void Update() {
 		if (!active) {
@@ -46,16 +48,23 @@ public class PickupAuroraCannon : Pickup {
 
 
 	void FixedUpdate() {
+		damageCooldown = Mathf.Max(0.0f, damageCooldown-Time.deltaTime);
 		if (!active) {
 			return;
 		}
 		if (hitGameObject == null) {
 			return;
 		}
+		if (damageCooldown <= 0.0f) {
+			damageCooldown = maxDamageCooldown;
+		}
+		else {
+			return;
+		}
 		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
 
 		if (damageableObject != null) {
-			damageableObject.ApplyDamage(damageRate*Time.deltaTime, spaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
+			damageableObject.ApplyDamage(damageRate*maxDamageCooldown, spaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
 		}
 	}
 
