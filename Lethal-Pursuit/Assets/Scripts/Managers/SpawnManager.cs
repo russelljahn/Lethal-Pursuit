@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour {
 	public static float normalSpawnWait = 5.9f;
 
 	public bool isVisible = false;
+	private bool firstTimeSpawning = true;
 	
 	private static SpawnManager singletonInstance = null;
 
@@ -44,8 +45,14 @@ public class SpawnManager : MonoBehaviour {
 	public static void SpawnSpaceship(Spaceship spaceship) {
 		
 		if (spawnPoints.Length > 0) {
-			instance.StartCoroutine(HandleSpawnWait(spaceship));	
-			lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;	
+			if (!instance.firstTimeSpawning) {
+				instance.StartCoroutine(HandleSpawnWait(spaceship));
+			}
+			else {
+				instance.firstTimeSpawning = false;
+				spaceship.transform.position = spawnPoints[lastCheckpointID].transform.position;
+			}
+			lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;
 		}
 		else {
 			Debug.LogError("SpawnManager: No SpawnPoints; Spawning '" + spaceship + "' at world origin!");
