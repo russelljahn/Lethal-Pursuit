@@ -153,7 +153,6 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			}
 			if (remainingDamageOverlayTime <= 0.0f) {
 				damageOverlayImage.alpha = Mathf.Max(0.0f, damageOverlayImage.alpha-Time.deltaTime*damageOverlayHideSpeed);
-				lastDamager = null;
 			}
 		}
 	}
@@ -182,7 +181,6 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		}
 		if (remainingElectricFieldTime <= 0.0f) {
 			newShellColor.a = Mathf.Max(0.0f, newShellColor.a-Time.deltaTime*damageOverlayHideSpeed);
-			lastDamager = null;
 		}
 		electricField.SetColor("_TintColor", newShellColor);
 	}
@@ -197,7 +195,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			Color indicatorColor = enemyIndicator.renderer.material.GetColor("_TintColor");
 			if (IsDead()) {
 				indicatorColor.a = 0.0f;
-				enemyIndicator.SetColors(indicatorColor, indicatorColor);	
+				enemyIndicator.renderer.material.SetColor("_TintColor", indicatorColor);
 				return;
 			}
 			if (currentDamager != null && currentDamager != lastDamager) {
@@ -209,7 +207,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				enemyIndicator.SetPosition(1, spaceship.transform.position);
 			}
 			else if (enemyToTrack != null) {
-				remainingEnemyIndicatorTime = Mathf.Max(0.0f, timeToShowEnemyIndicator-Time.deltaTime);
+				remainingEnemyIndicatorTime = Mathf.Max(0.0f, remainingEnemyIndicatorTime-Time.deltaTime);
 				enemyIndicator.renderer.material.SetColor("_TintColor", indicatorColor);	
 				enemyIndicator.SetPosition(0, enemyToTrack.transform.position);
 				enemyIndicator.SetPosition(1, spaceship.transform.position);
