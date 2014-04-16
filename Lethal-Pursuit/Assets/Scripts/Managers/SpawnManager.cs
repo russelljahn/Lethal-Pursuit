@@ -45,13 +45,7 @@ public class SpawnManager : MonoBehaviour {
 		
 		if (spawnPoints.Length > 0) {
 			instance.StartCoroutine(HandleSpawnWait(spaceship));	
-
-			if (NetworkManager.IsSinglePlayer()) {
-				lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;	
-			}
-			else {
-				lastCheckpointID = NetworkManager.GetPlayerID()%spawnPoints.Length;
-			}
+			lastCheckpointID = (++lastCheckpointID)%spawnPoints.Length;	
 		}
 		else {
 			Debug.LogError("SpawnManager: No SpawnPoints; Spawning '" + spaceship + "' at world origin!");
