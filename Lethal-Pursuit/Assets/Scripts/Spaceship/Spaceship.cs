@@ -75,13 +75,13 @@ public class Spaceship : MonoBehaviour {
 	void FixedUpdate () {
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
 			HandleInput();
+			if (selectPressedLastFrame && !InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed) {
+				Debug.Log ("Flipping Y-Axis Invert...");
+				InputManager.InvertYAxis = !InputManager.InvertYAxis;
+			}
+			selectPressedLastFrame = InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed;
 		}
 
-		if (selectPressedLastFrame && !InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed) {
-			Debug.Log ("Flipping Y-Axis Invert...");
-			InputManager.InvertYAxis = !InputManager.InvertYAxis;
-		}
-		selectPressedLastFrame = InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed;
 	}
 	
 	
