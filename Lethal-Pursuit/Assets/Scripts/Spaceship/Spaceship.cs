@@ -55,7 +55,7 @@ public class Spaceship : MonoBehaviour {
 	public float currentBoostVelocity;
 	public float maxBoostVelocity = 150.0f;
 
-	public int ownerPlayerID = -1; //NetworkManager.GetPlayerIndex(spaceshipMesh.networkView.owner.ipAddress);
+	public int ownerPlayerID; //NetworkManager.GetPlayerIndex(spaceshipMesh.networkView.owner.ipAddress);
 	
 	
 	void Start () {
@@ -68,6 +68,7 @@ public class Spaceship : MonoBehaviour {
 			spaceshipCamera.gameObject.SetActive(false);
 			crosshairs.SetActive(false);
 		}
+		ownerPlayerID = NetworkManager.GetPlayerIndex(this.networkView.owner.ipAddress);
 	}
 	
 	
@@ -174,7 +175,7 @@ public class Spaceship : MonoBehaviour {
 			serializedControlsEnabled = controlsEnabled;
 
 			if(Network.isServer) {
-				ownerID = NetworkManager.GetPlayerIndex(spaceshipMesh.networkView.owner.ipAddress);
+				ownerID = ownerPlayerID;
 			}
 			
 			stream.Serialize(ref syncPosition);
@@ -186,6 +187,7 @@ public class Spaceship : MonoBehaviour {
 			stream.Serialize(ref serializedControlsEnabled);
 			
 			if(Network.isServer) {
+				Debug.Log("Serializing ownerID to all instances");
 				stream.Serialize(ref ownerID);
 			}
 		}
@@ -224,7 +226,9 @@ public class Spaceship : MonoBehaviour {
 			isVisible = serializedIsVisible;
 			controlsEnabled = serializedControlsEnabled;
 
-			ownerPlayerID = ownerID;
+			if(Network.isClient) {
+				ownerPlayerID = ownerID;
+			}
 		}
 	}
 	
