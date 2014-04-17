@@ -32,6 +32,8 @@ public class HudDeath : MonoBehaviour {
 		"Put down by Player {0}!",
 		"Eradicated by Player {0}!",
 		"Exterminated by Player {0}!",
+		"Blitzkrieged by Player {0}!",
+		"Erased by Player {0}!",
 	};
 	private string currentDeathMessage;
 
