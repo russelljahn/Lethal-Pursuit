@@ -9,31 +9,38 @@ public class HudDeath : MonoBehaviour {
 	private UILabel label;
 
 	private string [] deathMessages = {
-		"Slaughtered by Player {0}!",
-		"Slathered by Player {0}!",
-		"Streamrolled by Player {0}!",
-		"Punked by Player {0}!",
-		"Slain by Player {0}!",
-		"Annihilated by Player {0}!",
-		"Demolished by Player {0}!",
-		"Shredded by Player {0}!",
-		"Scrapped by Player {0}!",
-		"Rezzed by Player {0}!",
-		"Gibbed by Player {0}!",
-		"Torn asunder by Player {0}!",
-		"Sent to the grave by Player {0}!",
-		"Sent to the afterlife by Player {0}!",
-		"Purged by Player {0}!",
-		"Skelefied by Player {0}!",
-		"Put to sleep by Player {0}!",
-		"Terminated by Player {0}!",
-		"Liquidated by Player {0}!",
-		"Wasted by Player {0}!",
-		"Put down by Player {0}!",
-		"Eradicated by Player {0}!",
-		"Exterminated by Player {0}!",
-		"Blitzkrieged by Player {0}!",
-		"Erased by Player {0}!",
+		"Slaughtered",
+		"Slathered",
+		"Streamrolled",
+		"Punked",
+		"Slain",
+		"Annihilated",
+		"Demolished",
+		"Shredded",
+		"Scrapped",
+		"Rezzed",
+		"Gibbed",
+		"Torn asunder",
+		"Sent to the grave",
+		"Sent to the afterlife",
+		"Purged",
+		"Skelefied",
+		"Put to sleep",
+		"Terminated",
+		"Liquidated",
+		"Wasted",
+		"Put down",
+		"Eradicated",
+		"Exterminated",
+		"Blitzkrieged",
+		"Erased",
+		"Executed",
+		"Ravaged",
+		"Incinerated",
+		"Devoured",
+		"Felled",
+		"Mashed",
+		"Mushed",
 	};
 	private string currentDeathMessage;
 
@@ -58,7 +65,7 @@ public class HudDeath : MonoBehaviour {
 		}
 		else {
 			if (matchData.spawnTimeRemaining > 1.0f) { 
-				label.text = string.Format((currentDeathMessage + "\nRespawning in {1}..."), (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
+				label.text = string.Format("{0} by Player {1}!\nRespawning in {2}...", currentDeathMessage, (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
 				label.text = string.Format("Preparing for descent..."); 
