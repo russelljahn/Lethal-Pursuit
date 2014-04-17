@@ -49,7 +49,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   m_Layer: 0
-  m_Name: Playground Laser (Script)
+  m_Name: Laser Beam
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
   m_NavMeshLayer: 0
@@ -184,8 +184,8 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Time: 2
-  m_StartWidth: 2
+  m_Time: 1
+  m_StartWidth: 10
   m_EndWidth: 2
   m_Colors:
     m_Color[0]:
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a363b1281e773497c8a413885ffce577, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bad7d773923d47a0aea715e79c3f9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sourceSpaceship: {fileID: 0}
@@ -248,10 +248,10 @@ MonoBehaviour:
   laserColor:
     key0:
       serializedVersion: 2
-      rgba: 2017116928
+      rgba: 4282041088
     key1:
       serializedVersion: 2
-      rgba: 1596119046
+      rgba: 2971850758
     key2:
       serializedVersion: 2
       rgba: 2013265920
@@ -288,10 +288,10 @@ MonoBehaviour:
     atime7: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
-  particleCount: 100
+  particleCount: 25
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,13 +316,13 @@ MonoBehaviour:
   deltaMovementStrength: 10
   worldObjectUpdateNormals: 0
   nearestNeighborOrigin: 0
-  particleCount: 100
+  particleCount: 25
   emissionRate: 1
   overflowMode: 0
-  overflowOffset: {x: 0, y: 0, z: 9.90099049}
+  overflowOffset: {x: 0, y: 0, z: 38.4615402}
   sorting: 1
   sizeMin: 1
-  sizeMax: 1
+  sizeMax: 8
   scale: 10
   initialRotationMin: 0
   initialRotationMax: 0
@@ -388,10 +388,10 @@ MonoBehaviour:
   lifetimeColor:
     key0:
       serializedVersion: 2
-      rgba: 2017116928
+      rgba: 4282041088
     key1:
       serializedVersion: 2
-      rgba: 1596119046
+      rgba: 2971850758
     key2:
       serializedVersion: 2
       rgba: 2013265920
@@ -495,11 +495,11 @@ MonoBehaviour:
   particleSystemRenderer2: {fileID: 19900002}
   inTransition: 0
   previousActiveState: 0
-  previousParticleCount: 100
+  previousParticleCount: 25
   previousEmissionRate: 1
   cameFromNonCalculatedFrame: 0
   previousSizeMin: 1
-  previousSizeMax: 1
+  previousSizeMax: 8
   previousInitialRotationMin: 0
   previousInitialRotationMax: 0
   previousRotationSpeedMin: 0
@@ -512,7 +512,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 23.4474869
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -1809,7 +1809,7 @@ SphereCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000
 ParticleSystem:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
@@ -2861,7 +2861,7 @@ ParticleSystem:
     subEmitterDeath1: {fileID: 0}
 --- !u!198 &19800002
 ParticleSystem:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
@@ -3956,7 +3956,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 9585498ac845148beb787e4c9921e24c, type: 2}
+  - {fileID: 2100000, guid: 98a79c21fe3334b21803a0f5341f55d1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3965,11 +3965,11 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_RenderMode: 0
+  m_RenderMode: 3
   m_MaxParticleSize: 1
-  m_CameraVelocityScale: 0
+  m_CameraVelocityScale: -9
   m_VelocityScale: 10
-  m_LengthScale: 2
+  m_LengthScale: 3
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_SortMode: 0

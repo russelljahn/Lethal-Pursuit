@@ -2,20 +2,13 @@
 using System.Collections;
 
 [RequireComponent(typeof(Collider))]
-public class Bullet : MonoBehaviour {
-
-	public Spaceship sourceSpaceship;
-	public GameObject explosion;
-
-	public Vector3 direction = Vector3.forward;
-	public float damage = 15f;
-	public float speed = 50f;
-	public float timeUntilDeath = 5.0f;
-	private bool alreadyDying = false;
+public class HexLaserBullet : Bullet {
 
 	
-	void FixedUpdate () {
+
+	public override void FixedUpdate () {
 		timeUntilDeath -= Time.deltaTime;
+		
 		if (timeUntilDeath <= 0 && !alreadyDying) {
 			alreadyDying = true;
 			GameObject.Destroy(this.gameObject);
@@ -24,7 +17,8 @@ public class Bullet : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter(Collision collision) {
+
+	public override void OnCollisionEnter(Collision collision) {
 		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
 			this.transform.position = collision.contacts[0].point;
 			alreadyDying = true;
@@ -34,14 +28,10 @@ public class Bullet : MonoBehaviour {
 			GameObject.Destroy(this.gameObject);
 		}
 	}
-	
-
-	bool ShouldExplodeOnContact(GameObject other) {
-		return !(other.CompareTag("Bullet") || other == sourceSpaceship.gameObject);
-	}
 
 
-	void HandleApplyingDamage(GameObject hitGameObject) {
+
+	public override void HandleApplyingDamage(GameObject hitGameObject) {
 		if (hitGameObject == null) {
 			return;
 		}

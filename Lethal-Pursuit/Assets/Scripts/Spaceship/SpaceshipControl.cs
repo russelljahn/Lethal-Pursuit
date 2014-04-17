@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof (Spaceship))]
 [RequireComponent (typeof (Collider))]
-public class SpaceshipControl : SpaceshipComponent {
+public class SpaceshipControl : SpaceshipComponent, ITargetable {
 	
 	
 	public float boostAcceleration = 10.0f;

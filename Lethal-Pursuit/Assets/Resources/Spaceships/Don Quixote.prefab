@@ -2866,7 +2866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   currentHealth: 0
-  maxHealth: 180
+  maxHealth: 200
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024
@@ -3121,9 +3121,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 5.82239008
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
