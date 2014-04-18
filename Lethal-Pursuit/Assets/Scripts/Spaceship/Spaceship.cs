@@ -15,7 +15,7 @@ public enum EquipType {
  */
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
-public class Spaceship : MonoBehaviour {
+public class Spaceship : MonoBehaviour, ITargetable {
 	
 	public GameplayManager gameplayManager;
 	public GameObject spaceshipModelPitchYaw;

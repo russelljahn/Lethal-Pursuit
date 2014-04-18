@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 
 
 	public virtual void Start() {
-		;
+		this.transform.forward = direction;
 	}
 
 	
