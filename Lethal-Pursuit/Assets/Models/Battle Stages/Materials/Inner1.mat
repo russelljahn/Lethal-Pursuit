@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Inner1
-  m_Shader: {fileID: 3, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,14 +17,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: f18831917a13b4bb6b3dd0d749877a6e, type: 3}
-          m_Scale: {x: 20, y: 20}
+          m_Texture: {fileID: 2800000, guid: e097f55421919b64c931052174958b39, type: 3}
+          m_Scale: {x: 20, y: 60}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .029670421
+        second: .0211839937
       data:
         first:
           name: _NumColors
@@ -41,11 +41,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .20588237, g: .20588237, b: .20588237, a: 1}
+        second: {r: .911764681, g: .911764681, b: .911764681, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .290196091, g: .282352954, b: .294117659, a: 1}
+        second: {r: .235294104, g: .235294104, b: .235294104, a: 1}
       data:
         first:
           name: _MainColor

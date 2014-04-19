@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Don Quixote - Glossy Black
-  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 11, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,19 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 537d21dc94d1b42c1aaddb33ce8c00b2, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 30bc850b273e9d74f92332520716332d, type: 3}
+          m_Scale: {x: 4, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: c9cbf2470169dfe42828eace973fa58f, type: 3}
+          m_Scale: {x: 4, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -36,17 +43,17 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ToonShade
+          name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ParallaxMap
+          name: _Illum
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 30bc850b273e9d74f92332520716332d, type: 3}
+          m_Scale: {x: 4, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -59,19 +66,19 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: .0300000031
       data:
         first:
           name: _NumColors
         second: 4.37142849
       data:
         first:
-          name: _OutlineWidth
-        second: 3
-      data:
-        first:
           name: _Brightness
         second: 2.92857146
+      data:
+        first:
+          name: _OutlineWidth
+        second: 3
       data:
         first:
           name: _Outline
@@ -80,20 +87,24 @@ Material:
         first:
           name: _Parallax
         second: .0199999996
+      data:
+        first:
+          name: _EmissionLM
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0, g: 1, b: .958620548, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 0, g: .958620548, b: 1, a: 1}
       data:
         first:
           name: _MainColor
         second: {r: .352941155, g: .337370217, b: .337370217, a: .486274511}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 1, g: 1, b: 1, a: 1}

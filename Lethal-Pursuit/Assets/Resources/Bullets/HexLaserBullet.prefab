@@ -203,7 +203,7 @@ TrailRenderer:
     m_Color[4]:
       serializedVersion: 2
       rgba: 394758
-  m_MinVertexDistance: .00100000005
+  m_MinVertexDistance: .200000003
   m_Autodestruct: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -223,7 +223,7 @@ MonoBehaviour:
   speed: 5000
   timeUntilDeath: 2
   target: {fileID: 0}
-  homingSensitivity: .100000001
+  homingSensitivity: .300000012
   hitRadius: 30
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1808,8 +1808,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1000
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 500
+  m_Center: {x: 0, y: 0, z: 200}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

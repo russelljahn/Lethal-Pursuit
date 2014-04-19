@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Double_01
-  m_Shader: {fileID: 11, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -63,6 +63,10 @@ Material:
         second: 1
       data:
         first:
+          name: _OutlineWidth
+        second: .400000006
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -86,6 +90,10 @@ Material:
         first:
           name: _MainColor
         second: {r: 1, g: .558620691, b: 0, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 1, g: .351724148, b: 0, a: 1}
       data:
         first:
           name: _ReflectColor

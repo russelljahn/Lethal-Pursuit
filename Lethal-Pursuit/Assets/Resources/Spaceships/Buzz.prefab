@@ -3139,8 +3139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
   currentPickup: {fileID: 0}
-  pickupSwapCooldown: .125
-  remainingSwapCooldownTime: 0
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3361,7 +3359,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 34.7554893
+  simulationStarted: 28.1825867
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3517,7 +3515,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 200
+  m_Radius: 125
   m_Center: {x: 0, y: 0, z: 15}
 --- !u!148 &14800000
 NetworkView:

@@ -35,7 +35,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -338,7 +338,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 421.251953
+  simulationStarted: 570.996948
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -375,7 +375,7 @@ NetworkView:
     m_Type: 0
 --- !u!198 &19800000
 ParticleSystem:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}

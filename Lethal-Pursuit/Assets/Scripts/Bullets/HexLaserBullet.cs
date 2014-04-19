@@ -20,50 +20,51 @@ public class HexLaserBullet : Bullet {
 			Quaternion targetRotation = Quaternion.LookRotation(thisToTarget);
 			transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, homingSensitivity);
 		}
-		this.rigidbody.MovePosition(this.transform.position + speed*this.transform.forward*Time.deltaTime);
+		if (!alreadyDying) {
+			this.rigidbody.MovePosition(this.transform.position + speed*this.transform.forward*Time.deltaTime);
+		}
 	}
 
+
+	public void OnTriggerEnter(Collider other) {
+		this.OnTriggerStay(other);
+	}
 
 
 	public override void OnTriggerStay(Collider other) {
 
 		GameObject hitGameObject = other.gameObject;
+		SphereCollider sphereCollider = this.collider as SphereCollider;
 
 		if (target == null && 
-		    hitGameObject != sourceSpaceship.gameObject && 
-		    Vector3.Distance(hitGameObject.transform.position, this.transform.position) > hitRadius) {
+		    	hitGameObject != sourceSpaceship.gameObject && 
+		   		Vector3.Distance(hitGameObject.transform.position, this.transform.position) > hitRadius
+		    ) {
 
 			ITargetable targetableObject = (ITargetable)hitGameObject.GetComponent(typeof(ITargetable));
 			if (targetableObject != null) {
 				target = hitGameObject;
+				sphereCollider.radius = hitRadius;
+				return;
 			}
-			SphereCollider sphereCollider = this.collider as SphereCollider;
-			sphereCollider.radius = hitRadius;
 		}
-		else if (!alreadyDying && ShouldExplodeOnContact(other.gameObject)) {
+		if (!alreadyDying && ShouldExplodeOnContact(other.gameObject)) {
+			if (hitGameObject == target || Vector3.Distance(hitGameObject.transform.position, this.transform.position) <= hitRadius) {
+				HandleHit(other.gameObject);
+			}
 //			this.transform.position = other.transform.position;
-			alreadyDying = true;
-			explosion.transform.parent = null;
-			explosion.SetActive(true);
-			HandleApplyingDamage(other.gameObject);
-			GameObject.Destroy(this.gameObject);
+
 		}
 	}
 
 
-
-	public override void HandleApplyingDamage(GameObject hitGameObject) {
-		if (hitGameObject == null) {
-			return;
-		}
-		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
-		
-		//		Debug.Log ("hitGameObject: " + hitGameObject.name);
-		//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
-		
-		if (damageableObject != null) {
-			damageableObject.ApplyDamage(damage, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
-		}
+	private void HandleHit(GameObject hitGameObject) {
+		alreadyDying = true;
+		explosion.transform.parent = null;
+		explosion.SetActive(true);
+		HandleApplyingDamage(hitGameObject);
+		GameObject.Destroy(this.gameObject);
 	}
 
 }
+	
