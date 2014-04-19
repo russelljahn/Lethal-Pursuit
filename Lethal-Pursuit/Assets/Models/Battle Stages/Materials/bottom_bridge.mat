@@ -24,7 +24,7 @@ Material:
         first:
           name: _Cube
         second:
-          m_Texture: {fileID: 8900000, guid: 25793ebbbd111a7011005aba44295342, type: 2}
+          m_Texture: {fileID: 8900000, guid: 006a5f739d1105f6a000538a2aef8c59, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -38,12 +38,12 @@ Material:
         second: 30
       data:
         first:
-          name: _OutlineWidth
-        second: .4375
-      data:
-        first:
           name: _Brightness
         second: 1.64285719
+      data:
+        first:
+          name: _OutlineWidth
+        second: .4375
       data:
         first:
           name: _OutlineFalloff
@@ -59,12 +59,12 @@ Material:
         second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: .816176474, g: .931541502, b: 1, a: 1}
-      data:
-        first:
           name: _MainColor
         second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .816176474, g: .931541502, b: 1, a: 1}
       data:
         first:
           name: _ReflectColor
