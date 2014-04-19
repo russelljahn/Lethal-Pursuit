@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Buzz_03
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 42ccdd54c9fd548e9b43a97c0520662f, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,32 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 71b644aeeaf067440b9ded0a947ade61, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _NumColors
+        second: 4
+      data:
+        first:
+          name: _Brightness
+        second: 1
+      data:
+        first:
+          name: _OutlineWidth
+        second: .400000006
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: .128492102, g: .0627450943, b: .929411769, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .129571497, g: .101373255, b: .91911763, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .257352948, g: .257352948, b: .257352948, a: 1}
