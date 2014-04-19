@@ -50,8 +50,6 @@ public class GameplayManager : MonoBehaviour {
 		/* Register custom input profiles for keyboard button mappings. */
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );
-
-
 	}
 
 

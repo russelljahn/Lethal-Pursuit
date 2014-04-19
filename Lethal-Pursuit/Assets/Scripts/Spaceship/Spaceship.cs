@@ -28,6 +28,8 @@ public class Spaceship : MonoBehaviour, ITargetable {
 	public SpaceshipControl controls;
 	public string name;
 
+	private float invertYAmount = 1.0f;
+
 	public GameObject [] effects;
 
 	#region input variables
@@ -77,7 +79,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			HandleInput();
 			if (selectPressedLastFrame && !InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed) {
 				Debug.Log ("Flipping Y-Axis Invert...");
-				InputManager.InvertYAxis = !InputManager.InvertYAxis;
+				invertYAmount *= -1.0f;
 			}
 			selectPressedLastFrame = InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed;
 		}
@@ -113,7 +115,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 
 	void HandleInput() {
 		xTiltLeftStick = InputManager.ActiveDevice.LeftStickX.Value;		
-		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value;
+		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value * invertYAmount;
 		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;		
 		yTiltRightStick = InputManager.ActiveDevice.RightStickY.Value;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed && controlsEnabled;
