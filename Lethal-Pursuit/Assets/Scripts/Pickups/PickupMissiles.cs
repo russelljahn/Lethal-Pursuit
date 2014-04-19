@@ -9,9 +9,10 @@ public class PickupMissiles : Pickup {
 	
 	private GameObject hitGameObject;
 
+	public bool alreadyStartedVolley = false;
 	public int maxShots = 5;
 	public int  currentShots;
-	public float cooldownBetweenShots = 0.25f;
+	public float cooldownBetweenShots = 0.3f;
 	private float timeUntilCanShoot = 0.0f;
 
 	public string missileResourcePath = "Bullets/PunkMissileBullet";
@@ -25,13 +26,16 @@ public class PickupMissiles : Pickup {
 
 
 	void FixedUpdate() {
-		timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
-		
-		if (!active) {
+		if (spaceship.shooting) {
+			alreadyStartedVolley = true;
+		}
+		if (!alreadyStartedVolley || !active) {
 			return;
 		}
+
+		timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
 		
-		if (spaceship.shooting && timeUntilCanShoot == 0.0f && currentShots > 0) {
+		if (timeUntilCanShoot == 0.0f && currentShots > 0) {
 			SpawnMissile();
 			timeUntilCanShoot = cooldownBetweenShots;
 			--currentShots;

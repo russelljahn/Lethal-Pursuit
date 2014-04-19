@@ -38,9 +38,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f68dae5f3b73f46863578089125b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyStartedVolley: 0
   maxShots: 5
   currentShots: 0
-  cooldownBetweenShots: .5
+  cooldownBetweenShots: .300000012
   missileResourcePath: Bullets/MissileBullet
   shootingSound: {fileID: 8300000, guid: 2f3327781b4e3dd4ebb125d420c6867e, type: 3}
   spawnOffsetFromGun: {x: 0, y: 0, z: 10}

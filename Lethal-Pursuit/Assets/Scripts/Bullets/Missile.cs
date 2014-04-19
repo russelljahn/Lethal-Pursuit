@@ -21,7 +21,7 @@ public class Missile : Bullet {
 			GameObject.Destroy(this.gameObject);
 		}
 		if (target != null) {
-			if (Vector3.Distance(this.transform.position, target.transform.position) <= 6.0f*hitRadius) {
+			if (Vector3.Distance(this.transform.position, target.transform.position) <= 10.0f*hitRadius) {
 				this.HandleHit(target);
 				return;
 			}

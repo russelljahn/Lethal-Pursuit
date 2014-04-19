@@ -38,6 +38,9 @@ public class HexLaserBullet : Bullet {
 
 	public override void OnTriggerStay(Collider other) {
 
+		Debug.Log ("hit " + other.gameObject);
+		Debug.Log ("Should I explode? " + ShouldExplodeOnContact(other.gameObject));
+
 		GameObject hitGameObject = other.gameObject;
 		SphereCollider sphereCollider = this.collider as SphereCollider;
 
@@ -57,8 +60,6 @@ public class HexLaserBullet : Bullet {
 			if (hitGameObject == target || Vector3.Distance(hitGameObject.transform.position, this.transform.position) <= hitRadius) {
 				HandleHit(other.gameObject);
 			}
-//			this.transform.position = other.transform.position;
-
 		}
 	}
 

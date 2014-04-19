@@ -115,6 +115,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 
 
 	void HandleInput() {
+
 		xTiltLeftStick = InputManager.ActiveDevice.LeftStickX.Value;		
 		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value * invertYAmount;
 		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;		
