@@ -16,6 +16,11 @@ public class HexLaserBullet : Bullet {
 			GameObject.Destroy(this.gameObject);
 		}
 		if (target != null) {
+			if (Vector3.Distance(this.transform.position, target.transform.position) <= 6.0f*hitRadius) {
+				this.HandleHit(target);
+				return;
+			}
+
 			Vector3 thisToTarget = target.transform.position - transform.position;
 			Quaternion targetRotation = Quaternion.LookRotation(thisToTarget);
 			transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, homingSensitivity);
