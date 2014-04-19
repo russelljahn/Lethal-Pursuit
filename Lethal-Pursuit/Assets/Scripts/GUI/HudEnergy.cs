@@ -5,8 +5,8 @@ using System.Collections;
 public class HudEnergy : MonoBehaviour {
 
 	public Color defaultGunColor = Color.cyan;
-	public Color auroraCannonColor = Color.cyan;
-	public Color punkMissilesColor = Color.cyan;
+	public Color flamethrowerColor = Color.cyan;
+	public Color missilesColor = Color.cyan;
 	
 //	public Color drainedColor = Color.blue;
 //	public Color criticalColor = Color.grey;
@@ -42,14 +42,14 @@ public class HudEnergy : MonoBehaviour {
 			currentScale.x = gun.currentEnergy/gun.maxEnergy * initialScale.x;	
 		}
 		else if (pickups.currentPickup != null) {
-			if (pickups.currentPickup is PickupAuroraCannon) {
-				energybarSprite.color = auroraCannonColor;
-				PickupAuroraCannon auroraCannon = pickups.currentPickup as PickupAuroraCannon;
+			if (pickups.currentPickup is PickupFlamethrower) {
+				energybarSprite.color = flamethrowerColor;
+				PickupFlamethrower auroraCannon = pickups.currentPickup as PickupFlamethrower;
 				currentScale.x = auroraCannon.currentEnergy/auroraCannon.maxEnergy * initialScale.x;
 			}
-			else if (pickups.currentPickup is PickupPunkMissiles) {
-				energybarSprite.color = punkMissilesColor;
-				PickupPunkMissiles punkMissiles = pickups.currentPickup as PickupPunkMissiles;
+			else if (pickups.currentPickup is PickupMissiles) {
+				energybarSprite.color = missilesColor;
+				PickupMissiles punkMissiles = pickups.currentPickup as PickupMissiles;
 				currentScale.x = ((float)punkMissiles.currentShots)/punkMissiles.maxShots * initialScale.x;
 			}
 		}

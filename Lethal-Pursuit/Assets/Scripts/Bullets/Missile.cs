@@ -2,70 +2,78 @@
 using System.Collections;
 
 [RequireComponent(typeof(SphereCollider))]
-public class Missile : MonoBehaviour {
-	
-	public Spaceship sourceSpaceship;
-	public GameObject explosion;
+public class Missile : Bullet {
+
 	public MeshRenderer missileModel;
-
-	public Vector3 direction = Vector3.forward;
-	public float damage = 15f;
-	public float speed = 50f;
-	public float timeUntilDeath = 5.0f;
-	private bool alreadyDying = false;
-
+	
+	public GameObject target;
+	public float homingSensitivity = 0.05f;
+	public float hitRadius = 30.0f;
 	public float maxExplosionRadius = 300.0f;
 	public float timeUntilMaxExplosionRadius = 0.05f;
 
 
-	void FixedUpdate () {
+	public override void FixedUpdate () {
 		timeUntilDeath -= Time.deltaTime;
-		if (!alreadyDying && timeUntilDeath <= 0) {
+		
+		if (timeUntilDeath <= 0 && !alreadyDying) {
 			alreadyDying = true;
-			StartCoroutine(Explode());
+			GameObject.Destroy(this.gameObject);
 		}
-
+		if (target != null) {
+			if (Vector3.Distance(this.transform.position, target.transform.position) <= 6.0f*hitRadius) {
+				this.HandleHit(target);
+				return;
+			}
+			
+			Vector3 thisToTarget = target.transform.position - transform.position;
+			Quaternion targetRotation = Quaternion.LookRotation(thisToTarget);
+			transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, homingSensitivity);
+		}
 		if (!alreadyDying) {
-			this.rigidbody.MovePosition(this.transform.position + speed*direction*Time.deltaTime);
+			this.rigidbody.MovePosition(this.transform.position + speed*this.transform.forward*Time.deltaTime);
 		}
 	}
-
-
-	void OnCollisionEnter(Collision collision) {
-		// Ignore explosion if spaceship just shot missile and is within the collider
-		if (!alreadyDying && sourceSpaceship != null && collision.gameObject == sourceSpaceship.gameObject) {
-			return;
-		}
-		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
-			this.transform.position = collision.contacts[0].point;
-			alreadyDying = true;
-			StartCoroutine(Explode());
-		}
-		HandleApplyingDamage(collision.gameObject);
+	
+	
+	public void OnTriggerEnter(Collider other) {
+		this.OnTriggerStay(other);
 	}
-
-
-	bool ShouldExplodeOnContact(GameObject other) {
-//		Debug.Log ("other == sourceSpaceship.gameObject? " + (other == sourceSpaceship.gameObject));
-		if (other.CompareTag("Bullet")) {
-			return false;
+	
+	
+	public override void OnTriggerStay(Collider other) {
+		
+		GameObject hitGameObject = other.gameObject;
+		SphereCollider sphereCollider = this.collider as SphereCollider;
+		
+		if (target == null && 
+		    hitGameObject != sourceSpaceship.gameObject && 
+		    Vector3.Distance(hitGameObject.transform.position, this.transform.position) > hitRadius
+		    ) {
+			
+			ITargetable targetableObject = (ITargetable)hitGameObject.GetComponent(typeof(ITargetable));
+			if (targetableObject != null) {
+				target = hitGameObject;
+				sphereCollider.radius = hitRadius;
+				return;
+			}
 		}
-		return sourceSpaceship != null && other != sourceSpaceship.gameObject;
+		if (!alreadyDying && ShouldExplodeOnContact(other.gameObject)) {
+			if (hitGameObject == target || Vector3.Distance(hitGameObject.transform.position, this.transform.position) <= hitRadius) {
+				HandleHit(other.gameObject);
+			}
+			//			this.transform.position = other.transform.position;
+			
+		}
 	}
-
-
-	void HandleApplyingDamage(GameObject hitGameObject) {
-		if (hitGameObject == null) {
-			return;
-		}
-		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
-
-		if (damageableObject != null) {
-			// Eventually should have some damage falloff.
-//			float damageToApply = 1.0f/(1.0f+Vector3.Distance(this.gameObject.transform.position, hitGameObject.transform.position));
-			float damageToApply = damage;
-			damageableObject.ApplyDamage(damageToApply, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
-		}
+	
+	
+	private void HandleHit(GameObject hitGameObject) {
+		alreadyDying = true;
+		explosion.transform.parent = null;
+		explosion.SetActive(true);
+		HandleApplyingDamage(hitGameObject);
+		GameObject.Destroy(this.gameObject);
 	}
 
 
@@ -84,5 +92,59 @@ public class Missile : MonoBehaviour {
 		GameObject.Destroy(this.gameObject);
 		yield break;
 	}
+
+
+//	void FixedUpdate () {
+//		timeUntilDeath -= Time.deltaTime;
+//		if (!alreadyDying && timeUntilDeath <= 0) {
+//			alreadyDying = true;
+//			StartCoroutine(Explode());
+//		}
+//
+//		if (!alreadyDying) {
+//			this.rigidbody.MovePosition(this.transform.position + speed*direction*Time.deltaTime);
+//		}
+//	}
+
+//
+//	void OnCollisionEnter(Collision collision) {
+//		// Ignore explosion if spaceship just shot missile and is within the collider
+//		if (!alreadyDying && sourceSpaceship != null && collision.gameObject == sourceSpaceship.gameObject) {
+//			return;
+//		}
+//		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
+//			this.transform.position = collision.contacts[0].point;
+//			alreadyDying = true;
+//			StartCoroutine(Explode());
+//		}
+//		HandleApplyingDamage(collision.gameObject);
+//	}
+//
+//
+//	bool ShouldExplodeOnContact(GameObject other) {
+////		Debug.Log ("other == sourceSpaceship.gameObject? " + (other == sourceSpaceship.gameObject));
+//		if (other.CompareTag("Bullet")) {
+//			return false;
+//		}
+//		return sourceSpaceship != null && other != sourceSpaceship.gameObject;
+//	}
+//
+//
+//	void HandleApplyingDamage(GameObject hitGameObject) {
+//		if (hitGameObject == null) {
+//			return;
+//		}
+//		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
+//
+//		if (damageableObject != null) {
+//			// Eventually should have some damage falloff.
+////			float damageToApply = 1.0f/(1.0f+Vector3.Distance(this.gameObject.transform.position, hitGameObject.transform.position));
+//			float damageToApply = damage;
+//			damageableObject.ApplyDamage(damageToApply, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
+//		}
+//	}
+
+
+
 	
  }

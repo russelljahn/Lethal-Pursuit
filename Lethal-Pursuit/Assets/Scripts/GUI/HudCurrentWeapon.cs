@@ -30,10 +30,10 @@ public class HudCurrentWeapon : MonoBehaviour {
 			if (pickupsComponent.spaceship.equippedItem == EquipType.DEFAULT_WEAPON) {
 				currentWeaponSprite.sprite2D = defaultLaser;
 			}
-			else if (pickupsComponent.currentPickup is PickupAuroraCannon) {
+			else if (pickupsComponent.currentPickup is PickupFlamethrower) {
 				currentWeaponSprite.sprite2D = auroraCannon;
 			}
-			else if (pickupsComponent.currentPickup is PickupPunkMissiles) {
+			else if (pickupsComponent.currentPickup is PickupMissiles) {
 				currentWeaponSprite.sprite2D = punkMissiles;
 			}
 			else {

@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class PickupAuroraCannon : Pickup {
+public class PickupFlamethrower : Pickup {
 
 	public PlaygroundParticles laserBeamEffect;
 	public PlaygroundPresetLaser laserBeamEffectScript;

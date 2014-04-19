@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickupPunkMissiles : Pickup {
+public class PickupMissiles : Pickup {
 //
 //	public PlaygroundParticles laserBeamEffect;
 //	public PlaygroundPresetLaser laserBeamEffectScript;

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Pickup_Punk_Missiles
+  m_Name: Pickup_Missiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   maxShots: 5
   currentShots: 0
   cooldownBetweenShots: .5
-  missileResourcePath: Bullets/PunkMissileBullet
+  missileResourcePath: Bullets/MissileBullet
   shootingSound: {fileID: 8300000, guid: 2f3327781b4e3dd4ebb125d420c6867e, type: 3}
   spawnOffsetFromGun: {x: 0, y: 0, z: 10}
   enabled: 1

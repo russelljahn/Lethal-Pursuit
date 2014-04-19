@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
 	public float speed = 50f;
 	public float timeUntilDeath = 5.0f;
 	protected bool alreadyDying = false;
-
+	
 
 	public virtual void Start() {
 		this.transform.forward = direction;

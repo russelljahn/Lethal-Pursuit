@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PunkMissilesStream
-  m_Shader: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Window_2
+  m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,19 +17,19 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c5ba43b7047564ccc9eeb3e359fcb130, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 30bc850b273e9d74f92332520716332d, type: 3}
+          m_Scale: {x: 8, y: 16}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: c9cbf2470169dfe42828eace973fa58f, type: 3}
+          m_Scale: {x: 50, y: 50}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ToonShade
+          name: _DecalTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -38,40 +38,39 @@ Material:
         first:
           name: _Illum
         second:
-          m_Texture: {fileID: 2800000, guid: 0638cc33a66939e46ac46a8eef674618, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 2800000, guid: 01033c0c006994d25bfa8c463e945b4c, type: 3}
+          m_Scale: {x: 5, y: 5}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
           name: _Shininess
-        second: .078125
-      data:
-        first:
-          name: _NumColors
-        second: 5.60178566
-      data:
-        first:
-          name: _Brightness
-        second: 9.51785755
+        second: .200000003
       data:
         first:
           name: _EmissionLM
         second: 0
+      data:
+        first:
+          name: _Focus
+        second: -25
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .0514705777, g: .0514705777, b: .0514705777, a: .670588255}
       data:
         first:
           name: _SpecColor
         second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:
-          name: _MainColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _Specular
+        second: {r: 1, g: 1, b: 1, a: 0}

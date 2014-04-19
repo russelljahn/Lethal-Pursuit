@@ -67,7 +67,7 @@ GameObject:
   - 82: {fileID: 8200000}
   - 148: {fileID: 14800000}
   m_Layer: 0
-  m_Name: PickupSpawner_PunkMissiles
+  m_Name: PickupSpawner_Missiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30625276e5240b745a83e97cd482dab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathToPickupResource: Pickups/Pickup_Punk_Missiles
+  pathToPickupResource: Pickups/Pickup_Missiles
   respawnTime: 15
   timeRemainingUntilRespawn: 0
   pickupSound: {fileID: 8300000, guid: f64179d968af4bc4ba90327cb29454e9, type: 3}

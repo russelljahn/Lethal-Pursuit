@@ -17,28 +17,53 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 4340231ba851f4b41b4f005489cd9bf2, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 70535b7eb3b66455a8625173564d52cf, type: 3}
+          m_Scale: {x: 1, y: 3}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: bfd675cc0db1d4656b75dc6d6ba91142, type: 3}
+          m_Texture: {fileID: 2800000, guid: 1accc201a8bef442a85be7e00a804768, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 30bc850b273e9d74f92332520716332d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Illum
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Mask
         second:
-          m_Texture: {fileID: 2800000, guid: 61a64fbbb722a466fb19a497110e993e, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: ab38822f11b164544880a907510bdff9, type: 3}
+          m_Scale: {x: 50, y: 50}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .200000003
+        second: .00999999978
+      data:
+        first:
+          name: _EmissionLM
+        second: 0
       data:
         first:
           name: _Focus
@@ -47,8 +72,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .108131476, g: .163614169, b: .367647052, a: .670588255}
+        second: {r: 1, g: .470588207, b: .591075063, a: .384313732}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: .145098045}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: 1, g: 1, b: 1, a: .0705882385}
       data:
         first:
           name: _Specular
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .580710828, g: .469615042, b: .742647052, a: 1}
