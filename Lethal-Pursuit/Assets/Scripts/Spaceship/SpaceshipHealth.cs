@@ -73,6 +73,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		Material electricFieldCopy = Instantiate(electricField) as Material;
 		electricField = electricFieldCopy;
 		spaceshipShell.renderer.material = electricFieldCopy;
+		spaceshipShell.GetComponent<ScrollUVLinear>().materialToScroll = electricFieldCopy;
 	}
 	
 	
