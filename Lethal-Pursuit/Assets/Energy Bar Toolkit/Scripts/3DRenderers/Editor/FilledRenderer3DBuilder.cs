@@ -15,22 +15,30 @@ public class FilledRenderer3DBuilder {
     // ===========================================================
     // Static Methods
     // ===========================================================
-    
+
     public static FilledRenderer3D Create() {
         var panel = MadPanel.UniqueOrNull();
-        
+
         if (panel == null) {
-            if (EditorUtility.DisplayDialog(
+            var panels = MadPanel.All();
+            if (panels.Length == 0) {
+                if (EditorUtility.DisplayDialog(
                 "Init Scene?",
                 "Scene not initialized for 3D bars. You cannot place new bar without proper initialization. Do it now?",
                 "Yes", "No")) {
-                MadInitTool.ShowWindow();
-                return null;
+                    MadInitTool.ShowWindow();
+                }
+            } else {
+                CreateMeshBarTool.ShowWindow(EnergyBar3DBase.BarType.Filled);
             }
-            
-            panel = MadPanel.UniqueOrNull();
+
+            return null;
+        } else {
+            return Create(panel);
         }
-    
+    }
+
+    public static FilledRenderer3D Create(MadPanel panel) {
         var bar = MadTransform.CreateChild<FilledRenderer3D>(panel.transform, "filled progress bar");
         TryApplyExampleTextures(bar);
         Selection.activeObject = bar.gameObject;

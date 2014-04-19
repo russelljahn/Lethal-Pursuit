@@ -1,5 +1,5 @@
 /*
-* _ASSET_NAME_ by Mad Pixel Machine
+* Energy Bar Toolkit by Mad Pixel Machine
 * http://www.madpixelmachine.com
 */
 

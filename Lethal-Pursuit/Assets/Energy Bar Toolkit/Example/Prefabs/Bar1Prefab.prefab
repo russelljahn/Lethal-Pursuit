@@ -53,36 +53,41 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77830493bd83da7498a26ed1cb510a02, type: 3}
   m_Name: 
+  version: 169
   texturesBackground:
-  - texture: {fileID: 2800000, guid: d529b529a4f3834429e7fc565d7ad596, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: d529b529a4f3834429e7fc565d7ad596, type: 3}
   texturesForeground:
-  - texture: {fileID: 2800000, guid: 6885feeb0e1c05e4cb2e0fc47ea8c4f2, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  pivot: 0
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 6885feeb0e1c05e4cb2e0fc47ea8c4f2, type: 3}
   guiDepth: 1
   anchorObject: {fileID: 0}
   anchorCamera: {fileID: 0}
-  positionSizeFromTransform: 0
-  positionSizeFromTransformNormalized: 0
-  premultipliedAlpha: 0
   labelEnabled: 1
   labelSkin: {fileID: 11400000, guid: 686b9e471e2a25f47917e065f8192788, type: 2}
   labelPosition: {x: 374.799988, y: 23.1000004}
   labelPositionNormalized: 0
   labelFormat: '{cur}/{max}'
   labelColor: {r: 1, g: 1, b: 1, a: 1}
-  labelOutlineEnabled: 1
-  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
   effectSmoothChange: 1
   effectSmoothChangeSpeed: .699999988
-  storedScreenWidth: 1020
-  storedScreenHeight: 550
+  effectBurn: 1
+  effectBurnTextureBar: {fileID: 2800000, guid: 20c37e79c3ad78044a75d1044c80ad87,
+    type: 3}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: .873082161, b: .432835817, a: 1}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  resizeMode: 0
+  pivot: 0
+  positionSizeFromTransform: 0
+  positionSizeFromTransformNormalized: 0
+  premultipliedAlpha: 0
+  labelOutlineEnabled: 1
+  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+  labelPivot: 0
   screenPosition: {x: 10, y: 10}
   screenPositionNormalized: 0
   size: {x: 699, y: 130}
-  sizeNormalized: 0
-  screenPositionCalculateSize: 1
   textureBackground: {fileID: 0}
   textureBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   textureBar: {fileID: 2800000, guid: 20c37e79c3ad78044a75d1044c80ad87, type: 3}
@@ -138,10 +143,6 @@ MonoBehaviour:
   radialCustomCenter: {x: 0, y: 0}
   radialOffset: 0
   radialLength: 1
-  effectBurn: 1
-  effectBurnTextureBar: {fileID: 2800000, guid: 20c37e79c3ad78044a75d1044c80ad87,
-    type: 3}
-  effectBurnTextureBarColor: {r: 1, g: .873082161, b: .432835817, a: 1}
   effectBlink: 1
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -151,6 +152,8 @@ MonoBehaviour:
   effectEdgeIn: .200000003
   effectEdgeOut: .200000003
   effectEdgeRotateAngle: 100
+  sizeNormalized: 0
+  screenPositionCalculateSize: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

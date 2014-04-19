@@ -44,17 +44,12 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
     
     // sprite references
     
-    [SerializeField]
     private List<MadSprite> slotSprites = new List<MadSprite>();
     
-    [SerializeField]
     private List<MadSprite> iconSprites = new List<MadSprite>();
     
     // rebuild
-    
-    [SerializeField]
     private int lastRebuildHash;
-    
     private bool dirty = true;
 
     // ===========================================================
@@ -120,6 +115,10 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
         if (RebuildNeeded()) {
             Rebuild();
         }
+
+        if (panel == null) {
+            return;
+        }
         
         UpdateBar();
         UpdateVisible();
@@ -176,7 +175,7 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
     void SetSpriteVisible(MadSprite sprite) {
         sprite.tint = tintIcon;
         sprite.fillValue = 1;
-        sprite.transform.localScale = new Vector3(1, 1, 1);
+        MadTransform.SetLocalScale(sprite.transform, 1);
         sprite.visible = true;
     }
     
@@ -211,6 +210,10 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
     #region Rebuild
     
     bool RebuildNeeded() {
+        if (panel == null) {
+            return false;
+        }
+
         var hash = new MadHashCode();
         hash.AddEnumerable(texturesBackground);
         hash.Add(atlas);
@@ -226,6 +229,7 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
         hash.Add(labelEnabled);
         hash.Add(labelFont);
         hash.Add(pivot);
+        hash.Add(premultipliedAlpha);
         
         int hashNumber = hash.GetHashCode();
         
@@ -246,6 +250,8 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
         RebuildLabel(depth);
         
         UpdateBar();
+
+        UpdateContainer();
     }
     
     void RebuildClear() {
@@ -279,16 +285,12 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
             // creating slot
             if (TextureValid(textureSlot, atlasTextureSlotGUID)) {
                 string name = string.Format("slot_{0:D2}", i + 1);
-                var sprite = MadTransform.CreateChild<MadSprite>(transform, name);
-                AssignTexture(sprite, textureSlot, atlasTextureSlotGUID);
+                var sprite = CreateHidden<MadSprite>(name);
+                SetTexture(sprite, textureSlot, atlasTextureSlotGUID);
                 sprite.transform.localPosition = repeatPositionDelta * i;
                 sprite.transform.localPosition += (Vector3) LocalIconOffset(sprite.size);
                 
                 sprite.guiDepth = depth++;
-                
-                #if !MAD_DEBUG
-                sprite.gameObject.hideFlags = HideFlags.HideInHierarchy;
-                #endif
                 
                 slotSprites.Add(sprite);
             }
@@ -296,15 +298,11 @@ public class RepeatedRenderer3D : EnergyBar3DBase {
             // creating icon
             if (TextureValid(textureIcon, atlasTextureIconGUID)) {
                 string name = string.Format("icon_{0:D2}", i + 1);
-                var sprite = MadTransform.CreateChild<MadSprite>(transform, name);
-                AssignTexture(sprite, textureIcon, atlasTextureIconGUID);
+                var sprite = CreateHidden<MadSprite>(name);
+                SetTexture(sprite, textureIcon, atlasTextureIconGUID);
                 sprite.transform.localPosition = repeatPositionDelta * i;
                 sprite.transform.localPosition += (Vector3) LocalIconOffset(sprite.size);
                 sprite.guiDepth = depth++;
-                
-                #if !MAD_DEBUG
-                sprite.gameObject.hideFlags = HideFlags.HideInHierarchy;
-                #endif
                 
                 iconSprites.Add(sprite);
             }

@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System;
 using EnergyBarToolkit;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public abstract class EnergyBarBase : MonoBehaviour {
 
     // ===========================================================
@@ -24,6 +28,9 @@ public abstract class EnergyBarBase : MonoBehaviour {
     
     public Tex[] texturesBackground = new Tex[0];
     public Tex[] texturesForeground = new Tex[0];
+
+    // tells if textures has premultiplied alpha
+    public bool premultipliedAlpha = false;
     
     public int guiDepth = 1;
     
@@ -46,7 +53,7 @@ public abstract class EnergyBarBase : MonoBehaviour {
     // burn effect
     public bool effectBurn = false;                 // bar draining will display 'burn' effect
     public Texture2D effectBurnTextureBar;
-    public string atlasEffectBurnTextureBarGUID;
+    public string atlasEffectBurnTextureBarGUID = "";
     public Color effectBurnTextureBarColor = Color.red;
 
     // reference to actual bar component    
@@ -229,7 +236,60 @@ public abstract class EnergyBarBase : MonoBehaviour {
     // ===========================================================
     // Static Methods
     // ===========================================================
-    
+
+    protected static int HashAdd(int current, bool obj) {
+        return MadHashCode.Add(current, obj);
+    }
+
+    protected static int HashAdd(int current, int obj) {
+        return MadHashCode.Add(current, obj);
+    }
+
+    protected static int HashAdd(int current, float obj) {
+        return MadHashCode.Add(current, obj);
+    }
+
+    protected static int HashAdd(int current, UnityEngine.Object obj) {
+        if (obj != null) {
+            return MadHashCode.Add(current, obj.GetInstanceID());
+        } else {
+            return MadHashCode.Add(current, null);
+        }
+    }
+
+    protected static int HashAdd(int current, object obj) {
+        return MadHashCode.Add(current, obj);
+    }
+
+    protected static int HashAddTexture(int current, Texture texture) {
+#if UNITY_EDITOR
+        string path = AssetDatabase.GetAssetPath(texture);
+        string guid = AssetDatabase.AssetPathToGUID(path);
+        return MadHashCode.Add(current, guid);
+#else
+        return MadHashCode.Add(current, texture);
+#endif
+    }
+
+    protected static int HashAddArray(int current, object[] arr) {
+        return MadHashCode.AddArray(current, arr);
+    }
+
+    protected static int HashAddTextureArray(int current, Texture[] arr, string name = "") {
+#if UNITY_EDITOR
+
+        for (int i = 0; i < arr.Length; ++i) {
+            string path = AssetDatabase.GetAssetPath(arr[i]);
+            string guid = AssetDatabase.AssetPathToGUID(path);
+            current =  MadHashCode.Add(current, guid);
+        }
+
+        return current;
+#else
+        return MadHashCode.AddArray(current, arr);
+#endif
+    }
+
     protected Rect FindBounds(Texture2D texture) {
         
         int left = -1, top = -1, right = -1, bottom = -1;
@@ -323,11 +383,11 @@ public abstract class EnergyBarBase : MonoBehaviour {
         public Texture2D texture;
         
         public override int GetHashCode() {
-            var hash = new MadHashCode();
-            hash.Add(texture);
-            hash.Add(color);
+            int hash = MadHashCode.FirstPrime;
+            hash = HashAddTexture(hash, texture);
+            hash = HashAdd(hash, color);
             
-            return hash.GetHashCode();
+            return hash;
         }
     }
     
@@ -350,6 +410,108 @@ public abstract class EnergyBarBase : MonoBehaviour {
     public enum ColorType {
         Solid,
         Gradient,
+    }
+
+    public abstract class TransformFunction {
+    }
+
+    [System.Serializable]
+    public class TranslateFunction : TransformFunction {
+        public Vector2 startPosition;
+        public Vector2 endPosition;
+
+        public Vector2 Value(float progress) {
+            progress = Mathf.Clamp01(progress);
+
+            var result = Vector2.Lerp(startPosition, endPosition, progress);
+            return result;
+        }
+
+        public override bool Equals(object obj) {
+            if (obj == null) {
+                return false;
+            }
+            
+            if (!(obj is TranslateFunction)) {
+                return false;
+            }
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode() {
+            int hash = 17;
+            hash = hash * 23 + startPosition.GetHashCode();
+            hash = hash * 23 + endPosition.GetHashCode();
+            return hash;
+        }
+
+    }
+
+    [System.Serializable]
+    public class ScaleFunction : TransformFunction {
+        public Vector2 startScale = Vector3.one;
+        public Vector2 endScale = Vector3.one;
+
+        public Vector3 Value(float progress) {
+            progress = Mathf.Clamp01(progress);
+
+            var result = Vector2.Lerp(startScale, endScale, progress);
+            return new Vector3(result.x, result.y, 1);
+        }
+
+        public override bool Equals(object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (!(obj is ScaleFunction)) {
+                return false;
+            }
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode() {
+            int hash = 17;
+            hash = hash * 23 + startScale.GetHashCode();
+            hash = hash * 23 + endScale.GetHashCode();
+            return hash;
+        }
+    }
+
+    [System.Serializable]
+    public class RotateFunction : TransformFunction {
+        public float startAngle;
+        public float endAngle;
+
+        public Quaternion Value(float progress) {
+            progress = Mathf.Clamp01(progress);
+
+            float angle = Mathf.Lerp(startAngle, endAngle, progress);
+
+            var result = Quaternion.Euler(0, 0, angle);
+            return result;
+        }
+
+        public override bool Equals(object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (!(obj is RotateFunction)) {
+                return false;
+            }
+
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode() {
+            int hash = 17;
+            hash = hash * 23 + startAngle.GetHashCode();
+            hash = hash * 23 + endAngle.GetHashCode();
+            return hash;
+        }
     }
     
 }

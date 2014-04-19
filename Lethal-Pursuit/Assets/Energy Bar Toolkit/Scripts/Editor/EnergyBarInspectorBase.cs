@@ -394,7 +394,8 @@ Examples:
                     item.color = color;
                     EditorUtility.SetDirty(target);
                 }
-                
+
+                return item;
             });
             list.onAdd += (tex) => tex.color = Color.white;
             
@@ -482,8 +483,10 @@ Examples:
         
                 labelPosition.vector2Value = EditorGUILayout.Vector2Field("Label Position", labelPosition.vector2Value);
                 var t = target as EnergyBarBase;
-                var rect = t.DrawAreaRect;
-                PropertySpecialNormalized(labelPosition, labelPositionNormalized, new Vector2(rect.width, rect.height));
+                if (MadGameObject.IsActive(t.gameObject)) {
+                    var rect = t.DrawAreaRect;
+                    PropertySpecialNormalized(labelPosition, labelPositionNormalized, new Vector2(rect.width, rect.height));
+                }
                 
                 if (labelPivot != null) {
                     MadGUI.PropertyField(labelPivot, "Pivot Point");

@@ -45,43 +45,58 @@ public class SimpleEvent : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        OnTrigger(other, TriggerType.Enter);
+        OnTrigger(other.gameObject, TriggerType.Enter);
     }
     
     void OnTriggerStay(Collider other) {
-        OnTrigger(other, TriggerType.Stay);
+        OnTrigger(other.gameObject, TriggerType.Stay);
     }
     
     void OnTriggerLeave(Collider other) {
-        OnTrigger(other, TriggerType.Leave);
+        OnTrigger(other.gameObject, TriggerType.Leave);
         onTriggerLeaveAction.Reset();
     }
-    
-    void OnTrigger(Collider other, TriggerType type) {
+
+#if !UNITY_4_1 && !UNITY_4_2
+    void OnTriggerEnter2D(Collider2D other) {
+        OnTrigger(other.gameObject, TriggerType.Enter);
+    }
+
+    void OnTriggerStay2D(Collider2D other) {
+        OnTrigger(other.gameObject, TriggerType.Stay);
+    }
+
+    void OnTriggerLeave2D(Collider2D other) {
+        OnTrigger(other.gameObject, TriggerType.Leave);
+        onTriggerLeaveAction.Reset();
+    }
+#endif
+
+    void OnTrigger(GameObject other, TriggerType type) {
         if (!IsReactingTo(other)) {
             return;
         }
         
         switch (type) {
             case TriggerType.Enter:
-                onTriggerEnterAction.Invoke(other.gameObject);
+                onTriggerEnterAction.Invoke(other);
                 break;
             case TriggerType.Stay:
-                onTriggerStayAction.Invoke(other.gameObject);
+                onTriggerStayAction.Invoke(other);
                 break;
             case TriggerType.Leave:
-                onTriggerLeaveAction.Invoke(other.gameObject);
+                onTriggerLeaveAction.Invoke(other);
                 break;
             default:
                 Debug.LogError("Unknown option: " + type);
                 break;
         }
     }
-    
-    bool IsReactingTo(Collider other) {
+
+    bool IsReactingTo(GameObject other) {
         switch (targetType) {
             case Target.GameObjects:
-                return Array.Exists(targetGameObjects, (go) => { return go == other.gameObject;});
+                return Array.Exists(targetGameObjects, (go) => { return go == other;});
             case Target.Tags:
                 return Array.Exists(targetTags, (tag) => { return tag == other.tag;});
             

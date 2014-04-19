@@ -28,18 +28,16 @@ public class SequenceRenderer3D : EnergyBar3DBase {
     public Color gridTint = Color.white;
     
     // sequence
-    public Texture2D[] sequenceTextures; // non-atlas
-    public string[] sequenceAtlasTexturesGUID;
+    public Texture2D[] sequenceTextures = new Texture2D[0]; // non-atlas
+    public string[] sequenceAtlasTexturesGUID = new string[0];
     
     
     #endregion
 
     #region Fields private
 
-    [SerializeField]
     private MadSprite spriteBar;
 
-    [SerializeField]
     private int lastRebuildHash;
     
     private bool dirty = true;
@@ -83,6 +81,10 @@ public class SequenceRenderer3D : EnergyBar3DBase {
 
         if (RebuildNeeded()) {
             Rebuild();
+        }
+
+        if (panel == null) {
+            return;
         }
 
         UpdateProgress();
@@ -155,6 +157,10 @@ public class SequenceRenderer3D : EnergyBar3DBase {
 #region Methods private
 
     bool RebuildNeeded() {
+        if (panel == null) {
+            return false;
+        }
+
         var hash = new MadHashCode();
         hash.Add(textureMode);
         hash.Add(atlas);
@@ -175,6 +181,7 @@ public class SequenceRenderer3D : EnergyBar3DBase {
         hash.Add(guiDepth);
         hash.Add(labelEnabled);
         hash.Add(labelFont);
+        hash.Add(premultipliedAlpha);
         
         int hashNumber = hash.GetHashCode();
         
@@ -201,23 +208,16 @@ public class SequenceRenderer3D : EnergyBar3DBase {
         nextDepth = BuildBar(nextDepth);
         nextDepth = BuildForegroundTextures(nextDepth);
         nextDepth = RebuildLabel(nextDepth);
+
+        UpdateContainer();
     }
     
     int BuildBar(int nextDepth) {
-        spriteBar = MadTransform.CreateChild<MadSprite>(transform, "bar");
-#if !MAD_DEBUG
-        spriteBar.gameObject.hideFlags = HideFlags.HideInHierarchy;
-#endif
+        spriteBar = CreateHidden<MadSprite>("bar");
 
         spriteBar.guiDepth = nextDepth++;
-        
-        if (useAtlas) {
-            spriteBar.inputType = MadSprite.InputType.TextureAtlas;
-//            spriteBar.textureAtlas = atlas;
-//            spriteBar.textureAtlasSpriteGUID = gridAtlasTextureGUID;
-        } else {
-//            spriteBar.texture = gridTexture;
-        }
+
+        SetTexture(spriteBar, gridTexture, gridAtlasTextureGUID);
         
         return nextDepth;
     }

@@ -28,7 +28,7 @@ public class MenuItems : ScriptableObject {
     // Methods
     // ===========================================================
     
-    [MenuItem("Tools/Energy Bar Toolkit/Init Tool", false, 100)]
+    [MenuItem("Tools/Energy Bar Toolkit/Initialize", false, 100)]
     static void InitTool() {
         MadInitTool.ShowWindow();
     }
@@ -107,6 +107,12 @@ public class MenuItems : ScriptableObject {
         SequenceRenderer3DBuilder.Create();
     }
 
+    [MenuItem("Tools/Energy Bar Toolkit/Create Mesh Bar/Transform", false, 153)]
+    [MenuItem("GameObject/Create Other/Energy Bar Toolkit/Mesh Transform Bar", false, 2040)]
+    static void CreateMeshTransformRenderer() {
+        TransformRenderer3DBuilder.Create();
+    }
+
     [MenuItem("Tools/Energy Bar Toolkit/Create OnGUI Bar (Old)/Fill Renderer", false, 250)]
     static void CreateFillRendererOnGUI() {
         Create<EnergyBarRenderer>("fill renderer");
@@ -136,25 +142,25 @@ public class MenuItems : ScriptableObject {
     [MenuItem("Tools/Energy Bar Toolkit/Online Resources/Support", false, 1100)]
     static void Support() {
         Application.OpenURL(
-            "http://docs.madpixelmachine.com/energybartoolkit/doc/latest/support.html");
+            "http://energybartoolkit.madpixelmachine.com/doc/latest/support.html");
     }
     
     [MenuItem("Tools/Energy Bar Toolkit/Online Resources/Online Manual", false, 1000)]
     static void OnlineManual() {
         Application.OpenURL(
-            "http://redmine.madpixelmachine.com/projects/energy-bar-toolkit-public/wiki/Documentation2");
+            "http://energybartoolkit.madpixelmachine.com/documentation.html");
     }
     
     [MenuItem("Tools/Energy Bar Toolkit/Online Resources/Examples", false, 1000)]
     static void Examples() {
         Application.OpenURL(
-            "http://redmine.madpixelmachine.com/projects/energy-bar-toolkit-public/wiki/Examples");
+            "http://energybartoolkit.madpixelmachine.com/demo.html");
     }
     
-    [MenuItem("Tools/Energy Bar Toolkit/Online Resources/Release Notes", false, 1000)]
+    [MenuItem("Tools/Energy Bar Toolkit/Online Resources/Change Log", false, 1000)]
     static void ReleaseNotes() {
         Application.OpenURL(
-            "http://redmine.madpixelmachine.com/projects/energy-bar-toolkit-public/wiki/Release_Notes");
+            "http://energybartoolkit.madpixelmachine.com/doc/latest/changelog.html");
     }
 
     // ===========================================================

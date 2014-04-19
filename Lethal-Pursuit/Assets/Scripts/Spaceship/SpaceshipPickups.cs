@@ -10,8 +10,6 @@ using System;
 public class SpaceshipPickups : SpaceshipComponent {
 	
 	public Pickup currentPickup = null;
-	public float pickupSwapCooldown = 0.125f;
-	public float remainingSwapCooldownTime;
 
 
 	void Start () {
@@ -29,16 +27,13 @@ public class SpaceshipPickups : SpaceshipComponent {
 		}
 
 		if (NetworkManager.IsSinglePlayer() || networkView.isMine) {
-			remainingSwapCooldownTime = Mathf.Max(0.0f, remainingSwapCooldownTime-Time.deltaTime);
 
 			/* Swap guns if hitting bumpers. */
-			if (remainingSwapCooldownTime == 0.0f && swappingWeapon) {
+			if (swappingWeapon) {
 				SwapEquippedItem();
 				if (!NetworkManager.IsSinglePlayer()) {
 					networkView.RPC("NetworkSwapEquippedItem", RPCMode.OthersBuffered);
-				}
-				remainingSwapCooldownTime = pickupSwapCooldown;
-				
+				}				
 			}
 		}
 	}

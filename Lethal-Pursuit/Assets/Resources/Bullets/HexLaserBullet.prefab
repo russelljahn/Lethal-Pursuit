@@ -220,11 +220,11 @@ MonoBehaviour:
   explosion: {fileID: 100008}
   direction: {x: 0, y: 0, z: 0}
   damage: 14
-  speed: 6000
+  speed: 5000
   timeUntilDeath: 2
   target: {fileID: 0}
   homingSensitivity: .100000001
-  hitRadius: 100
+  hitRadius: 30
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1808,8 +1808,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 500
-  m_Center: {x: 0, y: 0, z: 500}
+  m_Radius: 1000
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

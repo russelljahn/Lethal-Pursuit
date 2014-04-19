@@ -7,6 +7,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace EnergyBarToolkit {
  
 [ExecuteInEditMode]
@@ -30,7 +34,7 @@ public class FilledRenderer3D : EnergyBar3DBase {
     public Texture2D textureBar;
     
     // atlas texture bar
-    public string atlasTextureBarGUID;
+    public string atlasTextureBarGUID = "";
     
     //
     // appearance
@@ -38,7 +42,7 @@ public class FilledRenderer3D : EnergyBar3DBase {
     public ColorType textureBarColorType;
     public Color textureBarColor = Color.white;
     public Gradient textureBarGradient;
-    
+
     public GrowDirection growDirection = GrowDirection.LeftToRight;
     
     public float radialOffset;
@@ -65,7 +69,7 @@ public class FilledRenderer3D : EnergyBar3DBase {
     
     [SerializeField] private bool effectFollowDefaultsSet = false;
     // when texture is set, the sprite is created
-    [SerializeField] private MadSprite effectFollowSprite;
+    private MadSprite effectFollowSprite;
     
     
     //
@@ -73,17 +77,13 @@ public class FilledRenderer3D : EnergyBar3DBase {
     //
     
 #region Fields others
-    [SerializeField]
     private int lastRebuildHash;
-    
     private bool dirty = true;
     
     // sprite references
     
-    [SerializeField]
     private MadSprite spriteBar;
     
-    [SerializeField]
     private MadSprite spriteBurnBar;
 #endregion
     
@@ -184,26 +184,34 @@ public class FilledRenderer3D : EnergyBar3DBase {
             effectFollowDefaultsSet = true;
         }
     }
-    
+
     protected override void Update() {
         if (RebuildNeeded()) {
             Rebuild();
         }
 
         base.Update();
-    
+
         if (effectBlink) {
             Blink = EnergyBarCommons.Blink(
                 ValueF, effectBlinkValue, effectBlinkRatePerSecond, ref _effectBlinkAccum);
         } else {
             Blink = false;
         }
-        
+
         UpdateBar();
         UpdatePivot();
         UpdateFollowEffect();
     }
-    
+
+    //protected override void UpdateTransforms() {
+    //    base.UpdateTransforms();
+
+    //    ApplyTransform(spriteBar);
+    //    ApplyTransform(spriteBurnBar);
+    //    ApplyTransform(effectFollowSprite);
+    //}
+
     void UpdateBar() {
         bool visible = IsVisible();
     
@@ -243,73 +251,84 @@ public class FilledRenderer3D : EnergyBar3DBase {
         float rotation = effectFollowRotation.Evaluate(ValueF2) * 360;
         
         if (effectFollowSprite != null) {
-            effectFollowSprite.transform.localPosition = EdgePosition();
-            effectFollowSprite.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+            MadTransform.SetLocalPosition(effectFollowSprite.transform, EdgePosition());
+            MadTransform.SetLocalScale(effectFollowSprite.transform, new Vector3(scaleX, scaleY, scaleZ));
             effectFollowSprite.tint = color;
-            effectFollowSprite.transform.localEulerAngles = new Vector3(0, 0, rotation);
+            var newEulerAngles = new Vector3(0, 0, rotation);
+            if (effectFollowSprite.transform.localEulerAngles != newEulerAngles) {
+                effectFollowSprite.transform.localEulerAngles = newEulerAngles;
+            }
         } else if (effectFollowObject != null && effectFollowObject is GameObject) {
             var worldPos = spriteBar.transform.TransformPoint(EdgePosition());
             GameObject obj = effectFollowObject as GameObject;
-            obj.transform.position = worldPos;
-            obj.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+            MadTransform.SetPosition(obj.transform, worldPos);
+            MadTransform.SetLocalScale(obj.transform, new Vector3(scaleX, scaleY, scaleZ));
             if (obj.renderer != null) {
                 obj.renderer.sharedMaterial.color = color;
             }
-            obj.transform.localEulerAngles = new Vector3(0, 0, rotation);
+            var newEulerAngles = new Vector3(0, 0, rotation);
+            if (obj.transform.localEulerAngles != newEulerAngles) {
+                obj.transform.localEulerAngles = newEulerAngles;
+            }
+            
         }
         
         
     }
-    
+
     bool RebuildNeeded() {
-        var hash = new MadHashCode();
-        hash.Add(textureMode);
-        hash.AddEnumerable(texturesBackground);
-        hash.Add(textureBar);
-        hash.AddEnumerable(texturesForeground);
-        hash.Add(atlas);
-        hash.AddEnumerable(atlasTexturesBackground);
-        hash.Add(atlasTextureBarGUID);
-        hash.AddEnumerable(atlasTexturesForeground);
-        hash.Add(guiDepth);
-        hash.Add(growDirection);
-        hash.Add(effectBurn);
-        hash.Add(effectBurnTextureBar);
-        hash.Add(atlasEffectBurnTextureBarGUID);
-        hash.Add(labelEnabled);
-        hash.Add(labelFont);
-        hash.Add(effectFollow);
-        hash.Add(effectFollowObject);
-        hash.Add(radialOffset);
-        hash.Add(radialLength);
+        if (panel == null) {
+            return false;
+        }
+
+        int ch = MadHashCode.FirstPrime;
+        ch = MadHashCode.Add(ch, textureMode);
+
+        ch = HashAdd(ch, panel);
+        ch = HashAdd(ch, textureMode);
+        ch = HashAddArray(ch, texturesBackground);
+        ch = HashAddTexture(ch, textureBar);
+        ch = HashAddArray(ch, texturesForeground);
+        ch = HashAdd(ch, atlas);
+        ch = HashAddArray(ch, atlasTexturesBackground);
+        ch = HashAdd(ch, atlasTextureBarGUID);
+        ch = HashAddArray(ch, atlasTexturesForeground);
+        ch = HashAdd(ch, guiDepth);
+        ch = HashAdd(ch, growDirection);
+        ch = HashAdd(ch, effectBurn);
+        ch = HashAddTexture(ch, effectBurnTextureBar);
+        ch = HashAdd(ch, atlasEffectBurnTextureBarGUID);
+        ch = HashAdd(ch, labelEnabled);
+        ch = HashAdd(ch, labelFont);
+        ch = HashAdd(ch, effectFollow);
+        ch = HashAdd(ch, premultipliedAlpha);
+
+        if (effectFollowObject != null && effectFollowObject is Texture) {
+            ch = HashAddTexture(ch, effectFollowObject as Texture);
+        } else {
+            ch = HashAdd(ch, effectFollowObject);
+        }
         
-        int hashNumber = hash.GetHashCode();
-    
-        if (hashNumber != lastRebuildHash || dirty) {
-            lastRebuildHash = hashNumber;
+        ch = HashAdd(ch, radialOffset);
+        ch = HashAdd(ch, radialLength);
+        
+        if (ch != lastRebuildHash || dirty) {
+            lastRebuildHash = ch;
             dirty = false;
             return true;
         } else {
             return false;
         }
     }
-    
+
     protected override void Rebuild() {
         base.Rebuild();
+
+        // remove all hidden child sprites
+        var hidden = MadTransform.FindChildren<MadSprite>(
+            transform, (s) => s.gameObject.hideFlags == HideFlags.HideInHierarchy);
+        hidden.ForEach((s) => MadGameObject.SafeDestroy(s));
     
-        // remove used sprites
-        if (spriteBar != null) {
-            MadGameObject.SafeDestroy(spriteBar.gameObject);
-        }
-        
-        if (spriteBurnBar != null) {
-            MadGameObject.SafeDestroy(spriteBurnBar.gameObject);
-        }
-        
-        if (effectFollowSprite != null) {
-            MadGameObject.SafeDestroy(effectFollowSprite.gameObject);
-        }
-        
         int nextDepth = guiDepth * DepthSpace;
         
         // build background
@@ -318,16 +337,13 @@ public class FilledRenderer3D : EnergyBar3DBase {
         // build the bar        
         if (textureBar != null) {
             if (effectBurn) {
-                spriteBurnBar = MadTransform.CreateChild<MadSprite>(transform, "bar_effect_burn");
-#if !MAD_DEBUG
-                spriteBurnBar.gameObject.hideFlags = HideFlags.HideInHierarchy;
-#endif
+                spriteBurnBar = CreateHidden<MadSprite>("bar_effect_burn");
                 spriteBurnBar.guiDepth = nextDepth++;
 
                 if (TextureValid(effectBurnTextureBar, atlasEffectBurnTextureBarGUID)) {
-                    AssignTexture(spriteBurnBar, effectBurnTextureBar, atlasEffectBurnTextureBarGUID);
+                    SetTexture(spriteBurnBar, effectBurnTextureBar, atlasEffectBurnTextureBarGUID);
                 } else {
-                    AssignTexture(spriteBurnBar, textureBar, atlasTextureBarGUID);
+                    SetTexture(spriteBurnBar, textureBar, atlasTextureBarGUID);
                 }
                 
                 spriteBurnBar.fillType = ToFillType(growDirection);
@@ -335,13 +351,10 @@ public class FilledRenderer3D : EnergyBar3DBase {
                 spriteBurnBar.radialFillLength = radialLength;
             }
         
-            spriteBar = MadTransform.CreateChild<MadSprite>(transform, "bar");
-#if !MAD_DEBUG
-            spriteBar.gameObject.hideFlags = HideFlags.HideInHierarchy;
-#endif
+            spriteBar = CreateHidden<MadSprite>("bar");
             spriteBar.guiDepth = nextDepth++;
 
-            AssignTexture(spriteBar, textureBar, atlasTextureBarGUID);
+            SetTexture(spriteBar, textureBar, atlasTextureBarGUID);
             
             spriteBar.fillType = ToFillType(growDirection);
             spriteBar.radialFillOffset = radialOffset;
@@ -351,19 +364,18 @@ public class FilledRenderer3D : EnergyBar3DBase {
         // build foreground textures
         nextDepth = BuildForegroundTextures(nextDepth);
         
-        // foolow effect
+        // follow effect
         if (effectFollow) {
             if (effectFollowObject != null && effectFollowObject is Texture2D) {
-                effectFollowSprite = MadTransform.CreateChild<MadSprite>(transform, "bar_effect_follow");
+                effectFollowSprite = CreateHidden<MadSprite>("bar_effect_follow");
                 effectFollowSprite.texture = effectFollowObject as Texture2D;
                 effectFollowSprite.guiDepth = nextDepth++;
-                #if !MAD_DEBUG
-                effectFollowSprite.gameObject.hideFlags = HideFlags.HideInHierarchy;
-                #endif
             }
         }
         
         nextDepth = RebuildLabel(nextDepth);
+
+        UpdateContainer();
     }
     
     MadSprite.FillType ToFillType(GrowDirection growDirection) {

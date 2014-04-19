@@ -7,6 +7,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace EnergyBarToolkit {
 
 public abstract class EnergyBar3DBase : EnergyBarBase {
@@ -16,14 +20,20 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     public const int DepthSpace = 32;
 #endregion
 
-#region Fields public
-    
+    #region Fields public
+
+    public MadPanel panel;
+
     public TextureMode textureMode = TextureMode.Textures;
     
     // used only when texture mode is atlas
     public MadAtlas atlas;
-    public AtlasTex[] atlasTexturesBackground;
-    public AtlasTex[] atlasTexturesForeground;
+    public AtlasTex[] atlasTexturesBackground = new AtlasTex[0];
+    public AtlasTex[] atlasTexturesForeground = new AtlasTex[0];
+
+    // transforms
+    public LookAtMode lookAtMode = LookAtMode.Disabled;
+    public GameObject lookAtObject;
     
     // label
     public MadFont labelFont;
@@ -33,25 +43,29 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     // determines if this bar is selectable in the editor
     public bool editorSelectable = true;
     
-#endregion
+    #endregion
     
-#region Fields private
+    #region Fields private
+
+    // tells if this instance (or prefab) is under the panel
+    // on change when panel is null scale should be changed too
+    [SerializeField]
+    private bool underThePanel = true;
 
     // created label sprite object
-    [SerializeField]
     private MadText labelSprite;
     
     // created background sprite objects
-    [SerializeField]
     private List<MadSprite> spriteObjectsBg = new List<MadSprite>();
     
     // created foreground sprite objects
-    [SerializeField]
     private List<MadSprite> spriteObjectsFg = new List<MadSprite>();
-    
-#endregion
 
-#region Properties
+    private List<GameObject> hiddenObjects = new List<GameObject>();
+    
+    #endregion
+
+    #region Properties
     
     protected bool useAtlas {
         get {
@@ -70,30 +84,32 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     }
     [SerializeField]
     private Pivot _pivot = Pivot.Center;
-#endregion 
+    #endregion 
     
-    #if UNITY_EDITOR
+    #region Unity Methods
+
+#if UNITY_EDITOR
     void OnDrawGizmos() {
-        
+
         // Draw the gizmo
         Gizmos.matrix = transform.localToWorldMatrix;
-        
+
         Gizmos.color = (UnityEditor.Selection.activeGameObject == gameObject)
             ? Color.green : new Color(1, 1, 1, 0.2f);
-        
-        var childSprites = MadTransform.FindChildren<MadSprite>(transform);
+
         Bounds totalBounds = new Bounds(Vector3.zero, Vector3.zero);
         bool totalBoundsSet = false;
-        
-        foreach (var sprite in childSprites) {
-            if (!sprite.CanDraw()) {
+
+        foreach (var hiddenObject in hiddenObjects) {
+            var sprite = hiddenObject.GetComponent<MadSprite>();
+
+            if (sprite == null || !sprite.CanDraw()) {
                 return;
             }
-        
-            Rect boundsRect = sprite.GetBounds();
-            boundsRect = MadMath.Translate(boundsRect, sprite.transform.localPosition);
+
+            Rect boundsRect = sprite.GetTransformedBounds();
             Bounds bounds = new Bounds(boundsRect.center, new Vector2(boundsRect.width, boundsRect.height));
-            
+
             if (!totalBoundsSet) {
                 totalBounds = bounds;
                 totalBoundsSet = true;
@@ -101,10 +117,10 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
                 totalBounds.Encapsulate(bounds);
             }
         }
-        
-        
+
+
         Gizmos.DrawWireCube(totalBounds.center, totalBounds.size);
-        
+
         if (editorSelectable) {
             // Make the widget selectable
             Gizmos.color = Color.clear;
@@ -112,25 +128,59 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
                             new Vector3(totalBounds.size.x, totalBounds.size.y, 0.01f * (guiDepth + 1)));
         }
     }
-    #endif
-    
-#region Methods update
+#endif
+
+    protected override void OnEnable() {
+        base.OnEnable();
+        EnableAllHidden();
+    }
+
+    protected override void Start() {
+        base.Start();
+        ReconnectPanelIfNeeded(true);
+    }
+
+    protected override void OnDisable() {
+        base.OnDisable();
+        DisableAllHidden();
+    }
+
+    protected virtual void OnDestroy() {
+        DestroyAllHidden(true);
+    }
+
+    #endregion
+
+    #region Unity Methods Update
     
     protected override void Update() {
         base.Update();
+
+        ReconnectPanelIfNeeded(false);
+        UpdatePanelInfo();
+
+        UpdateContainer();
 
         UpdateLabel();
         UpdateAnchor();
         UpdateColors();
         UpdatePivot();
+        UpdateLookAt();
     }
-    
+
+    protected void UpdateContainer() {
+        if (container != null) {
+            ApplyTransform(container);
+        }
+    }
+
     void UpdateLabel() {
         if (labelSprite == null) {
             return;
         }
-        
+
         labelSprite.scale = labelScale;
+
         labelSprite.pivotPoint = Translate(labelPivot);
         labelSprite.transform.localPosition = LabelPositionPixels;
         
@@ -158,6 +208,10 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     }
     
     void UpdateTextureColors(List<MadSprite> sprites, AbstractTex[] textures) {
+        if (sprites.Count != textures.Length) {
+            return; // textures not yet created
+        }
+
         for (int i = 0; i < sprites.Count; i++) {
             var sprite = sprites[i];
             var texture = textures[i];
@@ -185,9 +239,111 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
             }
         }
     }
-    
+
+    private void UpdateLookAt() {
+        Transform t;
+
+        switch (lookAtMode) {
+            case LookAtMode.Disabled:
+                // do nothing
+                return;
+
+            case LookAtMode.CustomObject:
+                if (lookAtObject != null) {
+                    t = lookAtObject.transform;
+                } else {
+                    return;
+                }
+                break;
+
+            case LookAtMode.MainCamera:
+                var camera = Camera.main;
+                if (camera != null) {
+                    t = camera.transform;
+                } else {
+                    Debug.LogError("Cannot find MainCamera.");
+                    return;
+                }
+                break;
+
+            default:
+                Debug.LogError("Unknown option: " + lookAtMode);
+                return;
+        }
+
+        transform.LookAt(transform.position + (transform.position - t.position));
+    }
+
+    private void ReconnectPanelIfNeeded(bool firstTime) {
+        if (panel == null) {
+            panel = MadPanel.FirstOrNull(transform);
+            if (panel == null && firstTime) {
+                Debug.LogError("You have to initialize scene first! Please execute Tools -> Energy Bar Toolkit -> Initialize");
+            } else {
+                // check if now I am under the panel
+                var topPanel = MadTransform.FindParent<MadPanel>(transform);
+                bool nowUnderThePanel = topPanel == panel;
+
+                // new scale should be applied if location of bar relative to panel has changed
+                if (nowUnderThePanel && !underThePanel) {
+                    // now is under the panel, but wasn't before
+                    transform.localScale /= panel.transform.lossyScale.x;
+                } else if (!nowUnderThePanel && underThePanel) {
+                    // was under the panel before, now it isn't
+                    transform.localScale *= panel.transform.lossyScale.x;
+                }
+
+                underThePanel = nowUnderThePanel;
+            }
+        }
+    }
+
+    // updates information about this bar position
+    // this method is quite heavy, but it will only execute in editor and when application is not playing
+    private void UpdatePanelInfo() {
+        if (panel != null && Application.isEditor && !Application.isPlaying) {
+            var topPanel = MadTransform.FindParent<MadPanel>(transform);
+            bool nowUnderThePanel = topPanel == panel;
+
+            underThePanel = nowUnderThePanel;
+        }
+    }
+
 #endregion
-#region Methods rebuild
+
+    #region Methods rebuild
+
+    private void EnableAllHidden() {
+        for (int i = 0; i < hiddenObjects.Count; ++i) {
+            hiddenObjects[i].SetActive(true);
+        }
+
+        if (container != null) {
+            container.gameObject.SetActive(true);
+        }
+    }
+
+    private void DisableAllHidden() {
+        for (int i = 0; i < hiddenObjects.Count; ++i) {
+            hiddenObjects[i].SetActive(false);
+        }
+
+        if (container != null) {
+            container.gameObject.SetActive(false);
+        }
+    }
+
+    private void DestroyAllHidden(bool forceImmediate = false) {
+        for (int i = 0; i < hiddenObjects.Count; ++i) {
+            DestroyHidden(hiddenObjects[i], forceImmediate);
+        }
+
+        hiddenObjects.Clear();
+
+        if (container != null) {
+            DestroyHidden(container.gameObject, forceImmediate);
+        }
+    }
     
     protected virtual void Rebuild() {
 #if MAD_DEBUG
@@ -205,21 +361,11 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
                 MadGameObject.SafeDestroy(child.gameObject);
             }
         } else {
-            foreach (var sprite in spriteObjectsBg) {
-                if (sprite != null) {
-                    MadGameObject.SafeDestroy(sprite.gameObject);
-                }
-            }
-            
-            foreach (var sprite in spriteObjectsFg) {
-                if (sprite != null) {
-                    MadGameObject.SafeDestroy(sprite.gameObject);
-                }
-            }
-            
             spriteObjectsBg.Clear();
             spriteObjectsFg.Clear();
         }
+
+        DestroyAllHidden();
     }
     
     protected int BuildBackgroundTextures(int depth) {
@@ -249,11 +395,10 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
                 continue;
             }
             
-            string name = string.Format("{0}{1:D2}", prefix, counter + 1);
-            var sprite = MadTransform.CreateChild<MadSprite>(transform, name);
-            #if !MAD_DEBUG
-            sprite.gameObject.hideFlags = HideFlags.HideInHierarchy;
-            #endif
+            string name = string.Format("_{0}{1:D2}", prefix, counter + 1);
+
+
+            var sprite = CreateHidden<MadSprite>(name);
             
             sprite.guiDepth = startDepth + counter;
             
@@ -276,18 +421,10 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     }
     
     protected int RebuildLabel(int depth) {
-        if (labelSprite != null) {
-            MadGameObject.SafeDestroy(labelSprite.gameObject);
-        }
-        
         if (labelEnabled && labelFont != null) {
-            labelSprite = MadTransform.CreateChild<MadText>(transform, "label");
+            labelSprite = CreateHidden<MadText>("_label");
             labelSprite.font = labelFont;
             labelSprite.guiDepth = depth++;
-            
-            #if !MAD_DEBUG
-            labelSprite.gameObject.hideFlags = HideFlags.HideInHierarchy;
-            #endif
         }
         
         // after build we must update label at least once to make it visible
@@ -296,7 +433,94 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
         return depth;
     }
 
-#endregion
+    #endregion
+
+    #region Protected Helper Methods
+
+    public Rect AnyBackgroundOrForegroundSpriteSize() {
+        MadSprite sprite = null;
+
+        if (spriteObjectsBg.Count > 0) {
+            sprite = spriteObjectsBg[0];
+        }
+
+        if (sprite == null && spriteObjectsFg.Count > 0) {
+            sprite = spriteObjectsFg[0];
+        }
+
+        if (sprite != null) {
+            return sprite.GetTransformedBounds();
+        }
+
+        return new Rect();
+    }
+
+    protected void ApplyTransform(Component c) {
+        if (c != null) {
+            ApplyTransform(c.gameObject);
+        }
+    }
+
+    protected void ApplyTransform(GameObject go) {
+        if (go != null) {
+            go.transform.position =  transform.position;
+            go.transform.localScale = transform.lossyScale;
+            go.transform.rotation = transform.rotation;
+        }
+    }
+
+    protected void DestroyHidden(GameObject go, bool forceImmediate) {
+        if (forceImmediate) {
+            GameObject.DestroyImmediate(go);
+        } else {
+            MadGameObject.SafeDestroy(go);
+        }
+    }
+
+    private Transform container;
+
+    protected T CreateHidden<T>(string name, Transform parent = null) where T : Component {
+        if (container == null) {
+            // create container
+            container = new GameObject("_container").transform;
+
+#if !MAD_DEBUG
+            container.gameObject.hideFlags = HideFlags.HideAndDontSave;
+#else
+            container.gameObject.hideFlags = HideFlags.DontSave;
+#endif
+        }
+
+        if (parent == null) {
+            parent = container;
+        }
+
+        var obj = MadTransform.CreateChild<T>(parent, name, true);
+
+        // if created object is mad sprite, then assign the panel
+        if (obj is MadSprite) {
+            var sprite = obj as MadSprite;
+            sprite.panel = panel;
+
+            if (obj.GetType() == typeof(MadSprite)) {
+                sprite.hasPremultipliedAlpha = premultipliedAlpha;
+            }
+        }
+
+        MadGameObject.SetActive(obj.gameObject, true);
+
+        #if !MAD_DEBUG
+        obj.gameObject.hideFlags = HideFlags.HideAndDontSave;
+        #else
+        obj.gameObject.hideFlags = HideFlags.DontSave;
+        #endif
+
+        hiddenObjects.Insert(0, obj.gameObject);
+
+        return obj;
+    }
+
+    #endregion
 
     #region Private Helper Methods
 
@@ -314,7 +538,7 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     /// <summary>
     /// Assing regular texture or atlas texture based on current settings.
     /// </summary>
-    protected void AssignTexture(MadSprite sprite, Texture2D tex, string atlasTex) {
+    protected void SetTexture(MadSprite sprite, Texture2D tex, string atlasTex) {
         if (useAtlas) {
             sprite.inputType = MadSprite.InputType.TextureAtlas;
             sprite.textureAtlas = atlas;
@@ -347,10 +571,8 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
 
     #endregion
 
-    // ===========================================================
-    // Static Methods
-    // ===========================================================
-
+    #region Static Methods
+    
     protected static MadSprite.PivotPoint Translate(Pivot pivot) {
         switch (pivot) {
             case Pivot.Left:
@@ -402,10 +624,10 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
                 return Vector2.zero;
         }
     }
-    
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+
+    #endregion
+
+    #region Inner Types
     
     // this intentionally shadows base declaration. The other Pivot order is just bad...
     public enum Pivot {
@@ -423,16 +645,24 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
     public enum BarType {
         Filled,
         Repeated,
+        Sequence,
+        Transform,
     }
     
     public enum TextureMode {
         Textures,
         TextureAtlas,
     }
+
+    public enum LookAtMode {
+        Disabled,
+        CustomObject,
+        MainCamera,
+    }
     
     [System.Serializable]
     public class AtlasTex : AbstractTex {
-        public string spriteGUID;
+        public string spriteGUID = "";
         
         public bool Valid {
             get {
@@ -448,6 +678,8 @@ public abstract class EnergyBar3DBase : EnergyBarBase {
             return hash.GetHashCode();
         }
     }
+
+    #endregion
 }
 
 } // namespace

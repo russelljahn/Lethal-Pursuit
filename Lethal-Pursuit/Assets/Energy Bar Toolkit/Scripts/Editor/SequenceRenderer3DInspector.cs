@@ -50,7 +50,7 @@ public class SequenceRenderer3DInspector : EnergyBar3DInspectorBase {
         base.OnEnable();
     
         script = target as SequenceRenderer3D;
-        
+
         renderingMethod = serializedObject.FindProperty("renderingMethod");
         
         gridTexture = serializedObject.FindProperty("gridTexture");
@@ -67,6 +67,8 @@ public class SequenceRenderer3DInspector : EnergyBar3DInspectorBase {
 
     public override void OnInspectorGUI() {
         serializedObject.Update();
+
+        Header();
 
         SectionTextures();
         SectionPositionAndSize();
@@ -116,6 +118,7 @@ public class SequenceRenderer3DInspector : EnergyBar3DInspectorBase {
 
                 FieldBackgroundTextures();
                 FieldForegroundTextures();
+                FieldPremultipliedAlpha();
             }
         });
     }

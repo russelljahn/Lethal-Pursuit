@@ -18,13 +18,31 @@ namespace EnergyBarToolkit {
 
 public class EnergyBar3DInspectorBase : EnergyBarInspectorBase {
 
-    #region Public Fields
-    #endregion
+    #region Fields
 
-    #region Public Properties
+    private SerializedProperty panel;
+
+    private SerializedProperty lookAtMode;
+    private SerializedProperty lookAtObject;
+
     #endregion
 
     #region Protected Methods
+
+    public override void OnEnable() {
+        base.OnEnable();
+
+        panel = serializedObject.FindProperty("panel");
+
+        lookAtMode = serializedObject.FindProperty("lookAtMode");
+        lookAtObject = serializedObject.FindProperty("lookAtObject");
+    }
+
+    protected void Header() {
+        EditorGUILayout.Space();
+        MadGUI.PropertyField(panel, "Panel", "Panel to draw on", MadGUI.ObjectIsSet);
+        EditorGUILayout.Space();
+    }
 
     protected void SectionPositionAndSize() {
         var script = target as EnergyBar3DBase;
@@ -55,6 +73,15 @@ public class EnergyBar3DInspectorBase : EnergyBarInspectorBase {
                 EditorUtility.SetDirty(script);
             }
             MadGUI.PropertyField(guiDepth, "GUI Depth");
+
+            EditorGUILayout.Space();
+
+            MadGUI.PropertyFieldEnumPopup(lookAtMode, "Look At");
+            MadGUI.Indent(() => {
+                if(lookAtMode.enumValueIndex == (int) EnergyBar3DBase.LookAtMode.CustomObject) { 
+                    MadGUI.PropertyField(lookAtObject, "Target Object", MadGUI.ObjectIsSet);
+                }
+            });
         });
     }
 

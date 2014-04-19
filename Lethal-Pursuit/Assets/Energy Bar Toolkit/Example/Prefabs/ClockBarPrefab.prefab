@@ -38,37 +38,41 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20f30e4b18f64fb40958924a1a63b340, type: 3}
   m_Name: 
+  version: 169
   texturesBackground:
-  - texture: {fileID: 2800000, guid: 36004bc17f3a2334c9aaa63e652d26d6, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    texture: {fileID: 2800000, guid: 36004bc17f3a2334c9aaa63e652d26d6, type: 3}
   texturesForeground: []
-  pivot: 0
   guiDepth: 1
   anchorObject: {fileID: 0}
   anchorCamera: {fileID: 0}
-  positionSizeFromTransform: 0
-  positionSizeFromTransformNormalized: 0
-  premultipliedAlpha: 0
   labelEnabled: 0
   labelSkin: {fileID: 0}
   labelPosition: {x: 0, y: 0}
   labelPositionNormalized: 0
   labelFormat: '{cur}/{max}'
   labelColor: {r: 1, g: 1, b: 1, a: 1}
-  labelOutlineEnabled: 1
-  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
-  storedScreenWidth: 934
-  storedScreenHeight: 650
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  resizeMode: 0
+  pivot: 0
+  positionSizeFromTransform: 0
+  positionSizeFromTransformNormalized: 0
+  premultipliedAlpha: 0
+  labelOutlineEnabled: 1
+  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+  labelPivot: 0
   screenPosition: {x: 10, y: 10}
   screenPositionNormalized: 0
   size: {x: 256, y: 256}
-  sizeNormalized: 0
-  screenPositionCalculateSize: 1
   textureObject:
-    texture: {fileID: 2800000, guid: 523f18576f6c0fb4dbe3d54cc4c0b819, type: 3}
     color: {r: 0, g: 0, b: 0, a: 1}
+    texture: {fileID: 2800000, guid: 523f18576f6c0fb4dbe3d54cc4c0b819, type: 3}
   transformTranslate: 0
   transformRotate: 1
   transformScale: 0
@@ -82,6 +86,8 @@ MonoBehaviour:
   scaleFunction:
     startScale: {x: 1, y: 1}
     endScale: {x: 1, y: 1}
+  sizeNormalized: 0
+  screenPositionCalculateSize: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

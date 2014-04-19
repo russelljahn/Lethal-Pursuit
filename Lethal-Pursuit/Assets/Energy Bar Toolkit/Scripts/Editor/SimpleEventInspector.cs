@@ -52,16 +52,47 @@ public class SimpleEventInspector : EditorBase {
         
         var t = target as SimpleEvent;
         var collider = t.GetComponent<Collider>();
-        if (collider != null) {
-            if (!collider.isTrigger) {
-                if (MadGUI.ErrorFix("This game object collider must be marked as 'Trigger'. Change it?")) {
-                    collider.isTrigger = true;
+
+#if !UNITY_4_1 && !UNITY_4_2
+        var collider2d = t.GetComponent<Collider2D>();
+#endif
+
+        if (collider != null
+#if !UNITY_4_1 && !UNITY_4_2
+            || collider2d != null
+#endif
+            ) {
+
+            if (collider != null) {
+                if (!collider.isTrigger) {
+                    if (MadGUI.ErrorFix("This game object collider must be marked as 'Trigger'. Change it?")) {
+                        collider.isTrigger = true;
+                    }
                 }
             }
+#if !UNITY_4_1 && !UNITY_4_2
+            else {
+                if (!collider2d.isTrigger) {
+                    if (MadGUI.ErrorFix("This game object collider must be marked as 'Trigger'. Change it?")) {
+                        collider2d.isTrigger = true;
+                    }
+                }
+            }
+#endif
         } else {
             if (MadGUI.ErrorFix("This game object doesn't have a collider. Attach it now?")) {
-                collider = t.gameObject.AddComponent<MeshCollider>();
-                collider.isTrigger = true;
+#if !UNITY_4_1 && !UNITY_4_2
+                if (EditorUtility.DisplayDialog("Choose Collider Type", "Which collider type do you want to create? 2D or 3D?", "2D", "3D")) {
+                    var c = t.gameObject.AddComponent<BoxCollider2D>();
+                    c.isTrigger = true;
+                } else {
+#endif
+                    var c = t.gameObject.AddComponent<BoxCollider>();
+                    c.isTrigger = true;
+
+#if !UNITY_4_1 && !UNITY_4_2
+                }
+#endif
             }
         }
     

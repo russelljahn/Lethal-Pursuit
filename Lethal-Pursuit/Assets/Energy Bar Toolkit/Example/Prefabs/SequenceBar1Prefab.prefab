@@ -38,32 +38,36 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88c06ed186848074ea12379f89514a30, type: 3}
   m_Name: 
+  version: 169
   texturesBackground: []
   texturesForeground: []
-  pivot: 0
   guiDepth: 1
   anchorObject: {fileID: 0}
   anchorCamera: {fileID: 0}
-  positionSizeFromTransform: 0
-  positionSizeFromTransformNormalized: 0
-  premultipliedAlpha: 0
   labelEnabled: 0
   labelSkin: {fileID: 0}
   labelPosition: {x: 0, y: 0}
   labelPositionNormalized: 0
   labelFormat: '{cur}/{max}'
   labelColor: {r: 1, g: 1, b: 1, a: 1}
-  labelOutlineEnabled: 1
-  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
-  storedScreenWidth: 800
-  storedScreenHeight: 600
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  resizeMode: 0
+  pivot: 0
+  positionSizeFromTransform: 0
+  positionSizeFromTransformNormalized: 0
+  premultipliedAlpha: 0
+  labelOutlineEnabled: 1
+  labelOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+  labelPivot: 0
   position: {x: 10, y: 10}
   positionNormalized: 0
-  sizeCalculate: 1
   size: {x: 132, y: 113}
-  sizeNormalized: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   method: 0
   gridTexture: {fileID: 2800000, guid: 92439f7267aa24d4ba8eb0bedaf261db, type: 3}
@@ -73,6 +77,8 @@ MonoBehaviour:
   frameCount: 59
   sequence:
   - {fileID: 0}
+  sizeNormalized: 0
+  sizeCalculate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -42,9 +42,6 @@ public abstract class EnergyBarOnGUIBase : EnergyBarBase {
     public bool positionSizeFromTransform = false;
     public bool positionSizeFromTransformNormalized = false;
     
-    // tells if textures has premultiplied alpha
-    public bool premultipliedAlpha;
-    
     // label
     public bool labelOutlineEnabled = true;
     public Color labelOutlineColor = Color.black;

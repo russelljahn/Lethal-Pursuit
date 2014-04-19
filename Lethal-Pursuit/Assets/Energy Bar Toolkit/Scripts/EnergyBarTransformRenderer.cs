@@ -260,50 +260,6 @@ public class EnergyBarTransformRenderer : EnergyBarOnGUIBase {
         Rotate,
     }
     
-    public abstract class TransformFunction {
-    }
-    
-    [System.Serializable]
-    public class TranslateFunction : TransformFunction {
-        public Vector2 startPosition;
-        public Vector2 endPosition;
-        
-        public Vector2 Value(float progress) {
-            progress = Mathf.Clamp01(progress);
-            
-            var result = Vector2.Lerp(startPosition, endPosition, progress);
-            return result;
-        }
-    }
-    
-    [System.Serializable]
-    public class ScaleFunction : TransformFunction {
-        public Vector2 startScale = Vector3.one;
-        public Vector2 endScale = Vector3.one;
-        
-        public Vector3 Value(float progress) {
-            progress = Mathf.Clamp01(progress);
-            
-            var result = Vector2.Lerp(startScale, endScale, progress);
-            return new Vector3(result.x, result.y, 1);
-        }
-    }
-    
-    [System.Serializable]
-    public class RotateFunction : TransformFunction {
-        public float startAngle;
-        public float endAngle;
-        
-        public Quaternion Value(float progress) {
-            progress = Mathf.Clamp01(progress);
-            
-            float angle = Mathf.Lerp(startAngle, endAngle, progress);
-            
-            var result = Quaternion.Euler(0, 0, angle);
-            return result;
-        }
-    }
-    
 }
 
 } // namespace

@@ -8,18 +8,17 @@ Shader "Energy Bar Toolkit/Unlit/Transparent Tint" {
 
     SubShader {
         Tags { "Queue"="Overlay" }
-        Blend SrcAlpha OneMinusSrcAlpha 
+        Blend SrcAlpha OneMinusSrcAlpha
         Lighting Off
         Fog { Mode Off }
         ZWrite Off
         Cull Off
         ColorMaterial AmbientAndDiffuse
-    
- 
+
         Pass {
             SetTexture [_MainTex] {
-               combine texture * primary
-            } 
+            	combine texture * primary
+            }
         }
     }
 }

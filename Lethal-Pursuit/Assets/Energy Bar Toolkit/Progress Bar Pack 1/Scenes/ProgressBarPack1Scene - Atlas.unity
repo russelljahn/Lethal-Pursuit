@@ -101,8 +101,8 @@ Transform:
   m_LocalPosition: {x: -6.22272491e-05, y: 161.45636, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
   m_Children:
-  - {fileID: 1552188992}
-  - {fileID: 1245754406}
+  - {fileID: 654288349}
+  - {fileID: 1495743369}
   m_Father: {fileID: 1919284744}
 --- !u!114 &67653615
 MonoBehaviour:
@@ -130,6 +130,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -143,7 +147,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 1245754407}
+  - {fileID: 1495743370}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -196,9 +200,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 0
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -310,8 +311,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: -612961024
-  spriteBar: {fileID: 1552188993}
+  lastRebuildHash: -1964567552
+  spriteBar: {fileID: 654288350}
   spriteBurnBar: {fileID: 0}
 --- !u!114 &67653616
 MonoBehaviour:
@@ -355,8 +356,8 @@ Transform:
   m_LocalPosition: {x: -6.22272491e-05, y: 35.8791924, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
   m_Children:
-  - {fileID: 1179767207}
-  - {fileID: 1048130119}
+  - {fileID: 1549883720}
+  - {fileID: 1248515264}
   m_Father: {fileID: 1919284744}
 --- !u!114 &85376720
 MonoBehaviour:
@@ -384,6 +385,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -397,7 +402,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 1048130120}
+  - {fileID: 1248515265}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -450,9 +455,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 0
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -564,8 +566,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: 645104384
-  spriteBar: {fileID: 1179767208}
+  lastRebuildHash: -196883456
+  spriteBar: {fileID: 1549883721}
   spriteBurnBar: {fileID: 0}
 --- !u!114 &85376721
 MonoBehaviour:
@@ -582,74 +584,15 @@ MonoBehaviour:
   valueMax: 100
   animationEnabled: 0
   animValueF: 0
---- !u!1 &165509209
+--- !u!1 &104607815
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 165509210}
-  - 114: {fileID: 165509211}
-  m_Layer: 0
-  m_Name: bar_effect_burn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &165509210
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 165509209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 982749915}
---- !u!114 &165509211
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 165509209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
-  m_Name: 
-  managed: 0
-  visible: 1
-  editorSelectable: 1
-  pivotPoint: 8
-  tint: {r: 1, g: 0, b: 0, a: 1}
-  inputType: 1
-  texture: {fileID: 0}
-  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
-  lastTextureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
-  textureOffset: {x: 0, y: 0}
-  textureRepeat: {x: 1, y: 1}
-  guiDepth: 33
-  eventFlags: 15
-  liveLeft: .0265486725
-  liveBottom: .150000006
-  liveRight: .971681416
-  liveTop: .839999974
-  fillType: 1
-  fillValue: .5
-  radialFillOffset: 0
-  radialFillLength: 1
---- !u!1 &195275559
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 195275560}
-  - 114: {fileID: 195275561}
+  - 4: {fileID: 104607816}
+  - 114: {fileID: 104607817}
   m_Layer: 0
   m_Name: bar
   m_TagString: Untagged
@@ -657,23 +600,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &195275560
+--- !u!4 &104607816
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 195275559}
+  m_GameObject: {fileID: 104607815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 982749915}
---- !u!114 &195275561
+--- !u!114 &104607817
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 195275559}
+  m_GameObject: {fileID: 104607815}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -687,52 +630,52 @@ MonoBehaviour:
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
   textureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
-  lastTextureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
   guiDepth: 34
   eventFlags: 15
-  liveLeft: .0265486725
-  liveBottom: .150000006
-  liveRight: .971681416
-  liveTop: .839999974
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
   fillType: 1
   fillValue: .5
   radialFillOffset: 0
   radialFillLength: 1
---- !u!1 &345029098
+--- !u!1 &451924755
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 345029099}
-  - 114: {fileID: 345029100}
+  - 4: {fileID: 451924756}
+  - 114: {fileID: 451924757}
   m_Layer: 0
-  m_Name: bar
+  m_Name: bg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &345029099
+--- !u!4 &451924756
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 345029098}
+  m_GameObject: {fileID: 451924755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 484657520}
---- !u!114 &345029100
+  m_Father: {fileID: 1123167726}
+--- !u!114 &451924757
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 345029098}
+  m_GameObject: {fileID: 451924755}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -745,217 +688,20 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
-  lastTextureAtlasSpriteGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
+  textureAtlasSpriteGUID: 8c9459920e74bd44582662fbbdb81e2f
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
-  guiDepth: 33
+  guiDepth: 32
   eventFlags: 15
-  liveLeft: .0265486725
-  liveBottom: .150000006
-  liveRight: .971681416
-  liveTop: .839999974
-  fillType: 1
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 0
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
---- !u!1 &408168267
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 408168268}
-  - 114: {fileID: 408168269}
-  m_Layer: 0
-  m_Name: bar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &408168268
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408168267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1877196879}
---- !u!114 &408168269
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408168267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
-  m_Name: 
-  managed: 0
-  visible: 1
-  editorSelectable: 1
-  pivotPoint: 8
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  inputType: 1
-  texture: {fileID: 0}
-  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 72693c00377af2045afba97c7e61c168
-  lastTextureAtlasSpriteGUID: 72693c00377af2045afba97c7e61c168
-  textureOffset: {x: 0, y: 0}
-  textureRepeat: {x: 1, y: 1}
-  guiDepth: 33
-  eventFlags: 15
-  liveLeft: .0222222228
-  liveBottom: .150000006
-  liveRight: .976296306
-  liveTop: .839999974
-  fillType: 1
-  fillValue: 1
-  radialFillOffset: 0
-  radialFillLength: 1
---- !u!43 &468801436
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Generated Mesh
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 78
-    topology: 0
-    firstVertex: 0
-    vertexCount: 52
-    localAABB:
-      m_Center: {x: -6.10351562e-05, y: 1.62884521, z: 0}
-      m_Extent: {x: 512.040955, y: 338.666626, z: 0}
-  m_Shapes: []
-  m_ShapeVertices: []
-  m_MeshCompression: 0
-  m_StreamCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexBuffer: 000001000200000002000300040005000600040006000700080009000a0008000a000b000c000d000e000c000e000f00100011001200100012001300140015001600140016001700180019001a0018001a001b001c001d001e001c001e001f00200021002200200022002300240025002600240026002700280029002a0028002a002b002c002d002e002c002e002f00300031003200300032003300
-  m_Skin: []
-  m_BindPose: []
-  m_VertexData:
-    m_CurrentChannels: 15
-    m_VertexCount: 52
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 24
-      format: 2
-      dimension: 1
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_Streams:
-    - channelMask: 15
-      offset: 0
-      stride: 36
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    m_DataSize: 1872
-    _typelessdata: e6428dc3e7fb59c300000000000000000000000000000000ffffffff00c00d3f00003f3ee6428dc3b6f3ebc200000000000000000000000000000000ffffffff00c00d3f0000713ee2428d43b6f3ebc200000000000000000000000000000000ffffffff0060543f0000713ee2428d43e7fb59c300000000000000000000000000000000ffffffff0060543f00003f3ea00200c429faf3c000000000000000000000000000000000ffffffff000000000000bf3da00200c4eec39e4200000000000000000000000000000000ffffffff0000000000000b3e9e020044eec39e4200000000000000000000000000000000ffffffff0000003f00000b3e9e02004429faf3c000000000000000000000000000000000ffffffff0000003f0000bf3dc584e8c3c942d2c200000000000000000000000000000000ffffffff0040003f0000bf3dc584e8c3d67f0cc200000000000000000000000000000000ffffffff0040003f0080023ec184e843d67f0cc200000000000000000000000000000000ffffffff0080743f0080023ec184e843c942d2c200000000000000000000000000000000ffffffff0080743f0000bf3d77c3a8c3d684a8c300000000000000000000000000000000ffffffff0000000000000c3e77c3a8c3a0076dc300000000000000000000000000000000ffffffff0000000000003e3e73c3a843a0076dc300000000000000000000000000000000ffffffff00c0a83e00003e3e73c3a843d684a8c300000000000000000000000000000000ffffffff00c0a83e00000c3e00408dc3a44b704300000000000000000000000000000000ffffffff0040293f00000c3e00408dc3d225aa4300000000000000000000000000000000ffffffff0040293f00003e3e00408d43d225aa4300000000000000000000000000000000ffffffff00e06f3f00003e3e00408d43a44b704300000000000000000000000000000000ffffffff00e06f3f00000c3ea444e2c39ce7de4200000000000000000000000000000000ffffffff0000000000000000a444e2c3da75534300000000000000000000000000000000ffffffff000000000000483da044e243da75534300000000000000000000000000000000ffffffff0040e23e0000483da044e2439ce7de4200000000000000000000000000000000ffffffff0040e23e00000000a444e2c39ce7de4200000000000000000000000000000000ffffffff00c0e23e00000000a444e2c3da75534300000000000000000000000000000000ffffffff00c0e23e0000483da044e243da75534300000000000000000000000000000000ffffffff0080623f0000483da044e2439ce7de4200000000000000000000000000000000ffffffff0080623f00000000a00200c429faf3c000000000000000000000000000000000ffffffff0000000000004c3da00200c4eec39e4200000000000000000000000000000000ffffffff000000000000bd3d9e020044eec39e4200000000000000000000000000000000ffffffff0000003f0000bd3d9e02004429faf3c000000000000000000000000000000000ffffffff0000003f00004c3dc584e8c3c942d2c200000000000000000000000000000000ffffffff0040003f00004c3dc584e8c3d67f0cc200000000000000000000000000000000ffffffff0040003f0000ac3dc184e843d67f0cc200000000000000000000000000000000ffffffff0080743f0000ac3dc184e843c942d2c200000000000000000000000000000000ffffffff0080743f00004c3d00408dc3a44b704300000000000000000000000000000000ff0000ff0000000000003f3e00408dc3d225aa4300000000000000000000000000000000ff0000ff000000000000713efeffffbed225aa4300000000000000000000000000000000ff0000ff00000d3e0000713efeffffbea44b704300000000000000000000000000000000ff0000ff00000d3e00003f3e77c3a8c3d684a8c300000000000000000000000000000000ffffffff0040a93e00000c3e77c3a8c3a0076dc300000000000000000000000000000000ffffffff0040a93e00003e3e73c3a843a0076dc300000000000000000000000000000000ffffffff0000293f00003e3e73c3a843d684a8c300000000000000000000000000000000ffffffff0000293f00000c3ee6428dc3e7fb59c300000000000000000000000000000000ffffffff00c08d3e00003f3ee6428dc3b6f3ebc200000000000000000000000000000000ffffffff00c08d3e0000713ee2428d43b6f3ebc200000000000000000000000000000000ffffffff00800d3f0000713ee2428d43e7fb59c300000000000000000000000000000000ffffffff00800d3f00003f3e00408dc3a44b704300000000000000000000000000000000ffffffff0000000000003f3e00408dc3d225aa4300000000000000000000000000000000ffffffff000000000000713efeffffbed225aa4300000000000000000000000000000000ffffffff00000d3e0000713efeffffbea44b704300000000000000000000000000000000ffffffff00000d3e00003f3e
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BindPoses:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Colors:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-  m_LocalAABB:
-    m_Center: {x: -6.10351562e-05, y: 1.62884521, z: 0}
-    m_Extent: {x: 512.040955, y: 338.666626, z: 0}
-  m_MeshUsageFlags: 0
-  m_MeshOptimized: 0
 --- !u!1 &484657519
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,8 +729,8 @@ Transform:
   m_LocalPosition: {x: -6.22272491e-05, y: -167.979996, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
   m_Children:
-  - {fileID: 345029099}
-  - {fileID: 698278415}
+  - {fileID: 554103680}
+  - {fileID: 1229349267}
   m_Father: {fileID: 1919284744}
 --- !u!114 &484657521
 MonoBehaviour:
@@ -1012,6 +758,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -1025,7 +775,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 698278414}
+  - {fileID: 1229349268}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -1078,9 +828,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 0
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -1192,8 +939,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: -797724416
-  spriteBar: {fileID: 345029100}
+  lastRebuildHash: 476513280
+  spriteBar: {fileID: 554103681}
   spriteBurnBar: {fileID: 0}
 --- !u!114 &484657522
 MonoBehaviour:
@@ -1210,15 +957,15 @@ MonoBehaviour:
   valueMax: 100
   animationEnabled: 0
   animValueF: 0
---- !u!1 &605392404
+--- !u!1 &554103679
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 605392405}
-  - 114: {fileID: 605392406}
+  - 4: {fileID: 554103680}
+  - 114: {fileID: 554103681}
   m_Layer: 0
   m_Name: bar
   m_TagString: Untagged
@@ -1226,23 +973,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &605392405
+--- !u!4 &554103680
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605392404}
+  m_GameObject: {fileID: 554103679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1123167726}
---- !u!114 &605392406
+  m_Father: {fileID: 484657520}
+--- !u!114 &554103681
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605392404}
+  m_GameObject: {fileID: 554103679}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -1255,29 +1002,29 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: dbc62ca044ac58d42b977e178f54f428
-  lastTextureAtlasSpriteGUID: dbc62ca044ac58d42b977e178f54f428
+  textureAtlasSpriteGUID: 496d5f4d2bf9cb74faa32b5bb0f5214c
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
   guiDepth: 33
   eventFlags: 15
-  liveLeft: .0107526882
-  liveBottom: .285714298
-  liveRight: .988172054
-  liveTop: .699999988
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
   fillType: 1
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
---- !u!1 &698278413
+--- !u!1 &632632096
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 698278415}
-  - 114: {fileID: 698278414}
+  - 4: {fileID: 632632097}
+  - 114: {fileID: 632632098}
   m_Layer: 0
   m_Name: bg_01
   m_TagString: Untagged
@@ -1285,12 +1032,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &698278414
+--- !u!4 &632632097
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 632632096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 982749915}
+--- !u!114 &632632098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 698278413}
+  m_GameObject: {fileID: 632632096}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -1303,31 +1061,138 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 309c06c886374154eabf7bd575e076db
-  lastTextureAtlasSpriteGUID: 309c06c886374154eabf7bd575e076db
+  textureAtlasSpriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
   guiDepth: 32
   eventFlags: 15
   liveLeft: 0
   liveBottom: 0
-  liveRight: 0
+  liveRight: 1
   liveTop: 1
   fillType: 0
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
---- !u!4 &698278415
+--- !u!1 &654288348
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 654288349}
+  - 114: {fileID: 654288350}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &654288349
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 698278413}
+  m_GameObject: {fileID: 654288348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 484657520}
+  m_Father: {fileID: 67653614}
+--- !u!114 &654288350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654288348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: f26603e1b03eee84e86d0db1d62c988e
+  lastTextureAtlasSpriteGUID: 
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &811230865
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 811230866}
+  - 114: {fileID: 811230867}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811230866
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811230865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1877196879}
+--- !u!114 &811230867
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811230865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: b96bf7991cd9052439a945e62e0c125f
+  lastTextureAtlasSpriteGUID: 
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
 --- !u!1 &981187728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,9 +1288,9 @@ Transform:
   m_LocalPosition: {x: 5.96046448e-08, y: 290.295471, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 195275560}
-  - {fileID: 165509210}
-  - {fileID: 1909934129}
+  - {fileID: 104607816}
+  - {fileID: 2036486194}
+  - {fileID: 632632097}
   m_Father: {fileID: 1919284744}
 --- !u!114 &982749916
 MonoBehaviour:
@@ -1453,6 +1318,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 1
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -1466,7 +1335,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 1909934130}
+  - {fileID: 632632098}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -1519,9 +1388,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 1
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -1633,9 +1499,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: -1968465600
-  spriteBar: {fileID: 195275561}
-  spriteBurnBar: {fileID: 165509211}
+  lastRebuildHash: -1355492096
+  spriteBar: {fileID: 104607817}
+  spriteBurnBar: {fileID: 2036486195}
 --- !u!114 &982749917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,39 +1517,39 @@ MonoBehaviour:
   valueMax: 100
   animationEnabled: 0
   animValueF: 0
---- !u!1 &1048130118
+--- !u!1 &1101403980
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1048130119}
-  - 114: {fileID: 1048130120}
+  - 4: {fileID: 1101403981}
+  - 114: {fileID: 1101403982}
   m_Layer: 0
-  m_Name: bg_01
+  m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1048130119
+--- !u!4 &1101403981
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1048130118}
+  m_GameObject: {fileID: 1101403980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 85376719}
---- !u!114 &1048130120
+  m_Father: {fileID: 1123167726}
+--- !u!114 &1101403982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1048130118}
+  m_GameObject: {fileID: 1101403980}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -1696,17 +1562,17 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
-  lastTextureAtlasSpriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
+  textureAtlasSpriteGUID: dbc62ca044ac58d42b977e178f54f428
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
-  guiDepth: 32
+  guiDepth: 33
   eventFlags: 15
   liveLeft: 0
   liveBottom: 0
-  liveRight: 0
+  liveRight: 1
   liveTop: 1
-  fillType: 0
+  fillType: 1
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
@@ -1737,8 +1603,8 @@ Transform:
   m_LocalPosition: {x: -6.22272491e-05, y: -70.1276398, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
   m_Children:
-  - {fileID: 605392405}
-  - {fileID: 1612312586}
+  - {fileID: 1101403981}
+  - {fileID: 451924756}
   m_Father: {fileID: 1919284744}
 --- !u!114 &1123167727
 MonoBehaviour:
@@ -1766,6 +1632,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -1779,7 +1649,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 1612312587}
+  - {fileID: 451924757}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -1832,9 +1702,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 0
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -1946,8 +1813,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: 1963286272
-  spriteBar: {fileID: 605392406}
+  lastRebuildHash: 468728832
+  spriteBar: {fileID: 1101403982}
   spriteBurnBar: {fileID: 0}
 --- !u!114 &1123167728
 MonoBehaviour:
@@ -1964,39 +1831,39 @@ MonoBehaviour:
   valueMax: 100
   animationEnabled: 0
   animValueF: 0
---- !u!1 &1179767206
+--- !u!1 &1229349266
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1179767207}
-  - 114: {fileID: 1179767208}
+  - 4: {fileID: 1229349267}
+  - 114: {fileID: 1229349268}
   m_Layer: 0
-  m_Name: bar
+  m_Name: bg_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1179767207
+--- !u!4 &1229349267
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1179767206}
+  m_GameObject: {fileID: 1229349266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 85376719}
---- !u!114 &1179767208
+  m_Father: {fileID: 484657520}
+--- !u!114 &1229349268
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1179767206}
+  m_GameObject: {fileID: 1229349266}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -2009,29 +1876,29 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: c947e31fbd511ce489f4553dc705e734
-  lastTextureAtlasSpriteGUID: c947e31fbd511ce489f4553dc705e734
+  textureAtlasSpriteGUID: 309c06c886374154eabf7bd575e076db
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
-  guiDepth: 33
+  guiDepth: 32
   eventFlags: 15
-  liveLeft: .0185546875
-  liveBottom: .218390808
-  liveRight: .98046875
-  liveTop: .758620679
-  fillType: 1
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 0
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
---- !u!1 &1245754405
+--- !u!1 &1248515263
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1245754406}
-  - 114: {fileID: 1245754407}
+  - 4: {fileID: 1248515264}
+  - 114: {fileID: 1248515265}
   m_Layer: 0
   m_Name: bg_01
   m_TagString: Untagged
@@ -2039,23 +1906,141 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1245754406
+--- !u!4 &1248515264
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1245754405}
+  m_GameObject: {fileID: 1248515263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 85376719}
+--- !u!114 &1248515265
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1248515263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 071154aa7dd45da45ad4b173cdd0b9c9
+  lastTextureAtlasSpriteGUID: 
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 32
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 0
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1346494569
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1346494570}
+  - 114: {fileID: 1346494571}
+  m_Layer: 0
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1346494570
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1346494569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1877196879}
+--- !u!114 &1346494571
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1346494569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: 72693c00377af2045afba97c7e61c168
+  lastTextureAtlasSpriteGUID: 
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 1
+  fillValue: 1
+  radialFillOffset: 0
+  radialFillLength: 1
+--- !u!1 &1495743368
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1495743369}
+  - 114: {fileID: 1495743370}
+  m_Layer: 0
+  m_Name: bg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1495743369
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495743368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 67653614}
---- !u!114 &1245754407
+--- !u!114 &1495743370
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1245754405}
+  m_GameObject: {fileID: 1495743368}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -2069,28 +2054,28 @@ MonoBehaviour:
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
   textureAtlasSpriteGUID: b4406f388ca4932438b0331073d38caa
-  lastTextureAtlasSpriteGUID: b4406f388ca4932438b0331073d38caa
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
   guiDepth: 32
   eventFlags: 15
   liveLeft: 0
   liveBottom: 0
-  liveRight: 0
+  liveRight: 1
   liveTop: 1
   fillType: 0
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
---- !u!1 &1552188991
+--- !u!1 &1549883719
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1552188992}
-  - 114: {fileID: 1552188993}
+  - 4: {fileID: 1549883720}
+  - 114: {fileID: 1549883721}
   m_Layer: 0
   m_Name: bar
   m_TagString: Untagged
@@ -2098,23 +2083,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1552188992
+--- !u!4 &1549883720
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1552188991}
+  m_GameObject: {fileID: 1549883719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 67653614}
---- !u!114 &1552188993
+  m_Father: {fileID: 85376719}
+--- !u!114 &1549883721
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1552188991}
+  m_GameObject: {fileID: 1549883719}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
@@ -2127,135 +2112,17 @@ MonoBehaviour:
   inputType: 1
   texture: {fileID: 0}
   textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: f26603e1b03eee84e86d0db1d62c988e
-  lastTextureAtlasSpriteGUID: f26603e1b03eee84e86d0db1d62c988e
+  textureAtlasSpriteGUID: c947e31fbd511ce489f4553dc705e734
+  lastTextureAtlasSpriteGUID: 
   textureOffset: {x: 0, y: 0}
   textureRepeat: {x: 1, y: 1}
   guiDepth: 33
   eventFlags: 15
-  liveLeft: .0165745858
-  liveBottom: .150000006
-  liveRight: .982320428
-  liveTop: .839999974
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
   fillType: 1
-  fillValue: 1
-  radialFillOffset: 0
-  radialFillLength: 1
---- !u!1 &1612312585
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1612312586}
-  - 114: {fileID: 1612312587}
-  m_Layer: 0
-  m_Name: bg_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1612312586
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1612312585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1123167726}
---- !u!114 &1612312587
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1612312585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
-  m_Name: 
-  managed: 0
-  visible: 1
-  editorSelectable: 1
-  pivotPoint: 8
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  inputType: 1
-  texture: {fileID: 0}
-  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 8c9459920e74bd44582662fbbdb81e2f
-  lastTextureAtlasSpriteGUID: 8c9459920e74bd44582662fbbdb81e2f
-  textureOffset: {x: 0, y: 0}
-  textureRepeat: {x: 1, y: 1}
-  guiDepth: 32
-  eventFlags: 15
-  liveLeft: 0
-  liveBottom: 0
-  liveRight: 0
-  liveTop: 1
-  fillType: 0
-  fillValue: 1
-  radialFillOffset: 0
-  radialFillLength: 1
---- !u!1 &1867042053
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1867042054}
-  - 114: {fileID: 1867042055}
-  m_Layer: 0
-  m_Name: bg_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1867042054
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1867042053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1877196879}
---- !u!114 &1867042055
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1867042053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
-  m_Name: 
-  managed: 0
-  visible: 1
-  editorSelectable: 1
-  pivotPoint: 8
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  inputType: 1
-  texture: {fileID: 0}
-  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: b96bf7991cd9052439a945e62e0c125f
-  lastTextureAtlasSpriteGUID: b96bf7991cd9052439a945e62e0c125f
-  textureOffset: {x: 0, y: 0}
-  textureRepeat: {x: 1, y: 1}
-  guiDepth: 32
-  eventFlags: 15
-  liveLeft: 0
-  liveBottom: 0
-  liveRight: 0
-  liveTop: 1
-  fillType: 0
   fillValue: 1
   radialFillOffset: 0
   radialFillLength: 1
@@ -2286,8 +2153,8 @@ Transform:
   m_LocalPosition: {x: -6.22272491e-05, y: -287.033783, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00800002}
   m_Children:
-  - {fileID: 408168268}
-  - {fileID: 1867042054}
+  - {fileID: 1346494570}
+  - {fileID: 811230866}
   m_Father: {fileID: 1919284744}
 --- !u!114 &1877196880
 MonoBehaviour:
@@ -2315,6 +2182,10 @@ MonoBehaviour:
   labelColor: {r: 1, g: 1, b: 1, a: 1}
   effectSmoothChange: 0
   effectSmoothChangeSpeed: .5
+  effectBurn: 0
+  effectBurnTextureBar: {fileID: 0}
+  atlasEffectBurnTextureBarGUID: 
+  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   textureMode: 1
   atlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
@@ -2328,7 +2199,7 @@ MonoBehaviour:
   editorSelectable: 1
   labelSprite: {fileID: 0}
   spriteObjectsBg:
-  - {fileID: 1867042055}
+  - {fileID: 811230867}
   spriteObjectsFg: []
   _pivot: 8
   textureBar: {fileID: 2800000, guid: cc23715e311bb5944bf44bc1d2fa3aa4, type: 3}
@@ -2381,9 +2252,6 @@ MonoBehaviour:
   growDirection: 0
   radialOffset: 0
   radialLength: 1
-  effectBurn: 0
-  effectBurnTextureBar: {fileID: 0}
-  effectBurnTextureBarColor: {r: 1, g: 0, b: 0, a: 1}
   effectBlink: 0
   effectBlinkValue: .200000003
   effectBlinkRatePerSecond: 1
@@ -2495,8 +2363,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   effectFollowDefaultsSet: 1
   effectFollowSprite: {fileID: 0}
-  lastRebuildHash: 1252847360
-  spriteBar: {fileID: 408168269}
+  lastRebuildHash: -1338344448
+  spriteBar: {fileID: 1346494571}
   spriteBurnBar: {fileID: 0}
 --- !u!114 &1877196881
 MonoBehaviour:
@@ -2513,65 +2381,6 @@ MonoBehaviour:
   valueMax: 100
   animationEnabled: 0
   animValueF: 0
---- !u!1 &1909934128
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1909934129}
-  - 114: {fileID: 1909934130}
-  m_Layer: 0
-  m_Name: bg_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1909934129
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1909934128}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 982749915}
---- !u!114 &1909934130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1909934128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
-  m_Name: 
-  managed: 0
-  visible: 1
-  editorSelectable: 1
-  pivotPoint: 8
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  inputType: 1
-  texture: {fileID: 0}
-  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
-  textureAtlasSpriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
-  lastTextureAtlasSpriteGUID: 85dd12640060b1d4285d11cb0f60b8a7
-  textureOffset: {x: 0, y: 0}
-  textureRepeat: {x: 1, y: 1}
-  guiDepth: 32
-  eventFlags: 15
-  liveLeft: 0
-  liveBottom: 0
-  liveRight: 0
-  liveTop: 1
-  fillType: 0
-  fillValue: 1
-  radialFillOffset: 0
-  radialFillLength: 1
 --- !u!1 &1919284743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,7 +2408,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919284743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .73888886, y: .73888886, z: 0}
+  m_LocalPosition: {x: .725000024, y: .725000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 982749915}
@@ -2665,7 +2474,66 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919284743}
-  m_Mesh: {fileID: 468801436}
+  m_Mesh: {fileID: 0}
+--- !u!1 &2036486193
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2036486194}
+  - 114: {fileID: 2036486195}
+  m_Layer: 0
+  m_Name: bar_effect_burn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2036486194
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036486193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 982749915}
+--- !u!114 &2036486195
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036486193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1412938074, guid: 2b16a1acf52a2a64e916f8a9e6d5df31, type: 3}
+  m_Name: 
+  managed: 0
+  visible: 1
+  editorSelectable: 1
+  pivotPoint: 8
+  tint: {r: 1, g: 0, b: 0, a: 1}
+  inputType: 1
+  texture: {fileID: 0}
+  textureAtlas: {fileID: 11400000, guid: 04af17ca9d4bb5547bfb0da4ea4795f5, type: 2}
+  textureAtlasSpriteGUID: cc23715e311bb5944bf44bc1d2fa3aa4
+  lastTextureAtlasSpriteGUID: 
+  textureOffset: {x: 0, y: 0}
+  textureRepeat: {x: 1, y: 1}
+  guiDepth: 33
+  eventFlags: 15
+  liveLeft: 0
+  liveBottom: 0
+  liveRight: 1
+  liveTop: 1
+  fillType: 1
+  fillValue: .5
+  radialFillOffset: 0
+  radialFillLength: 1
 --- !u!1 &2113828662
 GameObject:
   m_ObjectHideFlags: 0

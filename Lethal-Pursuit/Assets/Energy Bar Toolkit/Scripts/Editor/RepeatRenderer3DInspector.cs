@@ -79,6 +79,8 @@ public class RepeatRenderer3DInspector : EnergyBar3DInspectorBase {
         
         var t = target as RepeatedRenderer3D;
 
+        Header();
+
         Section("Textures", () => {
 
             FieldTextureMode();
@@ -94,6 +96,8 @@ public class RepeatRenderer3DInspector : EnergyBar3DInspectorBase {
             //MadGUI.PropertyField(textureSlot, "Slot");
             EditorGUILayout.PropertyField(tintSlot, new GUIContent(""), new GUILayoutOption[] { GUILayout.Width(50) });
             EditorGUILayout.EndHorizontal();
+
+            FieldPremultipliedAlpha();
 
             CheckTextureIsReadable(t.textureIcon);
             CheckTextureIsReadable(t.textureSlot);

@@ -98,20 +98,28 @@ public class FilledRenderer3DInspector : EnergyBar3DInspectorBase {
         effectFollowScaleZ = serializedObject.FindProperty("effectFollowScaleZ");
         effectFollowRotation = serializedObject.FindProperty("effectFollowRotation");
         effectFollowColor = serializedObject.FindProperty("effectFollowColor");
+
+        script = target as FilledRenderer3D;
     }
     
     public override void OnCustomInspector() {
         serializedObject.Update();
-        
-        script = target as FilledRenderer3D;
 
+        Header();
+        
         Section("Textures", () => {
             FieldTextureMode();
+
+            EditorGUILayout.Space();
 
             if (script.textureMode != EnergyBar3DBase.TextureMode.TextureAtlas || script.atlas != null) {
                 FieldBackgroundTextures();
 
+                EditorGUILayout.Space();
+
                 FieldSprite(textureBar, atlasTextureBarGUID, "Bar Texture");
+
+                EditorGUILayout.Space();
                 
                 CheckTextureIsReadable(script.textureBar);
                 CheckTextureFilterTypeNotPoint(script.textureBar);
