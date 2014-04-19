@@ -2808,6 +2808,7 @@ MonoBehaviour:
   spaceshipModelPitchYaw: {fileID: 100072}
   spaceshipModelRoll: {fileID: 100066}
   spaceshipMesh: {fileID: 100000}
+  spaceshipShell: {fileID: 100094}
   spaceshipCamera: {fileID: 2000000}
   crosshairs: {fileID: 100062}
   gun: {fileID: 11400022}
@@ -3193,9 +3194,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 335.933136
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
