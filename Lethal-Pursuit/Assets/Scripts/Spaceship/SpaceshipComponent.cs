@@ -84,6 +84,11 @@ public class SpaceshipComponent : MonoBehaviour {
 			return spaceship.spaceshipModelRoll;
 		}
 	}
+	protected GameObject spaceshipShell {
+		get {
+			return spaceship.spaceshipShell;
+		}
+	}
 	protected Vector3 forward {
 		get {
 			return spaceship.forward;

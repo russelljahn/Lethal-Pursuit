@@ -39,7 +39,6 @@ public class HudDeath : MonoBehaviour {
 		"Tragically",
 		"Flamboyantly",
 		"Quietly",
-		"Quite",
 		"Marvelously",
 		"Perfectly",
 		"Swiftly",

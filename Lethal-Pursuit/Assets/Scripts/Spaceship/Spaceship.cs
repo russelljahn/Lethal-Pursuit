@@ -21,6 +21,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 	public GameObject spaceshipModelPitchYaw;
 	public GameObject spaceshipModelRoll;
 	public GameObject spaceshipMesh;
+	public GameObject spaceshipShell;
 	public Camera spaceshipCamera;
 	public GameObject crosshairs;
 	public SpaceshipGun gun;

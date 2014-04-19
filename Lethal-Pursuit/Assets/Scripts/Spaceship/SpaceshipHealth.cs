@@ -68,6 +68,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 		Color indicatorColor = enemyIndicator.renderer.material.GetColor("_TintColor");
 		indicatorColor.a = 0.0f;
 		enemyIndicator.renderer.material.SetColor("_Tint", indicatorColor);
+	
+		/* Make local copy of material so multiple of the same ships don't reference the same one. */
+		Material electricFieldCopy = Instantiate(electricField) as Material;
+		electricField = electricFieldCopy;
+		spaceshipShell.renderer.material = electricFieldCopy;
 	}
 	
 	
