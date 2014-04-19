@@ -121,7 +121,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 		braking = InputManager.ActiveDevice.Action3.IsPressed;
 		boosting = !braking && InputManager.ActiveDevice.Action1.IsPressed;
 		idle = !boosting && !braking;
-		swappingWeapon = InputManager.ActiveDevice.LeftBumper.IsPressed || InputManager.ActiveDevice.RightBumper.IsPressed;
+		swappingWeapon = InputManager.ActiveDevice.LeftBumper.WasReleased || InputManager.ActiveDevice.RightBumper.WasReleased;
 	}
 
 

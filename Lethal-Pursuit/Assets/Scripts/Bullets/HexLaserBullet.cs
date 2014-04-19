@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(SphereCollider))]
 public class HexLaserBullet : Bullet {
 
 	public GameObject target;
 	public float homingSensitivity = 0.05f;
+	public float hitRadius = 30.0f;
 
 	public override void FixedUpdate () {
 		timeUntilDeath -= Time.deltaTime;
@@ -14,35 +15,37 @@ public class HexLaserBullet : Bullet {
 			alreadyDying = true;
 			GameObject.Destroy(this.gameObject);
 		}
+		if (target != null) {
+			Vector3 thisToTarget = target.transform.position - transform.position;
+			Quaternion targetRotation = Quaternion.LookRotation(thisToTarget);
+			transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, homingSensitivity);
+		}
 		this.rigidbody.MovePosition(this.transform.position + speed*this.transform.forward*Time.deltaTime);
 	}
 
 
 
-	public override void OnCollisionEnter(Collision collision) {
+	public override void OnTriggerStay(Collider other) {
 
-		GameObject hitGameObject = collision.gameObject;
+		GameObject hitGameObject = other.gameObject;
 
-		if (target == null) {
+		if (target == null && 
+		    hitGameObject != sourceSpaceship.gameObject && 
+		    Vector3.Distance(hitGameObject.transform.position, this.transform.position) > hitRadius) {
+
 			ITargetable targetableObject = (ITargetable)hitGameObject.GetComponent(typeof(ITargetable));
 			if (targetableObject != null) {
 				target = hitGameObject;
 			}
+			SphereCollider sphereCollider = this.collider as SphereCollider;
+			sphereCollider.radius = hitRadius;
 		}
-		else {
-			Vector3 thisToTarget = target.transform.position - transform.position;
-			Quaternion targetRotation = Quaternion.LookRotation(thisToTarget);
-			
-			transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, homingSensitivity);
-		}
-
-		return;
-		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
-			this.transform.position = collision.contacts[0].point;
+		else if (!alreadyDying && ShouldExplodeOnContact(other.gameObject)) {
+//			this.transform.position = other.transform.position;
 			alreadyDying = true;
 			explosion.transform.parent = null;
 			explosion.SetActive(true);
-			HandleApplyingDamage(collision.gameObject);
+			HandleApplyingDamage(other.gameObject);
 			GameObject.Destroy(this.gameObject);
 		}
 	}

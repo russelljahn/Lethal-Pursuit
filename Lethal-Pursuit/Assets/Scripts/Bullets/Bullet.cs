@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour {
 
 	public virtual void Start() {
 		this.transform.forward = direction;
+		collider.isTrigger = true;
 	}
 
 	
@@ -29,13 +30,13 @@ public class Bullet : MonoBehaviour {
 	}
 
 
-	public virtual void OnCollisionEnter(Collision collision) {
-		if (!alreadyDying && ShouldExplodeOnContact(collision.gameObject)) {
-			this.transform.position = collision.contacts[0].point;
+	public virtual void OnTriggerStay(Collider collider) {
+		if (!alreadyDying && ShouldExplodeOnContact(collider.gameObject)) {
+			this.transform.position = collider.transform.position;
 			alreadyDying = true;
 			explosion.transform.parent = null;
 			explosion.SetActive(true);
-			HandleApplyingDamage(collision.gameObject);
+			HandleApplyingDamage(collider.gameObject);
 			GameObject.Destroy(this.gameObject);
 		}
 	}
