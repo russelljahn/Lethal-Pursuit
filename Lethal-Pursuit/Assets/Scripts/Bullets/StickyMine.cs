@@ -16,10 +16,10 @@ public class StickyMine : MonoBehaviour {
 	public float stuckRadius = 2.0f;
 	public float maxExplosionRadius = 100.0f;
 	public float timeUntilMaxExplosionRadius = 0.05f;
-	public Vector3 rotationDirection;
-	public GameObject stuckObject;
+	private GameObject stuckObject;
 
-	public Vector3 stuckObjectToMine;
+	private Vector3 stuckObjectToMine;
+	public AudioClip explosionSound;
 
 
 	public void Start() {
@@ -43,7 +43,7 @@ public class StickyMine : MonoBehaviour {
 
 
 	IEnumerator Explode() {
-
+//		explosion.audio.PlayOneShot(explosionSound);
 		SphereCollider sphereCollider = this.collider as SphereCollider;
 		float originalRadius = sphereCollider.radius;
 		explosion.SetActive(true);
