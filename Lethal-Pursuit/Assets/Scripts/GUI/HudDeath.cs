@@ -127,7 +127,12 @@ public class HudDeath : MonoBehaviour {
 		}
 		else {
 			if (matchData.spawnTimeRemaining > 1.0f) { 
-				label.text = string.Format("{0} {1} by Player {2}!\nRespawning in {3}...", currentDeathAdjective, currentDeathVerb, (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
+				if (matchData.lastKilledBy == matchData.spaceship.gameObject) {
+					label.text = string.Format("Suicide!\nRespawning in ", (int)matchData.spawnTimeRemaining);
+				}
+				else {
+					label.text = string.Format("{0} {1} by Player {2}!\nRespawning in {3}...", currentDeathAdjective, currentDeathVerb, (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
+				}
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
 				label.text = string.Format("Preparing for descent..."); 

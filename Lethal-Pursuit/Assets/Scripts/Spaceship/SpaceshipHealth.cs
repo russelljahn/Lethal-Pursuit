@@ -245,7 +245,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 		lastDamager = currentDamager;
 		currentDamager = damager;
-		if (!invulnerable) {
+		if (timeUntilVulnerable <= 0.0f) {
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
 				//lastHurtByPlayerID = -1;
