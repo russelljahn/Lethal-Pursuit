@@ -30,6 +30,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	public AudioClip shootingSound;
 	
 	public bool enabled = true;
+	public bool enabledLastFrame;
 	
 	
 	public override void Start () {
@@ -58,7 +59,12 @@ public class SpaceshipGun : SpaceshipComponent {
 	
 
 	void FixedUpdate() {
+
 		timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
+		if (enabled && !enabledLastFrame) {
+			timeUntilCanShoot = cooldownBetweenShots;
+		}
+		enabledLastFrame = enabled;
 
 		float currentRechargeRate = energyRechargeRate;
 		if (timeUntilCanShoot == 0.0f) {
