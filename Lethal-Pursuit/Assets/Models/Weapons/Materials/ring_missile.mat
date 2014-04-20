@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ring_missile
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 7cfe5915454f546d8bcfbc1294626cfb, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,9 +20,28 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _NumColors
+        second: 4
+      data:
+        first:
+          name: _Brightness
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: .68235296, g: .68235296, b: 0, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .380392164, g: .458823532, b: .313725501, a: 1}

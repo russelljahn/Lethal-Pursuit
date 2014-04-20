@@ -15,9 +15,7 @@ public class PickupMissiles : Pickup {
 	public float cooldownBetweenShots = 0.3f;
 	private float timeUntilCanShoot = 0.0f;
 
-	public string missileResourcePath = "Bullets/PunkMissileBullet";
-
-//	private GameObject cachedBullet;
+	public string missileResourcePath = "Bullets/MissileBullet";
 	public AudioClip shootingSound;
 
 	public Vector3 spawnOffsetFromGun = new Vector3(0.0f, 0.0f, 10.0f);

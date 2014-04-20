@@ -74,12 +74,6 @@ public class SpaceshipPickups : SpaceshipComponent {
 		pickup.gameObject.transform.parent = this.transform;
 		pickup.transform.localPosition = Vector3.zero;
 
-		Debug.Log ("In GetPickup()!");
-		Debug.Log ("this.transform: " + this.transform);
-		Debug.Log ("pickup.gameObject: " + pickup.gameObject);
-		Debug.Log ("pickup.gameObject.transform.parent: " + pickup.gameObject.transform.parent);
-
-
 		if (pickup.IsEquippable()) {
 			if (currentPickup != null) {
 				currentPickup.OnDrop();
@@ -92,6 +86,5 @@ public class SpaceshipPickups : SpaceshipComponent {
 			
 		pickup.OnPickup(this.spaceship);
 		pickup.gameObject.SetActive(true);
-		Debug.Log("pickup.gameObject.activeInHierarchy: " + pickup.gameObject.activeInHierarchy);
 	}
 }

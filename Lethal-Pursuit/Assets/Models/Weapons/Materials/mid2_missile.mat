@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: mid2_missile
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,12 +17,32 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+          m_Texture: {fileID: 2800000, guid: 86996d8ed518e4270913ce30f2b94e4c, type: 3}
+          m_Scale: {x: 5, y: 20}
+          m_Offset: {x: 49.7053757, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _NumColors
+        second: 4
+      data:
+        first:
+          name: _Brightness
+        second: 5.17857122
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: .172549024, g: .807843208, b: .968627512, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .5, g: .5, b: .5, a: .5}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .5, g: .5, b: .5, a: 1}

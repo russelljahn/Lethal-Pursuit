@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PunkMissilesStream
-  m_Shader: {fileID: 10720, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: StickyMinesBomb2
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,9 +17,9 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c5ba43b7047564ccc9eeb3e359fcb130, type: 3}
+          m_Texture: {fileID: 2800000, guid: fda2e27680cab4051b726b41a5fec8cf, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+          m_Offset: {x: 41.4298439, y: -13.6718493}
       data:
         first:
           name: _BumpMap
@@ -48,16 +48,16 @@ Material:
         second: 1
       data:
         first:
-          name: _Shininess
-        second: .078125
-      data:
-        first:
           name: _NumColors
         second: 5.60178566
       data:
         first:
           name: _Brightness
         second: 9.51785755
+      data:
+        first:
+          name: _Shininess
+        second: .078125
       data:
         first:
           name: _EmissionLM
@@ -69,9 +69,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+          name: _TintColor
+        second: {r: .29411763, g: .200811327, b: 0, a: .501960814}
       data:
         first:
           name: _MainColor
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}

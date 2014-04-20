@@ -8,8 +8,8 @@ public class HudCurrentWeapon : MonoBehaviour {
 	private UI2DSprite currentWeaponSprite;
 
 	public Sprite defaultLaser;
-	public Sprite auroraCannon;
-	public Sprite punkMissiles;
+	public Sprite flamethrower;
+	public Sprite missiles;
 	public Sprite stickyMines;
 
 	// Use this for initialization
@@ -31,10 +31,13 @@ public class HudCurrentWeapon : MonoBehaviour {
 				currentWeaponSprite.sprite2D = defaultLaser;
 			}
 			else if (pickupsComponent.currentPickup is PickupFlamethrower) {
-				currentWeaponSprite.sprite2D = auroraCannon;
+				currentWeaponSprite.sprite2D = flamethrower;
 			}
 			else if (pickupsComponent.currentPickup is PickupMissiles) {
-				currentWeaponSprite.sprite2D = punkMissiles;
+				currentWeaponSprite.sprite2D = missiles;
+			}
+			else if (pickupsComponent.currentPickup is PickupStickyMines) {
+				currentWeaponSprite.sprite2D = stickyMines;
 			}
 			else {
 				throw new Exception("HudCurrentWeapon(); Unrecognized pickup type: " + pickupsComponent.currentPickup);

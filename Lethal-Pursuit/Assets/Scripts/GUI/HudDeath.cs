@@ -26,7 +26,6 @@ public class HudDeath : MonoBehaviour {
 		"Nicely",
 		"Judiciously",
 		"Justly",
-		"Wholly",
 		"Extensively",
 		"Thoroughly",
 		"Vigorously",
@@ -47,6 +46,7 @@ public class HudDeath : MonoBehaviour {
 		"Dutifully",
 		"Gracefully",
 		"Elegantly",
+		"Stylishly",
 	};
 
 	private string [] deathVerbs = {
@@ -100,6 +100,7 @@ public class HudDeath : MonoBehaviour {
 		"snuffed",
 		"guillotined",
 		"neutralized",
+		"crushed",
 	};
 	private string currentDeathVerb;
 	private string currentDeathAdjective;

@@ -35,10 +35,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60d395f635de44e189741ca9bf97c96, type: 3}
+  m_Script: {fileID: 11500000, guid: f9078a96b2ba94d4db1c9fedb6cee137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 50
+  maxShots: 5
+  currentShots: 5
+  cooldownBetweenShots: .300000012
+  mineResourcePath: Bullets/StickyMineBullet
+  shootingSound: {fileID: 8300000, guid: 6053ecbe90c6f41d8baa37d0ead24e70, type: 3}
+  spawnOffsetFromGun: {x: 0, y: 0, z: 0}
+  enabled: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

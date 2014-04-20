@@ -38,9 +38,6 @@ public class HexLaserBullet : Bullet {
 
 	public override void OnTriggerStay(Collider other) {
 
-		Debug.Log ("hit " + other.gameObject);
-		Debug.Log ("Should I explode? " + ShouldExplodeOnContact(other.gameObject));
-
 		GameObject hitGameObject = other.gameObject;
 		SphereCollider sphereCollider = this.collider as SphereCollider;
 

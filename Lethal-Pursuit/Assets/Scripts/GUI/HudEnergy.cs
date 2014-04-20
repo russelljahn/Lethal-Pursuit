@@ -4,12 +4,10 @@ using System.Collections;
 
 public class HudEnergy : MonoBehaviour {
 
-	public Color defaultGunColor = Color.cyan;
-	public Color flamethrowerColor = Color.cyan;
-	public Color missilesColor = Color.cyan;
-	
-//	public Color drainedColor = Color.blue;
-//	public Color criticalColor = Color.grey;
+	public Color defaultGunColor = Color.magenta;
+	public Color flamethrowerColor = Color.red;
+	public Color missilesColor = Color.yellow;
+	public Color stickyMinesColor = Color.cyan;
 
 	private SpaceshipGun gun;
 	private SpaceshipPickups pickups;
@@ -49,8 +47,13 @@ public class HudEnergy : MonoBehaviour {
 			}
 			else if (pickups.currentPickup is PickupMissiles) {
 				energybarSprite.color = missilesColor;
-				PickupMissiles punkMissiles = pickups.currentPickup as PickupMissiles;
-				currentScale.x = ((float)punkMissiles.currentShots)/punkMissiles.maxShots * initialScale.x;
+				PickupMissiles missiles = pickups.currentPickup as PickupMissiles;
+				currentScale.x = ((float)missiles.currentShots)/missiles.maxShots * initialScale.x;
+			}
+			else if (pickups.currentPickup is PickupStickyMines) {
+				energybarSprite.color = stickyMinesColor;
+				PickupStickyMines stickyMines = pickups.currentPickup as PickupStickyMines;
+				currentScale.x = ((float)stickyMines.currentShots)/stickyMines.maxShots * initialScale.x;
 			}
 		}
 		this.transform.localScale = currentScale;
