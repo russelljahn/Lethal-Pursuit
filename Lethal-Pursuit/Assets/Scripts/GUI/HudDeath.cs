@@ -128,7 +128,7 @@ public class HudDeath : MonoBehaviour {
 		else {
 			if (matchData.spawnTimeRemaining > 1.0f) { 
 				if (matchData.lastKilledBy == matchData.spaceship.gameObject) {
-					label.text = string.Format("Suicide!\nRespawning in {0}", (int)matchData.spawnTimeRemaining);
+					label.text = string.Format("Suicide!\nRespawning in {0}...", (int)matchData.spawnTimeRemaining);
 				}
 				else {
 					label.text = string.Format("{0} {1} by Player {2}!\nRespawning in {3}...", currentDeathAdjective, currentDeathVerb, (spaceshipHealth.lastHurtByPlayerID+1), (int)matchData.spawnTimeRemaining); 
