@@ -2754,6 +2754,7 @@ MonoBehaviour:
   energyRatioToBeCritical: .300000012
   shootingSound: {fileID: 8300000, guid: c0b5f54000de62f4789b0a0191fbcb28, type: 3}
   enabled: 1
+  enabledLastFrame: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2867,7 +2868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400004}
   currentHealth: 0
-  maxHealth: 200
+  maxHealth: 210
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024
@@ -3122,7 +3123,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 315.714539
+  simulationStarted: 578.82019
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1

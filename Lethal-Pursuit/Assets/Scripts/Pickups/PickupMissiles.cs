@@ -24,16 +24,13 @@ public class PickupMissiles : Pickup {
 
 
 	void FixedUpdate() {
-		if (spaceship.shooting) {
-			alreadyStartedVolley = true;
-		}
-		if (!alreadyStartedVolley || !active) {
-			return;
-		}
-
 		timeUntilCanShoot = Mathf.Max(0.0f, timeUntilCanShoot - Time.deltaTime);
 		
-		if (timeUntilCanShoot == 0.0f && currentShots > 0) {
+		if (!active) {
+			return;
+		}
+		
+		if (spaceship.shooting && timeUntilCanShoot == 0.0f && currentShots > 0) {
 			SpawnMissile();
 			timeUntilCanShoot = cooldownBetweenShots;
 			--currentShots;
