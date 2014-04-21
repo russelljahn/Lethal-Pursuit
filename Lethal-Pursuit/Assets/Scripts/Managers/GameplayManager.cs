@@ -39,12 +39,15 @@ public class GameplayManager : MonoBehaviour {
 		}
 	}
 
+	public static bool invertYAxis = true;
+
 
 
 
 	void Start () {
 		GameObject.DontDestroyOnLoad(this.gameObject);
 		InputManager.InvertYAxis = true;
+		invertYAxis = InputManager.InvertYAxis;
 		InputManager.Setup();
 
 		/* Register custom input profiles for keyboard button mappings. */

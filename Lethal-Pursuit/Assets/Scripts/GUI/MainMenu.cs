@@ -32,9 +32,10 @@ public class MainMenu : MonoBehaviour {
 	private bool tutorial = false;
 	private bool client = false;
 	
-	public string vehicle1Filepath = "Spaceships/Buzz";
-	public string vehicle2Filepath = "Spaceships/Magneto II";
-	public string vehicle3Filepath = "Spaceships/Don Quixote";
+	public string vehicle1Filepath = "Spaceships/Littlefoot";
+	public string vehicle2Filepath = "Spaceships/Helldiver";
+	public string vehicle3Filepath = "Spaceships/Mufasa";
+	public string vehicle4Filepath = "Spaceships/Dauntless";
 	
 	public string tutorialFilename = "Tutorial";
 	public string level1Filename = "Arena";
@@ -339,6 +340,24 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnVehicle3Click() {
 		LevelManager.SetSpaceship(vehicle3Filepath);
+		
+		HideAllMenus();
+		if (NetworkManager.IsSinglePlayer()) {
+			if (tutorial) {
+				LevelManager.LoadLevel(tutorialFilename);
+			}
+			else {
+				LevelManager.LoadLevel(level1Filename);
+			}
+		}
+		else {
+			OnLobbyClick();
+		}
+	}
+
+
+	public void OnVehicle4Click() {
+		LevelManager.SetSpaceship(vehicle4Filepath);
 		
 		HideAllMenus();
 		if (NetworkManager.IsSinglePlayer()) {

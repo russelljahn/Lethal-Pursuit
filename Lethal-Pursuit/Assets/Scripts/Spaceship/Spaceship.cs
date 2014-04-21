@@ -80,7 +80,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			HandleInput();
 			if (selectPressedLastFrame && !InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed) {
 				Debug.Log ("Flipping Y-Axis Invert...");
-				invertYAmount *= -1.0f;
+				GameplayManager.invertYAxis = !GameplayManager.invertYAxis;
 			}
 			selectPressedLastFrame = InputManager.ActiveDevice.GetControl(InputControlType.Select).IsPressed;
 		}
@@ -115,10 +115,16 @@ public class Spaceship : MonoBehaviour, ITargetable {
 
 
 	void HandleInput() {
+		if (GameplayManager.invertYAxis) {
+			invertYAmount = 1.0f;
+		}
+		else {
+			invertYAmount = -1.0f;
+		}
 
-		xTiltLeftStick = InputManager.ActiveDevice.LeftStickX.Value;		
+		xTiltLeftStick = InputManager.ActiveDevice.LeftStickX.Value;
 		yTiltLeftStick = InputManager.ActiveDevice.LeftStickY.Value * invertYAmount;
-		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;		
+		xTiltRightStick = InputManager.ActiveDevice.RightStickX.Value;
 		yTiltRightStick = InputManager.ActiveDevice.RightStickY.Value;
 		shooting = InputManager.ActiveDevice.RightTrigger.IsPressed && controlsEnabled;
 		drifting = InputManager.ActiveDevice.LeftTrigger.IsPressed;
@@ -178,7 +184,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			serializedIsVisible = isVisible;
 			serializedControlsEnabled = controlsEnabled;
 
-			if(Network.isServer) {
+			if (Network.isServer) {
 				ownerID = ownerPlayerID;
 			}
 			
@@ -190,7 +196,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			stream.Serialize(ref serializedIsVisible);
 			stream.Serialize(ref serializedControlsEnabled);
 			
-			if(Network.isServer) {
+			if (Network.isServer) {
 				Debug.Log("Serializing ownerID to all instances");
 				stream.Serialize(ref ownerID);
 			}
@@ -204,7 +210,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			stream.Serialize(ref serializedIsVisible);
 			stream.Serialize(ref serializedControlsEnabled);
 
-			if(Network.isClient) {
+			if (Network.isClient) {
 				stream.Serialize(ref ownerID);
 			}
 
@@ -230,7 +236,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 			isVisible = serializedIsVisible;
 			controlsEnabled = serializedControlsEnabled;
 
-			if(Network.isClient) {
+			if (Network.isClient) {
 				ownerPlayerID = ownerID;
 			}
 		}
