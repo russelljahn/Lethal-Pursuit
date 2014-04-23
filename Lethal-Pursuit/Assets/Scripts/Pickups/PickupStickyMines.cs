@@ -38,14 +38,14 @@ public class PickupStickyMines : Pickup {
 		if (NetworkManager.IsSinglePlayer()) {
 			mineGameObject = GameObject.Instantiate(
 				Resources.Load(mineResourcePath),
-				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun), 
+				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun),
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
 		else {
 			mineGameObject = Network.Instantiate(
 				Resources.Load(mineResourcePath),
-				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun), 
+				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun),
 				spaceship.gun.transform.rotation,
 				668
 			) as GameObject;

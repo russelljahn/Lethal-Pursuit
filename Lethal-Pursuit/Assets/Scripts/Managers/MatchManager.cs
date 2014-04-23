@@ -6,41 +6,43 @@ using System.Collections.Generic;
 
 public enum MatchMode {
 	BATTLE,
-//	TEAM_BATTLE,
-//	CAPTURE_THE_FLAG,
-//	JUGGERNAUT
+	//	TEAM_BATTLE,
+	//	CAPTURE_THE_FLAG,
+	//	JUGGERNAUT
 }
 
 
 public enum MatchRule {
 	REACH_TARGET_KILLS,
-//	MAX_KILLS_IN_TIME_LIMIT,
+	//	MAX_KILLS_IN_TIME_LIMIT,
 }
 
 
 public class MatchManager : MonoBehaviour {
-
+	
 	public MatchMode mode = MatchMode.BATTLE;
 	public MatchRule rule = MatchRule.REACH_TARGET_KILLS;
 	
 	HudManager hudManager;
-
+	
 	public static int targetKills = 10;
 	public static float timeLimit = 5 * 60.0f;
-
+	
 	public int[] killscores;
 	public int personalScore = 0;
-
+	
 	private Level currentLevel;
 	
 	public float timeStartMatch = 0.0f;
 	public float timeFinishMatch = Mathf.Infinity;
 	public float timeElapsed = 0.0f;
 	public bool matchOver = false;
-
+	
 	public int scoreLeader;
 
-
+	public static int lastKilledPlayerId;
+	
+	
 	// Use this for initialization
 	void Start () {
 		hudManager = GameObject.FindGameObjectWithTag("HudManager").GetComponent<HudManager>();
@@ -52,18 +54,18 @@ public class MatchManager : MonoBehaviour {
 		}
 		currentLevel = LevelManager.GetLoadedLevel();
 	}
-
-
+	
+	
 	[RPC]
 	public void SetStartTime(float startTime) {
 		timeStartMatch = startTime;
 		timeElapsed = 0.0f;
 		Debug.Log("Start Time given from server: " + timeStartMatch);
 	}	
-
+	
 	
 	void Update() {
-
+		
 		scoreLeader = CheckMatchScoreLeader();
 		
 		if (Network.isServer) {
@@ -76,47 +78,47 @@ public class MatchManager : MonoBehaviour {
 			matchOver = true;
 			networkView.RPC("OnMatchOver", RPCMode.All, CheckMatchScoreLeader());
 		}
-
+		
 		if (Network.isServer) {
 			for (int i=0; i<killscores.Length; i++) {
 				Debug.Log("Player " + i + " has score " + killscores[i]);
 			}
 		}
 	}
-
+	
 	
 	public bool IsMatchOver() {
 		if (NetworkManager.IsSinglePlayer()) {
 			return false;
 		}
 		switch (rule) {
-			case MatchRule.REACH_TARGET_KILLS:
-				//Update GUI values here
-				
-				return killscores[scoreLeader] >= targetKills;
-				
-			default:
-				throw new Exception("IsMatchOver(): Unknown gameplay mode: " + rule);
+		case MatchRule.REACH_TARGET_KILLS:
+			//Update GUI values here
+			
+			return killscores[scoreLeader] >= targetKills;
+			
+		default:
+			throw new Exception("IsMatchOver(): Unknown gameplay mode: " + rule);
 		}
 		return false;
 	}
-
-
+	
+	
 	private int CheckMatchScoreLeader() {
 		int playerID = 0;
 		int bestScore = 0;
-
+		
 		for (int i=0; i<killscores.Length; i++) {
 			if (killscores[i] > bestScore) {
 				playerID = i;
 				bestScore = killscores[i];
 			}
 		}
-
+		
 		return playerID; 
 	}
-
-
+	
+	
 	[RPC]
 	public void OnMatchOver(int winnerID) {
 		OnMatchOverGUI();
@@ -125,74 +127,61 @@ public class MatchManager : MonoBehaviour {
 			killscores[i] = 0;
 		}
 	}
-
-
+	
+	
 	public void OnMatchOverGUI() {
 		hudManager.DisplayMatchOver();
 	}
-
-
+	
+	
 	public void InformServerForKilledBy(int playerID) {
-
+		
 		Debug.Log("Killed by player " + playerID);
-
+		
 		if(playerID != -1) {
 			if (Network.isClient) {
-				networkView.RPC("ServerTallyKill", RPCMode.Server, playerID);
+				networkView.RPC("ServerTallyKill", RPCMode.Server, playerID, NetworkManager.GetPlayerID());
 			}
 			else {
-				IncrementScore(playerID);
+				IncrementScore(playerID, NetworkManager.GetPlayerID());
 			}
 		}
 	}
 	
 	[RPC]
-	public void ServerTallyKill(int playerID) {
-		IncrementScore(playerID);
+	public void ServerTallyKill(int killer, int victim) {
+		IncrementScore(killer, victim);
 	}
 	
-	public void IncrementScore(int playerID) {
-		Debug.Log("Kill tallied for player: " + playerID);
-			
-		killscores[playerID]++;
+	public void IncrementScore(int killer, int victim) {
+		Debug.Log("Kill tallied for player: " + killer);
 		
-		if(playerID == 0) {
-			personalScore = killscores[playerID];
+		killscores[killer]++;
+		/*		
+		if(killer == 0) {
+			personalScore = killscores[killer];
 		}
 		else {
-			Debug.Log("Sending score update to player " + playerID);
-			networkView.RPC("UpdatePlayerScore", 
-		                	NetworkManager.GetPlayerList()[playerID], 
-		                	killscores[playerID]);
-		}
+*/
+		Debug.Log("Sending score update to all players with update for " + killer);
+		networkView.RPC("UpdatePlayerScores", RPCMode.All, killer, killscores[killer]);
+		networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
+		//		}
 	}
 	
 	[RPC]
-	public void UpdatePlayerScore(int score) {
-		personalScore = score;
+	public void UpdatePlayerScores(int killer, int score) {
+		killscores[killer] = score;
+		personalScore = (NetworkManager.GetPlayerID() == killer) ? score : personalScore;
+	}
+	
+	[RPC]
+	public void InformKillerOfVictim(int victim) {
+		//Do whatever you want here. Info is sent on victim ID.
+		lastKilledPlayerId = victim;
+//		displayedName = false;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
 }
