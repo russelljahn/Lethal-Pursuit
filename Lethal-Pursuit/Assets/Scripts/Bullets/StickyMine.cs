@@ -62,7 +62,7 @@ public class StickyMine : MonoBehaviour {
 		while (timeUntilMaxExplosionRadius > 0) {
 			timeUntilMaxExplosionRadius -= Time.deltaTime;
 			sphereCollider.radius = Mathf.Lerp(sphereCollider.radius, maxExplosionRadius, Time.deltaTime);
-			yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 		GameObject.Destroy(this.gameObject);
 		yield break;
