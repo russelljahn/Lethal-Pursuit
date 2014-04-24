@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour {
 		//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
 		float damageToApply = damage;
 		if (Network.isClient) {
-			damage = 0f;
+			damageToApply = 0f;
 		}
 		
 		if (damageableObject != null) {
