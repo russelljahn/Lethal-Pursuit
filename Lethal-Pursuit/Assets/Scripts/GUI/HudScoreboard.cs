@@ -43,7 +43,7 @@ public class HudScoreboard : MonoBehaviour {
 		for (int i = 0; i < numPlayers; ++i) {
 			int playerId = playerRankings[i];
 			if (playerId == NetworkManager.GetPlayerID()) {
-				scoreText += "[0b8dfc]";
+				scoreText += "[1b9dfc]";
 			}
 			scoreText += string.Format("P{0}: {1}/{2}\n", playerId+1, matchManager.killscores[playerId], MatchManager.targetKills);
 			if (playerId == NetworkManager.GetPlayerID()) {
