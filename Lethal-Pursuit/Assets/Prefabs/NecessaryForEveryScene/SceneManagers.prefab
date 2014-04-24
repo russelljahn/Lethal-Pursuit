@@ -1588,7 +1588,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.179275513, z: 0}
+  m_LocalPosition: {x: -.121582031, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400128}
@@ -1644,7 +1644,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100060}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -670, y: 250.141449, z: 33.8239174}
+  m_LocalPosition: {x: -670, y: 250.5, z: 33.8239174}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 400058}
@@ -2037,7 +2037,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 510.507751, y: -4.24848127, z: 728.440491}
+  m_LocalPosition: {x: 510.503845, y: -4.49999237, z: 728.440491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400060}
@@ -5241,21 +5241,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 400150}
-    relative: .5
-    absolute: -83
+    target: {fileID: 400060}
+    relative: 1
+    absolute: 14
   rightAnchor:
-    target: {fileID: 400150}
-    relative: .5
-    absolute: 814
+    target: {fileID: 400060}
+    relative: 1
+    absolute: 911
   bottomAnchor:
-    target: {fileID: 400150}
+    target: {fileID: 400060}
     relative: .5
-    absolute: -14
+    absolute: -20
   topAnchor:
-    target: {fileID: 400150}
+    target: {fileID: 400060}
     relative: .5
-    absolute: 17
+    absolute: 11
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 897

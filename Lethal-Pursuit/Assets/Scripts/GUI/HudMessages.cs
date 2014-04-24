@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HudDeath : MonoBehaviour {
+public class HudMessages : MonoBehaviour {
 
 
 	public SpaceshipMatchData matchData;
@@ -54,19 +54,19 @@ public class HudDeath : MonoBehaviour {
 		"slathered",
 		"streamrolled",
 		"punked",
-		"slain",
+//		"slain",
 		"annihilated",
 		"demolished",
 		"shredded",
 		"scrapped",
 		"derezzed",
 		"gibbed",
-		"torn asunder",
-		"sent to the grave",
-		"sent to the afterlife",
+//		"torn asunder",
+//		"sent to the grave",
+//		"sent to the afterlife",
 		"purged",
 		"skelefied",
-		"put to sleep",
+//		"put to sleep",
 		"terminated",
 		"liquidated",
 		"wasted",
@@ -83,7 +83,7 @@ public class HudDeath : MonoBehaviour {
 		"mashed",
 		"mushed",
 		"devastated",
-		"scattered to the winds",
+//		"scattered to the winds",
 		"creamed",
 		"toasted",
 		"spliced",
@@ -136,13 +136,16 @@ public class HudDeath : MonoBehaviour {
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
 				label.text = string.Format("Preparing for descent..."); 
+				UpdateDeathWords();
 			}
 			else if (MatchManager.lastKilledPlayerId != -1) {
-				label.text = string.Format("Player {0} {1} {2} by you!", (MatchManager.lastKilledPlayerId+1), currentDeathAdjective, currentDeathVerb);
+				if (MatchManager.lastKilledPlayerIdLastFrame != MatchManager.lastKilledPlayerId) {
+					UpdateDeathWords();
+				}
+				label.text = string.Format("{0} {1} Player {2}!", currentDeathAdjective, currentDeathVerb, (MatchManager.lastKilledPlayerId+1));
 			}
 			else {
 				label.text = "";
-				UpdateDeathWords();
 			}
 		}
 	}
