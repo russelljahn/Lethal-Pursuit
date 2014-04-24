@@ -47,7 +47,7 @@ public class PickupMissiles : Pickup {
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
-		else {
+		else if (networkView.isMine) {
 			missileGameObject = Network.Instantiate(
 				Resources.Load(missileResourcePath),
 				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 
@@ -55,7 +55,10 @@ public class PickupMissiles : Pickup {
 				667
 			) as GameObject;
 		}
-		
+		else {
+			spaceship.gun.audio.PlayOneShot(shootingSound);
+			return;
+		}
 		Missile missile = missileGameObject.GetComponent<Missile>();
 		missile.direction = spaceship.spaceshipModelPitchYaw.transform.forward;
 		missile.sourceSpaceship = spaceship;

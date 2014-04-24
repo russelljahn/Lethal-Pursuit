@@ -86,13 +86,17 @@ public class SpaceshipGun : SpaceshipComponent {
 					spaceshipModel.transform.rotation
 				) as GameObject;
 			}
-			else {
+			else if (networkView.isMine) {
 				bulletGameObject = Network.Instantiate(
 					cachedBullet,
 					this.transform.position, 
 					spaceshipModel.transform.rotation,
 					666
 				) as GameObject;
+			}
+			else {
+				this.audio.PlayOneShot(shootingSound);
+				return;
 			}
 
 			Bullet bullet = bulletGameObject.GetComponent<Bullet>();

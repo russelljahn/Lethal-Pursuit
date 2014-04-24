@@ -42,13 +42,17 @@ public class PickupStickyMines : Pickup {
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
-		else {
+		else if (networkView.isMine) {
 			mineGameObject = Network.Instantiate(
 				Resources.Load(mineResourcePath),
 				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun),
 				spaceship.gun.transform.rotation,
 				668
 			) as GameObject;
+		}
+		else {
+			spaceship.gun.audio.PlayOneShot(shootingSound);
+			return;
 		}
 		
 		StickyMine stickyMine = mineGameObject.GetComponent<StickyMine>();
