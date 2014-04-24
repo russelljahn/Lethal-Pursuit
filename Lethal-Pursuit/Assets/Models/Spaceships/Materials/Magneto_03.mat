@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: dd85d8433a4b64f7f812573a14c84775, type: 3}
+          m_Texture: {fileID: 2800000, guid: a16491a19bc0b5849a64a9724f2820a5, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 572.971497, y: 572.971497}
     m_Floats:
@@ -31,12 +31,12 @@ Material:
         second: 4
       data:
         first:
-          name: _OutlineWidth
-        second: .400000006
-      data:
-        first:
           name: _Brightness
         second: 1
+      data:
+        first:
+          name: _OutlineWidth
+        second: .400000006
     m_Colors:
       data:
         first:
@@ -48,13 +48,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
-          name: _Emission
-        second: {r: 0, g: 0, b: 0, a: 0}
+          name: _MainColor
+        second: {r: .514705896, g: .514705896, b: .514705896, a: 1}
       data:
         first:
           name: _OutlineColor
         second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:
-          name: _MainColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}

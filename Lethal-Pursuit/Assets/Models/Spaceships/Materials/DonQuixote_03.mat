@@ -17,19 +17,19 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 0a4a878577c88654795d8c6aee74368d, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _ToonShade
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -42,7 +42,7 @@ Material:
       data:
         first:
           name: _Brightness
-        second: 1.48214269
+        second: 1
       data:
         first:
           name: _OutlineWidth
@@ -67,7 +67,7 @@ Material:
       data:
         first:
           name: _MainColor
-        second: {r: .0674740821, g: .280366302, b: .573529422, a: 1}
+        second: {r: .167820081, g: .213235319, b: .16619812, a: 1}
       data:
         first:
           name: _OutlineColor

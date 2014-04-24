@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9de2eeed902ea9f4d899fd5f2997330d, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -29,16 +29,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ParallaxMap
+          name: _Illum
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 47e5b36831ebcc24eae031ce50efdd50, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Illum
+          name: _ParallaxMap
         second:
-          m_Texture: {fileID: 2800000, guid: 47e5b36831ebcc24eae031ce50efdd50, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -63,16 +63,16 @@ Material:
         second: 1
       data:
         first:
+          name: _EmissionLM
+        second: 0
+      data:
+        first:
           name: _OutlineWidth
         second: .400000006
       data:
         first:
           name: _Parallax
         second: .0199999996
-      data:
-        first:
-          name: _EmissionLM
-        second: 0
       data:
         first:
           name: _Amount
@@ -89,11 +89,11 @@ Material:
       data:
         first:
           name: _MainColor
-        second: {r: 1, g: .558620691, b: 0, a: 1}
+        second: {r: .452205896, g: .839810967, b: .904411793, a: 1}
       data:
         first:
           name: _OutlineColor
-        second: {r: 1, g: .351724148, b: 0, a: 1}
+        second: {r: .33073321, g: .367647052, b: .318987876, a: 1}
       data:
         first:
           name: _ReflectColor
