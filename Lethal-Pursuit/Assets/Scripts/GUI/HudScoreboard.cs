@@ -29,9 +29,9 @@ public class HudScoreboard : MonoBehaviour {
 		/* Sort player ids by ranking. */
 		playerRankings.Sort( 
 			(int lhs, int rhs) => {
-		    	int diff = matchManager.killscores[lhs].CompareTo(matchManager.killscores[rhs]);
+		    	int diff = matchManager.killscores[rhs].CompareTo(matchManager.killscores[rhs]);
 		        if (diff == 0) {
-					return rhs.CompareTo(lhs);
+					return lhs.CompareTo(rhs);
 				}
 				else {
 					return diff;
@@ -43,7 +43,7 @@ public class HudScoreboard : MonoBehaviour {
 		for (int i = 0; i < numPlayers; ++i) {
 			int playerId = playerRankings[i];
 			if (playerId == NetworkManager.GetPlayerID()) {
-				scoreText += "[00FF00]";
+				scoreText += "[0b8dfc]";
 			}
 			scoreText += string.Format("P{0}: {1}/{2}\n", playerId+1, matchManager.killscores[playerId], MatchManager.targetKills);
 			if (playerId == NetworkManager.GetPlayerID()) {
