@@ -2842,6 +2842,7 @@ MonoBehaviour:
   energyRatioToBeCritical: .300000012
   shootingSound: {fileID: 8300000, guid: c2bab612ddcb64a4bb285b79f0541e6c, type: 3}
   enabled: 1
+  enabledLastFrame: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2872,7 +2873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceship: {fileID: 11400012}
   currentHealth: 0
-  maxHealth: 130
+  maxHealth: 65
   state: 0
   respawnInvulnerabilityTime: 6
   healthRatioToBeInjured: .600000024
