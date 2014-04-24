@@ -47,7 +47,7 @@ public class PickupMissiles : Pickup {
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
-		else if (networkView.isMine) {
+		else if (spaceship.networkView.isMine) {
 			missileGameObject = Network.Instantiate(
 				Resources.Load(missileResourcePath),
 				spaceship.gun.transform.position + spaceship.gun.transform.TransformDirection(spawnOffsetFromGun), 

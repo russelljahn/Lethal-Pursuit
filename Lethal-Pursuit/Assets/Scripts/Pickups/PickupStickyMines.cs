@@ -42,7 +42,7 @@ public class PickupStickyMines : Pickup {
 				spaceship.gun.transform.rotation
 			) as GameObject;
 		}
-		else if (networkView.isMine) {
+		else if (spaceship.networkView.isMine) {
 			mineGameObject = Network.Instantiate(
 				Resources.Load(mineResourcePath),
 				spaceship.gun.transform.position + spaceship.spaceshipMesh.transform.TransformDirection(spawnOffsetFromGun),
