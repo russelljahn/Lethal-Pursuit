@@ -1617,7 +1617,7 @@ MonoBehaviour:
   timeUntilDeath: 5
   mineModel: {fileID: 2300002}
   stuckRadius: 2
-  maxExplosionRadius: 450
+  maxExplosionRadius: 600
   timeUntilMaxExplosionRadius: .0500000007
   explosionSound: {fileID: 8300000, guid: d065df8dddde34641b8bf698c4c73a09, type: 3}
 --- !u!114 &11400008
@@ -1658,7 +1658,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 60
+  m_Radius: 70
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000
 ParticleSystem:
