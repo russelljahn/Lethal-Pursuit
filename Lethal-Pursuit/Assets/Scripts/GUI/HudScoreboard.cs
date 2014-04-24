@@ -28,13 +28,21 @@ public class HudScoreboard : MonoBehaviour {
 	void Update () {
 		/* Sort player ids by ranking. */
 		playerRankings.Sort( 
-			(int lhs, int rhs) => matchManager.killscores[lhs].CompareTo(matchManager.killscores[rhs]) 
+			(int lhs, int rhs) => {
+		    	int diff = matchManager.killscores[lhs].CompareTo(matchManager.killscores[rhs]);
+		        if (diff == 0) {
+					return lhs.CompareTo(rhs);
+				}
+				else {
+					return diff;
+				}
+			}
 		);
 
 		scoreText = "";
 		for (int i = 0; i < numPlayers; ++i) {
 			int playerId = playerRankings[i];
-			scoreText += string.Format("P{0}: {1}/{2}", playerId, matchManager.killscores[playerId], MatchManager.targetKills);
+			scoreText += string.Format("P{0}: {1}/{2}\n", playerId, matchManager.killscores[playerId], MatchManager.targetKills);
 		}
 
 		label.text = scoreText;
