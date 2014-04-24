@@ -10,6 +10,8 @@ using System;
  */
 public class GameplayManager : MonoBehaviour {
 
+	private static bool alreadyAwoken = false;
+
 	public static Spaceship spaceship {
 		get {
 			return GameplayManager.GetLocalSpaceship();
@@ -45,6 +47,12 @@ public class GameplayManager : MonoBehaviour {
 
 
 	void Awake () {
+
+		if (alreadyAwoken) {
+			return;
+		}
+
+		alreadyAwoken = true;
 		GameObject.DontDestroyOnLoad(this.gameObject);
 		InputManager.InvertYAxis = true;
 		GameplayManager.invertYAxis = true;
