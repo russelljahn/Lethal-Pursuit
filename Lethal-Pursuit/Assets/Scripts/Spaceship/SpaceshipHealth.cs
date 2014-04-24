@@ -248,11 +248,11 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 
 		if (timeUntilVulnerable <= 0.0f) {
-//			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
-//				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
-//				//lastHurtByPlayerID = -1;
-//			}
-//			else {
+			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
+				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+				//lastHurtByPlayerID = -1;
+			}
+			else {
 				int index = spaceship.ownerPlayerID;
 
 				Spaceship ship = damager.GetComponent<Spaceship>();
@@ -263,10 +263,10 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				Debug.Log("Damager owned by player " + NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress));
 				Debug.Log("Damage about to be applied to player: " + spaceship.ownerPlayerID);
 
-				if (Network.isServer && ship != null) {
+				if (ship != null) {
 					networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, ship.ownerPlayerID);
 				}
-//			}
+			}
 		}
 		else {
 			Debug.Log ("Being hit BUT INVINCIBLE!");

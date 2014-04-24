@@ -55,9 +55,13 @@ public class Bullet : MonoBehaviour {
 		
 		//		Debug.Log ("hitGameObject: " + hitGameObject.name);
 		//		Debug.Log ("hitGameObject is IDamageable: " + (damageableObject is IDamageable));
+		float damageToApply = damage;
+		if (Network.isClient) {
+			damage = 0f;
+		}
 		
 		if (damageableObject != null) {
-			damageableObject.ApplyDamage(damage, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
+			damageableObject.ApplyDamage(damageToApply, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
 		}
 	}
 

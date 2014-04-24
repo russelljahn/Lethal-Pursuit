@@ -114,7 +114,11 @@ public class StickyMine : MonoBehaviour {
 			// Eventually should have some damage falloff.
 //			float damageToApply = 1.0f/(1.0f+Vector3.Distance(this.gameObject.transform.position, hitGameObject.transform.position));
 			float damageToApply = damage;
+			if (Network.isClient) {
+				damageToApply = 0f;
+			}
 			damageableObject.ApplyDamage(damageToApply, sourceSpaceship.gameObject, gameObject.name + " is calling ApplyDamage()!");
+			
 		}
 	}
 

@@ -70,10 +70,12 @@ public class Missile : Bullet {
 		alreadyDying = true;
 		explosion.transform.parent = null;
 		explosion.SetActive(true);
+
 		HandleApplyingDamage(hitGameObject);
+
 		GameObject.Destroy(this.gameObject);
 	}
 	
 
 	
-}
+ }
