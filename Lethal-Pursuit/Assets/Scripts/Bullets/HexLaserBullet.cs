@@ -65,9 +65,7 @@ public class HexLaserBullet : Bullet {
 		alreadyDying = true;
 		explosion.transform.parent = null;
 		explosion.SetActive(true);
-		if (Network.isServer) {
-			HandleApplyingDamage(hitGameObject);
-		}
+		HandleApplyingDamage(hitGameObject);
 		GameObject.Destroy(this.gameObject);
 	}
 

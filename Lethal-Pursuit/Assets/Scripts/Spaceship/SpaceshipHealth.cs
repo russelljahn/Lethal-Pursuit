@@ -230,7 +230,13 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 
 	// Implementing Damageable interface.
 	public void ApplyDamage(float amount, GameObject damager, string message) {
-		
+
+		lastDamager = currentDamager;
+		currentDamager = damager;
+		if (Network.isClient) {
+			return;
+		}
+
 		Debug.Log(string.Format("I am '{0}', My ipaddr is '{1}'", this.gameObject, Network.player.ipAddress, damager));
 		Debug.Log(string.Format ("My damager is '{0}', damager ipaddr is '{1}' ", damager, damager.networkView.owner.ipAddress));
 		Debug.Log (message);
@@ -243,8 +249,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 			Debug.Log("IPAddr : " + player.ipAddress);
 		}
 
-		lastDamager = currentDamager;
-		currentDamager = damager;
+
 		if (timeUntilVulnerable <= 0.0f) {
 			if (networkView.isMine || NetworkManager.IsSinglePlayer()) {
 				this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
