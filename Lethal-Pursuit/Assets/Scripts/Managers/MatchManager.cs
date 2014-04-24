@@ -185,6 +185,7 @@ public class MatchManager : MonoBehaviour {
 		networkView.RPC("UpdatePlayerScores", RPCMode.All, killer, killscores[killer]);
 
 		if (Network.isClient) {
+			Debug.Log ("Client about to RPC InformKillerOfVictim() w/ arguments " + NetworkManager.GetPlayerList()[killer] + " and " + victim);
 			networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
 		}
 		else {
