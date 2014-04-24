@@ -184,13 +184,13 @@ public class MatchManager : MonoBehaviour {
 		Debug.Log("Sending score update to all players with update for " + killer);
 		networkView.RPC("UpdatePlayerScores", RPCMode.All, killer, killscores[killer]);
 
-		if (Network.isClient) {
-			Debug.Log ("Client about to RPC InformKillerOfVictim() w/ arguments " + NetworkManager.GetPlayerList()[killer] + " and " + victim);
-			networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
-		}
-		else {
+		if (killer == 0) {
 			lastKilledPlayerId = victim;
 			Debug.Log ("Just killed: " + MatchManager.lastKilledPlayerId);	
+		}
+		else {
+			Debug.Log ("Client about to RPC InformKillerOfVictim() w/ arguments " + NetworkManager.GetPlayerList()[killer] + " and " + victim);
+			networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
 		}
 	}
 	
