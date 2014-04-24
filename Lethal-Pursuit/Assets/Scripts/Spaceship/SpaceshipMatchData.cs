@@ -16,10 +16,10 @@ public class SpaceshipMatchData : SpaceshipComponent {
 
 	public float spawnTimeRemaining = 0.0f;
 	public GameObject lastKilledBy;
-	public GameObject lastKilled;
+
 	
 	
-	/*
+/*
 	public override void Start () {
 		base.Start();
 
@@ -28,34 +28,36 @@ public class SpaceshipMatchData : SpaceshipComponent {
 		timeStartMatch = Time.time;
 		currentLevel = LevelManager.GetLoadedLevel();
 	}
-
-
-
-	public override void Update() {
-		base.Update();
-		timeElapsed += Time.deltaTime;
-
-		if (IsMatchOver()) {
-			timeFinishMatch = timeStartMatch + timeElapsed;
-			Debug.Log ("Match ended for '" + this.spaceship + " at time '" + timeFinishMatch + "'!");
-			matchOver = true;
-			matchManager.SendMessage("OnMatchOver", this); 
-		}
-	}
+*/
+//	public override void Update() {
+//		base.Update();
+//
+//		if (MatchManager.lastKilledPlayerIdLastFrame == MatchManager.lastKilledPlayerIdLastFrame) {
+//			timeRemainingForVictim = Mathf.Max(0.0f, timeRemainingForVictim-Time.deltaTime);
+//		}
+//		else {
+//			timeRemainingForVictim = maxTimeForVictim;
+//		}
+//
+//		if (timeRemainingForVictim == 0.0f) {
+//			MatchManager.lastKilledPlayerId = -1;
+//		}
+//
+//		MatchManager.lastKilledPlayerIdLastFrame = MatchManager.lastKilledPlayerId;
+//	}
 
 	
-
-	public bool IsMatchOver() {
+/*
+		public bool IsMatchOver() {
 		switch (matchManager.rule) {
 			case MatchRule.REACH_TARGET_KILLS:
 				return totalKills >= matchManager.targetKills;
-		
+
 			default:
 				throw new Exception("IsMatchOver(): Unknown gameplay mode: " + matchManager.rule);
 		}
 		return false;
-	}
-
+}
 */
 	
 }

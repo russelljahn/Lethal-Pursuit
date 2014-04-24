@@ -261,7 +261,7 @@ public class SpaceshipHealth : SpaceshipComponent, IDamageable {
 				Debug.Log("Damager owned by player " + NetworkManager.GetPlayerIndex(damager.networkView.owner.ipAddress));
 				Debug.Log("Damage about to be applied to player: " + spaceship.ownerPlayerID);
 
-				if(ship != null) {
+				if (ship != null) {
 					networkView.RPC("NetworkTakeDamage", NetworkManager.GetPlayerList()[index], amount, ship.ownerPlayerID);
 				}
 			}

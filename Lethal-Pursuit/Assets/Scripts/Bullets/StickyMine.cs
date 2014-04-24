@@ -77,7 +77,7 @@ public class StickyMine : MonoBehaviour {
 		}
 
 		// Ignore sticking to spawner ship when it first ejects mine
-		if (stuckObject == null && collision.gameObject == sourceSpaceship.gameObject) {
+		if (stuckObject == null && sourceSpaceship != null && collision.gameObject == sourceSpaceship.gameObject) {
 			return;
 		}
 		// Explode if shot

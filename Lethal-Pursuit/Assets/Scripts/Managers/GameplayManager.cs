@@ -44,12 +44,12 @@ public class GameplayManager : MonoBehaviour {
 
 
 
-	void Start () {
+	void Awake () {
 		GameObject.DontDestroyOnLoad(this.gameObject);
 		InputManager.InvertYAxis = true;
-		invertYAxis = InputManager.InvertYAxis;
+		GameplayManager.invertYAxis = true;
 		InputManager.Setup();
-
+		
 		/* Register custom input profiles for keyboard button mappings. */
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );

@@ -41,6 +41,9 @@ public class MatchManager : MonoBehaviour {
 	public int scoreLeader;
 
 	public static int lastKilledPlayerId;
+	public static int lastKilledPlayerIdLastFrame;
+	public float timeRemainingForVictim;
+	public float maxTimeForVictim = 3.0f;
 	
 	
 	// Use this for initialization
@@ -84,6 +87,21 @@ public class MatchManager : MonoBehaviour {
 				Debug.Log("Player " + i + " has score " + killscores[i]);
 			}
 		}
+
+
+		// ...
+		if (MatchManager.lastKilledPlayerId == MatchManager.lastKilledPlayerIdLastFrame) {
+			timeRemainingForVictim = Mathf.Max(0.0f, timeRemainingForVictim-Time.deltaTime);
+		}
+		else {
+			timeRemainingForVictim = maxTimeForVictim;
+		}
+		if (timeRemainingForVictim == 0.0f) {
+			MatchManager.lastKilledPlayerId = -1;
+		}
+		MatchManager.lastKilledPlayerIdLastFrame = MatchManager.lastKilledPlayerId;
+		// ...
+
 	}
 	
 	
@@ -165,8 +183,14 @@ public class MatchManager : MonoBehaviour {
 */
 		Debug.Log("Sending score update to all players with update for " + killer);
 		networkView.RPC("UpdatePlayerScores", RPCMode.All, killer, killscores[killer]);
-		networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
-		//		}
+
+		if (NetworkManager.GetPlayerID() == 0) {
+			lastKilledPlayerId = victim;
+			Debug.Log ("Just killed: " + MatchManager.lastKilledPlayerId);	
+		}
+		else {
+			networkView.RPC("InformKillerOfVictim", NetworkManager.GetPlayerList()[killer], victim);
+		}
 	}
 	
 	[RPC]
@@ -180,6 +204,8 @@ public class MatchManager : MonoBehaviour {
 		//Do whatever you want here. Info is sent on victim ID.
 		lastKilledPlayerId = victim;
 //		displayedName = false;
+		Debug.Log ("Just killed: " + MatchManager.lastKilledPlayerId);
+		
 	}
 
 	

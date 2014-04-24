@@ -97,7 +97,7 @@ public class HudDeath : MonoBehaviour {
 		"zapped",
 		"torched",
 		"emancipated",
-		"snuffed",
+		"snuffed out",
 		"guillotined",
 		"neutralized",
 		"crushed",
@@ -136,10 +136,13 @@ public class HudDeath : MonoBehaviour {
 			}
 			else if (matchData.spawnTimeRemaining > 0.0f) {
 				label.text = string.Format("Preparing for descent..."); 
-				UpdateDeathWords();
+			}
+			else if (MatchManager.lastKilledPlayerId != -1) {
+				label.text = string.Format("Player {0} {1} {2} by you!", (MatchManager.lastKilledPlayerId+1), currentDeathAdjective, currentDeathVerb);
 			}
 			else {
 				label.text = "";
+				UpdateDeathWords();
 			}
 		}
 	}
