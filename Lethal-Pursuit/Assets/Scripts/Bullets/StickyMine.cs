@@ -105,7 +105,7 @@ public class StickyMine : MonoBehaviour {
 
 
 	void HandleApplyingDamage(GameObject hitGameObject) {
-		if (hitGameObject == null) {
+		if (hitGameObject == null || sourceSpaceship.gameObject == null) {
 			return;
 		}
 		IDamageable damageableObject = (IDamageable)hitGameObject.GetComponent(typeof(IDamageable));
