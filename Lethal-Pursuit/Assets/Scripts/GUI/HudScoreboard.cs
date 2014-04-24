@@ -29,7 +29,7 @@ public class HudScoreboard : MonoBehaviour {
 		/* Sort player ids by ranking. */
 		playerRankings.Sort( 
 			(int lhs, int rhs) => {
-		    	int diff = matchManager.killscores[rhs].CompareTo(matchManager.killscores[rhs]);
+		    	int diff = matchManager.killscores[rhs].CompareTo(matchManager.killscores[lhs]);
 		        if (diff == 0) {
 					return lhs.CompareTo(rhs);
 				}
