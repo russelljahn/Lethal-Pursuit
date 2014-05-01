@@ -140,7 +140,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.23308265
+  aspectRatio: 1.22846437
   mSprite: {fileID: 21300000, guid: aba7a64fec4da4a0d8982dd55759437a, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &96704969
 Transform:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528357059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.121582031, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -.41557312, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552580724}
@@ -3740,6 +3740,7 @@ MonoBehaviour:
   multiplayerHubPanel: {fileID: 1315634443}
   lobbyPanel: {fileID: 83986538}
   joinServerPanel: {fileID: 335791768}
+  currentButtons: []
   startServerButton: {fileID: 1457742903}
   joinServerButton: {fileID: 269790013}
   refreshButton: {fileID: 2052760922}
@@ -5620,7 +5621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1235859818
 Transform:
   m_ObjectHideFlags: 0
@@ -7865,7 +7866,7 @@ GameObject:
   - 54: {fileID: 1883625917}
   m_Layer: 9
   m_Name: UI Root
-  m_TagString: Untagged
+  m_TagString: UIRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

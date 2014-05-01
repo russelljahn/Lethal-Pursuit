@@ -12,6 +12,9 @@ public class MainMenu : MonoBehaviour {
 	public GameObject multiplayerHubPanel;
 	public GameObject lobbyPanel;
 	public GameObject joinServerPanel;	
+
+	public UIButton[] currentPanelButtons;
+	public int selectedButtonIndex;
 	
 	public UIButton startServerButton;
 	public UIButton joinServerButton;
@@ -41,9 +44,13 @@ public class MainMenu : MonoBehaviour {
 	public string level1Filename = "Arena";
 	
 	private int playersReady = 1;
-	
+	private UIRoot uiRoot;
+	public float buttonNormalOpacity = 0.78f;
 	
 	public void Start() {
+		RegisterEventHandlers();
+		StartCoroutine(ReloadCurrentPanelButtons());
+
 		HideAllMenus();
 		startServerButton.isEnabled = true;
 		joinServerButton.isEnabled  = true;
@@ -64,8 +71,84 @@ public class MainMenu : MonoBehaviour {
 			OnServerListReady();	
 		}
 	}
+
+
+	// Make this script subscribe to ui events from buttons in the scene
+	void RegisterEventHandlers() {
+		uiRoot = GameObject.FindGameObjectWithTag("UIRoot").GetComponent<UIRoot>();
+		UIButton [] buttons = uiRoot.gameObject.GetComponentsInChildren<UIButton>(true);
+		for (int i = 0; i < buttons.Length; ++i) {
+			UIButton button = buttons[i];
+			Debug.Log ("Adding listeners for button: " + button.gameObject);
+			UIEventListener.Get(button.gameObject).onPress += OnButtonPress;
+			UIEventListener.Get(button.gameObject).onHover += OnButtonHover;
+		}
+	}
+
+
+	public void OnButtonPress(GameObject source, bool isDown) {
+		Debug.Log ("source: " + source);
+		if (isDown) {
+			Debug.Log ("MainMenu: Got 'isDown=true' OnPress event from: " + source);
+		}
+		else {
+			Debug.Log ("MainMenu: Got 'isDown=false' OnPress event from: " + source);
+			StartCoroutine(ReloadCurrentPanelButtons());
+		}
+	}
+
+
+	public void OnButtonHover(GameObject source, bool isOver) {
+		Debug.Log ("source: " + source);
+		if (isOver) {
+			SetSelectedButton(source.GetComponentInChildren<UIButton>());
+			Debug.Log ("MainMenu: Got 'isOver=true' OnHover event from: " + source);
+		}
+		else {
+			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
+		}
+	}
 	
+
+	IEnumerator ReloadCurrentPanelButtons() {
+		yield return new WaitForEndOfFrame();
+		currentPanelButtons = uiRoot.gameObject.GetComponentsInChildren<UIButton>();
+		selectedButtonIndex = 0;
+	}
 	
+
+	public void SelectNextButton() {
+		++selectedButtonIndex;
+		if (selectedButtonIndex >= currentPanelButtons.Length) {
+			selectedButtonIndex = 0;
+		}
+	}
+
+
+	public void SelectPreviousButton() {
+		--selectedButtonIndex;
+		if (selectedButtonIndex < 0) {
+			selectedButtonIndex = currentPanelButtons.Length-1;
+		}
+	}
+
+
+	public void SetSelectedButton(UIButton button) {
+		for (int i = 0; i < currentPanelButtons.Length; ++i) {
+			if (currentPanelButtons[i] == button) {
+				selectedButtonIndex = i;
+				return;
+			}
+		}
+		Debug.LogError("Couldn't set '" + button + "' as selected because it isn't active in current UIPanel!");
+	}
+
+
+	public UIButton GetSelectedButton() {
+		return currentPanelButtons[selectedButtonIndex];
+	}
+
+
 	void HideAllMenus() {
 		titlePanel.SetActive(false);
 		optionsPanel.SetActive(false);
@@ -86,8 +169,7 @@ public class MainMenu : MonoBehaviour {
 	void ShowBackButton() {
 		backPanel.SetActive(true);
 	}
-	
-	
+
 	
 	public void OnClickBack() {
 		
