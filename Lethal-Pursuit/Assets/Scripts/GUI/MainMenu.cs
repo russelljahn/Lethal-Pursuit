@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class MainMenu : MonoBehaviour {
 	
@@ -70,6 +71,26 @@ public class MainMenu : MonoBehaviour {
 			refreshClicked = false;
 			OnServerListReady();	
 		}
+
+		bool releasedConfirm = InputManager.ActiveDevice.Action1.WasReleased || InputManager.ActiveDevice.GetControl(InputControlType.Start).WasReleased;
+		bool releasedCancel = InputManager.ActiveDevice.Action2.WasReleased;
+		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
+		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
+		
+		if (releasedConfirm) {
+			GetSelectedButton().SendMessage("OnClick");
+		}
+		else if (releasedCancel) {
+			OnClickBack();
+			StartCoroutine(ReloadCurrentPanelButtons());
+		}
+		else if (releasedDown) {
+			SelectNextButton();
+		}
+		else if (releasedUp) {
+			SelectPreviousButton();
+		}
+
 	}
 
 
@@ -80,21 +101,16 @@ public class MainMenu : MonoBehaviour {
 		for (int i = 0; i < buttons.Length; ++i) {
 			UIButton button = buttons[i];
 			Debug.Log ("Adding listeners for button: " + button.gameObject);
-			UIEventListener.Get(button.gameObject).onPress += OnButtonPress;
+			UIEventListener.Get(button.gameObject).onClick += OnButtonClick;
 			UIEventListener.Get(button.gameObject).onHover += OnButtonHover;
 		}
 	}
 
 
-	public void OnButtonPress(GameObject source, bool isDown) {
+	public void OnButtonClick(GameObject source) {
 		Debug.Log ("source: " + source);
-		if (isDown) {
-			Debug.Log ("MainMenu: Got 'isDown=true' OnPress event from: " + source);
-		}
-		else {
-			Debug.Log ("MainMenu: Got 'isDown=false' OnPress event from: " + source);
-			StartCoroutine(ReloadCurrentPanelButtons());
-		}
+		Debug.Log ("MainMenu: Got an OnClick event from: " + source);
+		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 
 
