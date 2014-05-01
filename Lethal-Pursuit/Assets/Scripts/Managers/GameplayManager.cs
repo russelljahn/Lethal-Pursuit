@@ -68,6 +68,22 @@ public class GameplayManager : MonoBehaviour {
 
 	void Update () {
 		InputManager.Update();
+		InputManager.OnDeviceAttached += inputDevice => Debug.Log( "Attached: " + inputDevice.Name );
+		InputManager.OnDeviceDetached += inputDevice => Debug.Log( "Detached: " + inputDevice.Name );
+		InputManager.OnActiveDeviceChanged += OnActiveDeviceChanged;
+	}
+
+
+	void OnActiveDeviceChanged(InputDevice inputDevice) {
+		Debug.Log( "Switched: " + inputDevice.Name );
+		if (inputDevice.Name.Equals("Keyboard")) {
+			Screen.showCursor = true;
+			Screen.lockCursor = false;
+		}
+		else {
+			Screen.showCursor = false;
+			Screen.lockCursor = true;
+		}
 	}
 
 

@@ -46,7 +46,8 @@ public class MainMenu : MonoBehaviour {
 	
 	private int playersReady = 1;
 	private UIRoot uiRoot;
-	public float buttonNormalOpacity = 0.78f;
+	public float buttonNormalOpacity = 0.5f;
+	public float buttonTweenDuration = 0.04f;
 	
 	public void Start() {
 		RegisterEventHandlers();
@@ -107,6 +108,11 @@ public class MainMenu : MonoBehaviour {
 			Debug.Log ("Adding listeners for button: " + button.gameObject);
 			UIEventListener.Get(button.gameObject).onClick += OnButtonClick;
 			UIEventListener.Get(button.gameObject).onHover += OnButtonHover;
+
+			Color normalColor = button.defaultColor;
+			normalColor.a = buttonNormalOpacity;
+			button.defaultColor = normalColor;
+			button.duration = buttonTweenDuration;
 		}
 	}
 
