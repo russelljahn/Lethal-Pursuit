@@ -85,10 +85,14 @@ public class MainMenu : MonoBehaviour {
 			StartCoroutine(ReloadCurrentPanelButtons());
 		}
 		else if (releasedDown) {
+			GetSelectedButton().SendMessage("OnHover", false);
 			SelectNextButton();
+			GetSelectedButton().SendMessage("OnHover", true);
 		}
 		else if (releasedUp) {
+			GetSelectedButton().SendMessage("OnHover", false);
 			SelectPreviousButton();
+			GetSelectedButton().SendMessage("OnHover", true);
 		}
 
 	}
@@ -130,6 +134,7 @@ public class MainMenu : MonoBehaviour {
 		yield return new WaitForEndOfFrame();
 		currentPanelButtons = uiRoot.gameObject.GetComponentsInChildren<UIButton>();
 		selectedButtonIndex = 0;
+		GetSelectedButton().SendMessage("OnHover", true);
 	}
 	
 
