@@ -76,14 +76,14 @@ public class GameplayManager : MonoBehaviour {
 
 	void OnActiveDeviceChanged(InputDevice inputDevice) {
 		Debug.Log( "Switched: " + inputDevice.Name );
-		if (inputDevice.Name.Equals("Keyboard")) {
-			Screen.showCursor = true;
-			Screen.lockCursor = false;
-		}
-		else {
-			Screen.showCursor = false;
-			Screen.lockCursor = true;
-		}
+//		if (inputDevice.Name.Equals("Keyboard")) {
+//			Screen.showCursor = true;
+//			Screen.lockCursor = false;
+//		}
+//		else {
+//			Screen.showCursor = false;
+//			Screen.lockCursor = true;
+//		}
 	}
 
 
