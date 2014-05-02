@@ -118,8 +118,11 @@ public class LevelManager : MonoBehaviour {
 
 
 	public Level GetLevel(string levelName) {
-		
-		if (levelName.Equals("MainMenu")) {
+
+		if (levelName.Equals("Splash")) {
+			return new LevelSplash();
+		}
+		else if (levelName.Equals("MainMenu")) {
 			return new LevelMainMenu();
 		}
 		if (levelName.Equals("Tutorial")) {

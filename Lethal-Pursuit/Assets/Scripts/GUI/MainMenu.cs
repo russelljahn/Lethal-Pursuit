@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using InControl;
 
@@ -51,7 +52,6 @@ public class MainMenu : MonoBehaviour {
 	
 	public void Start() {
 		RegisterEventHandlers();
-		StartCoroutine(ReloadCurrentPanelButtons());
 
 		HideAllMenus();
 		startServerButton.isEnabled = true;
@@ -63,6 +63,7 @@ public class MainMenu : MonoBehaviour {
 			serverButtons[i].SetActive(false);
 		}
 		OnTitleClick();
+		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 	
 	
@@ -73,12 +74,16 @@ public class MainMenu : MonoBehaviour {
 			OnServerListReady();	
 		}
 
+		bool pressedConfirm = InputManager.ActiveDevice.Action1.WasPressed || InputManager.ActiveDevice.GetControl(InputControlType.Start).WasPressed;
 		bool releasedConfirm = InputManager.ActiveDevice.Action1.WasReleased || InputManager.ActiveDevice.GetControl(InputControlType.Start).WasReleased;
 		bool releasedCancel = InputManager.ActiveDevice.Action2.WasReleased;
 		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
 		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
-		
-		if (releasedConfirm) {
+
+		if (pressedConfirm) {
+			GetSelectedButton().SendMessage("OnPress", true);
+		}
+		else if (releasedConfirm) {
 			GetSelectedButton().SendMessage("OnClick");
 		}
 		else if (releasedCancel) {
@@ -141,6 +146,13 @@ public class MainMenu : MonoBehaviour {
 		currentPanelButtons = uiRoot.gameObject.GetComponentsInChildren<UIButton>();
 		selectedButtonIndex = 0;
 		GetSelectedButton().SendMessage("OnHover", true);
+
+		Array.Sort(
+			currentPanelButtons, 
+            (UIButton lhs, UIButton rhs) => {
+				return lhs.name.CompareTo(rhs.name);
+			}
+		);
 	}
 	
 
