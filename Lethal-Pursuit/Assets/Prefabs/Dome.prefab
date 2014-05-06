@@ -3594,24 +3594,24 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 900
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00111111114
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00111234
       tangentMode: 0
-    - time: 1
+    - time: .932038784
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.90922451
+      outSlope: -5.90922451
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3652,24 +3652,24 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 900
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00111111114
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00111234
       tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+    - time: .888349533
+      value: .0261437912
+      inSlope: -5.9466238
+      outSlope: -5.9466238
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3828,22 +3828,22 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
-    - time: 1
+    - time: .907766998
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.30147076
+      outSlope: -5.30147076
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3884,24 +3884,24 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 900
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+    - time: .830097079
+      value: .0261437912
+      inSlope: -5.7222209
+      outSlope: -5.7222209
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -4116,9 +4116,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 900
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4127,13 +4127,13 @@ AudioSource:
     m_Curve:
     - time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: .477756768
+      outSlope: .477756768
       tangentMode: 0
-    - time: 1
+    - time: .888349473
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -3.59041691
+      outSlope: -3.59041691
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -4533,7 +4533,7 @@ MonoBehaviour:
     gameObject: {fileID: 100062}
     transform: {fileID: 400062}
     rigidbody: {fileID: 0}
-    cachedId: 337924
+    cachedId: 23704
     meshFilter: {fileID: 3300042}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -4835,7 +4835,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -5023,7 +5023,7 @@ MonoBehaviour:
     gameObject: {fileID: 100088}
     transform: {fileID: 400088}
     rigidbody: {fileID: 0}
-    cachedId: 338276
+    cachedId: 24056
     meshFilter: {fileID: 3300050}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -5325,7 +5325,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -5570,7 +5570,7 @@ MonoBehaviour:
     gameObject: {fileID: 100058}
     transform: {fileID: 400074}
     rigidbody: {fileID: 0}
-    cachedId: 339120
+    cachedId: 24900
     meshFilter: {fileID: 3300034}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -5872,7 +5872,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -6113,7 +6113,7 @@ MonoBehaviour:
     gameObject: {fileID: 100092}
     transform: {fileID: 400076}
     rigidbody: {fileID: 0}
-    cachedId: 338056
+    cachedId: 23836
     meshFilter: {fileID: 3300058}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -6415,7 +6415,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -6613,7 +6613,7 @@ MonoBehaviour:
     gameObject: {fileID: 100108}
     transform: {fileID: 400108}
     rigidbody: {fileID: 0}
-    cachedId: 340058
+    cachedId: 25834
     meshFilter: {fileID: 3300056}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -6915,7 +6915,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -7125,7 +7125,7 @@ MonoBehaviour:
     gameObject: {fileID: 100118}
     transform: {fileID: 400118}
     rigidbody: {fileID: 0}
-    cachedId: 339732
+    cachedId: 25508
     meshFilter: {fileID: 3300060}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7427,7 +7427,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -7603,7 +7603,7 @@ MonoBehaviour:
     gameObject: {fileID: 100122}
     transform: {fileID: 400124}
     rigidbody: {fileID: 0}
-    cachedId: 338048
+    cachedId: 23828
     meshFilter: {fileID: 3300062}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7905,7 +7905,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -8117,7 +8117,7 @@ MonoBehaviour:
     gameObject: {fileID: 100128}
     transform: {fileID: 400126}
     rigidbody: {fileID: 0}
-    cachedId: 339944
+    cachedId: 25720
     meshFilter: {fileID: 3300068}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -8419,7 +8419,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -8624,7 +8624,7 @@ MonoBehaviour:
     gameObject: {fileID: 100138}
     transform: {fileID: 400136}
     rigidbody: {fileID: 0}
-    cachedId: 338606
+    cachedId: 24384
     meshFilter: {fileID: 3300072}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -8926,7 +8926,7 @@ MonoBehaviour:
   previousEmission: 1
   isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 48.4643326
+  simulationStarted: 177.438324
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
