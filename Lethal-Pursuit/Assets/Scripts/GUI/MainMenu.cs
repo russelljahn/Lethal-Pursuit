@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour {
 	public GameObject multiplayerHubPanel;
 	public GameObject lobbyPanel;
 	public GameObject joinServerPanel;	
+	public GameObject creditsPanel;	
+
 
 	public UIButton[] currentPanelButtons;
 	public int selectedButtonIndex;
@@ -79,6 +81,9 @@ public class MainMenu : MonoBehaviour {
 		bool releasedCancel = InputManager.ActiveDevice.Action2.WasReleased;
 		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
 		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
+		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
+		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
+
 
 		if (pressedConfirm) {
 			GetSelectedButton().SendMessage("OnPress", true);
@@ -89,6 +94,14 @@ public class MainMenu : MonoBehaviour {
 		else if (releasedCancel) {
 			OnClickBack();
 			StartCoroutine(ReloadCurrentPanelButtons());
+			backPanel.SendMessage("OnHover", false);
+		}
+		else if (vehicleSelectPanel.activeInHierarchy) {
+			if (releasedUp || releasedDown || releasedLeft || releasedRight) {
+				GetSelectedButton().SendMessage("OnHover", false);	
+				VehicleScreenSelectNextButton();
+				GetSelectedButton().SendMessage("OnHover", true);	
+			}
 		}
 		else if (releasedDown) {
 			GetSelectedButton().SendMessage("OnHover", false);
@@ -100,7 +113,16 @@ public class MainMenu : MonoBehaviour {
 			SelectPreviousButton();
 			GetSelectedButton().SendMessage("OnHover", true);
 		}
-
+		else if (releasedLeft) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectNextButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
+		else if (releasedRight) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectPreviousButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
 	}
 
 
@@ -123,20 +145,20 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnButtonClick(GameObject source) {
-		Debug.Log ("source: " + source);
-		Debug.Log ("MainMenu: Got an OnClick event from: " + source);
+//		Debug.Log ("source: " + source);
+//		Debug.Log ("MainMenu: Got an OnClick event from: " + source);
 		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 
 
 	public void OnButtonHover(GameObject source, bool isOver) {
-		Debug.Log ("source: " + source);
+//		Debug.Log ("source: " + source);
 		if (isOver) {
 			SetSelectedButton(source.GetComponentInChildren<UIButton>());
-			Debug.Log ("MainMenu: Got 'isOver=true' OnHover event from: " + source);
+//			Debug.Log ("MainMenu: Got 'isOver=true' OnHover event from: " + source);
 		}
 		else {
-			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
+//			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
 		}
 	}
 	
@@ -154,7 +176,103 @@ public class MainMenu : MonoBehaviour {
 			}
 		);
 	}
-	
+
+
+	public void VehicleScreenSelectNextButton() {
+		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
+		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
+		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
+		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
+
+		Debug.Log("Thundercats, HOOOOOOOO!!!!");
+
+		/* 
+			Button index 0 -> top left
+			Button index 1 -> top right
+			Button index 2 -> bottom left
+			Button index 3 -> bottom right
+			Button index 4 -> back button
+		 */ 
+		switch (selectedButtonIndex) {
+			// Button index 0 -> top left
+			case 0:
+				if (releasedUp) {
+					selectedButtonIndex = 4;
+				}
+				else if (releasedDown) {
+					selectedButtonIndex = 2;	
+				}
+				else if (releasedLeft) {
+					selectedButtonIndex = 1;		
+				}
+				else if (releasedRight) {
+					selectedButtonIndex = 1;
+				}
+				break;
+		
+			// Button index 1 -> top right
+			case 1:
+				if (releasedUp) {
+					selectedButtonIndex = 3;
+				}
+				else if (releasedDown) {
+					selectedButtonIndex = 3;
+				}
+				else if (releasedLeft) {
+					selectedButtonIndex = 0;
+				}
+				else if (releasedRight) {
+					selectedButtonIndex = 0;
+				}
+				break;
+		
+			// Button index 2 -> bottom left
+			case 2:
+				if (releasedUp) {
+					selectedButtonIndex = 0;
+				}
+				else if (releasedDown) {
+					selectedButtonIndex = 4;
+				}
+				else if (releasedLeft) {
+					selectedButtonIndex = 3;
+				}
+				else if (releasedRight) {
+					selectedButtonIndex = 3;
+				}
+				break;
+		
+			// Button index 3 -> bottom right
+			case 3:
+				if (releasedUp) {
+					selectedButtonIndex = 1;
+				}
+				else if (releasedDown) {
+					selectedButtonIndex = 1;
+				}
+				else if (releasedLeft) {
+					selectedButtonIndex = 2;
+				}
+				else if (releasedRight) {
+					selectedButtonIndex = 2;
+				}
+				break;
+
+			// Button index 4 -> back button
+			case 4:
+				if (releasedUp) {
+					selectedButtonIndex = 2;
+				}
+				else if (releasedDown) {
+					selectedButtonIndex = 0;
+				}
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 
 	public void SelectNextButton() {
 		++selectedButtonIndex;
@@ -214,7 +332,7 @@ public class MainMenu : MonoBehaviour {
 		
 		Debug.Log("Server started status: " + serverStarted);
 		
-		if(serverStarted) {
+		if (serverStarted) {
 			
 			Debug.Log("Entered onMultiplayer reenabler");
 			NetworkManager.ServerCleanup();
@@ -272,6 +390,10 @@ public class MainMenu : MonoBehaviour {
 		// JoinServer -> MultiplayerHub
 		else if (joinServerPanel.activeInHierarchy) {
 			OnMultiplayerClick();
+		}
+		// Credits -> Mode Select
+		else if (creditsPanel.activeInHierarchy) {
+			OnModeSelectClick();
 		}
 	}
 	
@@ -338,10 +460,18 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
 	}
+
+
+	public void OnCreditsClick() {
+		Debug.Log("Credits Clicked");
+		
+		HideAllMenus();
+		creditsPanel.SetActive(true);
+	}
 	
 	
 	public void OnStartServerClick() {
-		HideBackButton();
+//		HideBackButton();
 		
 		NetworkManager.StartServer();
 		joinServerButton.isEnabled = false;
@@ -354,12 +484,12 @@ public class MainMenu : MonoBehaviour {
 		
 		Debug.Log("Server started status: " + serverStarted);
 		
-		launchText.text = "Launch Game";
+		launchText.text = "LAUNCH";
 	}
 	
 	
 	public void OnJoinServerClick() {
-		HideBackButton();
+//		HideBackButton();
 		refreshButton.isEnabled = true;
 		
 		NetworkManager.RefreshHostList();
@@ -370,7 +500,7 @@ public class MainMenu : MonoBehaviour {
 		HideAllMenus();
 		joinServerPanel.SetActive(true);
 		
-		launchText.text = "Waiting On Host";
+		launchText.text = "WAITING ON HOST";
 		client = true;
 	}
 	
