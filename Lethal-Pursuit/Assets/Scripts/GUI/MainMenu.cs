@@ -145,8 +145,7 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnButtonClick(GameObject source) {
-//		Debug.Log ("source: " + source);
-//		Debug.Log ("MainMenu: Got an OnClick event from: " + source);
+		Debug.Log ("Clicked on: " + source);
 		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 
@@ -291,6 +290,7 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void SetSelectedButton(UIButton button) {
+		Debug.Log ("Button to select: " + button);
 		for (int i = 0; i < currentPanelButtons.Length; ++i) {
 			if (currentPanelButtons[i] == button) {
 				selectedButtonIndex = i;
@@ -395,6 +395,8 @@ public class MainMenu : MonoBehaviour {
 		else if (creditsPanel.activeInHierarchy) {
 			OnModeSelectClick();
 		}
+
+		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 	
 	
@@ -484,7 +486,7 @@ public class MainMenu : MonoBehaviour {
 		
 		Debug.Log("Server started status: " + serverStarted);
 		
-		launchText.text = "LAUNCH";
+		launchText.text = "LAUNCH\nDEATHMATCH";
 	}
 	
 	
@@ -652,6 +654,7 @@ public class MainMenu : MonoBehaviour {
 			if(Network.isServer) {							
 				MasterServer.UnregisterHost();
 			}
+			this.gameObject.AddComponent<NetworkView>();
 			networkView.RPC("SwitchLoad", RPCMode.All);
 			networkView.RPC("LevelLoader", RPCMode.All);
 		//}

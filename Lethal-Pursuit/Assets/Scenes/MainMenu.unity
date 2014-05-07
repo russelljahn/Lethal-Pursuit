@@ -484,7 +484,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3006
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -1377,6 +1377,10 @@ Prefab:
       propertyPath: mColor.a
       value: .588235319
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: fee46b827274e694aa251e2d36700135, type: 2}
+      propertyPath: onClick.Array.data[0].mMethodName
+      value: OnLaunchClick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fee46b827274e694aa251e2d36700135, type: 2}
   m_RootGameObject: {fileID: 1688572318}
@@ -1865,7 +1869,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 335791768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.15625, z: 0}
+  m_LocalPosition: {x: 0, y: .299209595, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618284494}
@@ -2793,7 +2797,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528357059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .0744934082, z: 0}
+  m_LocalPosition: {x: 0, y: .299209595, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552580724}
@@ -3956,8 +3960,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 732870049}
   - 114: {fileID: 732870048}
-  - 114: {fileID: 732870050}
-  - 148: {fileID: 732870051}
+  - 148: {fileID: 732870050}
   m_Layer: 9
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -4020,18 +4023,7 @@ Transform:
   m_LocalScale: {x: 207, y: 207, z: 207}
   m_Children: []
   m_Father: {fileID: 1883625916}
---- !u!114 &732870050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 732870047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a09942e6b2fd347893598bffc5e08c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!148 &732870051
+--- !u!148 &732870050
 NetworkView:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -4041,7 +4033,7 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 732870049}
   m_ViewID:
-    m_ID: 1
+    m_ID: 2
     m_Type: 1
 --- !u!1001 &734046347
 Prefab:
@@ -8030,6 +8022,57 @@ MonoBehaviour:
   - mTarget: {fileID: 732870048}
     mMethodName: OnServer3Click
     oneShot: 0
+--- !u!1 &1513813985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1513813986}
+  - 114: {fileID: 1513813988}
+  - 148: {fileID: 1513813987}
+  m_Layer: 0
+  m_Name: Network Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1513813986
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513813985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.4885864, y: -6.70779705, z: 0}
+  m_LocalScale: {x: 360, y: 360, z: 360}
+  m_Children: []
+  m_Father: {fileID: 1883625916}
+--- !u!148 &1513813987
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513813985}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 732870049}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
+--- !u!114 &1513813988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513813985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a09942e6b2fd347893598bffc5e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1517977202
 GameObject:
   m_ObjectHideFlags: 0
@@ -8247,7 +8290,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3003
+  startingRenderQueue: 3006
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -9168,7 +9211,7 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 732870048}
-    mMethodName: OnMultiplayerClick
+    mMethodName: OnLaunchClick
     oneShot: 0
 --- !u!1001 &1708588513
 Prefab:
@@ -9756,12 +9799,13 @@ Transform:
   m_Children:
   - {fileID: 1517977203}
   - {fileID: 1226945686}
+  - {fileID: 1513813986}
   - {fileID: 83986539}
+  - {fileID: 732870049}
   - {fileID: 96704969}
   - {fileID: 1315634444}
   - {fileID: 335791769}
   - {fileID: 189299192}
-  - {fileID: 732870049}
   - {fileID: 1748918628}
   - {fileID: 1235859818}
   - {fileID: 528357060}
@@ -9908,8 +9952,8 @@ MonoBehaviour:
   keepCrispWhenShrunk: 2
   mTrueTypeFont: {fileID: 12800000, guid: f707dfc2b128a4a7ea69f15885246e06, type: 3}
   mFont: {fileID: 0}
-  mText: LAUNCH
-  mFontSize: 30
+  mText: LAUNCH DEATHMATCH
+  mFontSize: 25
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
