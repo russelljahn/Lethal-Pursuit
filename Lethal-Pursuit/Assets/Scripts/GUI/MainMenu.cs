@@ -491,6 +491,8 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnJoinServerClick() {
 //		HideBackButton();
+		this.gameObject.AddComponent<NetworkView>();
+		
 		refreshButton.isEnabled = true;
 		
 		NetworkManager.RefreshHostList();
