@@ -183,7 +183,6 @@ public class MainMenu : MonoBehaviour {
 		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
 		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
 
-		Debug.Log("Thundercats, HOOOOOOOO!!!!");
 
 		/* 
 			Button index 0 -> top left
@@ -486,7 +485,7 @@ public class MainMenu : MonoBehaviour {
 		
 		Debug.Log("Server started status: " + serverStarted);
 		
-		launchText.text = "LAUNCH\nDEATHMATCH";
+		launchText.text = "LAUNCH";
 	}
 	
 	
