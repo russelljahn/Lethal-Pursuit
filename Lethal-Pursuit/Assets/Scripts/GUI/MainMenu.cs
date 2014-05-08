@@ -53,6 +53,8 @@ public class MainMenu : MonoBehaviour {
 	public float buttonNormalOpacity = 0.6f;
 	public float buttonTweenDuration = 0.04f;
 
+	public GameObject vehicleSelectFrame;
+
 	public UI2DSprite vehicleSelectShip;
 	public UI2DSprite vehicleSelectHealthStat;
 	public UI2DSprite vehicleSelectSpeedStat;
@@ -73,6 +75,10 @@ public class MainMenu : MonoBehaviour {
 	public Color helldiverEmblemColor;
 	public Color littleJohnEmblemColor;
 	public Color mufasaEmblemColor;
+
+	public UILabel multiplayerHubText;
+	public GameObject multiplayerHubFrame;
+	
 	
 	
 
@@ -142,6 +148,9 @@ public class MainMenu : MonoBehaviour {
 			if (vehicleSelectPanel.activeInHierarchy) {
 				UpdateVehicleSelectScreen();
 			}
+			else if (multiplayerHubPanel.activeInHierarchy) {
+				UpdateMultiplayerHubScreen();
+			}
 		}
 	}
 
@@ -182,6 +191,12 @@ public class MainMenu : MonoBehaviour {
 			button.GetComponent<UI2DSprite>().sprite2D = buttonHoverSprite;
 			text.color = buttonHoverTextColor;
 //			Debug.Log ("MainMenu: Got 'isOver=true' OnHover event from: " + source);
+			if (vehicleSelectPanel.activeInHierarchy) {
+				UpdateVehicleSelectScreen();
+			}
+			else if (multiplayerHubPanel.activeInHierarchy) {
+				UpdateMultiplayerHubScreen();
+			}
 		}
 		else {
 			button.GetComponent<UI2DSprite>().sprite2D = buttonNormalSprite;
@@ -190,9 +205,7 @@ public class MainMenu : MonoBehaviour {
 //			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
 		}
 
-		if (vehicleSelectPanel.activeInHierarchy) {
-			UpdateVehicleSelectScreen();
-		}
+
 	}
 	
 
@@ -211,11 +224,35 @@ public class MainMenu : MonoBehaviour {
 	}
 
 
+	public void UpdateMultiplayerHubScreen() {
+		
+		/* 
+			Button index 0 -> Create Game
+			Button index 1 -> Join Game
+			Button index 2 -> Back button
+		 */ 
+		switch (selectedButtonIndex) {
+			// Button index 0 -> Create Game
+			case 0:
+				multiplayerHubText.text = "Mode:   Deathmatch\nTarget: 10 Kills\nArena:  Abandoned Missile Silo\nHost a game of multiplayer combat with up to 3 others.";
+				break;
+
+			// Button index 1 -> Join Game
+			case 1:
+				multiplayerHubText.text = "Mode:   Deathmatch\nTarget: 10 Kills\nArena:  Abandoned Missile Silo\nJoin a game of multiplayer combat with up to 3 others.";
+				break;
+
+			// Button index 2 -> Back button
+			case 2:
+				break;
+
+			default:
+				break;
+		}
+	}
+
+
 	public void UpdateVehicleSelectScreen() {
-		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
-		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
-		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
-		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
 
 		/* 
 			Button index 0 -> Dauntless
@@ -267,7 +304,6 @@ public class MainMenu : MonoBehaviour {
 
 			// Button index 4 -> Back button
 			case 4:
-
 				break;
 		
 			default:
@@ -348,7 +384,8 @@ public class MainMenu : MonoBehaviour {
 		
 		// Exit
 		if (titlePanel.activeInHierarchy) {
-			OnExitClick();
+			selectedButtonIndex = currentPanelButtons.Length-1;
+//			OnExitClick();
 		}
 		// Vehicle Select -> Mode Select (if Singleplayer)/MultiplayerHub (if Multiplayer)
 		else if (vehicleSelectPanel.activeInHierarchy) {
@@ -365,13 +402,14 @@ public class MainMenu : MonoBehaviour {
 		}
 		// Lobby -> MultiplayerHub (if Multiplayer CreateServer)/JoinServer (if Multiplayer JoinServer)
 		else if (lobbyPanel.activeInHierarchy) {
-			if (client) {
-				client = false;
-				OnJoinServerClick();
-			}
-			else {
-				OnMultiplayerClick();
-			}
+			LevelManager.LoadMainMenu(false);
+//			if (client) {
+//				client = false;
+//				OnJoinServerClick();
+//			}
+//			else {
+//				OnMultiplayerClick();
+//			}
 		}
 		// JoinServer -> MultiplayerHub
 		else if (joinServerPanel.activeInHierarchy) {

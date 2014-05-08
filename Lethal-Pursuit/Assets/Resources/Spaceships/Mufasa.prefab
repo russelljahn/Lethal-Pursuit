@@ -3121,9 +3121,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
-  simulationStarted: 0
+  simulationStarted: 115.025215
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -3152,7 +3152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86310f07a6c94443799a49280b05e913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialToScroll: {fileID: 2100000, guid: 0774b1f09b2c246d29642bbc043f1ca9, type: 2}
+  materialToScroll: {fileID: 2100000, guid: 7a534b8de5748472da8d4f5ede09b915, type: 2}
   xRate: -2
   yRate: 0
 --- !u!114 &11400022
@@ -3330,7 +3330,7 @@ LineRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0774b1f09b2c246d29642bbc043f1ca9, type: 2}
+  - {fileID: 2100000, guid: 7a534b8de5748472da8d4f5ede09b915, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class NetworkManager : MonoBehaviour {
 	
 	private static string gameType = "2P Multiplayer: ";
-	public  static string gameName = "10 KILL DEATHMATCH";
+	public  static string gameName = "Game";
 	private static string gameComment = "Network Test Run";
 
 	
@@ -72,7 +72,8 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log ("Starting server.........");
 		Network.InitializeServer(maxPlayersAllowed, 25000, !Network.HavePublicAddress());
 		Debug.Log ("Registering Host.........");
-		string uniqueGameName = string.Format("{0} ON {1}", gameName, Network.player.ipAddress);
+		Random.seed = (int)Time.time;
+		string uniqueGameName = string.Format("{0} {1}", gameName, Random.Range(100, 999));
 		Debug.Log ("uniqueGameName: " + uniqueGameName);
 		MasterServer.RegisterHost (gameType, uniqueGameName, gameComment);
 
