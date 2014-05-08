@@ -56,7 +56,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		if(refreshing)
 		{
-			Debug.Log("Refreshing......");
+//			Debug.Log("Refreshing......");
 			if(MasterServer.PollHostList().Length > 0)
 			{
 				refreshing = false;
