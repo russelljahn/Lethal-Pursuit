@@ -7,7 +7,11 @@ public class HudManager : MonoBehaviour {
 
 	public UIRoot uiRoot;
 	public Spaceship spaceship;
-	
+
+	public bool pressingStart;
+	public bool releasedStart;
+
+	private bool pressedStartLastFrame;
 	private Level currentLevel;
 
 	private bool isTutorialLevel;
@@ -55,20 +59,37 @@ public class HudManager : MonoBehaviour {
 		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
 		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
 		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
-		bool releasedStart = InputManager.ActiveDevice.GetControl(InputControlType.Start).WasReleased;
+		pressedStartLastFrame = pressingStart;
+		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
+		releasedStart = !pressingStart && pressedStartLastFrame;
 
-		Debug.Log (string.Format(
-			"pressedConfirm? {0}\nreleasedConfirm? {1}\nreleasedCancel? {2}\nreleasedStart? {3}",
-			pressedConfirm,
-			releasedConfirm, 
-			releasedCancel, 
-			releasedStart
-			)
-		           );
-
-		if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
+		if (menuGui.activeInHierarchy || controlsGui.activeInHierarchy || quitConfirmationGui.activeInHierarchy || matchOverGui.activeInHierarchy) {
+			if (pressedConfirm) {
+				GetSelectedButton().GetComponent<UIWidget>().color = GetSelectedButton().pressed;
+				GetSelectedButton().SendMessage("OnPress", true);
+			}
+			else if (releasedConfirm) {
+				GetSelectedButton().SendMessage("OnClick");
+			}
+			else if (releasedCancel) {
+				
+				StartCoroutine(ReloadCurrentPanelButtons());
+			}
+			else if (releasedDown || releasedRight) {
+				GetSelectedButton().SendMessage("OnHover", false);
+				SelectNextButton();
+				GetSelectedButton().SendMessage("OnHover", true);
+			}
+			else if (releasedUp || releasedLeft) {
+				GetSelectedButton().SendMessage("OnHover", false);
+				SelectPreviousButton();
+				GetSelectedButton().SendMessage("OnHover", true);
+			}
+		}
+		else if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
 			Debug.Log ("Displaying menu...");
 			DisplayMenu();
+			ImmediatelyReloadCurrentPanelButtons();
 			return;
 
 		}
@@ -76,13 +97,15 @@ public class HudManager : MonoBehaviour {
 			if (menuGui.activeInHierarchy) {
 				Debug.Log ("Hiding menu...");
 				HideMenu();
-				StartCoroutine(ReloadCurrentPanelButtons());
+				ImmediatelyReloadCurrentPanelButtons();
+				
 				return;
 			}
 			else if (controlsGui.activeInHierarchy) {
 				Debug.Log ("Hiding controls...");	
 				HideControls();
-				StartCoroutine(ReloadCurrentPanelButtons());
+				ImmediatelyReloadCurrentPanelButtons();
+				
 				return;
 			}
 		}
@@ -91,31 +114,10 @@ public class HudManager : MonoBehaviour {
 			if (quitConfirmationGui.activeInHierarchy) {
 				Debug.Log ("Cancelling out of quit confirmation...");
 				HideQuitConfirmation();
-				StartCoroutine(ReloadCurrentPanelButtons());
+				ImmediatelyReloadCurrentPanelButtons();
+				
 				return;
 			}
-		}
-
-		
-		if (pressedConfirm) {
-			GetSelectedButton().GetComponent<UIWidget>().color = GetSelectedButton().pressed;
-			GetSelectedButton().SendMessage("OnPress", true);
-		}
-		else if (releasedConfirm) {
-			GetSelectedButton().SendMessage("OnClick");
-		}
-		else if (releasedCancel) {
-			StartCoroutine(ReloadCurrentPanelButtons());
-		}
-		else if (releasedDown || releasedRight) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectNextButton();
-			GetSelectedButton().SendMessage("OnHover", true);
-		}
-		else if (releasedUp || releasedLeft) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectPreviousButton();
-			GetSelectedButton().SendMessage("OnHover", true);
 		}
 
 	}
@@ -146,6 +148,10 @@ public class HudManager : MonoBehaviour {
 	
 	
 	public void OnButtonHover(GameObject source, bool isOver) {
+
+		if (currentPanelButtons.Length <= 0) {
+			return;
+		}
 		
 		//		Debug.Log ("source: " + source);
 		UIButton button = source.GetComponentInChildren<UIButton>();

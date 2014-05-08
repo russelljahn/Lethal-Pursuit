@@ -1870,7 +1870,7 @@ MonoBehaviour:
     gameObject: {fileID: 470943915}
     transform: {fileID: 470943916}
     rigidbody: {fileID: 0}
-    cachedId: 435052
+    cachedId: 481144
     meshFilter: {fileID: 470943918}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -5864,7 +5864,7 @@ MonoBehaviour:
     gameObject: {fileID: 592551081}
     transform: {fileID: 592551082}
     rigidbody: {fileID: 0}
-    cachedId: 435260
+    cachedId: 481352
     meshFilter: {fileID: 592551084}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -7529,7 +7529,7 @@ MonoBehaviour:
     gameObject: {fileID: 401957466}
     transform: {fileID: 401957467}
     rigidbody: {fileID: 0}
-    cachedId: 434924
+    cachedId: 481016
     meshFilter: {fileID: 401957469}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -14279,7 +14279,7 @@ MonoBehaviour:
     gameObject: {fileID: 1883327655}
     transform: {fileID: 1883327656}
     rigidbody: {fileID: 0}
-    cachedId: 436920
+    cachedId: 483012
     meshFilter: {fileID: 1883327658}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -19900,7 +19900,7 @@ MonoBehaviour:
     gameObject: {fileID: 464809721}
     transform: {fileID: 464809722}
     rigidbody: {fileID: 0}
-    cachedId: 435044
+    cachedId: 481136
     meshFilter: {fileID: 464809724}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -21316,7 +21316,7 @@ Transform:
   m_PrefabInternal: {fileID: 1595262923}
   m_GameObject: {fileID: 267831436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 639.756836, y: -360, z: 0}
+  m_LocalPosition: {x: 640, y: -360, z: 0}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 827107534}
@@ -24966,7 +24966,7 @@ Transform:
   m_PrefabInternal: {fileID: 1595262923}
   m_GameObject: {fileID: 392435180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.121582031, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .299209595, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1199516282}
@@ -49443,7 +49443,7 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 1
+  isYieldRefreshing: 0
   isPainting: 0
   simulationStarted: 0
   loopExceeded: 0
@@ -59579,7 +59579,7 @@ MonoBehaviour:
     gameObject: {fileID: 785521335}
     transform: {fileID: 785521336}
     rigidbody: {fileID: 0}
-    cachedId: 435570
+    cachedId: 481662
     meshFilter: {fileID: 785521338}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -62308,6 +62308,7 @@ MonoBehaviour:
   - {fileID: 2040298631}
   - {fileID: 2042623242}
   - {fileID: 870941028}
+  - {fileID: 1742860668}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -67511,7 +67512,7 @@ MonoBehaviour:
   mColor: {r: 1, g: 0, b: 0, a: 0}
   mPivot: 4
   mWidth: 1280
-  mHeight: 720
+  mHeight: 721
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -83712,6 +83713,22 @@ Prefab:
       propertyPath: m_ViewID.m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400142, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .299209595
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 276.598419
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3bcf91aa49dac4020a2226b325ed3faa, type: 2}
   m_RootGameObject: {fileID: 1312740155}
@@ -85584,7 +85601,7 @@ Transform:
   m_PrefabInternal: {fileID: 1595262923}
   m_GameObject: {fileID: 1688262439}
   m_LocalRotation: {x: .00569347432, y: .130401984, z: .0432462245, w: .990501285}
-  m_LocalPosition: {x: -689.5, y: 276, z: 33.8239174}
+  m_LocalPosition: {x: -689.5, y: 276.598419, z: 33.8239174}
   m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
   m_Children:
   - {fileID: 1417214353}
@@ -87410,7 +87427,7 @@ MonoBehaviour:
     initialized: 0
   manipulators: []
   shurikenParticleSystem: {fileID: 1742860670}
-  particleSystemId: 10
+  particleSystemId: 11
   particleSystemGameObject: {fileID: 1742860666}
   particleSystemTransform: {fileID: 1742860667}
   particleSystemRenderer: {fileID: 1742860669}
@@ -87432,9 +87449,9 @@ MonoBehaviour:
   previousLocalVelocityMax: {x: 100, y: 0, z: 0}
   previousLifetime: 4
   previousEmission: 1
-  isYieldRefreshing: 0
+  isYieldRefreshing: 1
   isPainting: 0
-  simulationStarted: 115.025215
+  simulationStarted: 0
   loopExceeded: 0
   loopExceededOnParticle: -1
   particleTimescale: 1
@@ -89023,7 +89040,7 @@ MonoBehaviour:
     gameObject: {fileID: 1930138314}
     transform: {fileID: 1930138315}
     rigidbody: {fileID: 0}
-    cachedId: 437046
+    cachedId: 483138
     meshFilter: {fileID: 1930138317}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -95009,7 +95026,7 @@ MonoBehaviour:
     gameObject: {fileID: 1163933356}
     transform: {fileID: 1163933357}
     rigidbody: {fileID: 0}
-    cachedId: 436074
+    cachedId: 482166
     meshFilter: {fileID: 1163933359}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -100587,7 +100604,7 @@ MonoBehaviour:
     gameObject: {fileID: 1718949227}
     transform: {fileID: 1718949228}
     rigidbody: {fileID: 0}
-    cachedId: 436702
+    cachedId: 482794
     meshFilter: {fileID: 1718949230}
     mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     vertexPositions:
@@ -108447,6 +108464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiRoot: {fileID: 1312740158}
   spaceship: {fileID: 0}
+  pressingStart: 0
+  releasedStart: 0
   tutorialGui: {fileID: 45883287}
   menuGui: {fileID: 603212212}
   controlsGui: {fileID: 1810232356}
