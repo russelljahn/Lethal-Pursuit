@@ -141,6 +141,12 @@ public class MatchManager : MonoBehaviour {
 	public void OnMatchOver(int winnerID) {
 		OnMatchOverGUI();
 		scoreLeader = winnerID;
+		Spaceship [] ships = GameObject.FindObjectsOfType<Spaceship>();
+		for (int i = 0; i < ships.Length; ++i) {
+			ships[i].GetComponent<SpaceshipControl>().enabled = false;
+			ships[i].GetComponentInChildren<SpaceshipGun>().enabled = false;
+			ships[i].GetComponentInChildren<SpaceshipPickups>().enabled = false;
+		}
 		for (int i = 0; i < killscores.Length; ++i) {
 			killscores[i] = 0;
 		}
