@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour {
 	public GameObject optionsPanel;
 	public GameObject modeSelectPanel;
 	public GameObject vehicleSelectPanel;
-	public GameObject mapSelectPanel;
 	public GameObject multiplayerHubPanel;
 	public GameObject lobbyPanel;
 	public GameObject joinServerPanel;	
@@ -49,9 +48,19 @@ public class MainMenu : MonoBehaviour {
 	
 	private int playersReady = 1;
 	private UIRoot uiRoot;
-	public float buttonNormalOpacity = 0.5f;
-	public float buttonTweenDuration = 0.04f;
 	
+	public Sprite buttonNormalSprite;
+	public Sprite buttonHoverSprite;
+
+	public float buttonNormalOpacity = 0.6f;
+	public float buttonTweenDuration = 0.04f;
+
+//	public Color buttonNormalColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+//	public Color buttonHoverColor = new Color(0.07059f, 0.8826f, 0.8471f);
+
+	public Color buttonNormalTextColor = Color.black;
+	public Color buttonHoverTextColor = new Color(0.4784f, 0.5373f, 0.8471f);
+
 	public void Start() {
 		RegisterEventHandlers();
 
@@ -151,12 +160,22 @@ public class MainMenu : MonoBehaviour {
 
 
 	public void OnButtonHover(GameObject source, bool isOver) {
-//		Debug.Log ("source: " + source);
+		Debug.Log ("source: " + source);
+		UIButton button = source.GetComponentInChildren<UIButton>();
+		UILabel text = source.transform.parent.GetComponentInChildren<UILabel>();
+
+		Debug.Log ("text: " + text);
+
 		if (isOver) {
-			SetSelectedButton(source.GetComponentInChildren<UIButton>());
+			SetSelectedButton(button);
+			button.GetComponent<UI2DSprite>().sprite2D = buttonHoverSprite;
+			text.color = buttonHoverTextColor;
 //			Debug.Log ("MainMenu: Got 'isOver=true' OnHover event from: " + source);
 		}
 		else {
+			button.GetComponent<UI2DSprite>().sprite2D = buttonNormalSprite;
+			text.color = buttonNormalTextColor;
+				
 //			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
 		}
 	}
@@ -308,12 +327,11 @@ public class MainMenu : MonoBehaviour {
 	void HideAllMenus() {
 		titlePanel.SetActive(false);
 		optionsPanel.SetActive(false);
-		modeSelectPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(false);
-		mapSelectPanel.SetActive(false);
 		multiplayerHubPanel.SetActive(false);
 		lobbyPanel.SetActive(false);
 		joinServerPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 	}
 	
 	
@@ -368,10 +386,6 @@ public class MainMenu : MonoBehaviour {
 				OnMultiplayerClick();
 			}
 		}
-		// Map Select -> Vehicle Select
-		else if (mapSelectPanel.activeInHierarchy) {
-			
-		}
 		// MultiplayerHub -> Mode Select
 		else if (multiplayerHubPanel.activeInHierarchy) {
 			OnModeSelectClick();
@@ -416,9 +430,6 @@ public class MainMenu : MonoBehaviour {
 		Debug.Log("Title Clicked");
 		HideAllMenus();
 		titlePanel.SetActive(true);
-		
-		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
-		backButtonText.text = "Exit";
 	}
 	
 	
