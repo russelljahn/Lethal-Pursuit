@@ -121,8 +121,8 @@ public class MainMenu : MonoBehaviour {
 		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
 		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
 
-
 		if (pressedConfirm) {
+			GetSelectedButton().GetComponent<UIWidget>().color = GetSelectedButton().pressed;
 			GetSelectedButton().SendMessage("OnPress", true);
 		}
 		else if (releasedConfirm) {
@@ -177,8 +177,9 @@ public class MainMenu : MonoBehaviour {
 		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 
-
+	
 	public void OnButtonHover(GameObject source, bool isOver) {
+
 		Debug.Log ("source: " + source);
 		UIButton button = source.GetComponentInChildren<UIButton>();
 		UILabel text = source.transform.parent.GetComponentInChildren<UILabel>();
@@ -395,10 +396,11 @@ public class MainMenu : MonoBehaviour {
 		
 		// Exit
 		if (titlePanel.activeInHierarchy) {
-			selectedButtonIndex = currentPanelButtons.Length-1;
+			GetSelectedButton().SendMessage("OnHover", false);
+//			selectedButtonIndex = currentPanelButtons.Length-1;
 		}
 		// Vehicle Select -> MultiplayerHub
-		else if (vehicleSelectPanel.activeInHierarchy) {
+		if (vehicleSelectPanel.activeInHierarchy) {
 			OnMultiplayerClick();
 		}
 		// MultiplayerHub -> Mode Select
