@@ -131,7 +131,6 @@ public class MainMenu : MonoBehaviour {
 		else if (releasedCancel) {
 			OnClickBack();
 			StartCoroutine(ReloadCurrentPanelButtons());
-			backPanel.SendMessage("OnHover", false);
 		}
 		else if (releasedDown || releasedRight) {
 			GetSelectedButton().SendMessage("OnHover", false);
@@ -212,8 +211,6 @@ public class MainMenu : MonoBehaviour {
 	IEnumerator ReloadCurrentPanelButtons() {
 		yield return new WaitForEndOfFrame();
 		currentPanelButtons = uiRoot.gameObject.GetComponentsInChildren<UIButton>();
-		selectedButtonIndex = 0;
-		GetSelectedButton().SendMessage("OnHover", true);
 
 		Array.Sort(
 			currentPanelButtons, 
@@ -221,6 +218,16 @@ public class MainMenu : MonoBehaviour {
 				return lhs.name.CompareTo(rhs.name);
 			}
 		);
+
+		for (int i = 0; i < currentPanelButtons.Length; ++i) {
+			UIButton button = currentPanelButtons[i];
+			button.defaultColor = new Color(1.0f, 1.0f, 1.0f, buttonNormalOpacity);
+			button.GetComponent<UI2DSprite>().sprite2D = buttonNormalSprite;
+			button.transform.parent.GetComponentInChildren<UILabel>().color = buttonNormalTextColor;
+		}
+
+		selectedButtonIndex = 0;
+		GetSelectedButton().SendMessage("OnHover", true);
 	}
 
 
@@ -381,20 +388,18 @@ public class MainMenu : MonoBehaviour {
 			
 			Debug.Log("Status of join button: " + joinServerButton.isEnabled);
 		}
+
+		if (networkView != null) {
+			Destroy(this.networkView);
+		}
 		
 		// Exit
 		if (titlePanel.activeInHierarchy) {
 			selectedButtonIndex = currentPanelButtons.Length-1;
-//			OnExitClick();
 		}
-		// Vehicle Select -> Mode Select (if Singleplayer)/MultiplayerHub (if Multiplayer)
+		// Vehicle Select -> MultiplayerHub
 		else if (vehicleSelectPanel.activeInHierarchy) {
-			if (NetworkManager.IsSinglePlayer()) {
-				OnTitleClick();
-			}
-			else {
-				OnMultiplayerClick();
-			}
+			OnMultiplayerClick();
 		}
 		// MultiplayerHub -> Mode Select
 		else if (multiplayerHubPanel.activeInHierarchy) {
@@ -403,13 +408,6 @@ public class MainMenu : MonoBehaviour {
 		// Lobby -> MultiplayerHub (if Multiplayer CreateServer)/JoinServer (if Multiplayer JoinServer)
 		else if (lobbyPanel.activeInHierarchy) {
 			LevelManager.LoadMainMenu(false);
-//			if (client) {
-//				client = false;
-//				OnJoinServerClick();
-//			}
-//			else {
-//				OnMultiplayerClick();
-//			}
 		}
 		// JoinServer -> MultiplayerHub
 		else if (joinServerPanel.activeInHierarchy) {
@@ -420,7 +418,6 @@ public class MainMenu : MonoBehaviour {
 			OnTitleClick();
 		}
 
-		StartCoroutine(ReloadCurrentPanelButtons());
 	}
 	
 	

@@ -68,9 +68,9 @@ public class GameplayManager : MonoBehaviour {
 
 	void Update () {
 		InputManager.Update();
-		InputManager.OnDeviceAttached += inputDevice => Debug.Log( "Attached: " + inputDevice.Name );
-		InputManager.OnDeviceDetached += inputDevice => Debug.Log( "Detached: " + inputDevice.Name );
-		InputManager.OnActiveDeviceChanged += OnActiveDeviceChanged;
+//		InputManager.OnDeviceAttached += inputDevice => Debug.Log( "Attached: " + inputDevice.Name );
+//		InputManager.OnDeviceDetached += inputDevice => Debug.Log( "Detached: " + inputDevice.Name );
+//		InputManager.OnActiveDeviceChanged += OnActiveDeviceChanged;
 	}
 
 
