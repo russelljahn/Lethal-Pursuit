@@ -7,8 +7,6 @@ public class MainMenu : MonoBehaviour {
 	
 	public GameObject titlePanel;
 	public GameObject backPanel;
-	public GameObject optionsPanel;
-	public GameObject modeSelectPanel;
 	public GameObject vehicleSelectPanel;
 	public GameObject multiplayerHubPanel;
 	public GameObject lobbyPanel;
@@ -38,10 +36,10 @@ public class MainMenu : MonoBehaviour {
 	private bool tutorial = false;
 	private bool client = false;
 	
-	public string vehicle1Filepath = "Spaceships/Littlefoot";
+	public string vehicle1Filepath = "Spaceships/Dauntless";
 	public string vehicle2Filepath = "Spaceships/Helldiver";
-	public string vehicle3Filepath = "Spaceships/Mufasa";
-	public string vehicle4Filepath = "Spaceships/Dauntless";
+	public string vehicle3Filepath = "Spaceships/Little John";
+	public string vehicle4Filepath = "Spaceships/Mufasa";
 	
 	public string tutorialFilename = "Tutorial";
 	public string level1Filename = "Arena";
@@ -54,6 +52,30 @@ public class MainMenu : MonoBehaviour {
 
 	public float buttonNormalOpacity = 0.6f;
 	public float buttonTweenDuration = 0.04f;
+
+	public UI2DSprite vehicleSelectShip;
+	public UI2DSprite vehicleSelectHealthStat;
+	public UI2DSprite vehicleSelectSpeedStat;
+	public UI2DSprite vehicleSelectEmblem;
+	public UILabel vehicleSelectName;
+
+	public Sprite dauntlessSprite;
+	public Sprite helldiverSprite;
+	public Sprite littleJohnSprite;
+	public Sprite mufasaSprite;
+	
+	public Sprite dauntlessEmblem;
+	public Sprite helldiverEmblem;
+	public Sprite littleJohnEmblem;
+	public Sprite mufasaEmblem;
+
+	public Color dauntlessEmblemColor;
+	public Color helldiverEmblemColor;
+	public Color littleJohnEmblemColor;
+	public Color mufasaEmblemColor;
+	
+	
+
 
 //	public Color buttonNormalColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
 //	public Color buttonHoverColor = new Color(0.07059f, 0.8826f, 0.8471f);
@@ -105,32 +127,21 @@ public class MainMenu : MonoBehaviour {
 			StartCoroutine(ReloadCurrentPanelButtons());
 			backPanel.SendMessage("OnHover", false);
 		}
-		else if (vehicleSelectPanel.activeInHierarchy) {
-			if (releasedUp || releasedDown || releasedLeft || releasedRight) {
-				GetSelectedButton().SendMessage("OnHover", false);	
-				VehicleScreenSelectNextButton();
-				GetSelectedButton().SendMessage("OnHover", true);	
+		else if (releasedDown || releasedRight) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectNextButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
+		else if (releasedUp || releasedLeft) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectPreviousButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
+
+		if (releasedUp || releasedDown || releasedLeft || releasedRight) {
+			if (vehicleSelectPanel.activeInHierarchy) {
+				UpdateVehicleSelectScreen();
 			}
-		}
-		else if (releasedDown) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectNextButton();
-			GetSelectedButton().SendMessage("OnHover", true);
-		}
-		else if (releasedUp) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectPreviousButton();
-			GetSelectedButton().SendMessage("OnHover", true);
-		}
-		else if (releasedLeft) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectNextButton();
-			GetSelectedButton().SendMessage("OnHover", true);
-		}
-		else if (releasedRight) {
-			GetSelectedButton().SendMessage("OnHover", false);
-			SelectPreviousButton();
-			GetSelectedButton().SendMessage("OnHover", true);
 		}
 	}
 
@@ -178,6 +189,10 @@ public class MainMenu : MonoBehaviour {
 				
 //			Debug.Log ("MainMenu: Got 'isOver=false' OnHover event from: " + source);
 		}
+
+		if (vehicleSelectPanel.activeInHierarchy) {
+			UpdateVehicleSelectScreen();
+		}
 	}
 	
 
@@ -196,93 +211,63 @@ public class MainMenu : MonoBehaviour {
 	}
 
 
-	public void VehicleScreenSelectNextButton() {
+	public void UpdateVehicleSelectScreen() {
 		bool releasedUp = InputManager.ActiveDevice.DPadUp.WasReleased;
 		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
 		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
 		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
 
-
 		/* 
-			Button index 0 -> top left
-			Button index 1 -> top right
-			Button index 2 -> bottom left
-			Button index 3 -> bottom right
-			Button index 4 -> back button
+			Button index 0 -> Dauntless
+			Button index 1 -> Helldiver
+			Button index 2 -> Little John
+			Button index 3 -> Mufasa
+			Button index 4 -> Back button
 		 */ 
 		switch (selectedButtonIndex) {
-			// Button index 0 -> top left
+			// Button index 0 -> Dauntless
 			case 0:
-				if (releasedUp) {
-					selectedButtonIndex = 4;
-				}
-				else if (releasedDown) {
-					selectedButtonIndex = 2;	
-				}
-				else if (releasedLeft) {
-					selectedButtonIndex = 1;		
-				}
-				else if (releasedRight) {
-					selectedButtonIndex = 1;
-				}
+				vehicleSelectShip.sprite2D = dauntlessSprite;
+				vehicleSelectName.text = "Dauntless";
+				vehicleSelectHealthStat.transform.localScale = new Vector3(0.45f, 1.0f, 1.0f);
+				vehicleSelectSpeedStat.transform.localScale = new Vector3(0.55f, 1.0f, 1.0f);
+				vehicleSelectEmblem.sprite2D = dauntlessEmblem;
+				vehicleSelectEmblem.color = dauntlessEmblemColor;
 				break;
 		
-			// Button index 1 -> top right
+			// Button index 1 -> Helldiver
 			case 1:
-				if (releasedUp) {
-					selectedButtonIndex = 3;
-				}
-				else if (releasedDown) {
-					selectedButtonIndex = 3;
-				}
-				else if (releasedLeft) {
-					selectedButtonIndex = 0;
-				}
-				else if (releasedRight) {
-					selectedButtonIndex = 0;
-				}
+				vehicleSelectShip.sprite2D = helldiverSprite;
+				vehicleSelectName.text = "Helldiver";
+				vehicleSelectHealthStat.transform.localScale = new Vector3(0.55f, 1.0f, 1.0f);
+				vehicleSelectSpeedStat.transform.localScale = new Vector3(0.45f, 1.0f, 1.0f);
+				vehicleSelectEmblem.sprite2D = helldiverEmblem;
+				vehicleSelectEmblem.color = helldiverEmblemColor;
 				break;
 		
-			// Button index 2 -> bottom left
+			// Button index 2 -> Little John
 			case 2:
-				if (releasedUp) {
-					selectedButtonIndex = 0;
-				}
-				else if (releasedDown) {
-					selectedButtonIndex = 4;
-				}
-				else if (releasedLeft) {
-					selectedButtonIndex = 3;
-				}
-				else if (releasedRight) {
-					selectedButtonIndex = 3;
-				}
+				vehicleSelectShip.sprite2D = littleJohnSprite;
+				vehicleSelectName.text = "Little John";
+				vehicleSelectHealthStat.transform.localScale = new Vector3(0.3f, 1.0f, 1.0f);
+				vehicleSelectSpeedStat.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				vehicleSelectEmblem.sprite2D = littleJohnEmblem;
+				vehicleSelectEmblem.color = littleJohnEmblemColor;
 				break;
 		
-			// Button index 3 -> bottom right
+			// Button index 3 -> Mufasa
 			case 3:
-				if (releasedUp) {
-					selectedButtonIndex = 1;
-				}
-				else if (releasedDown) {
-					selectedButtonIndex = 1;
-				}
-				else if (releasedLeft) {
-					selectedButtonIndex = 2;
-				}
-				else if (releasedRight) {
-					selectedButtonIndex = 2;
-				}
+				vehicleSelectShip.sprite2D = mufasaSprite;
+				vehicleSelectName.text = "Mufasa";
+				vehicleSelectHealthStat.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				vehicleSelectSpeedStat.transform.localScale = new Vector3(0.3f, 1.0f, 1.0f);
+				vehicleSelectEmblem.sprite2D = mufasaEmblem;
+				vehicleSelectEmblem.color = mufasaEmblemColor;
 				break;
 
-			// Button index 4 -> back button
+			// Button index 4 -> Back button
 			case 4:
-				if (releasedUp) {
-					selectedButtonIndex = 2;
-				}
-				else if (releasedDown) {
-					selectedButtonIndex = 0;
-				}
+
 				break;
 		
 			default:
@@ -326,7 +311,6 @@ public class MainMenu : MonoBehaviour {
 
 	void HideAllMenus() {
 		titlePanel.SetActive(false);
-		optionsPanel.SetActive(false);
 		vehicleSelectPanel.SetActive(false);
 		multiplayerHubPanel.SetActive(false);
 		lobbyPanel.SetActive(false);
@@ -366,21 +350,10 @@ public class MainMenu : MonoBehaviour {
 		if (titlePanel.activeInHierarchy) {
 			OnExitClick();
 		}
-		// Mode Select -> Title Screen
-		else if (modeSelectPanel.activeInHierarchy) {
-			HideAllMenus();
-			titlePanel.SetActive(true);
-			UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
-			backButtonText.text = "Exit";
-		}
-		// Options -> Mode Select
-		else if (optionsPanel.activeInHierarchy) {
-			OnModeSelectClick();
-		}
 		// Vehicle Select -> Mode Select (if Singleplayer)/MultiplayerHub (if Multiplayer)
 		else if (vehicleSelectPanel.activeInHierarchy) {
 			if (NetworkManager.IsSinglePlayer()) {
-				OnModeSelectClick();
+				OnTitleClick();
 			}
 			else {
 				OnMultiplayerClick();
@@ -388,7 +361,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		// MultiplayerHub -> Mode Select
 		else if (multiplayerHubPanel.activeInHierarchy) {
-			OnModeSelectClick();
+			OnTitleClick();
 		}
 		// Lobby -> MultiplayerHub (if Multiplayer CreateServer)/JoinServer (if Multiplayer JoinServer)
 		else if (lobbyPanel.activeInHierarchy) {
@@ -406,7 +379,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		// Credits -> Mode Select
 		else if (creditsPanel.activeInHierarchy) {
-			OnModeSelectClick();
+			OnTitleClick();
 		}
 
 		StartCoroutine(ReloadCurrentPanelButtons());
@@ -417,29 +390,12 @@ public class MainMenu : MonoBehaviour {
 		Debug.Log("Exit Clicked");
 		LevelManager.Quit();
 	}
-	
-	
-	public void OnOptionsClick() {
-		Debug.Log("Options Clicked");
-		HideAllMenus();
-		optionsPanel.SetActive(true);
-	}
-	
-	
+
+
 	public void OnTitleClick() {
 		Debug.Log("Title Clicked");
 		HideAllMenus();
 		titlePanel.SetActive(true);
-	}
-	
-	
-	public void OnModeSelectClick() {
-		Debug.Log("Mode Select Clicked");
-		HideAllMenus();
-		modeSelectPanel.SetActive(true);
-		
-		UILabel backButtonText = backPanel.GetComponentInChildren<UILabel>();
-		backButtonText.text = "Back";
 	}
 	
 	
@@ -461,6 +417,7 @@ public class MainMenu : MonoBehaviour {
 		
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 	
 	
@@ -471,6 +428,7 @@ public class MainMenu : MonoBehaviour {
 		
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 
 
@@ -490,13 +448,14 @@ public class MainMenu : MonoBehaviour {
 		
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 		
 		launchButton.isEnabled = true;
 		serverStarted = true;
 		
 		Debug.Log("Server started status: " + serverStarted);
 		
-		launchText.text = "LAUNCH";
+		launchText.text = "Launch";
 	}
 	
 	
@@ -511,8 +470,8 @@ public class MainMenu : MonoBehaviour {
 		
 		HideAllMenus();
 		joinServerPanel.SetActive(true);
-		
-		launchText.text = "WAITING ON HOST";
+
+		launchText.text = "Waiting...";
 		client = true;
 	}
 	
@@ -541,6 +500,7 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.JoinServer(0);
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 	
 	
@@ -548,6 +508,7 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.JoinServer(1);
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 	
 	
@@ -555,6 +516,7 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.JoinServer(2);
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 	
 	
@@ -562,6 +524,7 @@ public class MainMenu : MonoBehaviour {
 		NetworkManager.JoinServer(3);
 		HideAllMenus();
 		vehicleSelectPanel.SetActive(true);
+		UpdateVehicleSelectScreen();
 	}
 	
 	
