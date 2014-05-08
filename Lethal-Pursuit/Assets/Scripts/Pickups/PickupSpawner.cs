@@ -15,7 +15,7 @@ public class PickupSpawner : MonoBehaviour {
 	public AudioClip pickupSound;
 	public GameObject visuals;
 
-	public bool enabled = true;
+	public new bool enabled = true;
 
 
 	void Start() {

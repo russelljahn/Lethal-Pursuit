@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour {
 	public string level1Filename = "Arena";
 	
 	private int playersReady = 1;
-	private UIRoot uiRoot;
+	public UIRoot uiRoot;
 	
 	public Sprite buttonNormalSprite;
 	public Sprite buttonHoverSprite;
@@ -157,7 +157,7 @@ public class MainMenu : MonoBehaviour {
 
 	// Make this script subscribe to ui events from buttons in the scene
 	void RegisterEventHandlers() {
-		uiRoot = GameObject.FindGameObjectWithTag("UIRoot").GetComponent<UIRoot>();
+//		uiRoot = GameObject.FindGameObjectWithTag("UIRoot").GetComponent<UIRoot>();
 		UIButton [] buttons = uiRoot.gameObject.GetComponentsInChildren<UIButton>(true);
 		for (int i = 0; i < buttons.Length; ++i) {
 			UIButton button = buttons[i];
@@ -209,6 +209,7 @@ public class MainMenu : MonoBehaviour {
 	
 
 	IEnumerator ReloadCurrentPanelButtons() {
+
 		yield return new WaitForEndOfFrame();
 		currentPanelButtons = uiRoot.gameObject.GetComponentsInChildren<UIButton>();
 
@@ -225,9 +226,10 @@ public class MainMenu : MonoBehaviour {
 			button.GetComponent<UI2DSprite>().sprite2D = buttonNormalSprite;
 			button.transform.parent.GetComponentInChildren<UILabel>().color = buttonNormalTextColor;
 		}
-
+		
 		selectedButtonIndex = 0;
 		GetSelectedButton().SendMessage("OnHover", true);
+		
 	}
 
 
@@ -394,7 +396,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		
 		// Exit
-		if (titlePanel.activeInHierarchy) {
+		if (titlePanel.activeInHierarchy && currentPanelButtons.Length > 0) {
 			GetSelectedButton().SendMessage("OnHover", false);
 //			selectedButtonIndex = currentPanelButtons.Length-1;
 		}

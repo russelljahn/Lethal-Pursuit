@@ -4,7 +4,7 @@ using System.Collections;
 public class Pickup : MonoBehaviour {
 
 	protected Spaceship spaceship;
-	protected bool active = true;
+	protected new bool active = true;
 
 	public virtual void Start() {
 

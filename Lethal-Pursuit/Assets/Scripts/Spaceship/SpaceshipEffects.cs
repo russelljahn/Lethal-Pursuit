@@ -11,7 +11,7 @@ public class SpaceshipEffects : SpaceshipComponent {
 	public float maxEmmissionRate = 1.00f;
 	
 
-	void Update() {
+	public override void Update() {
 
 		float speedRatio = spaceship.currentBoostVelocity/spaceship.maxBoostVelocity;
 		

@@ -27,7 +27,7 @@ public class Spaceship : MonoBehaviour, ITargetable {
 	public SpaceshipGun gun;
 	public SpaceshipPickups pickups;
 	public SpaceshipControl controls;
-	public string name;
+	public new string name;
 
 	private float invertYAmount = 1.0f;
 

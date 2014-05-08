@@ -77,15 +77,15 @@ public class MatchManager : MonoBehaviour {
 		
 		if (IsMatchOver() && !matchOver) {
 			timeFinishMatch = timeStartMatch + timeElapsed;
-			Debug.Log ("Match ended, Winner is Player " + CheckMatchScoreLeader() + " at time '" + timeFinishMatch + "'!");
+//			Debug.Log ("Match ended, Winner is Player " + CheckMatchScoreLeader() + " at time '" + timeFinishMatch + "'!");
 			matchOver = true;
 			networkView.RPC("OnMatchOver", RPCMode.All, CheckMatchScoreLeader());
 		}
 		
 		if (Network.isServer) {
-			for (int i=0; i<killscores.Length; i++) {
-				Debug.Log("Player " + i + " has score " + killscores[i]);
-			}
+//			for (int i=0; i<killscores.Length; i++) {
+//				Debug.Log("Player " + i + " has score " + killscores[i]);
+//			}
 		}
 
 

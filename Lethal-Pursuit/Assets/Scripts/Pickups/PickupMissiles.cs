@@ -19,7 +19,7 @@ public class PickupMissiles : Pickup {
 	public AudioClip shootingSound;
 
 	public Vector3 spawnOffsetFromGun = new Vector3(0.0f, 0.0f, 10.0f);
-	public bool enabled = true;
+	public new bool enabled = true;
 	
 
 

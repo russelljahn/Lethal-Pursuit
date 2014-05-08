@@ -12,12 +12,7 @@ public class SpaceshipPickups : SpaceshipComponent {
 	public Pickup currentPickup = null;
 
 
-	void Start () {
-	
-	}
-
-
-	void Update () {
+	public override void Update () {
 		if (currentPickup != null && currentPickup.ShouldDrop()) {
 			currentPickup.OnDrop();
 			GameObject.Destroy(currentPickup.gameObject);

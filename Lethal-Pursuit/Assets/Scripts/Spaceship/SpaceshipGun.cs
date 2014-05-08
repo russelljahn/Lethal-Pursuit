@@ -29,7 +29,7 @@ public class SpaceshipGun : SpaceshipComponent {
 	private GameObject cachedBullet;
 	public AudioClip shootingSound;
 	
-	public bool enabled = true;
+	public new bool enabled = true;
 	public bool enabledLastFrame;
 	
 	

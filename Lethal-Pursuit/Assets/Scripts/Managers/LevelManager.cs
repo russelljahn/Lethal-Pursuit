@@ -238,10 +238,10 @@ public class LevelManager : MonoBehaviour {
 		// Now the level has been loaded and we can start sending out data
 		Network.SetSendingEnabled(0, true);
 		
-		Debug.Log("LevelManager: sending load msg");
+//		Debug.Log("LevelManager: sending load msg");
 		// Notify our objects that the level and the network is ready
 		foreach (GameObject go in FindObjectsOfType(typeof(GameObject)) ) {
-			Debug.Log("LevelManager: sending load msg");
+//			Debug.Log("LevelManager: sending load msg");
 			go.SendMessage("LevelManager: OnNetworkLoadedLevel", levelToLoad, SendMessageOptions.DontRequireReceiver);  
 		}
 		

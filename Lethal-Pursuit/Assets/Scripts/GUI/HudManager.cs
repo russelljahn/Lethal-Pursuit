@@ -7,11 +7,7 @@ public class HudManager : MonoBehaviour {
 
 	public UIRoot uiRoot;
 	public Spaceship spaceship;
-
-	public bool pressingStart;
-	public bool releasedStart;
-
-	private bool pressedStartLastFrame;
+	
 	private Level currentLevel;
 
 	private bool isTutorialLevel;
@@ -59,31 +55,41 @@ public class HudManager : MonoBehaviour {
 		bool releasedDown = InputManager.ActiveDevice.DPadDown.WasReleased;
 		bool releasedLeft = InputManager.ActiveDevice.DPadLeft.WasReleased;
 		bool releasedRight = InputManager.ActiveDevice.DPadRight.WasReleased;
-		pressedStartLastFrame = pressingStart;
-		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
-		releasedStart = !pressingStart && pressedStartLastFrame;
-		
-		if (releasedStart || releasedCancel) {
+		bool releasedStart = InputManager.ActiveDevice.GetControl(InputControlType.Start).WasReleased;
+
+		Debug.Log (string.Format(
+			"pressedConfirm? {0}\nreleasedConfirm? {1}\nreleasedCancel? {2}\nreleasedStart? {3}",
+			pressedConfirm,
+			releasedConfirm, 
+			releasedCancel, 
+			releasedStart
+			)
+		           );
+
+		if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
+			Debug.Log ("Displaying menu...");
+			DisplayMenu();
+			return;
+
+		}
+		else if (releasedStart || releasedCancel) {
 			if (menuGui.activeInHierarchy) {
+				Debug.Log ("Hiding menu...");
 				HideMenu();
 				StartCoroutine(ReloadCurrentPanelButtons());
 				return;
 			}
 			else if (controlsGui.activeInHierarchy) {
+				Debug.Log ("Hiding controls...");	
 				HideControls();
 				StartCoroutine(ReloadCurrentPanelButtons());
 				return;
 			}
 		}
-		if (releasedStart) {
-			if (!tutorialGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
-				DisplayMenu();
-				StartCoroutine(ReloadCurrentPanelButtons());
-				return;
-			}
-		}
+
 		if (releasedCancel) {
 			if (quitConfirmationGui.activeInHierarchy) {
+				Debug.Log ("Cancelling out of quit confirmation...");
 				HideQuitConfirmation();
 				StartCoroutine(ReloadCurrentPanelButtons());
 				return;
@@ -99,7 +105,6 @@ public class HudManager : MonoBehaviour {
 			GetSelectedButton().SendMessage("OnClick");
 		}
 		else if (releasedCancel) {
-	
 			StartCoroutine(ReloadCurrentPanelButtons());
 		}
 		else if (releasedDown || releasedRight) {
@@ -118,7 +123,7 @@ public class HudManager : MonoBehaviour {
 
 	// Make this script subscribe to ui events from buttons in the scene
 	void RegisterEventHandlers() {
-		uiRoot = GameObject.FindGameObjectWithTag("UIRoot").GetComponent<UIRoot>();
+//		uiRoot = GameObject.FindGameObjectWithTag("UIRoot").GetComponent<UIRoot>();
 		UIButton [] buttons = uiRoot.gameObject.GetComponentsInChildren<UIButton>(true);
 		for (int i = 0; i < buttons.Length; ++i) {
 			UIButton button = buttons[i];
@@ -204,7 +209,9 @@ public class HudManager : MonoBehaviour {
 		}
 		
 		selectedButtonIndex = 0;
-		GetSelectedButton().SendMessage("OnHover", true);
+		if (currentPanelButtons.Length > 0) {
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
 	}
 
 
@@ -252,7 +259,7 @@ public class HudManager : MonoBehaviour {
 
 	public void HideMenu() {
 		spaceship.enabled = true;
-		StartCoroutine(ReloadCurrentPanelButtons());
+		ImmediatelyReloadCurrentPanelButtons();
 		menuGui.SetActive(false);
 		
 	}
