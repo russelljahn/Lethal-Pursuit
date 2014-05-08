@@ -63,30 +63,8 @@ public class HudManager : MonoBehaviour {
 		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
 		releasedStart = !pressingStart && pressedStartLastFrame;
 
-		if (menuGui.activeInHierarchy || controlsGui.activeInHierarchy || quitConfirmationGui.activeInHierarchy || matchOverGui.activeInHierarchy) {
-			if (pressedConfirm) {
-				GetSelectedButton().GetComponent<UIWidget>().color = GetSelectedButton().pressed;
-				GetSelectedButton().SendMessage("OnPress", true);
-			}
-			else if (releasedConfirm) {
-				GetSelectedButton().SendMessage("OnClick");
-			}
-			else if (releasedCancel) {
-				
-				StartCoroutine(ReloadCurrentPanelButtons());
-			}
-			else if (releasedDown || releasedRight) {
-				GetSelectedButton().SendMessage("OnHover", false);
-				SelectNextButton();
-				GetSelectedButton().SendMessage("OnHover", true);
-			}
-			else if (releasedUp || releasedLeft) {
-				GetSelectedButton().SendMessage("OnHover", false);
-				SelectPreviousButton();
-				GetSelectedButton().SendMessage("OnHover", true);
-			}
-		}
-		else if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
+
+		if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
 			Debug.Log ("Displaying menu...");
 			DisplayMenu();
 			ImmediatelyReloadCurrentPanelButtons();
@@ -120,6 +98,28 @@ public class HudManager : MonoBehaviour {
 			}
 		}
 
+
+		if (pressedConfirm) {
+			GetSelectedButton().GetComponent<UIWidget>().color = GetSelectedButton().pressed;
+			GetSelectedButton().SendMessage("OnPress", true);
+		}
+		else if (releasedConfirm) {
+			GetSelectedButton().SendMessage("OnClick");
+		}
+		else if (releasedCancel) {
+			
+			StartCoroutine(ReloadCurrentPanelButtons());
+		}
+		else if (releasedDown || releasedRight) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectNextButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
+		else if (releasedUp || releasedLeft) {
+			GetSelectedButton().SendMessage("OnHover", false);
+			SelectPreviousButton();
+			GetSelectedButton().SendMessage("OnHover", true);
+		}
 	}
 	
 
