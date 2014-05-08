@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour {
 	public UIButton refreshButton;
 	public UIButton launchButton;
 	public UILabel launchText;
+	public UILabel gameNameText;
 	
 	
 	public  GameObject[] serverButtons;
@@ -180,11 +181,9 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnButtonHover(GameObject source, bool isOver) {
 
-		Debug.Log ("source: " + source);
+//		Debug.Log ("source: " + source);
 		UIButton button = source.GetComponentInChildren<UIButton>();
 		UILabel text = source.transform.parent.GetComponentInChildren<UILabel>();
-
-		Debug.Log ("text: " + text);
 
 		if (isOver) {
 			SetSelectedButton(button);
@@ -401,7 +400,8 @@ public class MainMenu : MonoBehaviour {
 		}
 		// Vehicle Select -> MultiplayerHub
 		if (vehicleSelectPanel.activeInHierarchy) {
-			OnMultiplayerClick();
+			LevelManager.LoadMainMenu(false);
+//			OnMultiplayerClick();
 		}
 		// MultiplayerHub -> Mode Select
 		else if (multiplayerHubPanel.activeInHierarchy) {
@@ -413,7 +413,8 @@ public class MainMenu : MonoBehaviour {
 		}
 		// JoinServer -> MultiplayerHub
 		else if (joinServerPanel.activeInHierarchy) {
-			OnMultiplayerClick();
+			LevelManager.LoadMainMenu(false);
+//			OnMultiplayerClick();
 		}
 		// Credits -> Mode Select
 		else if (creditsPanel.activeInHierarchy) {
@@ -493,17 +494,20 @@ public class MainMenu : MonoBehaviour {
 		Debug.Log("Server started status: " + serverStarted);
 		
 		launchText.text = "Launch";
+		gameNameText.text = "Hosting " + NetworkManager.gameName;
 	}
 	
 	
 	public void OnJoinServerClick() {
 //		HideBackButton();
+		this.gameObject.AddComponent<NetworkView>();
 		refreshButton.isEnabled = true;
 		
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
 		
-		launchButton.isEnabled = false;
+		launchButton.transform.parent.GetComponentInChildren<UILabel>().color = buttonNormalTextColor;
+		launchButton.enabled = false;
 		
 		HideAllMenus();
 		joinServerPanel.SetActive(true);
@@ -652,10 +656,7 @@ public class MainMenu : MonoBehaviour {
 	public void OnLobbyClick() {
 		HideAllMenus();
 		lobbyPanel.SetActive(true);
-		
-		//if(Network.isClient) {
-			//networkView.RPC("PlayerReady", RPCMode.Server);
-		//}
+
 	}
 	
 	

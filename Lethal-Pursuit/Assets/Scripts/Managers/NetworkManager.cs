@@ -73,9 +73,9 @@ public class NetworkManager : MonoBehaviour {
 		Network.InitializeServer(maxPlayersAllowed, 25000, !Network.HavePublicAddress());
 		Debug.Log ("Registering Host.........");
 		Random.seed = (int)Time.time;
-		string uniqueGameName = string.Format("{0} {1}", gameName, Random.Range(100, 999));
-		Debug.Log ("uniqueGameName: " + uniqueGameName);
-		MasterServer.RegisterHost (gameType, uniqueGameName, gameComment);
+		gameName = string.Format("Game {0}", Random.Range(100, 999));
+		Debug.Log ("gameName: " + gameName);
+		MasterServer.RegisterHost (gameType, gameName, gameComment);
 
 		playerList.Clear();
 		playerList.Add(Network.player); //Add host (local player) to list
