@@ -500,19 +500,18 @@ public class MainMenu : MonoBehaviour {
 	
 	public void OnJoinServerClick() {
 //		HideBackButton();
-		this.gameObject.AddComponent<NetworkView>();
 		refreshButton.isEnabled = true;
 		
 		NetworkManager.RefreshHostList();
 		refreshClicked = true;
-		
-		launchButton.transform.parent.GetComponentInChildren<UILabel>().color = buttonNormalTextColor;
+
 		launchButton.enabled = false;
 		
 		HideAllMenus();
 		joinServerPanel.SetActive(true);
 
 		launchText.text = "Waiting...";
+		launchText.color = buttonNormalTextColor;
 		client = true;
 	}
 	
@@ -656,7 +655,9 @@ public class MainMenu : MonoBehaviour {
 	public void OnLobbyClick() {
 		HideAllMenus();
 		lobbyPanel.SetActive(true);
-
+		if (networkView == null) {
+			this.gameObject.AddComponent<NetworkView>();
+		}
 	}
 	
 	
