@@ -298,6 +298,7 @@ public class HudManager : MonoBehaviour {
 	public void DisplayMatchOver() {
 		spaceship.enabled = false;
 		matchOverGui.SetActive(true);
+		ImmediatelyReloadCurrentPanelButtons();
 	}
 	
 	
