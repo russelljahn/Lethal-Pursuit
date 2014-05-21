@@ -15,6 +15,11 @@ public class LevelManager : MonoBehaviour {
 	private string loadingScreenFilename = "GUI/LoadingScreen"; // Loading screen prefab relative to resources directory.
 	public float loadingScreenFadeTime = 0.75f;
 
+	private string keyboardControlsSpriteFilename = "GUI/LoadingControlsKeyboard"; // Loading screen controls keyboard sprite relative to resources directory.
+	private string controllerControlsSpriteFilename = "GUI/LoadingControlsController"; // Loading screen controls controller sprite relative to resources directory.
+	private Sprite keyboardControlsSprite;
+	private Sprite controllerControlsSprite;
+	
 
 	private static LevelManager instance {
 		get {
@@ -59,6 +64,9 @@ public class LevelManager : MonoBehaviour {
 			loadingScreenGameObject.name = "Loading Screen";
 			loadingScreen.alpha = 0.0f;
 		}
+
+		keyboardControlsSprite = Resources.Load<Sprite>(keyboardControlsSpriteFilename);
+		controllerControlsSprite = Resources.Load<Sprite>(controllerControlsSpriteFilename);
 	}
 
 
@@ -174,6 +182,7 @@ public class LevelManager : MonoBehaviour {
 
 	private static IEnumerator LoadLevelHelper(Level levelToLoad) {
 		if (instance.showLoadingScreen) {
+			UpdateControlsSprite();
 			ShowLoadingScreen();
 			yield return new WaitForSeconds(instance.loadingScreenFadeTime);
 		}
@@ -200,6 +209,7 @@ public class LevelManager : MonoBehaviour {
 		instance.showLoadingScreen = showLoadingScreen;
 
 		if (instance.showLoadingScreen) {
+			UpdateControlsSprite();	
 			ShowLoadingScreen();
 		}
 		yield return new WaitForSeconds(instance.loadingScreenFadeTime);
@@ -293,15 +303,30 @@ public class LevelManager : MonoBehaviour {
 
 
 
+	private static void UpdateControlsSprite() {
+		UI2DSprite controllerSprite = instance.loadingScreen.transform.FindChild("Controller Image").GetComponent<UI2DSprite>();
+
+		if (GameplayManager.keyboardControlsActive) {
+			controllerSprite.sprite2D = instance.keyboardControlsSprite;
+		}
+		else {
+			controllerSprite.sprite2D = instance.controllerControlsSprite;
+		}
+	}
+
+
+
 	private static IEnumerator HideLoadingScreenOnPress() {
 
 		UILabel loadingText = instance.loadingScreen.GetComponentInChildren<UILabel>();
-		
+		UpdateControlsSprite();
+
 		if (!IsMainMenu()) {
 			GameplayManager.spaceship.isVisible = false;
 			loadingText.text = "Press any button to continue!";
 
 			while (!Input.anyKey) {
+				UpdateControlsSprite();	
 				yield return null;
 			}
 			GameplayManager.spaceship.isVisible = true;

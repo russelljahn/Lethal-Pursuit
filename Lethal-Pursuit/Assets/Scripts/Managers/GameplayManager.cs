@@ -11,6 +11,7 @@ using System;
 public class GameplayManager : MonoBehaviour {
 
 	private static bool alreadyAwoken = false;
+	public static bool keyboardControlsActive = true;
 
 	public static Spaceship spaceship {
 		get {
@@ -61,6 +62,12 @@ public class GameplayManager : MonoBehaviour {
 		/* Register custom input profiles for keyboard button mappings. */
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile1() ) );
 		InputManager.AttachDevice( new UnityInputDevice( new SpaceshipKeyboardProfile2() ) );
+
+		InputManager.OnActiveDeviceChanged += OnActiveDeviceChanged;
+		InputManager.OnDeviceAttached += OnDeviceAttached;
+		InputManager.OnDeviceDetached += OnDeviceDetached;
+
+		UpdateKeyboardControlsActive(InputManager.ActiveDevice);
 	}
 
 
@@ -68,22 +75,41 @@ public class GameplayManager : MonoBehaviour {
 
 	void Update () {
 		InputManager.Update();
-//		InputManager.OnDeviceAttached += inputDevice => Debug.Log( "Attached: " + inputDevice.Name );
-//		InputManager.OnDeviceDetached += inputDevice => Debug.Log( "Detached: " + inputDevice.Name );
-//		InputManager.OnActiveDeviceChanged += OnActiveDeviceChanged;
 	}
+
+
+
+	void OnDeviceAttached(InputDevice inputDevice) {
+		Debug.Log( "Attached: " + inputDevice.Name );
+		UpdateKeyboardControlsActive(inputDevice);
+	}
+
+
+
+	void OnDeviceDetached(InputDevice inputDevice) {
+		Debug.Log( "Detached: " + inputDevice.Name );
+		UpdateKeyboardControlsActive(inputDevice);
+	}
+
 
 
 	void OnActiveDeviceChanged(InputDevice inputDevice) {
 		Debug.Log( "Switched: " + inputDevice.Name );
-//		if (inputDevice.Name.Equals("Keyboard")) {
-//			Screen.showCursor = true;
-//			Screen.lockCursor = false;
-//		}
-//		else {
-//			Screen.showCursor = false;
-//			Screen.lockCursor = true;
-//		}
+		UpdateKeyboardControlsActive(inputDevice);
+	}
+
+
+	private static void UpdateKeyboardControlsActive(InputDevice inputDevice) {
+		if (inputDevice.Name.Equals("Keyboard")) {
+			keyboardControlsActive = true;
+			Screen.showCursor = true;
+			Screen.lockCursor = false;
+		}
+		else {
+			keyboardControlsActive = false;
+			Screen.showCursor = false;
+			Screen.lockCursor = true;
+		}
 	}
 
 

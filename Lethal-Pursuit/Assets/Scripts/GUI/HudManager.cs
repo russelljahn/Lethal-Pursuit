@@ -32,6 +32,14 @@ public class HudManager : MonoBehaviour {
 	public float buttonNormalOpacity = 0.6f;
 	public float buttonTweenDuration = 0.04f;
 
+
+	private string keyboardControlsSpriteFilename = "GUI/LoadingControlsKeyboard"; // Loading screen controls keyboard sprite relative to resources directory.
+	private string controllerControlsSpriteFilename = "GUI/LoadingControlsController"; // Loading screen controls controller sprite relative to resources directory.
+	private Sprite keyboardControlsSprite;
+	private Sprite controllerControlsSprite;
+
+	
+
 	// Use this for initialization
 	void Start () {
 		spaceship = GameplayManager.spaceship;
@@ -44,7 +52,8 @@ public class HudManager : MonoBehaviour {
 //		ImmediatelyReloadCurrentPanelButtons();
 		menuGui.SetActive(false);
 		
-		
+		keyboardControlsSprite = Resources.Load<Sprite>(keyboardControlsSpriteFilename);
+		controllerControlsSprite = Resources.Load<Sprite>(controllerControlsSpriteFilename);
 //		HideAllMenus();
 	}
 	
@@ -62,6 +71,11 @@ public class HudManager : MonoBehaviour {
 		pressedStartLastFrame = pressingStart;
 		pressingStart = InputManager.ActiveDevice.GetControl(InputControlType.Start);
 		releasedStart = !pressingStart && pressedStartLastFrame;
+
+
+		if (controlsGui.activeInHierarchy) {
+			UpdateControlsSprite();
+		}
 
 
 		if (releasedStart && !menuGui.activeInHierarchy && !controlsGui.activeInHierarchy && !quitConfirmationGui.activeInHierarchy && !matchOverGui.activeInHierarchy) {
@@ -252,6 +266,18 @@ public class HudManager : MonoBehaviour {
 	
 	public UIButton GetSelectedButton() {
 		return currentPanelButtons[selectedButtonIndex];
+	}
+
+
+	private void UpdateControlsSprite() {
+		UI2DSprite controllerSprite = controlsGui.transform.FindChild("Controller Image").GetComponent<UI2DSprite>();
+		
+		if (GameplayManager.keyboardControlsActive) {
+			controllerSprite.sprite2D = keyboardControlsSprite;
+		}
+		else {
+			controllerSprite.sprite2D = controllerControlsSprite;
+		}
 	}
 
 
