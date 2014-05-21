@@ -300,7 +300,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -382, y: 271, z: 0}
+  m_LocalPosition: {x: -382.948792, y: 266.14209, z: 0}
   m_LocalScale: {x: .489697278, y: .489697278, z: .489697278}
   m_Children: []
   m_Father: {fileID: 400026}
@@ -311,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 295, y: -163, z: 0}
+  m_LocalPosition: {x: 293.777771, y: -159.5, z: 0}
   m_LocalScale: {x: .490356207, y: .490356207, z: .490356207}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -670,30 +670,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400002}
     relative: 0
-    absolute: 0
+    absolute: 48
   rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400002}
     relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
+    absolute: 466
+  bottomAnchor:
+    target: {fileID: 400002}
     relative: 1
-    absolute: 0
+    absolute: -123
+  topAnchor:
+    target: {fileID: 400002}
+    relative: 1
+    absolute: -67
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 432
-  mHeight: 52
+  mWidth: 418
+  mHeight: 56
   mDepth: 405
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 8.30769253
+  aspectRatio: 7.46428585
   mSprite: {fileID: 21300000, guid: 800e9f57e11b1476ba0636b3d4d8577b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
@@ -710,25 +710,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: -421
+    target: {fileID: 400002}
+    relative: .5
+    absolute: -124
   rightAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400002}
     relative: 1
-    absolute: -38
+    absolute: -20
   bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 400002}
     relative: 0
-    absolute: 27
+    absolute: 17
   topAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 300
+    target: {fileID: 400002}
+    relative: .5
+    absolute: 16
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 8
-  mWidth: 699
-  mHeight: 273
+  mWidth: 418
+  mHeight: 176
   mDepth: 500
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
