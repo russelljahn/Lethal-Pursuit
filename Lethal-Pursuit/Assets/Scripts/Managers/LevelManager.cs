@@ -287,8 +287,29 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		if (instance.showLoadingScreen) {
-			HideLoadingScreen();
+			StartCoroutine(HideLoadingScreenOnPress());
 		}
+	}
+
+
+
+	private static IEnumerator HideLoadingScreenOnPress() {
+
+		UILabel loadingText = instance.loadingScreen.GetComponentInChildren<UILabel>();
+		
+		if (!IsMainMenu()) {
+			GameplayManager.spaceship.isVisible = false;
+			loadingText.text = "Press any button to continue!";
+
+			while (!Input.anyKey) {
+				yield return null;
+			}
+			GameplayManager.spaceship.isVisible = true;
+		}
+
+		HideLoadingScreen();
+		loadingText.text = "Loading...";
+		yield break;
 	}
 
 
